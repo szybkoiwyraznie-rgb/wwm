@@ -269,3 +269,34 @@ test('ten sam akapit nie stoi dwa razy na stronie', async () => {
   }
   assert.deepEqual([...new Set(problemy)], []);
 });
+
+test('pewność stoi tylko przy przypuszczeniu — tło kulturowe jej nie dostaje', async () => {
+  // `{{model}}` bez `pewnosc=` to tło kulturowe (konwencja, obyczaj, znaczenie
+  // słowa) i zostaje w kolorze wiedzy modelu, ale liczba nie ma tu czego szacować.
+  // `{{model pewnosc=N}}` to przypuszczenie — i tam pewność jest obowiązkowa.
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const widoki = {
+    scena: (await import('../src/wwm/render-scena.js')).renderScena,
+    epizod: (await import('../src/wwm/render-epizod.js')).renderEpizod,
+    rozdzial: (await import('../src/wwm/render-epizod.js')).renderRozdzial,
+    encja: (await import('../src/wwm/render-encja.js')).renderEncja,
+  };
+  const problemy = [];
+  for (const strona of Object.values(dane.strony)) {
+    const html = (widoki[strona.typ] ?? widoki.encja)(strona.slug);
+    // Interpretacja to model Z pewnością — legalna. Tło kulturowe to model bez
+    // rodzaju: jeśli ma liczbę, ktoś pomylił jedno z drugim.
+    for (const m of html.matchAll(/<div [^>]*class="fragment [^"]*poziom-model[^"]*"[^>]*>/g)) {
+      if (!/rodzaj-interpretacja/.test(m[0]) && /data-pewnosc=/.test(m[0])) {
+        problemy.push(`${strona.slug}: tło kulturowe z pewnością ${m[0].match(/data-pewnosc="(\d+)"/)?.[1]}`);
+      }
+    }
+    // Plakietka bez liczby („pewność”) albo z pustą wartością to znak, że badge
+    // dostał coś, co nie jest pewnością.
+    for (const m of html.matchAll(/pewność(?![^<]{0,30}\d)/g)) {
+      problemy.push(`${strona.slug}: „pewność” bez liczby`);
+    }
+  }
+  assert.deepEqual([...new Set(problemy)], []);
+});

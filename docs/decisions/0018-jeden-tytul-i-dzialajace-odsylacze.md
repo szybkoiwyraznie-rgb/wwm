@@ -78,6 +78,18 @@ się poza sceną — wszystkie naprawione u źródła, nie w pojedynczych widoka
 14. **Nagłówki tabeli to zdania o opowieści.** `WĄTEK | ŚLAD W SCENIE` → `Co się wtedy
     porusza | Czym daje o sobie znać`.
 
+## Pewność należy do przypuszczenia, nie do tła (decyzja właściciela)
+
+`{{model}}` **bez** `pewnosc=` to tło kulturowe — konwencja, obyczaj, znaczenie słowa.
+Zostaje w kolorze wiedzy modelu (to nadal wiedza modelu, nie źródło), ale **nie dostaje
+etykiety pewności**: liczba przy zdaniu o obyczaju nie ma czego szacować i tylko
+sugerowałaby, że to policzone ryzyko.
+
+- `{{model pewnosc=N}}` = przypuszczenie; pewność jest jego cechą i stoi w plakietce.
+- `{{model}}` = tło; brak liczby jest informacją, nie brakiem.
+- `pytanie=` i `rodzaj=interpretacja` wymagają pewności — inaczej build zgłasza błąd.
+- `pewnosc=0` nie wyświetla plakietki: zero to brak twierdzenia, nie „bardzo niepewne”.
+
 ## Konsekwencje
 
 - **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na

@@ -113,6 +113,7 @@ export function legendaPoziomow() {
     ${pochodzenia.map(([id, nazwa, opis]) => `<li><span class="legenda-probka poziom-${id}" aria-hidden="true"></span><strong>${nazwa}</strong> — ${opis}</li>`).join('')}
   </ul>
   <p class="legenda-pewnosc">Jeden boks może mieć kilka warstw w różnych kolorach: cytat, wniosek, tło z kwerendy i hipotezę o dalszym ciągu. Hipoteza jest zawsze przypuszczeniem — nie cytatem — i ma oszacowaną pewność: ${PROGI_PEWNOSCI.map((p) => `${p.od}–${p.od === 80 ? 100 : p.od === 50 ? 79 : 49}% ${p.etykieta}`).join(' · ')}.</p>
+  <p class="legenda-pewnosc">Wiedza modelu bez pewności to tło kulturowe — konwencja, obyczaj, znaczenie słowa — więc nie dostaje liczby: kolor mówi, że to wiedza modelu, a liczba nie miałaby tu czego szacować.</p>
 </div>`;
 }
 

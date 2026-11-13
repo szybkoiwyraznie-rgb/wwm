@@ -252,6 +252,8 @@ Zasady:
   tło historyczne i hipoteza o dalszym ciągu mogą stać pod jednym tytułem.
 - **Pochodzenie trzyma się przez cały blok** — do jawnego `}}`, także gdy w środku stoi
   nagłówek `##`. Nagłówek zaczyna boks, nie nowy blok pochodzenia.
+- **`{{model}}` bez `pewnosc=` to tło kulturowe** — zostaje w kolorze wiedzy modelu, ale
+  nie dostaje plakietki pewności. `pytanie=` i `rodzaj=interpretacja` wymagają `pewnosc=`.
 - **Interpretacja może mieć `pytanie="…"`** — zdanie, na które blok odpowiada. Listy
   i kolumny boczne pokazują je zamiast tytułu sekcji („Analiza” nic nie mówi).
 - **`streszczenie` podaje się jawnie.** Build nie wyciąga go z „Opisu”, bo to dosłowny

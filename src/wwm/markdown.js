@@ -117,6 +117,8 @@ export function badgePewnosci(wartosc) {
   if (wartosc === null || wartosc === undefined || wartosc === '') return '';
   if (!czyPewnosc(wartosc)) return '';
   const n = Number(wartosc);
+  // 0% to nie „bardzo niepewne twierdzenie”, a brak twierdzenia — liczba nic nie wnosi.
+  if (n === 0) return '';
   const prog = poziomPewnosci(n);
   return `<span class="pewnosc pewnosc-${prog.id}" data-pewnosc="${n}" title="Szacowana pewność: ${n}% (${prog.etykieta})">pewność ${n}%</span>`;
 }
@@ -194,6 +196,13 @@ export function renderMarkdown(md, {
       if (!POCHODZENIA.includes(pochodzenie)) {
         problemy.push(`nieznane pochodzenie w bloku {{${pochodzenie}}: dozwolone ${POCHODZENIA.join(', ')}`);
         continue;
+      }
+      // Tło kulturowe nie ma czego szacować: liczba przy nim sugeruje przypuszczenie,
+      // którym nie jest. `{{model}}` bez pewności zostaje w swoim kolorze (ADR 0018).
+      if (pochodzenie === POCHODZENIE_INTERPRETACJI && !atrybuty.has('pewnosc')
+        && (atrybuty.has('pytanie') || rodzajRaw === 'interpretacja')) {
+        problemy.push('tło kulturowe {{model}} nie jest przypuszczeniem — bez `pewnosc=` usuń '
+          + `\`pytanie=\`${rodzajRaw ? '/`rodzaj=interpretacja`' : ''} albo podaj pewność`);
       }
       if (rodzajRaw !== undefined && !RODZAJE_TRESCI.includes(rodzajRaw)) {
         problemy.push(`nieznany rodzaj treści "${rodzajRaw}": dozwolone ${RODZAJE_TRESCI.join(', ')}`);
