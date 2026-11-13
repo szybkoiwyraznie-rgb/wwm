@@ -114,6 +114,18 @@ rodzaju treści. Kolor należy do warstw, nie do tytułu.
   a w analizie `Otwarta brama ↦`).
 - Build nie wstawia już `## <tytuł sekcji>` do treści warstwy: tytuł renderuje widok.
 
+## Lead, nawigacja i chronologia (uwagi właściciela)
+
+15. **Wstęp wypełnia kolumnę.** Wszystkie leady miały `max-width` w `ch` (68–80),
+    więc łamały się w połowie kolumny i wyglądały jak urwany akapit. Szerokość
+    wyznacza kolumna, nie `ch`.
+16. **„Co nowego” i „Jak czytać kronikę” były nieosiągalne** — trasy istniały, ale
+    żadna nawigacja do nich nie prowadziła. Oba wejścia są teraz w stopce.
+17. **Chronologia startuje zwinięta.** `details/summary` na rozdziałach: ekran pokazuje
+    kształt opowieści (ile rozdziałów, gdzie jesteśmy), a nie wszystkie sceny naraz.
+18. **Wiersz sceny nie dubluje epizodu.** Nazwa epizodu stoi nad scenami jako nagłówek;
+    w wierszu była powtórzona i „striplowana”. Zostaje numer sceny.
+
 ## Konsekwencje
 
 - **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na

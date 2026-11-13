@@ -335,3 +335,53 @@ test('tytuł boksu stoi nad podboksami, a plakietka przy podboksie', async () =>
   }
   assert.deepEqual([...new Set(problemy)], []);
 });
+
+
+test('wstęp pod tytułem nie powtarza treści strony', async () => {
+  // Lead ma zapowiadać, nie streszczać: jeśli ten sam akapit stoi niżej, to dubel.
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const widoki = {
+    scena: (await import('../src/wwm/render-scena.js')).renderScena,
+    epizod: (await import('../src/wwm/render-epizod.js')).renderEpizod,
+    rozdzial: (await import('../src/wwm/render-epizod.js')).renderRozdzial,
+    encja: (await import('../src/wwm/render-encja.js')).renderEncja,
+  };
+  const problemy = [];
+  for (const strona of Object.values(dane.strony)) {
+    const html = (widoki[strona.typ] ?? widoki.encja)(strona.slug);
+    const wstep = html.match(/<p class="wstep">([\s\S]*?)<\/p>/)?.[1];
+    if (!wstep) continue;
+    const reszta = html.replace(/<p class="wstep">[\s\S]*?<\/p>/, '');
+    const tekst = reszta.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
+    if (tekst.includes(wstep.replace(/<[^>]*>/g, '').trim())) {
+      problemy.push(`${strona.slug}: wstęp powtarza się w treści`);
+    }
+  }
+  assert.deepEqual(problemy, []);
+});
+
+test('chronologia nie powtarza nazwy epizodu przy każdej scenie', async () => {
+  // Nazwa epizodu stoi nad scenami jako nagłówek; w wierszu była dublowana.
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const html = (await import('../src/wwm/chronologia.js')).renderChronologia();
+  const problemy = [];
+  for (const m of html.matchAll(/<li class="chrono-scena"[\s\S]*?<\/li>/g)) {
+    const wiersz = m[0];
+    if (/chrono-meta[^>]*>[^<]*<a /.test(wiersz)) problemy.push('wiersz sceny linkuje nazwę epizodu');
+  }
+  // Rozdziały startują zwinięte.
+  const otwarte = [...html.matchAll(/<details[^>]*\sopen/g)];
+  if (otwarte.length) problemy.push('rozdział otwarty na wejściu');
+  assert.deepEqual(problemy, []);
+});
+
+test('każda strona jest osiągalna z nawigacji', async () => {
+  // „Co nowego” i „Jak czytać kronikę” istniały, ale nie miały żadnego wejścia.
+  const { rama } = await import('../src/wwm/render.js');
+  const html = rama('glowna', 'x', '<p>treść</p>');
+  for (const trasa of ['#/co-nowego', '#/o-bazie']) {
+    assert.ok(html.includes(trasa), `nawigacja nie linkuje ${trasa}`);
+  }
+});

@@ -140,14 +140,16 @@ mark { background: rgba(168, 54, 43, .18); color: inherit; padding: 0 2px; borde
 .okruszek-sep { color: var(--ramka-2); }
 
 .naglowek-strony { margin-bottom: 26px; }
-.wstep { color: var(--tusz-2); font-size: 1.02rem; margin: .2em 0 .5em; max-width: 68ch; }
+/* Wstęp wypełnia kolumnę: pionowy pas tekstu na pół szerokości czyta się jak
+   urwany akapit, a nie jak lead. `ch` ograniczał go niezależnie od układu. */
+.wstep { color: var(--tusz-2); font-size: 1.02rem; margin: .2em 0 .5em; max-width: none; }
 .podtytul { color: var(--tusz-2); margin: .2em 0; font-size: .95rem; }
 
 /* ── Strona główna ─────────────────────────────────────────────── */
 
 .hero { padding: 8px 0 10px; }
 .hero-nadtytul { color: var(--akcent); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 10px; }
-.hero-opis { color: var(--tusz-2); font-size: 1.04rem; max-width: 72ch; margin-top: 10px; }
+.hero-opis { color: var(--tusz-2); font-size: 1.04rem; max-width: none; margin-top: 10px; }
 
 .hero-liczby { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 6px; }
 .kafelek {
@@ -163,7 +165,7 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 
 .sekcja { margin: 44px 0 0; }
 .sekcja > h2 { display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--ramka); padding-bottom: .4em; }
-.sekcja-wstep { color: var(--tusz-2); max-width: 72ch; }
+.sekcja-wstep { color: var(--tusz-2); max-width: none; }
 .sekcja-stopka { margin-top: 14px; font-size: .92rem; }
 
 /* Granica rozegranej fabuły — najważniejszy element strony głównej */
@@ -176,7 +178,7 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 .granica-etykieta { margin: 0; font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--akcent); font-weight: 700; }
 .granica-tytul { margin: .25em 0 .1em; font-size: clamp(1.4rem, 2.6vw, 1.85rem); }
 .granica-sciezka { margin: 0; color: var(--tusz-2); font-size: .92rem; }
-.granica-opis { margin: .8em 0 0; color: var(--tusz-2); max-width: 70ch; font-size: .95rem; }
+.granica-opis { margin: .8em 0 0; color: var(--tusz-2); max-width: none; font-size: .95rem; }
 .granica-pusta { background: var(--panel); border-color: var(--ramka); }
 
 /* ── Listy ─────────────────────────────────────────────────────── */
@@ -219,7 +221,7 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 .karta-encji { padding: 14px 0; border-bottom: 1px solid var(--ramka); }
 .karta-encji:last-child { border-bottom: 0; }
 .karta-tytul { font-family: var(--serif); font-size: 1.08rem; font-weight: 600; }
-.karta-opis { margin: .25em 0 0; color: var(--tusz-2); font-size: .93rem; max-width: 80ch; }
+.karta-opis { margin: .25em 0 0; color: var(--tusz-2); font-size: .93rem; max-width: none; }
 .karta-meta { margin: .35em 0 0; }
 
 .rozdzial-karta { padding: 16px 0; border-bottom: 1px solid var(--ramka); }
@@ -404,11 +406,19 @@ th { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color:
   background: color-mix(in srgb, var(--akcent) 6%, transparent); color: var(--tusz-2); font-size: .93rem; }
 
 .chrono-rozdzial { margin: 0 0 44px; }
+/* Rozdział zwinięty: `summary` wygląda jak nagłówek i sam się nie zwija. */
+.chrono-rozdzial > summary { cursor: pointer; list-style: none; }
+.chrono-rozdzial > summary::-webkit-details-marker { display: none; }
+.chrono-rozdzial > summary::before {
+  content: "▸"; display: inline-block; width: 1em; color: var(--tusz-3);
+  transition: transform .15s ease;
+}
+.chrono-rozdzial[open] > summary::before { content: "▾"; }
 .chrono-rozdzial-tytul { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
   margin: 0 0 6px; padding-bottom: .45em; border-bottom: 1px solid var(--ramka); font-size: 1.25rem; }
 .chrono-epizod { margin: 22px 0 0 4px; padding-left: 18px; border-left: 1px solid var(--ramka); }
 .chrono-epizod-tytul { margin: 0; font-size: 1rem; font-family: var(--sans); letter-spacing: .01em; }
-.chrono-epizod-opis { margin: .3em 0 0; color: var(--tusz-3); font-size: .88rem; max-width: 68ch; }
+.chrono-epizod-opis { margin: .3em 0 0; color: var(--tusz-3); font-size: .88rem; max-width: none; }
 
 .chrono-lista { list-style: none; margin: 14px 0 0; padding: 0; }
 .chrono-scena { position: relative; display: grid; grid-template-columns: 14px 1fr; gap: 0 14px; padding: 0 0 20px; }
@@ -420,7 +430,7 @@ th { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color:
 .chrono-scena:last-child::before { display: none; }
 .chrono-tytul { font-size: 1rem; }
 .chrono-meta { display: block; color: var(--tusz-3); font-size: .78rem; letter-spacing: .02em; }
-.chrono-streszczenie { margin: .35em 0 0; color: var(--tusz-2); font-size: .92rem; max-width: 70ch; }
+.chrono-streszczenie { margin: .35em 0 0; color: var(--tusz-2); font-size: .92rem; max-width: none; }
 .chrono-hipotezy { margin: .45em 0 0; font-size: .82rem; color: var(--tusz-2); }
 .chrono-tagi { margin: .45em 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
 
@@ -443,6 +453,8 @@ th { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color:
 /* ── Stopka ────────────────────────────────────────────────────── */
 
 .stopka { border-top: 1px solid var(--ramka); background: var(--panel-2); margin-top: 48px; }
+.stopka-nawigacja { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 12px; font-size: .88rem; }
+.stopka-nawigacja a { color: var(--tusz-2); }
 .stopka-wnetrze { max-width: 1200px; margin: 0 auto; padding: 26px 18px 34px; font-size: .86rem; color: var(--tusz-2); }
 .stopka-czas { margin: 14px 0 0; color: var(--tusz-3); font-size: .8rem; }
 

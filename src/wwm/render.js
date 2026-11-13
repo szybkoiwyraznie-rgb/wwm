@@ -89,6 +89,10 @@ ${html}
 <footer class="stopka">
   <div class="stopka-wnetrze">
     ${legendaPoziomow()}
+    <nav class="stopka-nawigacja" aria-label="O kronice">
+      <a href="#/co-nowego">Co nowego</a>
+      <a href="#/o-bazie">Jak czytać kronikę</a>
+    </nav>
     ${stopka}
   </div>
 </footer>`;
