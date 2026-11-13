@@ -146,6 +146,7 @@ export function sekcjeBloku(tresc) {
 export function renderMarkdown(md, {
   resolveLink, wymagajPoziomu = false, wPoziomie = null, wZagniezdzeniu = false,
   atrybutyNaglowka = null, zachowajLamania = false, kotwicaKolejna = null,
+  kotwicaInterpretacji = null,
 } = {}) {
   const linie = String(md).replace(/\r\n/g, '\n').split('\n');
   const out = [];
@@ -238,6 +239,10 @@ export function renderMarkdown(md, {
         `data-poziom="${pochodzenie}"`,
         rodzaj ? `data-rodzaj="${rodzaj}"` : '',
         pewnoscRaw !== undefined ? `data-pewnosc="${escapeHtml(String(pewnoscRaw))}"` : '',
+        // Kotwica interpretacji nadana przez build — chip w kolumnie bocznej
+        // prowadzi dokładnie tutaj (ADR 0018).
+        kotwicaInterpretacji && rodzaj === 'interpretacja'
+          ? `id="${escapeHtml(kotwicaInterpretacji)}"` : '',
       ].filter(Boolean).join(' ');
       out.push(`<div ${atrybutyDom}>\n${wEtykiecie(wewn.html, pochodzenie, rodzaj, pewnoscRaw)}\n</div>`);
       continue;

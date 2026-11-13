@@ -69,6 +69,11 @@ function metryka(strona) {
     const r = dane.strony[strona.rozdzial];
     if (r) pary.push(['Rozdział', `<a href="${hrefDlaSlug(r.slug, 'rozdzial')}">${escapeHtml(r.tytul)}</a>`]);
   }
+  // „Rodzaj: termin” nic nie mówi czytelnikowi — to etykieta magazynu, nie świat.
+  // Zostają tylko rodzaje, które coś znaczą na stronie (wątek, relacja, rola).
+  for (let i = pary.length - 1; i >= 0; i -= 1) {
+    if (pary[i][1] === 'termin') pary.splice(i, 1);
+  }
   if (!pary.length) return '';
   return `<dl class="metryka">${pary
     .map(([k, v]) => `<div><dt>${escapeHtml(k)}</dt><dd>${v}</dd></div>`)

@@ -250,6 +250,10 @@ Zasady:
   http(s). Twierdzenie bez dowodu nie może być niebieskie.
 - **Kilka warstw w jednym boksie to norma**, nie wyjątek: cytat z opowieści, wniosek,
   tło historyczne i hipoteza o dalszym ciągu mogą stać pod jednym tytułem.
+- **Pochodzenie trzyma się przez cały blok** — do jawnego `}}`, także gdy w środku stoi
+  nagłówek `##`. Nagłówek zaczyna boks, nie nowy blok pochodzenia.
+- **`streszczenie` podaje się jawnie.** Build nie wyciąga go z „Opisu”, bo to dosłowny
+  początek boksu i pod tytułem wygląda jak dubel (ADR 0018).
 - **Tytuł jest jeden.** Przy nagłówku stoi wyłącznie nazwa pochodzenia (i pewność przy
   interpretacji). `rodzaj=` nie jest wypisywany obok tytułu — powtarzałby go
   („Wątki w scenie” + „spis powiązań”, ADR 0018).

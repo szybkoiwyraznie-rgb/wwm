@@ -142,13 +142,20 @@ export function ukladDwuKolumn(tresc, boczna) {
 }
 
 export function okruszki(elementy) {
-  return elementy
-    .map((e, i) => {
-      const czesc = e.href ? `<a href="${e.href}">${escapeHtml(e.etykieta)}</a>` : `<span>${escapeHtml(e.etykieta)}</span>`;
-      // Bez spacji wokół separatora sąsiednie linki sklejają się w jeden zbitok.
-      return i === 0 ? czesc : ` <span class="okruszek-sep" aria-hidden="true">›</span> ${czesc}`;
-    })
-    .join('');
+  // Ścieżka z jednym ogniwem to sama bieżąca strona — tytuł już stoi w `<h1>`,
+  // więc drugie wypisanie go pod nagłówkiem to dubel, nie nawigacja.
+  if (!Array.isArray(elementy) || elementy.length < 2) return '';
+  // Ostatnie ogniwo to bieżąca strona — nie linkujemy do siebie, ale i nie
+  // wypisujemy go drugi raz pod streszczeniem jako luźnego `<span>`.
+  const czesci = elementy.map((e, i) => {
+    const ostatni = i === elementy.length - 1;
+    if (ostatni) return `<span aria-current="page">${escapeHtml(e.etykieta)}</span>`;
+    return e.href ? `<a href="${e.href}">${escapeHtml(e.etykieta)}</a>` : `<span>${escapeHtml(e.etykieta)}</span>`;
+  });
+  // Bez spacji wokół separatora sąsiednie ogniwa sklejają się w jeden zbitok.
+  return `<p class="okruszki">${czesci
+    .map((czesc, i) => (i === 0 ? czesc : ` <span class="okruszek-sep" aria-hidden="true">›</span> ${czesc}`))
+    .join('')}</p>`;
 }
 
 export function naglowekStrony({ tytul, opis = '', meta = '', sciezka = null }) {

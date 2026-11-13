@@ -182,3 +182,44 @@ test('powłoka trzyma indeks, a ciała stron leżą w dist/data/', () => {
   assert.ok(fs.existsSync(path.join(katalog, 'teksty.json')));
   assert.ok(fs.existsSync(path.join(katalog, 'co-nowego.json')));
 });
+
+test('każda strona renderuje się czysto i każdy odsyłacz wewnętrzny ma cel', async () => {
+  // Bramy danych nie widzą widoku: chip interpretacji powstaje dopiero przy
+  // renderze, więc „pusty” odsyłacz przechodził. Tu renderujemy każdy typ strony.
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const widoki = {
+    scena: (await import('../src/wwm/render-scena.js')).renderScena,
+    epizod: (await import('../src/wwm/render-epizod.js')).renderEpizod,
+    rozdzial: (await import('../src/wwm/render-epizod.js')).renderRozdzial,
+    encja: (await import('../src/wwm/render-encja.js')).renderEncja,
+  };
+  const problemy = [];
+  for (const strona of Object.values(dane.strony)) {
+    const render = widoki[strona.typ] ?? widoki.encja;
+    const html = render(strona.slug);
+    if (!html || html.length < 40) { problemy.push(`${strona.slug}: pusty widok`); continue; }
+
+    const kotwice = new Set([...html.matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
+    for (const m of html.matchAll(/href="#([^/][^"]*)"/g)) {
+      if (!kotwice.has(m[1])) problemy.push(`${strona.slug}: odsyłacz #${m[1]} bez celu`);
+    }
+    // W nagłówku nie może leżeć luźny tekst poza <h1>/<p> — tak wyglądał dubel
+    // tytułu pod streszczeniem (goły <span> ze ścieżką). Okruszki w <p> są w porządku.
+    const naglowek = (html.match(/<header class="naglowek-strony">([\s\S]*?)<\/header>/) ?? [, ''])[1];
+    const bezAkapitu = naglowek.replace(/<h1>[\s\S]*?<\/h1>/g, '').replace(/<p[ >][\s\S]*?<\/p>/g, '');
+    const resztki = bezAkapitu.replace(/<[^>]*>/g, '').trim();
+    if (resztki) problemy.push(`${strona.slug}: w nagłówku luźny tekst „${resztki.slice(0, 60)}”`);
+  }
+  assert.deepEqual(problemy, []);
+});
+
+test('blok z nagłówkiem zachowuje swoje pochodzenie', async () => {
+  // `##` w środku bloku zamykał go razem z pochodzeniem, więc treść po nagłówku
+  // renderowała się jako domyślne „opracowanie”, a interpretacja traciła kotwicę.
+  const { podzielNaBoksy } = await import('../src/wwm/scena-sekcje.js');
+  const boksy = podzielNaBoksy('{{model pewnosc=35\n\n## Opis\n\nTekst opisu.\n\n}}\n');
+  assert.equal(boksy.length, 1);
+  assert.equal(boksy[0].tytul, 'Opis');
+  assert.match(boksy[0].bloki[0].otwarcie, /\{\{model pewnosc=35/);
+});

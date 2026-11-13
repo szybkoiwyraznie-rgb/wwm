@@ -263,11 +263,12 @@ export async function zbudujDane({ root = ROOT } = {}) {
     const maSekcje = Array.isArray(r.sekcje) && r.sekcje.length > 0;
     const maBoksy = Array.isArray(r.boksy) && r.boksy.length > 0;
 
-    // Streszczenie na listach: jawne pole, sekcja `## Streszczenie` albo
-    // pierwsze zdanie opisu — zależnie od tego, co dany typ strony ma.
+    // Streszczenie na listach: jawne pole albo sekcja `## Streszczenie`.
+    // NIE wyciągamy go z „Opisu”: to dosłowny początek treści, który pod tytułem
+    // dublował pierwszy akapit boksu i wyglądał jak urwany fragment (ADR 0018).
     const maOpis = /^##\s+Opis[ \t]*$/m.test(body);
     const streszczenie = pola.streszczenie
-      ?? wyciagnijSkrotOpisu(body, 260, maOpis ? 'Opis' : 'Streszczenie')
+      ?? (maOpis ? '' : wyciagnijSkrotOpisu(body, 260, 'Streszczenie'))
       ?? '';
 
     stronyDane[s.slug] = {

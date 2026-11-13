@@ -37,11 +37,34 @@ slug bez nazwy, rodzaj treści bez potrzeby.
    powtarzał go („Wątki w scenie” + „spis powiązań”). Atrybut `rodzaj=` zostaje w danych
    i w klasach CSS, bo odpowiada za układ warstwy, nie za napis.
 
+## Uzupełnienie po przejściu strony „Droga bez śladów” (ten sam dzień)
+
+Ta sama przyczyna, trzy nowe objawy — i jeden błąd, którego nie widziały żadne dane:
+
+7. **Nagłówek nie dubluje tytułu.** `okruszki()` zwracało gołe `<span>` z tytułem
+   bieżącej strony; pod streszczeniem stał więc drugi „Droga bez śladów”. Teraz
+   ścieżka jest `<p class="okruszki">`, a przy jednym ogniwie nie renderuje się wcale
+   (tytuł już jest w `<h1>`).
+8. **Streszczenie nie jest wyciągiem z „Opisu”** (i nie ma go wcale, gdy strona nie ma
+   własnego pola `streszczenie` ani sekcji `## Streszczenie`). Wcześniej build brał
+   pierwsze zdanie opisu, więc pod tytułem powtarzał się dosłownie początek boksu.
+9. **Metryka nie pokazuje etykiet magazynowych.** „Rodzaj: termin” nic nie mówi
+   czytelnikowi; rodzaje zostają tylko tam, gdzie znaczą coś na stronie.
+
+**Błąd w parserze, nie w widoku:** `##` w środku bloku `{{…}}` zamykał blok **razem
+z jego otwarciem**. Treść po nagłówku renderowała się jako domyślne „opracowanie”
+(stąd zielony boks na wiedzy modelu), a interpretacja gubiła `pewnosc=` i kotwicę
+(stąd fioletowy chip bez celu). Otwarcie obowiązuje teraz do jawnego `}}`.
+
 ## Konsekwencje
 
-- **Brama na przyszłość:** test `jezyk.test.js` sprawdza trzy rzeczy naraz — brak slugu
-  w widocznym tekście odsyłacza, każdy `#…` ma cel, brak drugiej etykiety przy tytule.
-  Regresja z tych punktów wywali CI, zanim zobaczy ją czytelnik.
+- **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na
+  danych — każda strona renderuje się bez błędu, każdy odsyłacz `#…` ma cel, w nagłówku
+  nie ma luźnego tekstu poza `<h1>`/`<p>`, przy tytule nie stoi druga etykieta, a blok
+  z nagłówkiem zachowuje swoje pochodzenie. Regresja wywali CI, zanim zobaczy ją czytelnik.
+- **Lekcja:** bramy danych nie widzą widoku. Chip powstaje przy renderze, więc „pusty”
+  odsyłacz przeszedł przez 63 testy. Każdy element generowany w widoku potrzebuje testu
+  na widoku.
 - **Mniej szumu w nagłówkach.** Dwa tytuły obok siebie czyta się jak błąd, nawet gdy oba
   są prawdziwe; jeden tytuł i jedna plakietka mówią to samo krócej.
 - **Koszt:** informacja o rodzaju treści (np. że tabela jest spisem powiązań) znika

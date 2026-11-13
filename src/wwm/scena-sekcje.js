@@ -90,6 +90,9 @@ export function podzielNaBoksy(body) {
   const boksy = [];
   let boks = null;
   let blok = null;
+  // Otwarcie obowiązuje do jawnego `}}`. Nagłówek `##` zamyka blok, ale nie
+  // pochodzenie: bez tego tekst po nagłówku renderował się jako domyślne
+  // „opracowanie”, gubiąc np. `{{model pewnosc=35` i kotwicę interpretacji.
   let otwarcie = null;
   let wZapisie = false;
 
@@ -122,7 +125,9 @@ export function podzielNaBoksy(body) {
 
     const h = linia.match(/^##\s+(.+?)\s*$/);
     if (h) {
+      const otwarcieBiezace = otwarcie;
       zamknijBoks();
+      otwarcie = otwarcieBiezace;
       boks = { tytul: h[1], bloki: [] };
       continue;
     }
@@ -139,13 +144,14 @@ export function podzielNaBoksy(body) {
     }
     if (t === '}}') {
       if (blok) zamknijBlok();
+      otwarcie = null;
       continue;
     }
 
     if (blok) blok.linie.push(linia);
     else if (t !== '') {
       if (!boks) boks = { tytul: null, bloki: [] };
-      blok = { otwarcie: null, linie: [linia] };
+      blok = { otwarcie, linie: [linia] };
     }
   }
   zamknijBoks();
