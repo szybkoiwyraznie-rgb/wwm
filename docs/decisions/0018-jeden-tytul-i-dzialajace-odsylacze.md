@@ -101,6 +101,19 @@ kolumnami wymyślonymi na siłę, a nagłówki po polsku czytały się jak bełk
   Boks „Wątki w scenie” zniknął; jeśli kiedyś wróci, to jako lista nazw — bez tabeli,
   bez kolumny z jednozdaniowym opisem i bez nagłówków-konstrukcji.
 
+## Tytuł boksu stoi nad warstwami (decyzja właściciela)
+
+Na scenie tytuł `Treść sceny` leżał **wewnątrz** kolorowanego podboksu, razem z plakietką
+„z opowieści”. Czytało się to tak, jakby „Treść sceny” było nazwą źródła — a to nazwa
+rodzaju treści. Kolor należy do warstw, nie do tytułu.
+
+- `<section class="boks">` ma **tylko** tytuł (`<h2>Treść sceny</h2>`) — bez koloru
+  i bez `data-poziom`; kolorowanie boksu sugerowało pochodzenie całej sekcji.
+- Tytuł jest **pierwszym** elementem sekcji, zawsze nad warstwami.
+- Plakietka pochodzenia trafia do warstwy — czyli do jej nagłówka (`Otwarta brama`,
+  a w analizie `Otwarta brama ↦`).
+- Build nie wstawia już `## <tytuł sekcji>` do treści warstwy: tytuł renderuje widok.
+
 ## Konsekwencje
 
 - **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na

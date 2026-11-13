@@ -25,12 +25,11 @@ const LEWA = ['Treść sceny', 'Analiza', 'Nawiązania kulturowe', 'Wątki w sce
  * pozostaje jedną sekcją, choćby mieściła cytat, kwerendę i hipotezę.
  */
 function blokSekcji(sekcja) {
-  const etykieta = sekcja.otwarcie?.match(BLOK_OTWARCIA_RE);
-  const pochodzenie = etykieta?.[1] ?? 'dostawa';
-  const atrybuty = parsujAtrybutyBloku(etykieta?.[2] ?? '');
   const warstwy = sekcja.warstwy ?? 1;
-  return `<section class="boks boks-${escapeHtml(pochodzenie)}${warstwy > 1 ? ' boks-z-warstwami' : ''}"
-    data-poziom="${escapeHtml(pochodzenie)}"${warstwy > 1 ? ` data-warstwy="${warstwy}"` : ''}>
+  // Kolor należy do warstw W ŚRODKU boksu, nie do boksu: tytuł jest nazwą rodzaju
+  // treści („Treść sceny”), a nie źródłem, więc nie może być kolorowany.
+  return `<section class="boks${warstwy > 1 ? ' boks-z-warstwami' : ''}"${warstwy > 1 ? ` data-warstwy="${warstwy}"` : ''}>
+    <h2>${escapeHtml(sekcja.tytul)}</h2>
     ${sekcja.html}
   </section>`;
 }

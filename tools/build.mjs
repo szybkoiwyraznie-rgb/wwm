@@ -207,7 +207,10 @@ export async function zbudujDane({ root = ROOT } = {}) {
       for (const pr of plan.problemy) problemy.push(`${s.slug}: ${pr}`);
       const stanKotwic = {};
       sekcje = czesci.map((cz) => {
-        const zrodlo = `${cz.otwarcie ?? '{{dostawa'}\n\n## ${cz.tytul}\n\n${cz.tresc}\n\n}}`;
+        // Bez `## ${cz.tytul}`: tytuł boksu renderuje widok NAD podboksami.
+        // Dzięki temu plakietka pochodzenia trafia do podboksu („Otwarta brama”),
+        // a nie do nazwy rodzaju treści (ADR 0018).
+        const zrodlo = `${cz.otwarcie ?? '{{dostawa'}\n\n${cz.tresc}\n\n}}`;
         const wynik = renderMarkdown(zrodlo, {
           resolveLink: resolver,
           wymagajPoziomu: true,
@@ -218,6 +221,9 @@ export async function zbudujDane({ root = ROOT } = {}) {
           kotwicaInterpretacji: kotwicaDlaBloku(cz.otwarcie),
         });
         for (const pr of wynik.problemy) problemy.push(`${s.slug} (${cz.tytul}): ${pr}`);
+        // Tytuł boksu stoi NAD podboksami: „Treść sceny” nazywa rodzaj treści,
+        // a warstwy w środku mówią, skąd każda z nich pochodzi (ADR 0018).
+        // Dlatego z HTML-a warstwy wycinamy jej własny <h2>.
         return { tytul: cz.tytul, html: wynik.html, warstwy: cz.warstwy ?? 1 };
       });
     }

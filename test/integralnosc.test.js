@@ -300,3 +300,38 @@ test('pewność stoi tylko przy przypuszczeniu — tło kulturowe jej nie dostaj
   }
   assert.deepEqual([...new Set(problemy)], []);
 });
+
+test('tytuł boksu stoi nad podboksami, a plakietka przy podboksie', async () => {
+  // Tytuł („Treść sceny”) nazywa RODZAJ treści, nie źródło — więc nie może leżeć
+  // w środku kolorowanego podboksu, a plakietka „z opowieści” nie może się do niego
+  // przykleić. Kolor należy do warstw, nie do nazwy boksu (ADR 0018).
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const problemy = [];
+  const sceny = Object.values(dane.strony).filter((s) => s.typ === 'scena');
+  const renderScena = (await import('../src/wwm/render-scena.js')).renderScena;
+  for (const strona of sceny) {
+    const html = renderScena(strona.slug);
+    const glowna = html.slice(html.indexOf('kolumna-glowna'), html.indexOf('<aside'));
+    for (const m of glowna.matchAll(/<section class="boks[^"]*"[^>]*>([\s\S]*?)<\/section>/g)) {
+      const blok = m[1];
+      const tytul = blok.match(/<h2>([^<]+)<\/h2>/)?.[1];
+      if (!tytul) {
+        problemy.push(`${strona.slug}: sekcja bez tytułu nad podboksami`);
+        continue;
+      }
+      // Tytuł musi być pierwszym elementem sekcji — nie może leżeć w podboksie.
+      if (!/^\s*<h2>/.test(blok)) {
+        problemy.push(`${strona.slug}: tytuł „${tytul}” nie stoi na początku boksu`);
+      }
+      // Plakietka pochodzenia przyklejona do <h2> znaczy, że koloruje nazwę rodzaju.
+      if (/<h2>[^<]+<\/h2>\s*<span class="poziom-plakietki">/.test(blok)) {
+        problemy.push(`${strona.slug}: plakietka pochodzenia przy tytule „${tytul}”`);
+      }
+    }
+    if (/<section class="boks boks-(dostawa|model|kwerenda|opracowanie)/.test(glowna)) {
+      problemy.push(`${strona.slug}: kolor pochodzenia na samym boksie`);
+    }
+  }
+  assert.deepEqual([...new Set(problemy)], []);
+});

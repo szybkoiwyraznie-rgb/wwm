@@ -261,6 +261,8 @@ Zasady:
 - **Wątki, postacie i miejsca wymienia się nazwami**, nie opisuje w tabeli. Spis
   powiązań sceny stoi w kolumnie bocznej; boks w treści powtarzający go tabelą to
   przerost formy (ADR 0018).
+- **Tytuł boksu jest nad warstwami i nie ma koloru.** `## Treść sceny` to nazwa rodzaju
+  treści; pochodzenie opisuje warstwy w środku (ADR 0018).
 - **Tytuł jest jeden.** Przy nagłówku stoi wyłącznie nazwa pochodzenia (i pewność przy
   interpretacji). `rodzaj=` nie jest wypisywany obok tytułu — powtarzałby go
   („Wątki w scenie” + „spis powiązań”, ADR 0018).
