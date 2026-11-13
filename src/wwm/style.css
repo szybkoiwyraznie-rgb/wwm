@@ -376,8 +376,6 @@ th { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color:
 .chip-hipotezy { display: inline-flex; align-items: center; gap: 10px; padding: 5px 10px; border-radius: 8px; background: var(--poz-hipoteza); border: 1px solid var(--poz-hipoteza-ramka); font-size: .86rem; color: var(--tusz-2); }
 .chip-hipotezy:hover { text-decoration: none; border-color: var(--akcent); }
 
-/* ── Mapa postępu ──────────────────────────────────────────────── */
-
 /* ── Chronologia: opowieść w kolejności zdarzeń (ADR 0013) ────────── */
 
 .chrono-granica { margin: 0 0 30px; padding: 12px 16px; border-left: 3px solid var(--akcent);
