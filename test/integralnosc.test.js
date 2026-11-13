@@ -385,3 +385,35 @@ test('każda strona jest osiągalna z nawigacji', async () => {
     assert.ok(html.includes(trasa), `nawigacja nie linkuje ${trasa}`);
   }
 });
+
+test('każdy odsyłacz wewnętrzny w WIDOKU ma cel — także w kolumnie bocznej', async () => {
+  // Poprzednia brama patrzyła na dane strony (html/boksy/sekcje), a chip
+  // interpretacji powstaje dopiero w kolumnie bocznej przy renderze. Dlatego
+  // „Do kogo należy nieznajomy…” linkowało w pustkę i przeszło 75 testów.
+  // Tu sprawdzamy CAŁY widok: treść, kolumnę, stopkę.
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const widoki = {
+    scena: (await import('../src/wwm/render-scena.js')).renderScena,
+    epizod: (await import('../src/wwm/render-epizod.js')).renderEpizod,
+    rozdzial: (await import('../src/wwm/render-epizod.js')).renderRozdzial,
+    encja: (await import('../src/wwm/render-encja.js')).renderEncja,
+  };
+  const problemy = [];
+  for (const strona of Object.values(dane.strony)) {
+    const html = (widoki[strona.typ] ?? widoki.encja)(strona.slug);
+    const kotwice = new Set([...html.matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
+    for (const m of html.matchAll(/href="#([^/][^"]*)"/g)) {
+      if (!kotwice.has(m[1])) problemy.push(`${strona.slug}: odsyłacz #${m[1]} bez celu w widoku`);
+    }
+  }
+  assert.deepEqual([...new Set(problemy)], []);
+});
+
+test('goła kotwica nie jest traktowana jak trasa', async () => {
+  // Router na `#hip-rola` renderował „Nie ma takiej strony” — a to skok w treści.
+  const { czyKotwicaWewnetrzna } = await import('../src/wwm/router.js');
+  assert.equal(czyKotwicaWewnetrzna('#hip-rola'), true);
+  assert.equal(czyKotwicaWewnetrzna('#/scena/x'), false);
+  assert.equal(czyKotwicaWewnetrzna('#'), false);
+});

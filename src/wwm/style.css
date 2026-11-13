@@ -260,10 +260,21 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
   display: inline-flex; align-items: center; gap: 6px;
   padding: 4px 10px; border-radius: 999px; border: 1px solid var(--ramka-2);
   background: var(--panel); color: var(--tusz-2); font-size: .82rem;
+  max-width: 100%;
 }
+/* Chip interpretacji: pytanie może się zawijać, pewność zostaje przy prawej
+   krawędzi i nie nachodzi na tekst (wcześniej plakietka wchodziła na słowa). */
+.chip-hipoteza {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  width: 100%; border-radius: 14px; padding: 8px 10px; gap: 10px;
+  line-height: 1.35; text-align: left;
+}
+.chip-hipoteza > :first-child { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.chip-hipoteza .pewnosc { flex: 0 0 auto; margin-left: auto; white-space: nowrap; }
 .chip:hover { text-decoration: none; border-color: var(--akcent); color: var(--tusz); }
 .chip-typ { font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tusz-3); }
 .chip-hipoteza { background: var(--poz-hipoteza); border-color: var(--poz-hipoteza-ramka); }
+.chip-hipoteza:hover { border-color: var(--poz-hipoteza-ramka); }
 .chip-mala { padding: 2px 8px; font-size: .76rem; }
 
 .boks { background: var(--panel); border: 1px solid var(--ramka); border-radius: 12px; padding: 20px 22px; margin: 0 0 18px; box-shadow: var(--cien); }

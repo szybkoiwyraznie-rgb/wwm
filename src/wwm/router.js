@@ -41,8 +41,27 @@ export function aktualnaTrasa() {
  * `obejrz` może być asynchroniczny (dociąganie ciała strony, ADR 0017) — router
  * nie czeka, a błąd renderu trafia do konsoli zamiast zniknąć bez śladu.
  */
+/**
+ * Adres wskazuje miejsce W TREŚCI (`#hip-rola`), a nie trasę (`#/…`).
+ * `location.hash = '#seg1'` przycina do `#seg1` i psuje adres, więc takie
+ * odsyłacze obsługujemy przez `scrollIntoView` — bez zmiany hasha.
+ */
+export function czyKotwicaWewnetrzna(hash) {
+  const surowy = String(hash ?? '').replace(/^#/, '');
+  return surowy !== '' && !surowy.startsWith('/') && !surowy.startsWith('!');
+}
+
 export function uruchomRouter(obejrz) {
   const zmiana = () => {
+    // Gołe `#kotwica` to skok w obrębie strony, nie nawigacja: router nie ma
+    // czego renderować i nie może pokazać „nie ma takiej strony” (ADR 0018).
+    if (czyKotwicaWewnetrzna(globalThis.location?.hash)) {
+      const cel = globalThis.document?.getElementById(
+        decodeURIComponent(String(globalThis.location.hash).slice(1)),
+      );
+      cel?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
+      return;
+    }
     try {
       const wynik = obejrz(aktualnaTrasa());
       if (wynik && typeof wynik.catch === 'function') {
@@ -59,5 +78,14 @@ export function uruchomRouter(obejrz) {
 
 /** Nawigacja programowa (zachowuje historię przeglądarki). */
 export function idz(hash) {
-  if (globalThis.location) globalThis.location.hash = hash;
+  if (!globalThis.location) return;
+  // Odsyłacz do miejsca w treści: przeglądarka nie może zgubić trasy,
+  // a `hash = '#kotwica'` podmieniłby cały adres na samą kotwicę.
+  if (czyKotwicaWewnetrzna(hash)) {
+    const czysty = String(hash).replace(/^#/, '');
+    const cel = globalThis.document?.getElementById(decodeURIComponent(czysty));
+    cel?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+  globalThis.location.hash = hash;
 }

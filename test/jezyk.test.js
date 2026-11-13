@@ -124,22 +124,6 @@ test('wikilink bez etykiety pokazuje tytuł strony, nie slug', () => {
   assert.deepEqual(problemy, []);
 });
 
-test('każdy chip interpretacji prowadzi do istniejącej kotwicy', () => {
-  const problemy = [];
-  for (const [slug, strona] of Object.entries(dane.strony)) {
-    const html = [strona.html ?? '', ...(strona.boksy ?? []).map((b) => b.html),
-      ...(strona.sekcje ?? []).map((s) => s.html)].join(' ');
-    const kotwice = new Set([...html.matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
-    for (const m of html.matchAll(/href="#([^"\/][^"]*)"/g)) {
-      const cel = m[1];
-      if (!cel.startsWith('/') && !kotwice.has(cel)) {
-        problemy.push(`${slug}: odsyłacz #${cel} nie ma celu na stronie`);
-      }
-    }
-  }
-  assert.deepEqual(problemy, []);
-});
-
 test('tytuł boksu jest jeden — plakietka nie powtarza rodzaju treści', () => {
   const problemy = [];
   for (const [slug, strona] of Object.entries(dane.strony)) {

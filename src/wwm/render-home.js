@@ -65,6 +65,24 @@ function blokMiejsca() {
 </section>`;
 }
 
+/**
+ * Co nowego na głównej, nad rozdziałami: czytelnik ma zobaczyć, co przybyło,
+ * zanim zacznie czytać szkielet opowieści. Trzy ostatnie wpisy — reszta w dzienniku.
+ */
+function blokCoNowego() {
+  const wpisy = dajDane().coNowego ?? [];
+  if (wpisy.length === 0) return '';
+  const ostatnie = wpisy.slice(0, 3).map((w) => `<li class="wpis-dziennika">
+      <p class="wpis-data"><time>${escapeHtml(w.data)}${w.czas ? ` ${escapeHtml(w.czas)}` : ''}</time></p>
+      <div class="wpis-tresc">${w.html ?? escapeHtml(w.tekst ?? '')}</div>
+    </li>`).join('');
+  return `<section class="sekcja">
+  <h2>Co nowego</h2>
+  <ol class="lista-dziennika">${ostatnie}</ol>
+  ${wpisy.length > 3 ? `<p class="sekcja-stopka"><a href="#/co-nowego">Cały dziennik (${wpisy.length}) →</a></p>` : ''}
+</section>`;
+}
+
 /** Rozdziały z epizodami — szkielet opowieści. */
 function blokRozdzialow() {
   const rozdzialy = listaRozdzialow();
@@ -169,6 +187,7 @@ export function renderGlowna() {
 
   return `${hero}
 ${blokMiejsca()}
+${blokCoNowego()}
 ${blokRozdzialow()}
 ${blokOstatnichScen()}
 ${blokInterpretacji()}

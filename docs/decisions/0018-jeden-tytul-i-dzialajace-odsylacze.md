@@ -126,6 +126,26 @@ rodzaju treści. Kolor należy do warstw, nie do tytułu.
 18. **Wiersz sceny nie dubluje epizodu.** Nazwa epizodu stoi nad scenami jako nagłówek;
     w wierszu była powtórzona i „striplowana”. Zostaje numer sceny.
 
+## Kotwica to nie trasa (uwagi właściciela, strona „Nieznajomy”)
+
+19. **Router traktował `#hip-rola` jak trasę.** Hash zaczynający się od czegoś innego
+    niż `/` to skok w obrębie strony; router renderował na nim „Nie ma takiej strony”.
+    Teraz takie adresy obsługuje `scrollIntoView`, a trasa zostaje nietknięta —
+    `location.hash = '#kotwica'` podmieniałby cały adres na samą kotwicę.
+20. **Chip interpretacji nie ucina treści.** `inline-flex` przy długim pytaniu
+    rozjeżdżał plakietkę poza ramkę. Chip jest `flex` z `justify-content: space-between`:
+    pytanie się zawija, pewność stoi przy prawej krawędzi i nie wchodzi na słowa.
+21. **Dziennik jest na stronie głównej**, nad sekcją „Rozdziały” (trzy ostatnie wpisy
+    + odsyłacz do całości). Wcześniej był tylko w stopce, czyli poza zasięgiem wzroku.
+
+## Dlaczego audyt tego nie złapał
+
+Poprzednia brama sprawdzała odsyłacze w **danych** strony (`html`, `boksy`, `sekcje`).
+Chip interpretacji powstaje dopiero w kolumnie bocznej **przy renderze** — więc jego
+link nie był badany. Test na danych zastąpiła brama na całym widoku: treść, kolumna
+i stopka razem. To ta sama lekcja co poprzednio, tylko o jeden poziom dalej: dane nie
+wystarczą, potrzebny jest wyrenderowany HTML.
+
 ## Konsekwencje
 
 - **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na
