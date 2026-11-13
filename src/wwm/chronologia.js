@@ -39,7 +39,9 @@ function wierszChronologii(s) {
       }</span>
       ${s.streszczenie ? `<p class="chrono-streszczenie">${escapeHtml(s.streszczenie)}</p>` : ''}
       ${hipotezy.length > 0
-        ? `<p class="chrono-hipotezy">${hipotezy.map((h) => `<a href="${hrefDlaSlug(s.slug, 'scena')}#${escapeHtml(h.kotwica)}">${escapeHtml(h.sekcja)}</a> ${badgePewnosci(h.pewnosc)}`).join(' ')}</p>`
+        // W skrócie nie powtarzamy tytułu boksu („Analiza”): czytelnik ma wiedzieć,
+        // że to odczytanie sceny i jak mocne, a nie jak nazwano sekcję (ADR 0018).
+        ? `<p class="chrono-hipotezy">${hipotezy.map((h) => `<a href="${hrefDlaSlug(s.slug, 'scena')}#${escapeHtml(h.kotwica)}">odczytanie sceny</a> ${badgePewnosci(h.pewnosc)}`).join(' ')}</p>`
         : ''}
       <p class="chrono-tagi">${krainyTagi(s)}</p>
     </div>

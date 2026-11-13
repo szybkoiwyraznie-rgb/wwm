@@ -26,7 +26,7 @@ wcześniej, niż wędrowiec zdążył zapytać o drogę.
 
 }}
 
-{{model pewnosc=35
+{{model pewnosc=35 pytanie="Ktoś wiedział, że wędrowiec tu przyjdzie — kto?"
 
 ## Kto zostawił zwój
 

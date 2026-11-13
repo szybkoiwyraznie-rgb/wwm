@@ -56,12 +56,36 @@ z jego otwarciem**. Treść po nagłówku renderowała się jako domyślne „op
 (stąd zielony boks na wiedzy modelu), a interpretacja gubiła `pewnosc=` i kotwicę
 (stąd fioletowy chip bez celu). Otwarcie obowiązuje teraz do jawnego `}}`.
 
+## Przegląd wszystkich typów stron (ten sam dzień)
+
+Po scenie i kontekście przeszedłem każdy typ strony i każdy widok listowy tym samym
+filtrem: *czy to zdanie mówi o świecie, czy o warsztacie?* Trzy klasy błędów powtarzały
+się poza sceną — wszystkie naprawione u źródła, nie w pojedynczych widokach:
+
+10. **Wartości słownikowe w widoku.** `rodzaj: glowny` wyświetlało się dosłownie
+    („Rodzaj wątku: glowny”, „wątek główny” obok „rozdział:”). Jedna funkcja
+    `nazwaRodzaju()` tłumaczy wartości z plików na język opowieści — korzystają z niej
+    metryka encji i widok epizodu, zamiast dwóch lokalnych map.
+11. **Powtórzony akapit.** Boks „Streszczenie” stał obok tego samego streszczenia pod
+    tytułem (epizody, rozdziały, encje). Boks jest teraz filtrowany: streszczenie żyje
+    wyłącznie jako lead.
+12. **Etykiety magazynowe w metryce.** „Rodzaj: termin”, „Stan: otwarty” — notatki
+    redakcyjne. Zostają tylko pola, które coś mówią o świecie.
+13. **Tytuł boksu jako nazwa odczytania.** Lista interpretacji pokazywała „Analiza”
+    (tytuł sekcji) zamiast pytania, na które blok odpowiada. Interpretacja ma teraz
+    atrybut `pytanie=` („Kto ułożył krąg z kamieni i zostawił zwój?”); bez niego
+    lista mówi „odczytanie sceny”, nigdy tytułem boksu.
+14. **Nagłówki tabeli to zdania o opowieści.** `WĄTEK | ŚLAD W SCENIE` → `Co się wtedy
+    porusza | Czym daje o sobie znać`.
+
 ## Konsekwencje
 
 - **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na
   danych — każda strona renderuje się bez błędu, każdy odsyłacz `#…` ma cel, w nagłówku
   nie ma luźnego tekstu poza `<h1>`/`<p>`, przy tytule nie stoi druga etykieta, a blok
   z nagłówkiem zachowuje swoje pochodzenie. Regresja wywali CI, zanim zobaczy ją czytelnik.
+- **Nowe bramy:** żaden widok nie pokazuje surowej wartości słownikowej (`glowny`,
+  `tajemnica`…), a żaden akapit nie stoi na stronie dwa razy.
 - **Lekcja:** bramy danych nie widzą widoku. Chip powstaje przy renderze, więc „pusty”
   odsyłacz przeszedł przez 63 testy. Każdy element generowany w widoku potrzebuje testu
   na widoku.

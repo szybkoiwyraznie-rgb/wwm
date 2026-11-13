@@ -22,7 +22,7 @@ zdąży o nie zapytać.
 
 }}
 
-{{model pewnosc=40
+{{model pewnosc=40 pytanie="Do kogo należy nieznajomy, skoro nie ma imienia?"
 
 ## Rola
 

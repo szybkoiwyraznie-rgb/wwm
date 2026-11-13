@@ -201,7 +201,7 @@ export function renderHipotezy(query = {}) {
     </div>
     <ul class="boksy-hipotez-strony">
       ${s.hipotezy.map((h) => `<li><a class="chip-hipotezy" href="${hrefDlaSlug(s.slug, s.typ)}#${escapeHtml(h.kotwica)}">
-        <span>${escapeHtml(h.sekcja)}</span>${badgePewnosci(h.pewnosc)}</a></li>`).join('')}
+        <span>${escapeHtml(h.pytanie ?? 'odczytanie sceny')}</span>${badgePewnosci(h.pewnosc)}</a></li>`).join('')}
     </ul>
   </li>`).join('');
 

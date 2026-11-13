@@ -9,7 +9,7 @@
 import { escapeHtml, badgePewnosci } from './markdown.js';
 import { hrefDlaSlug, hrefFiltru } from './links.js';
 import { dajDane, dajStrone, listaStron } from './data.js';
-import { naglowekStrony, stanPusty, okruszki, odmiana, kolumnaBoczna, ukladDwuKolumn } from './render.js';
+import { naglowekStrony, stanPusty, okruszki, odmiana, kolumnaBoczna, ukladDwuKolumn, nazwaRodzaju } from './render.js';
 import { podzielNaBoksy } from './scena-sekcje.js';
 
 const ETYKIETY_POL = {
@@ -36,7 +36,8 @@ const LIMIT_POWIAZAN = 50;
  * sekcjami o niemal tym samym tytule.
  */
 function boksyEncji(strona) {
-  const boksy = strona.boksy ?? [];
+  // „Streszczenie” jest leadem pod tytułem — jako boks byłoby tym samym drugi raz.
+  const boksy = (strona.boksy ?? []).filter((b) => !/^streszczenie$/i.test(String(b.tytul ?? '').trim()));
   if (boksy.length === 0) return '<p class="pusto">Ta strona nie ma jeszcze opisu.</p>';
   const rodzialy = boksy.map((b) => `<section class="boks${(b.warstwy ?? 1) > 1 ? ' boks-z-warstwami' : ''}">
     ${b.tytul ? `<h2>${escapeHtml(b.tytul)}</h2>` : ''}
@@ -51,7 +52,11 @@ function metryka(strona) {
   for (const [pole, etykieta] of Object.entries(ETYKIETY_POL)) {
     const wartosc = strona[pole];
     if (wartosc === undefined || wartosc === null || wartosc === '') continue;
-    pary.push([etykieta, Array.isArray(wartosc) ? wartosc.join(', ') : String(wartosc)]);
+    // Rodzaje przechodzą przez słownik: „Rodzaj wątku: glowny” to wartość z pliku.
+    const pokaz = /^rodzaj/.test(pole) || pole === 'stan'
+      ? (Array.isArray(wartosc) ? wartosc.map(nazwaRodzaju).join(', ') : nazwaRodzaju(wartosc))
+      : (Array.isArray(wartosc) ? wartosc.join(', ') : String(wartosc));
+    pary.push([etykieta, pokaz]);
   }
   if (strona.kraina) {
     const k = dane.strony[strona.kraina];
@@ -72,7 +77,9 @@ function metryka(strona) {
   // „Rodzaj: termin” nic nie mówi czytelnikowi — to etykieta magazynu, nie świat.
   // Zostają tylko rodzaje, które coś znaczą na stronie (wątek, relacja, rola).
   for (let i = pary.length - 1; i >= 0; i -= 1) {
-    if (pary[i][1] === 'termin') pary.splice(i, 1);
+    // „termin” to etykieta magazynu, „Stan” — notatka redakcyjna. Czytelnika
+    // interesuje, co się dzieje w opowieści, nie czy wątek jest oznaczony jako otwarty.
+    if (pary[i][1] === 'termin' || pary[i][0] === 'Stan') pary.splice(i, 1);
   }
   if (!pary.length) return '';
   return `<dl class="metryka">${pary
@@ -162,7 +169,7 @@ function wystapienia(strona) {
 function skrotHipotez(hipotezy) {
   if (!hipotezy || hipotezy.length === 0) return '';
   return `<ul class="chipy">
-    ${hipotezy.map((h) => `<li><a class="chip chip-hipoteza" href="#${escapeHtml(h.kotwica)}">${escapeHtml(h.sekcja)} ${badgePewnosci(h.pewnosc)}</a></li>`).join('')}
+    ${hipotezy.map((h) => `<li><a class="chip chip-hipoteza" href="#${escapeHtml(h.kotwica)}">${escapeHtml(h.pytanie ?? 'odczytanie sceny')} ${badgePewnosci(h.pewnosc)}</a></li>`).join('')}
   </ul>`;
 }
 

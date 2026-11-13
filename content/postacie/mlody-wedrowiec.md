@@ -17,9 +17,9 @@ utworzono: 2026-11-13
 
 ## Opis
 
-Młody wędrowiec szuka śladu własnego pochodzenia. Nosi miecz, ale w rozegranym
-materiale ani razu go nie dobyl — zaciska dłoń na rękojeści i to wszystko,
-co o jego gotowości do walki wiadomo.
+Młody wędrowiec szuka śladu własnego pochodzenia. Nosi miecz, ale dotąd ani
+razu go nie dobył — zaciska dłoń na rękojeści i to wszystko, co o jego
+gotowości do walki wiadomo.
 
 ## Rola w fabule
 

@@ -38,7 +38,7 @@ i rozpoznaje własne imię wypisane tuszem.
 
 }}
 
-{{model pewnosc=60
+{{model pewnosc=60 pytanie="Kto ułożył krąg z kamieni i zostawił zwój?"
 
 ## Analiza
 
@@ -63,8 +63,8 @@ po mistrzu, nie po uczniu.
 
 ## Wątki w scenie
 
-| Wątek | Ślad w scenie |
+| Co się wtedy porusza | Czym daje o sobie znać |
 |---|---|
-| [[watek-pochodzenia]] | imię wędrowca pojawia się na zwoju, którego nie zostawił |
+| [[watek-pochodzenia]] | imię wędrowca na zwoju, którego nikt nie zostawił |
 
 }}

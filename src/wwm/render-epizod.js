@@ -12,15 +12,7 @@
 import { escapeHtml } from './markdown.js';
 import { hrefDlaSlug } from './links.js';
 import { dajDane, dajStrone, listaRozdzialow, epizodyRozdzialu, scenyEpizodu } from './data.js';
-import { naglowekStrony, stanPusty, okruszki, odmiana, chipTypu, kolumnaBoczna, ukladDwuKolumn } from './render.js';
-
-const RODZAJE_EPIZODU = {
-  glowny: 'wątek główny',
-  poboczny: 'opowieść poboczna',
-  spotkanie: 'spotkanie',
-  zwiad: 'zwiad',
-  wspomnienie: 'wspomnienie',
-};
+import { naglowekStrony, stanPusty, okruszki, odmiana, chipTypu, kolumnaBoczna, ukladDwuKolumn, nazwaRodzaju } from './render.js';
 
 function listaScenEpizodu(sceny) {
   if (sceny.length === 0) {
@@ -38,7 +30,9 @@ function listaScenEpizodu(sceny) {
 }
 
 function boksyStrony(strona) {
-  const boksy = strona.boksy ?? [];
+  // „Streszczenie” stoi już pod tytułem jako lead; powtórzone jako boks to ten
+  // sam tekst dwa razy na jednym ekranie (ADR 0018).
+  const boksy = (strona.boksy ?? []).filter((b) => !/^streszczenie$/i.test(String(b.tytul ?? '').trim()));
   if (boksy.length === 0) return '';
   return boksy.map((b) => `<section class="boks">
     ${b.tytul ? `<h2>${escapeHtml(b.tytul)}</h2>` : ''}
@@ -63,8 +57,8 @@ export function renderEpizod(slug) {
     tytul: epizod.tytul,
     opis: epizod.streszczenie ? escapeHtml(epizod.streszczenie) : '',
     meta: [
-      rozdzial ? `rozdział: <a href="${hrefDlaSlug(rozdzial.slug, 'rozdzial')}">${escapeHtml(rozdzial.tytul)}</a>` : '',
-      epizod.rodzaj ? (RODZAJE_EPIZODU[epizod.rodzaj] ?? epizod.rodzaj) : '',
+      rozdzial ? `Rozdział: <a href="${hrefDlaSlug(rozdzial.slug, 'rozdzial')}">${escapeHtml(rozdzial.tytul)}</a>` : '',
+      epizod.rodzaj ? nazwaRodzaju(epizod.rodzaj) : '',
       epizod.status === 'w-toku' ? 'opowieść trwa' : '',
     ].filter(Boolean).join(' · '),
     sciezka: okruszki([
@@ -117,7 +111,7 @@ export function renderRozdzial(slug) {
           const sceny = scenyEpizodu(z.slug);
           return `<li class="epizod-wiersz">
             <a class="epizod-tytul" href="${hrefDlaSlug(z.slug, 'epizod')}">${escapeHtml(z.tytul)}</a>
-            ${z.rodzaj ? `<span class="meta">${escapeHtml(RODZAJE_EPIZODU[z.rodzaj] ?? z.rodzaj)}</span>` : ''}
+            ${z.rodzaj ? `<span class="meta">${escapeHtml(nazwaRodzaju(z.rodzaj))}</span>` : ''}
             <span class="epizod-sceny">${sceny.length} ${odmiana(sceny.length, ['scena', 'sceny', 'scen'])}</span>
             ${z.streszczenie ? `<p class="epizod-streszczenie">${escapeHtml(z.streszczenie)}</p>` : ''}
           </li>`;
@@ -126,7 +120,7 @@ export function renderRozdzial(slug) {
     : '<p class="pusto">W tym rozdziale nie ma jeszcze opowiedzianych epizodów.</p>';
 
   const stopka = nastepny
-    ? `<p class="sekcja-stopka">Następny rozdział: <a href="${hrefDlaSlug(nastepny.slug, 'rozdzial')}">${escapeHtml(nastepny.tytul)}</a></p>`
+    ? `<p class="sekcja-stopka">Następny Rozdział: <a href="${hrefDlaSlug(nastepny.slug, 'rozdzial')}">${escapeHtml(nastepny.tytul)}</a></p>`
     : '';
 
   const tresc = `${boksyStrony(rozdzial)}

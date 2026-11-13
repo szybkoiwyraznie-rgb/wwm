@@ -43,7 +43,7 @@ za sylwetką, która znika we mgle.
 
 }}
 
-{{model pewnosc=70
+{{model pewnosc=70 pytanie="Dlaczego obcy mówi „nie zdążysz”, a nie „nie idź”?"
 
 ## Analiza
 

@@ -26,7 +26,7 @@ tłumaczy, że tacy ludzie imion nie mają.
 
 }}
 
-{{model pewnosc=45
+{{model pewnosc=45 pytanie="Czy ostrzeżenie jest radą, czy próbą?"
 
 ## Rola ostrzeżenia
 

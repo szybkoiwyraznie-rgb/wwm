@@ -18,7 +18,7 @@ więcej, niż mówi, a wędrowiec nie ma nawet jak go odnaleźć.
 
 }}
 
-{{model pewnosc=25
+{{model pewnosc=25 pytanie="Czy nieznajomy jest osobą, czy rolą?"
 
 ## Odczytanie
 

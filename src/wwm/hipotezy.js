@@ -89,8 +89,12 @@ export function wyciagnijHipotezy(md, { licznik = null, tytulStrony = '' } = {})
     const sekcje = sekcjeBloku(cialo);
     const plan = planKotwicHipotezy(cialo, licznik);
     const pierwszyTytul = sekcje[0] ?? (tytulStrony || 'Hipoteza');
+    // Pytanie, na które blok odpowiada — czytelnikowi mówi więcej niż nazwa sekcji.
+    // Bez niego lista interpretacji pokazywała „Analiza” jako nazwę odczytania.
+    const pytanie = atrybuty.get('pytanie') ? String(atrybuty.get('pytanie')) : null;
     wynik.push({
       sekcja: pierwszyTytul,
+      ...(pytanie ? { pytanie } : {}),
       pewnosc,
       kotwica: plan.id,
       sekcje: sekcje.slice(1),

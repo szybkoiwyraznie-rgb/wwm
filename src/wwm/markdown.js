@@ -54,8 +54,9 @@ export const RODZAJE_TRESCI = [
 /** Interpretacja to fragment wiedzy modelu — poziom źródła jest z góry ustalony. */
 export const POCHODZENIE_INTERPRETACJI = 'model';
 
-/** Atrybuty bloku: `pewnosc` (wiedza modelu) i `rodzaj` (warstwa w boksie). */
-export const ATRYBUTY_BLOKU = ['pewnosc', 'rodzaj'];
+/** Atrybuty bloku: `pewnosc` (wiedza modelu), `rodzaj` (warstwa w boksie),
+ *  `pytanie` (czego dotyczy interpretacja — do list i kolumn bocznych). */
+export const ATRYBUTY_BLOKU = ['pewnosc', 'rodzaj', 'pytanie'];
 
 /** Nazwy wycofane — build podpowiada, na co wymienić, zamiast mówić „nieznany poziom”. */
 export const POZIOMY_WYCOFANE = {

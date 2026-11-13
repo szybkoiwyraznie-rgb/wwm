@@ -223,3 +223,49 @@ test('blok z nagłówkiem zachowuje swoje pochodzenie', async () => {
   assert.equal(boksy[0].tytul, 'Opis');
   assert.match(boksy[0].bloki[0].otwarcie, /\{\{model pewnosc=35/);
 });
+
+test('żaden widok nie pokazuje surowej wartości słownikowej', async () => {
+  // `rodzaj: glowny` to wartość z pliku, nie zdanie do czytania: w metryce i przy
+  // epizodach musi stać „wątek główny”. Ta sama klasa błędu co „Rodzaj: termin”.
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const widoki = {
+    scena: (await import('../src/wwm/render-scena.js')).renderScena,
+    epizod: (await import('../src/wwm/render-epizod.js')).renderEpizod,
+    rozdzial: (await import('../src/wwm/render-epizod.js')).renderRozdzial,
+    encja: (await import('../src/wwm/render-encja.js')).renderEncja,
+  };
+  const surowe = /(?:Rodzaj[a-z ]*|wątek|stan|rola):?\s*(glowny|poboczny|tajemnica|romans|mentor|sojusz|mistyczny|polityczny|otwarty|zamkniety)\b/iu;
+  const problemy = [];
+  for (const strona of Object.values(dane.strony)) {
+    const html = (widoki[strona.typ] ?? widoki.encja)(strona.slug);
+    const tekst = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
+    const m = tekst.match(surowe);
+    if (m) problemy.push(`${strona.slug}: surowa wartość „${m[0].trim()}”`);
+  }
+  assert.deepEqual(problemy, []);
+});
+
+test('ten sam akapit nie stoi dwa razy na stronie', async () => {
+  // Boks „Streszczenie” powtarzał lead pod tytułem; ta sama treść dwa razy na
+  // jednym ekranie czyta się jak błąd, nie jak akcent.
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const widoki = {
+    scena: (await import('../src/wwm/render-scena.js')).renderScena,
+    epizod: (await import('../src/wwm/render-epizod.js')).renderEpizod,
+    rozdzial: (await import('../src/wwm/render-epizod.js')).renderRozdzial,
+    encja: (await import('../src/wwm/render-encja.js')).renderEncja,
+  };
+  const problemy = [];
+  for (const strona of Object.values(dane.strony)) {
+    const html = (widoki[strona.typ] ?? widoki.encja)(strona.slug);
+    const tekst = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    for (const akapit of tekst.match(/[^.!?]{60,300}[.!?]/g) ?? []) {
+      const zdanie = akapit.trim();
+      const ile = tekst.split(zdanie).length - 1;
+      if (ile > 1) problemy.push(`${strona.slug}: powtórzony akapit „${zdanie.slice(0, 70)}…”`);
+    }
+  }
+  assert.deepEqual([...new Set(problemy)], []);
+});

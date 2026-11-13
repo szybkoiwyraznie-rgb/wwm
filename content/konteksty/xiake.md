@@ -25,7 +25,7 @@ człowieka, któremu dał słowo.
 
 }}
 
-{{model pewnosc=55
+{{model pewnosc=55 pytanie="Czy wędrowca można nazwać xiake?"
 
 ## W opowieści
 

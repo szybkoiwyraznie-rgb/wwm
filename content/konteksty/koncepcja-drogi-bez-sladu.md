@@ -26,7 +26,7 @@ którędy ma iść ([[zaslepka-sc01]]).
 
 }}
 
-{{model pewnosc=35
+{{model pewnosc=35 pytanie="Czym jest droga bez śladów — wskazówką czy warunkiem?"
 
 ## Co z tego wynika
 

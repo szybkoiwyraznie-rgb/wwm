@@ -158,6 +158,46 @@ export function okruszki(elementy) {
     .join('')}</p>`;
 }
 
+/**
+ * Wartości słownikowe (`glowny`, `tajemnica`) → język opowieści.
+ * W metryce i przy epizodach nie może stać surowa wartość z pliku: czytelnik
+ * ma zobaczyć „wątek główny”, nie „glowny” (ADR 0018).
+ */
+const NAZWY_RODZAJU = {
+  glowny: 'wątek główny',
+  poboczny: 'opowieść poboczna',
+  spotkanie: 'spotkanie',
+  zwiad: 'zwiad',
+  wspomnienie: 'wspomnienie',
+  ksiega: 'księga',
+  poemat: 'poemat',
+  termin: 'pojęcie',
+  tajemnica: 'coś niedopowiedzianego',
+  romans: 'romans',
+  polityczny: 'polityka',
+  mistyczny: 'mistyka',
+  rodzinny: 'rodzina',
+  przyjazn: 'przyjaźń',
+  rywalizacja: 'rywalizacja',
+  konflikt: 'konflikt',
+  sojusz: 'sojusz',
+  mentor: 'mistrz i uczeń',
+  motyw: 'motyw',
+  otwarty: 'wątek otwarty',
+  zamkniety: 'wątek zamknięty',
+  w_toku: 'w toku',
+  rozegrane: 'rozegrane',
+  szkola: 'szkoła walki',
+  klasztor: 'klasztor',
+  protagonista: 'główny bohater',
+};
+
+export function nazwaRodzaju(wartosc) {
+  if (wartosc === undefined || wartosc === null || wartosc === '') return '';
+  const tekst = String(wartosc).replace(/_/g, ' ');
+  return NAZWY_RODZAJU[wartosc] ?? NAZWY_RODZAJU[tekst] ?? tekst;
+}
+
 export function naglowekStrony({ tytul, opis = '', meta = '', sciezka = null }) {
   return `<header class="naglowek-strony">
   <h1>${escapeHtml(tytul)}</h1>
