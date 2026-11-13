@@ -58,16 +58,8 @@ function kolumnaKontekstu(scena) {
   lista('Wątki', 'watki', 'watek');
   lista('Kontekst kulturowy', 'konteksty', 'kontekst');
 
-  const hipotezy = Array.isArray(scena.hipotezy) ? scena.hipotezy : [];
-  if (hipotezy.length > 0) {
-    grupy.push({
-      tytul: 'Interpretacje tej sceny',
-      html: `<ul class="chipy">
-        ${hipotezy.map((h) => `<li><a class="chip chip-hipoteza" href="#${escapeHtml(h.kotwica)}">
-          <span class="chip-typ">interpretacja</span>${escapeHtml(h.sekcja)} ${badgePewnosci(h.pewnosc)}</a></li>`).join('')}
-      </ul>`,
-    });
-  }
+  // Interpretacje tej sceny są sekcją w treści (z kotwicą i pewnością), więc nie
+  // powtarzamy ich w kolumnie: ta sama informacja w dwóch miejscach myli.
 
   return kolumnaBoczna(grupy, 'Kontekst sceny');
 }
@@ -102,9 +94,10 @@ export function renderScena(slug) {
     { etykieta: scena.tytul },
   ]);
 
+  // Streszczenie zostaje w danych (listy, chronologia, wyszukiwarka), ale nie pod
+  // tytułem: bez etykiety źródła wyglądało jak urwany fragment nie wiadomo czego.
   const naglowek = naglowekStrony({
     tytul: scena.tytul,
-    opis: scena.streszczenie ? escapeHtml(scena.streszczenie) : '',
     meta: [
       scena.numer_sceny ? `scena ${escapeHtml(String(scena.numer_sceny))}` : '',
       epizod ? `<a href="${hrefDlaSlug(epizod.slug, 'epizod')}">${escapeHtml(epizod.tytul)}</a>` : '',

@@ -189,14 +189,6 @@ export function renderEncja(slug) {
   });
 
   const hipotezy = Array.isArray(strona.hipotezy) ? strona.hipotezy : [];
-  const blokHipotez = hipotezy.length > 0
-    ? `<section class="boks boks-hipotezy">
-        <h2>Interpretacje</h2>
-        <ul class="lista-hipotez-krotka">${hipotezy.map((h) => `<li>
-          <a href="#${escapeHtml(h.kotwica)}">${escapeHtml(h.sekcja)}</a> ${badgePewnosci(h.pewnosc)}
-        </li>`).join('')}</ul>
-      </section>`
-    : '';
 
   // Kontekst z prawej: powiązania, występowanie w opowieści i spis interpretacji.
   // Wcześniej wszystko szło jedną kolumną, więc powiązania zjadały pół strony
@@ -209,5 +201,5 @@ export function renderEncja(slug) {
 
   return `${naglowek}
 ${metryka(strona)}
-${ukladDwuKolumn(`${boksyEncji(strona)}${blokHipotez}`, boczna)}`;
+${ukladDwuKolumn(boksyEncji(strona), boczna)}`;
 }

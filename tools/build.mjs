@@ -26,7 +26,7 @@ import { collectModules, assertNoNameCollisions, stripModuleSyntax } from './mod
 import {
   wczytajStrony, wczytajZapisy, wczytajPostep, wczytajCoNowego,
 } from './content-loader.mjs';
-import { renderMarkdown, BLOK_OTWARCIA_RE } from '../src/wwm/markdown.js';
+import { renderMarkdown, BLOK_OTWARCIA_RE, parsujAtrybutyBloku } from '../src/wwm/markdown.js';
 import { podzielScene, podzielNaBoksy, zaplanujScene, kotwiceSekcji } from '../src/wwm/scena-sekcje.js';
 import { parseWikilinks } from '../src/wwm/links.js';
 import { wyciagnijHipotezy } from '../src/wwm/hipotezy.js';
@@ -172,6 +172,21 @@ export async function zbudujDane({ root = ROOT } = {}) {
   const licznikiHipotez = new Map();
 
   for (const s of strony) {
+    // Kotwice interpretacji liczymy RAZ, zanim cokolwiek się wyrenderuje: chip w kolumnie
+    // bocznej i cel w treści muszą dostać ten sam identyfikator (ADR 0005, 0006).
+    const hipotezy = wyciagnijHipotezy(s.body, { licznik: licznikiHipotez, tytulStrony: s.tytul });
+    let licznikInterpretacji = 0;
+    const kotwicaDlaBloku = (otwarcie) => {
+      const m = String(otwarcie ?? '').match(BLOK_OTWARCIA_RE);
+      if (!m) return null;
+      const atrybuty = parsujAtrybutyBloku(m[2]);
+      const rodzaj = atrybuty.get('rodzaj') ?? (m[1] === 'model' && atrybuty.has('pewnosc') ? 'interpretacja' : null);
+      if (rodzaj !== 'interpretacja') return null;
+      const kotwica = hipotezy[licznikInterpretacji]?.kotwica ?? null;
+      licznikInterpretacji += 1;
+      return kotwica;
+    };
+
     const { html, problemy: mdProblemy } = renderMarkdown(s.body, { resolveLink: resolver, wymagajPoziomu: true });
     for (const pr of mdProblemy) problemy.push(`${s.slug}: ${pr}`);
 
@@ -200,6 +215,7 @@ export async function zbudujDane({ root = ROOT } = {}) {
             hrefStrony: `#/scena/${s.slug}`,
             stan: stanKotwic,
           }),
+          kotwicaInterpretacji: kotwicaDlaBloku(cz.otwarcie),
         });
         for (const pr of wynik.problemy) problemy.push(`${s.slug} (${cz.tytul}): ${pr}`);
         return { tytul: cz.tytul, html: wynik.html, warstwy: cz.warstwy ?? 1 };
@@ -215,6 +231,7 @@ export async function zbudujDane({ root = ROOT } = {}) {
           const wynik = renderMarkdown(`${bl.otwarcie ?? '{{opracowanie'}\n\n${bl.tresc}\n\n}}`, {
             resolveLink: resolver,
             wymagajPoziomu: true,
+            kotwicaInterpretacji: kotwicaDlaBloku(bl.otwarcie),
           });
           for (const pr of wynik.problemy) problemy.push(`${s.slug}: ${pr}`);
           return wynik.html;
@@ -222,11 +239,6 @@ export async function zbudujDane({ root = ROOT } = {}) {
         warstwy: b.bloki.length,
       }));
     }
-
-    const hipotezy = wyciagnijHipotezy(s.body, {
-      licznik: licznikiHipotez,
-      tytulStrony: s.tytul,
-    });
 
     wyrenderowane.set(s.slug, { html, linki: [...linki], sekcje, boksy, hipotezy });
   }

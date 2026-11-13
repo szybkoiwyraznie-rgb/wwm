@@ -108,6 +108,7 @@ export function legendaPoziomow() {
   ];
   return `<div class="legenda">
   <p class="legenda-tytul">Kolor mówi, skąd to wiemy — tytuł boksu mówi, o czym jest</p>
+  <p class="legenda-opis">Jeden boks może mieć kilka warstw w różnych kolorach; nazwa pochodzenia stoi przy każdej z nich.</p>
   <ul class="legenda-lista">
     ${pochodzenia.map(([id, nazwa, opis]) => `<li><span class="legenda-probka poziom-${id}" aria-hidden="true"></span><strong>${nazwa}</strong> — ${opis}</li>`).join('')}
   </ul>
@@ -144,7 +145,8 @@ export function okruszki(elementy) {
   return elementy
     .map((e, i) => {
       const czesc = e.href ? `<a href="${e.href}">${escapeHtml(e.etykieta)}</a>` : `<span>${escapeHtml(e.etykieta)}</span>`;
-      return i === 0 ? czesc : `<span class="okruszek-sep" aria-hidden="true">›</span>${czesc}`;
+      // Bez spacji wokół separatora sąsiednie linki sklejają się w jeden zbitok.
+      return i === 0 ? czesc : ` <span class="okruszek-sep" aria-hidden="true">›</span> ${czesc}`;
     })
     .join('');
 }

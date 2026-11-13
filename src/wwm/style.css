@@ -134,7 +134,8 @@ mark { background: rgba(168, 54, 43, .18); color: inherit; padding: 0 2px; borde
 .tresc { max-width: 1200px; margin: 0 auto; padding: 30px 18px 40px; }
 .tresc > :last-child { margin-bottom: 0; }
 
-.okruszki { display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline; color: var(--tusz-3); font-size: .82rem; margin-bottom: 14px; }
+.okruszki { display: block; color: var(--tusz-3); font-size: .82rem; margin-bottom: 14px; line-height: 1.5; }
+.okruszek-sep { color: var(--tusz-3); }
 .okruszki a { color: var(--tusz-2); }
 .okruszek-sep { color: var(--ramka-2); }
 
@@ -449,6 +450,7 @@ th { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color:
 .legenda-os { margin: 0 0 12px; }
 .legenda-os:last-child { margin-bottom: 0; }
 .legenda-rodzaje { margin: .2em 0 .6em; color: var(--tusz-2); font-size: .9rem; }
+.legenda-opis { margin: .1em 0 .7em; color: var(--tusz-3); font-size: .84rem; }
 .legenda-lista { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 6px 20px; }
 .legenda-lista li { display: flex; align-items: baseline; gap: 8px; margin: 0; }
 .legenda-probka { width: 12px; height: 12px; border-radius: 3px; border: 1px solid var(--ramka-2); flex: 0 0 auto; }

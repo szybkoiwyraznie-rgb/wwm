@@ -353,13 +353,15 @@ export function renderMarkdown(md, {
     // wikilinki PRZED linkami markdown
     t = t.replace(WIKILINK_RE, (cały, slugRaw, etykietaRaw) => {
       const slug = slugRaw.trim();
-      const etykieta = etykietaRaw ? etykietaRaw.trim() : slug;
-      if (!resolveLink) return escapeHtml(etykieta);
+      if (!resolveLink) return escapeHtml(etykietaRaw ? etykietaRaw.trim() : slug);
       const cel = resolveLink(slug);
       if (!cel) {
         problemy.push(`martwy wikilink: [[${slug}]]`);
-        return `<span class="martwy-link" data-slug="${escapeHtml(slug)}">${escapeHtml(etykieta)}</span>`;
+        return `<span class="martwy-link" data-slug="${escapeHtml(slug)}">${escapeHtml(etykietaRaw ?? slug)}</span>`;
       }
+      // Bez etykiety pokazujemy tytuł strony, nie slug: `[[watek-pochodzenia]]`
+      // ma się czytać jako „Pochodzenie wędrowca”, bo slug jest adresem, nie nazwą.
+      const etykieta = etykietaRaw ? etykietaRaw.trim() : cel.tytul;
       return `<a href="${cel.href}" title="${escapeHtml(cel.tytul)}">${escapeHtml(etykieta)}</a>`;
     });
 
@@ -389,17 +391,6 @@ export function renderMarkdown(md, {
  * Fragment bez nagłówka (sam akapit, tabela) zachowuje etykietę nad treścią —
  * nie ma z czym jej zestawić.
  */
-const ETYKIETY_RODZAJU = {
-  scena: 'scena',
-  streszczenie: 'streszczenie',
-  wnioski: 'wnioski',
-  watek: 'wątek',
-  swiat: 'świat opowieści',
-  kontekst: 'kontekst kulturowy',
-  interpretacja: 'interpretacja',
-  spis: 'spis powiązań',
-};
-
 const ETYKIETY_POCHODZENIA = {
   dostawa: 'z opowieści',
   opracowanie: 'opracowanie',
@@ -408,12 +399,10 @@ const ETYKIETY_POCHODZENIA = {
 };
 
 function wEtykiecie(html, pochodzenie, rodzaj, pewnosc) {
-  // Kolor niesie pochodzenie, więc etykieta jest zawsze; rodzaj dopisujemy tylko
-  // wtedy, gdy fragment jest czymś innym niż podstawowa warstwa boksu.
-  const pochodzenieEtykieta = `<span class="pochodzenie-etykieta pochodzenie-${escapeHtml(pochodzenie)}">${escapeHtml(ETYKIETY_POCHODZENIA[pochodzenie] ?? pochodzenie)}</span>`;
-  const rodzajEtykieta = rodzaj
-    ? `<span class="poziom-etykieta">${escapeHtml(ETYKIETY_RODZAJU[rodzaj] ?? rodzaj)}</span>` : '';
-  const plakietka = `${rodzajEtykieta}${pochodzenieEtykieta}${badgePewnosci(pewnosc)}`;
+  // Tytuł boksu jest jeden. Plakietka mówi wyłącznie, skąd wiemy — rodzaj treści
+  // powtarzał tytuł („Wątki w scenie” + „spis powiązań”) i dublował nagłówek.
+  const plakietka = `<span class="pochodzenie-etykieta pochodzenie-${escapeHtml(pochodzenie)}">${escapeHtml(ETYKIETY_POCHODZENIA[pochodzenie] ?? pochodzenie)}</span>`
+    + badgePewnosci(pewnosc);
   const naglowek = html.match(/^<h([2-4])(?:\s[^>]*)?>[\s\S]*?<\/h\1>/);
   if (!naglowek) return `<p class="poziom-nad-trescia">${plakietka}</p>\n${html}`;
   const reszta = html.slice(naglowek[0].length).replace(/^\n/, '');

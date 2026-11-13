@@ -35,6 +35,7 @@ częścią wartości tego repozytorium.
 | [0015](0015-pochodzenie-i-rodzaj.md) | Pochodzenie i rodzaj treści to dwie różne osie | wycofana przez 0016 |
 | [0016](0016-jeden-boks-wiele-warstw.md) | Jeden boks, wiele warstw: kolor należy do źródła | przyjęta |
 | [0017](0017-powloka-i-drzewo-danych.md) | Powłoka i drzewo danych: kronika, która rośnie | przyjęta |
+| [0018](0018-jeden-tytul-i-dzialajace-odsylacze.md) | Jeden tytuł boksu i odsyłacze, które mają cel | przyjęta |
 
 ## Kiedy powstaje nowy ADR
 

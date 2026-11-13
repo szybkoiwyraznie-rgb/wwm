@@ -109,6 +109,48 @@ test('opisy encji mówią o świecie, nie o grze jako programie', () => {
   }
 });
 
+test('wikilink bez etykiety pokazuje tytuł strony, nie slug', () => {
+  const problemy = [];
+  for (const [slug, strona] of Object.entries(dane.strony)) {
+    const html = [strona.html ?? '', ...(strona.boksy ?? []).map((b) => b.html),
+      ...(strona.sekcje ?? []).map((s) => s.html)].join(' ');
+    // Slug w widocznym tekście odsyłacza to adres, nie nazwa — czytelnik ma zobaczyć
+    // „Pochodzenie wędrowca”, a nie „watek-pochodzenia”.
+    for (const m of html.matchAll(/<a [^>]*>([a-z0-9]+(?:-[a-z0-9]+)+)<\/a>/g)) {
+      if (dane.strony[m[1]]) problemy.push(`${slug}: odsyłacz pokazuje slug „${m[1]}”`);
+      else if (/^[a-z0-9]+(-[a-z0-9]+)+$/.test(m[1])) problemy.push(`${slug}: odsyłacz pokazuje slug „${m[1]}”`);
+    }
+  }
+  assert.deepEqual(problemy, []);
+});
+
+test('każdy chip interpretacji prowadzi do istniejącej kotwicy', () => {
+  const problemy = [];
+  for (const [slug, strona] of Object.entries(dane.strony)) {
+    const html = [strona.html ?? '', ...(strona.boksy ?? []).map((b) => b.html),
+      ...(strona.sekcje ?? []).map((s) => s.html)].join(' ');
+    const kotwice = new Set([...html.matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
+    for (const m of html.matchAll(/href="#([^"\/][^"]*)"/g)) {
+      const cel = m[1];
+      if (!cel.startsWith('/') && !kotwice.has(cel)) {
+        problemy.push(`${slug}: odsyłacz #${cel} nie ma celu na stronie`);
+      }
+    }
+  }
+  assert.deepEqual(problemy, []);
+});
+
+test('tytuł boksu jest jeden — plakietka nie powtarza rodzaju treści', () => {
+  const problemy = [];
+  for (const [slug, strona] of Object.entries(dane.strony)) {
+    const html = [...(strona.boksy ?? []).map((b) => b.html), ...(strona.sekcje ?? []).map((s) => s.html)].join(' ');
+    // Plakietka przy nagłówku niesie pochodzenie; osobny „poziom-etykieta”
+    // powtarzałby nazwę sekcji („Wątki w scenie” + „spis powiązań”).
+    if (/poziom-etykieta/.test(html)) problemy.push(`${slug}: druga etykieta przy tytule`);
+  }
+  assert.deepEqual(problemy, []);
+});
+
 test('menu nie prowadzi do działów, których nie ma', () => {
   const trasy = new Set(['chronologia', 'rozdzialy', 'watki', 'postacie', 'krainy', 'sekty', 'konteksty']);
   const strony = wczytajStrony({ root: ROOT });
