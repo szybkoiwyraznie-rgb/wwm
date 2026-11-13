@@ -1,0 +1,115 @@
+/**
+ * Chronologia: opowieść w kolejności zdarzeń.
+ *
+ * To odpowiedź na pytanie, które zadaje czytelnik, a nie gracz: co wydarzyło się
+ * najpierw, w którym rozdziale i krainie, i dokąd historia dotarła. Oś jest
+ * jednolita — jedna scena po drugiej — a rozdziały i epizody porządkują ją tylko
+ * jako śródtytuły (ADR 0013).
+ *
+ * Widok jest tekstowy: bez obrazków, bez map z assetami, więc działa tak samo
+ * na Pages, w podglądzie i na telefonie.
+ */
+
+import { escapeHtml, badgePewnosci } from './markdown.js';
+import { hrefDlaSlug } from './links.js';
+import {
+  dajStrone, dajPostep, listaRozdzialow, epizodyRozdzialu, scenyEpizodu,
+  listaScenChronologicznie, rozdzialSceny,
+} from './data.js';
+import { naglowekStrony, stanPusty, okruszki, odmiana } from './render.js';
+
+function krainyTagi(s) {
+  const slugi = Array.isArray(s.krainy) ? s.krainy : [];
+  return slugi
+    .map((k) => dajStrone(k))
+    .filter(Boolean)
+    .map((k) => `<a class="chip chip-mala" href="${hrefDlaSlug(k.slug, 'kraina')}">${escapeHtml(k.tytul)}</a>`)
+    .join('');
+}
+
+function wierszChronologii(s) {
+  // Nazwa epizodu stoi już nad scenami jako nagłówek — powtórzona przy każdej
+  // scenie dawała „Deszcz nad przystanią · Deszcz nad przystanią” (ADR 0018).
+  const hipotezy = Array.isArray(s.hipotezy) ? s.hipotezy : [];
+  return `<li class="chrono-scena" id="${escapeHtml(s.slug)}">
+    <div class="chrono-znacznik" aria-hidden="true"></div>
+    <div class="chrono-tresc">
+      <a class="chrono-tytul" href="${hrefDlaSlug(s.slug, 'scena')}">${escapeHtml(s.tytul)}</a>
+      <span class="chrono-meta">${s.numer_sceny ? `scena ${escapeHtml(String(s.numer_sceny))}` : ''}</span>
+      ${s.streszczenie ? `<p class="chrono-streszczenie">${escapeHtml(s.streszczenie)}</p>` : ''}
+      ${hipotezy.length > 0
+        // W skrócie nie powtarzamy tytułu boksu („Analiza”): czytelnik ma wiedzieć,
+        // że to odczytanie sceny i jak mocne, a nie jak nazwano sekcję (ADR 0018).
+        ? `<p class="chrono-hipotezy">${hipotezy.map((h) => `<a href="${hrefDlaSlug(s.slug, 'scena')}#${escapeHtml(h.kotwica)}">odczytanie sceny</a> ${badgePewnosci(h.pewnosc)}`).join(' ')}</p>`
+        : ''}
+      <p class="chrono-tagi">${krainyTagi(s)}</p>
+    </div>
+  </li>`;
+}
+
+export function renderChronologia() {
+  const sceny = listaScenChronologicznie();
+  const rozdzialy = listaRozdzialow();
+  const postep = dajPostep();
+
+  const naglowek = naglowekStrony({
+    tytul: 'Chronologia',
+    opis: 'Cała opowieść w kolejności zdarzeń — od pierwszej sceny do miejsca, w którym się zatrzymała.',
+    meta: sceny.length > 0
+      ? `${sceny.length} ${odmiana(sceny.length, ['scena', 'sceny', 'scen'])} · ${rozdzialy.length} ${odmiana(rozdzialy.length, ['rozdział', 'rozdziały', 'rozdziałów'])}`
+      : '',
+    sciezka: okruszki([{ etykieta: 'Chronologia' }]),
+  });
+
+  if (sceny.length === 0) {
+    return `${naglowek}${stanPusty('Opowieść nie ma jeszcze żadnej sceny.', 'Chronologia zaczyna się od pierwszej przeżytej sceny.')}`;
+  }
+
+  // Grupowanie po rozdziale, wewnątrz po epizodzie: śródtytuły porządkują,
+  // ale nie przerywają ciągu — numer sceny w opowieści pozostaje globalny.
+  const rozdzialyZZadaniami = rozdzialy
+    .map((r) => ({
+      rozdzial: r,
+      epizody: epizodyRozdzialu(r.slug)
+        .map((z) => ({ epizod: z, sceny: scenyEpizodu(z.slug) }))
+        .filter((g) => g.sceny.length > 0),
+    }))
+    .filter((g) => g.epizody.length > 0);
+
+  const bezRozdzialu = sceny.filter((s) => !rozdzialSceny(s));
+
+  const bloki = rozdzialyZZadaniami.map(({ rozdzial, epizody }) => {
+    const ile = epizody.reduce((n, g) => n + g.sceny.length, 0);
+    // Opis epizodu pada RAZ — nad scenami, których dotyczy. Wiersz sceny nie
+    // powtarza streszczenia epizodu ani jego nazwy („striplowany” dubel): scena
+    // mówi własnym numerem i własnym streszczeniem (ADR 0018).
+    const epizodyHtml = epizody.map(({ epizod, sceny: lista }) => `<div class="chrono-epizod">
+        <h3 class="chrono-epizod-tytul"><a href="${hrefDlaSlug(epizod.slug, 'epizod')}">${escapeHtml(epizod.tytul)}</a></h3>
+        ${epizod.streszczenie ? `<p class="chrono-epizod-opis">${escapeHtml(epizod.streszczenie)}</p>` : ''}
+        <ol class="chrono-lista">${lista.map((s) => wierszChronologii(s)).join('')}</ol>
+      </div>`).join('');
+
+    // Rozdziały startują zwinięte: chronologia ma pokazać kształt opowieści
+    // (ile rozdziałów, gdzie jesteśmy), a nie wysypać wszystkich scen naraz.
+    return `<details class="chrono-rozdzial">
+      <summary class="chrono-rozdzial-tytul"><a href="${hrefDlaSlug(rozdzial.slug, 'rozdzial')}">${escapeHtml(rozdzial.tytul)}</a>
+        <span class="meta">${ile} ${odmiana(ile, ['scena', 'sceny', 'scen'])}</span></summary>
+      ${epizodyHtml}
+    </details>`;
+  }).join('');
+
+  const ogon = bezRozdzialu.length > 0
+    ? `<details class="chrono-rozdzial">
+        <summary class="chrono-rozdzial-tytul">Sceny poza rozdziałami</summary>
+        <ol class="chrono-lista">${bezRozdzialu.map((s) => wierszChronologii(s)).join('')}</ol>
+      </details>`
+    : '';
+
+  const granica = postep.ostatnia
+    ? `<p class="chrono-granica">Opowieść zatrzymuje się na scenie
+       <a href="${hrefDlaSlug(postep.ostatnia.slug, 'scena')}">${escapeHtml(postep.ostatnia.tytul)}</a>.
+       Dalej historia nie jest jeszcze opowiedziana.</p>`
+    : '';
+
+  return `${naglowek}${granica}<div class="chronologia">${bloki}${ogon}</div>`;
+}

@@ -1,0 +1,11 @@
+# Produkt buildu — odtwarzalny z `npm run build`, nigdy nie commitowany.
+dist/
+
+# Zależności (projekt ich nie ma; wpis na wypadek pomyłki).
+node_modules/
+
+.DS_Store
+*.log
+
+# Pobrane paczki źródłowe (np. archiwum tłumaczenia) — poza historią repo.
+google_drive/
