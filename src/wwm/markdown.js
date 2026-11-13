@@ -6,12 +6,14 @@
  * listy -/1., cytaty >, tabele pipe, pozioma linia ---, obrazy ![alt](src),
  * oraz blok `:::zapis ... :::` na dosłowny tekst sceny.
  *
- * Poziom wiarygodności (ADR 0004) zaznacza się na fragmencie, nie na stronie:
- *   {{hipoteza pewnosc=70
- *   ...treść...
- *   }}
- * gdzie nazwa to skrypt | streszczenie | menu | zrodlo | wiedza | hipoteza.
- * Hipoteza wymaga pewności — bez niej build jest czerwony.
+ * Dwie osie niezależne (ADR 0015):
+ *   POCHODZENIE (kolor) — skąd wiemy: dostawa | opracowanie | kwerenda | model,
+ *   RODZAJ (tytuł)     — czym fragment jest: scena | streszczenie | wątek | świat |
+ *                        kontekst | interpretacja | spis.
+ * Zapis: {{pochodzenie/rodzaj}} — np. {{dostawa/scena}} albo {{model/interpretacja pewnosc=40}}.
+ * Pochodzenie decyduje o kolorze i jest jednorodne w całym boksie. Ten sam rodzaj może
+ * wystąpić w dwóch boksach o różnym pochodzeniu (dwa boksy „Kontekst kulturowy”: jeden
+ * z kwerendą, drugi z wiedzy modelu). Interpretacja wymaga pewności.
  *
  * Zasady bezpieczeństwa: cała treść jest escapowana na wejściu, dopiero
  * potem dodajemy własne tagi. Martwy wikilink NIE jest cichy — renderer
@@ -27,18 +29,65 @@ import { SLUG_RE, WIKILINK_RE } from './links.js';
  * `struktura` to spis powiązań — tabela wątków, obsady, opcji. Nie jest prozą,
  * więc nie udaje streszczenia: czytelnik ma wiedzieć, że patrzy na indeks.
  */
-export const POZIOMY_BLOKU = ['skrypt', 'streszczenie', 'menu', 'zrodlo', 'wiedza', 'hipoteza', 'struktura'];
+export const POCHODZENIA = ['dostawa', 'opracowanie', 'kwerenda', 'model'];
+
+/**
+ * Pochodzenie → kolor. Jedyna oś koloru (ADR 0016): cztery źródła, od słów
+ * opowieści po wiedzę modelu. Kolor nigdy nie mówi, o czym fragment jest.
+ */
+export const OPIS_POCHODZENIA = {
+  dostawa: { etykieta: 'z opowieści', opis: 'słowa i obrazy wzięte wprost z historii' },
+  opracowanie: { etykieta: 'opracowanie', opis: 'streszczenie i wniosek wyciągnięty wprost z tego, co powiedziano' },
+  kwerenda: { etykieta: 'źródła sprawdzone', opis: 'twierdzenie potwierdzone źródłem, z adresem i datą' },
+  model: { etykieta: 'wiedza modelu', opis: 'wniosek, hipoteza i tło kulturowe bez potwierdzenia w źródle' },
+};
+
+/**
+ * Rodzaje treści — używane wewnątrz jednego boksu, żeby rozdzielić warstwy
+ * analizy (wnioski wprost, tło historyczne, przypuszczenia o dalszym ciągu).
+ * Boks ma własny tytuł; rodzaj jest etykietą warstwy, nie osobnym boksem.
+ */
+export const RODZAJE_TRESCI = [
+  'scena', 'streszczenie', 'wnioski', 'watek', 'swiat', 'kontekst', 'interpretacja', 'spis',
+];
+
+/** Interpretacja to fragment wiedzy modelu — poziom źródła jest z góry ustalony. */
+export const POCHODZENIE_INTERPRETACJI = 'model';
+
+/** Atrybuty bloku: `pewnosc` (wiedza modelu) i `rodzaj` (warstwa w boksie). */
+export const ATRYBUTY_BLOKU = ['pewnosc', 'rodzaj'];
 
 /** Nazwy wycofane — build podpowiada, na co wymienić, zamiast mówić „nieznany poziom”. */
 export const POZIOMY_WYCOFANE = {
-  notatka: 'streszczenie',
-  tekst: 'skrypt',
-  zrodla: 'zrodlo',
-  teoria: 'hipoteza',
+  // Stare nazwy poziomów (ADR 0004) — każda wskazuje pochodzenie i podpowiada rodzaj.
+  skrypt: 'dostawa',
+  menu: 'dostawa',
+  streszczenie: 'opracowanie',
+  zrodlo: 'kwerenda',
+  wiedza: 'model',
+  hipoteza: 'model',
+  struktura: 'opracowanie',
+  notatka: 'opracowanie',
+  tekst: 'dostawa',
+  zrodla: 'kwerenda',
+  teoria: 'model',
+  // Zapis dwuosiowy z wersji pośredniej (ADR 0015): pochodzenie/rodzaj.
+  'dostawa/scena': 'dostawa',
+  'dostawa/swiat': 'dostawa',
+  'opracowanie/streszczenie': 'opracowanie',
+  'opracowanie/spis': 'opracowanie',
+  'kwerenda/kontekst': 'kwerenda',
+  'model/kontekst': 'model',
+  'opracowanie/interpretacja': 'model',
+  'model/interpretacja': 'model',
 };
 
-/** Jedyny atrybut bloku poziomu: pewność hipotezy (ADR 0005). */
-export const ATRYBUTY_BLOKU = ['pewnosc'];
+/** Rodzaj sugerowany przy migracji ze starej nazwy — podpowiedź, nie wymóg. */
+export const RODZAJ_STAREJ_NAZWY = {
+  skrypt: 'scena', menu: 'swiat', streszczenie: 'streszczenie', zrodlo: 'kontekst',
+  wiedza: 'kontekst', hipoteza: 'interpretacja', struktura: 'spis', notatka: 'streszczenie',
+  tekst: 'scena', zrodla: 'kontekst', teoria: 'interpretacja',
+};
 
 /** Progi etykiet pewności (ADR 0005). */
 export const PROGI_PEWNOSCI = [
@@ -75,7 +124,7 @@ export function badgePewnosci(wartosc) {
  * Otwarcie bloku poziomu: `{{poziom}}` albo z atrybutem `pewnosc=…`,
  * np. `{{hipoteza pewnosc=85`.
  */
-export const BLOK_OTWARCIA_RE = /^\{\{(\w+)((?:\s+[A-Za-z][\w-]*=(?:"[^"]*"|[^\s}]+))*)\s*$/;
+export const BLOK_OTWARCIA_RE = /^\{\{([A-Za-z]+)((?:\s+[A-Za-z][\w-]*=(?:"[^"]*"|[^\s}]+))*)\s*$/;
 
 /** Zamienia ciąg atrybutów (` pewnosc=85`) na mapę nazwa → wartość. */
 export function parsujAtrybutyBloku(tekst) {
@@ -106,7 +155,7 @@ export function renderMarkdown(md, {
   // każdy fragment poza blokiem poziomu jest błędem, gdy wymagajPoziomu
   const dodaj = (html) => {
     if (wymagajPoziomu && wPoziomie === null) {
-      problemy.push(`fragment treści bez poziomu wiarygodności — zaznacz blokiem {{${POZIOMY_BLOKU.join('|')}}}`);
+      problemy.push(`fragment treści bez pochodzenia — zaznacz blokiem {{${POCHODZENIA.join('|')}}}`);
     }
     out.push(html);
   };
@@ -116,61 +165,81 @@ export function renderMarkdown(md, {
 
     if (linia.trim() === '') { i += 1; continue; }
 
-    // blok poziomu wiarygodności {{poziom ... }}
+    // blok pochodzenia {{pochodzenie ...}} — kolor fragmentu w środku boksu
     const otwarcie = linia.trim().match(BLOK_OTWARCIA_RE);
     if (otwarcie) {
-      const poziom = otwarcie[1];
+      const pochodzenie = otwarcie[1];
       const atrybuty = parsujAtrybutyBloku(otwarcie[2]);
+      // Rodzaj jest opcjonalny. Wiedza modelu z podaną pewnością jest hipotezą,
+      // bez pewności — tłem kulturowym. Sam kolor tego nie rozstrzyga, więc
+      // rozstrzyga atrybut: pewnosc= znaczy „to jest przypuszczenie”.
+      const rodzajRaw = atrybuty.get('rodzaj');
+      const rodzaj = rodzajRaw ?? (pochodzenie === POCHODZENIE_INTERPRETACJI && atrybuty.has('pewnosc')
+        ? 'interpretacja' : null);
       i += 1;
       const buf = [];
       while (i < linie.length && linie[i].trim() !== '}}') { buf.push(linie[i]); i += 1; }
-      if (i >= linie.length) problemy.push(`niezamknięty blok {{${poziom}`);
+      if (i >= linie.length) problemy.push(`niezamknięty blok {{${pochodzenie}${rodzaj ? `/${rodzaj}` : ''}`);
       i += 1; // zamknięcie
 
-      if (POZIOMY_WYCOFANE[poziom]) {
-        problemy.push(`poziom {{${poziom}}} jest wycofany — użyj {{${POZIOMY_WYCOFANE[poziom]}}} (ADR 0004)`);
+      const staryZapis = POZIOMY_WYCOFANE[pochodzenie];
+      if (staryZapis) {
+        const podpowiedzRodzaju = RODZAJ_STAREJ_NAZWY[pochodzenie];
+        problemy.push(`zapis {{${pochodzenie}}} jest wycofany — użyj {{${staryZapis}}}`
+          + (podpowiedzRodzaju ? ` (rodzaj dawnej nazwy: ${podpowiedzRodzaju})` : ''));
         continue;
       }
-      if (!POZIOMY_BLOKU.includes(poziom)) {
-        problemy.push(`nieznany poziom w bloku {{${poziom}: dozwolone ${POZIOMY_BLOKU.join(', ')}`);
+      if (!POCHODZENIA.includes(pochodzenie)) {
+        problemy.push(`nieznane pochodzenie w bloku {{${pochodzenie}}: dozwolone ${POCHODZENIA.join(', ')}`);
+        continue;
+      }
+      if (rodzajRaw !== undefined && !RODZAJE_TRESCI.includes(rodzajRaw)) {
+        problemy.push(`nieznany rodzaj treści "${rodzajRaw}": dozwolone ${RODZAJE_TRESCI.join(', ')}`);
         continue;
       }
       if (wZagniezdzeniu) {
-        problemy.push(`zagnieżdżony blok {{${poziom} — bloki poziomu nie mogą się zagnieżdżać`);
+        problemy.push(`zagnieżdżony blok {{${pochodzenie}}} — kolorów nie zagnieżdżamy`);
+        continue;
+      }
+      // Hipoteza to zawsze wiedza modelu: interpretacja nie może udawać cytatu ani kwerendy.
+      if (rodzaj === 'interpretacja' && pochodzenie !== POCHODZENIE_INTERPRETACJI) {
+        problemy.push(`interpretacja jest wiedzą modelu — pisz {{model pewnosc=…}}, nie {{${pochodzenie}}}`);
         continue;
       }
 
-      // Pewność (ADR 0005): hipoteza bez szacunku jest decyzją niedokończoną,
+      // Pewność (ADR 0005): interpretacja bez szacunku jest decyzją niedokończoną,
       // a cytat z pewnością sugerowałby istnienie wersji „mniej prawdziwej”.
       const pewnoscRaw = atrybuty.get('pewnosc');
       for (const klucz of atrybuty.keys()) {
         if (!ATRYBUTY_BLOKU.includes(klucz)) {
-          problemy.push(`nieznany atrybut "${klucz}" w bloku {{${poziom}}} — dozwolone: ${ATRYBUTY_BLOKU.join(', ')}`);
+          problemy.push(`nieznany atrybut "${klucz}" w bloku {{${pochodzenie}}} — dozwolone: ${ATRYBUTY_BLOKU.join(', ')}`);
         }
       }
-      if (poziom === 'hipoteza' && pewnoscRaw === undefined) {
-        problemy.push('blok {{hipoteza}} wymaga atrybutu pewnosc=0–100 (ADR 0005)');
+      if (atrybuty.has('pewnosc') && pochodzenie !== POCHODZENIE_INTERPRETACJI) {
+        problemy.push(`atrybut pewnosc przysługuje tylko wiedzy modelu — {{${pochodzenie}}} jest pewne z definicji`);
       }
-      if (poziom === 'hipoteza' && pewnoscRaw !== undefined && !czyPewnosc(pewnoscRaw)) {
+      if (atrybuty.has('pewnosc') && !czyPewnosc(pewnoscRaw)) {
         problemy.push(`pewność "${pewnoscRaw}" nie jest liczbą całkowitą 0–100`);
       }
-      if (poziom !== 'hipoteza' && pewnoscRaw !== undefined) {
-        problemy.push(`atrybut pewnosc przysługuje tylko {{hipoteza}} — {{${poziom}}} byłby niepewny z definicji`);
+      // Wiedza modelu bez szacunku byłaby twierdzeniem nieodróżnialnym od faktu.
+      if (rodzaj === 'interpretacja' && !atrybuty.has('pewnosc')) {
+        problemy.push('interpretacja wymaga atrybutu pewnosc=0–100 (ADR 0005)');
       }
 
       const trescBloku = buf.join('\n');
       const wewn = renderMarkdown(trescBloku, {
-        resolveLink, wymagajPoziomu, wPoziomie: poziom, wZagniezdzeniu: true,
+        resolveLink, wymagajPoziomu, wPoziomie: pochodzenie, wZagniezdzeniu: true,
         atrybutyNaglowka, zachowajLamania,
       });
       problemy.push(...wewn.problemy);
 
       const atrybutyDom = [
-        `class="fragment poziom poziom-${poziom}"`,
-        `data-poziom="${poziom}"`,
+        `class="fragment poziom poziom-${pochodzenie}${rodzaj ? ` rodzaj-${rodzaj}` : ''}"`,
+        `data-poziom="${pochodzenie}"`,
+        rodzaj ? `data-rodzaj="${rodzaj}"` : '',
         pewnoscRaw !== undefined ? `data-pewnosc="${escapeHtml(String(pewnoscRaw))}"` : '',
       ].filter(Boolean).join(' ');
-      out.push(`<div ${atrybutyDom}>\n${wEtykiecie(wewn.html, poziom, pewnoscRaw)}\n</div>`);
+      out.push(`<div ${atrybutyDom}>\n${wEtykiecie(wewn.html, pochodzenie, rodzaj, pewnoscRaw)}\n</div>`);
       continue;
     }
 
@@ -320,18 +389,31 @@ export function renderMarkdown(md, {
  * Fragment bez nagłówka (sam akapit, tabela) zachowuje etykietę nad treścią —
  * nie ma z czym jej zestawić.
  */
-const ETYKIETY_POZIOMU = {
-  skrypt: 'słowa opowieści',
+const ETYKIETY_RODZAJU = {
+  scena: 'scena',
   streszczenie: 'streszczenie',
-  menu: 'interfejs gry',
-  zrodlo: 'sprawdzone źródło',
-  wiedza: 'wiedza o kulturze',
-  hipoteza: 'hipoteza',
-  struktura: 'spis powiązań',
+  wnioski: 'wnioski',
+  watek: 'wątek',
+  swiat: 'świat opowieści',
+  kontekst: 'kontekst kulturowy',
+  interpretacja: 'interpretacja',
+  spis: 'spis powiązań',
 };
 
-function wEtykiecie(html, poziom, pewnosc) {
-  const plakietka = `<span class="poziom-etykieta">${escapeHtml(ETYKIETY_POZIOMU[poziom] ?? poziom)}</span>${badgePewnosci(pewnosc)}`;
+const ETYKIETY_POCHODZENIA = {
+  dostawa: 'z opowieści',
+  opracowanie: 'opracowanie',
+  kwerenda: 'źródła sprawdzone',
+  model: 'wiedza modelu',
+};
+
+function wEtykiecie(html, pochodzenie, rodzaj, pewnosc) {
+  // Kolor niesie pochodzenie, więc etykieta jest zawsze; rodzaj dopisujemy tylko
+  // wtedy, gdy fragment jest czymś innym niż podstawowa warstwa boksu.
+  const pochodzenieEtykieta = `<span class="pochodzenie-etykieta pochodzenie-${escapeHtml(pochodzenie)}">${escapeHtml(ETYKIETY_POCHODZENIA[pochodzenie] ?? pochodzenie)}</span>`;
+  const rodzajEtykieta = rodzaj
+    ? `<span class="poziom-etykieta">${escapeHtml(ETYKIETY_RODZAJU[rodzaj] ?? rodzaj)}</span>` : '';
+  const plakietka = `${rodzajEtykieta}${pochodzenieEtykieta}${badgePewnosci(pewnosc)}`;
   const naglowek = html.match(/^<h([2-4])(?:\s[^>]*)?>[\s\S]*?<\/h\1>/);
   if (!naglowek) return `<p class="poziom-nad-trescia">${plakietka}</p>\n${html}`;
   const reszta = html.slice(naglowek[0].length).replace(/^\n/, '');

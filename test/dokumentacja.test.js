@@ -14,7 +14,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { TYPY_STRON, POLA_DOZWOLONE, POLA_RELACJI, RODZAJE_EPIZODU } from '../src/wwm/registry.js';
-import { POZIOMY_BLOKU } from '../src/wwm/markdown.js';
+import { POCHODZENIA, RODZAJE_TRESCI } from '../src/wwm/markdown.js';
 import { KATALOGI } from '../tools/content-loader.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -63,11 +63,20 @@ test('każdy typ strony ma katalog, trasę i tabelę w schemacie', () => {
   assert.equal(katalogi.size, TYPY_STRON.length, 'każdy katalog obsługuje inny typ');
 });
 
-test('schemat danych wymienia wszystkie poziomy wiarygodności', () => {
+test('schemat danych wymienia pochodzenia i rodzaje treści', () => {
   const schemat = czytaj('docs/guides/SCHEMAT_DANYCH.md');
-  for (const poziom of POZIOMY_BLOKU) {
-    assert.ok(schemat.includes(`{{${poziom}`), `schemat nie opisuje poziomu {{${poziom}}}`);
+  for (const pochodzenie of POCHODZENIA) {
+    assert.ok(schemat.includes(`{{${pochodzenie}`), `schemat nie opisuje pochodzenia {{${pochodzenie}}}`);
   }
+  for (const rodzaj of RODZAJE_TRESCI) {
+    assert.ok(schemat.includes('`' + rodzaj + '`'), `schemat nie opisuje rodzaju treści „${rodzaj}”`);
+  }
+});
+
+test('schemat mówi, że kolor to pochodzenie, a tytuł boksu bierze się z treści', () => {
+  const schemat = czytaj('docs/guides/SCHEMAT_DANYCH.md');
+  assert.match(schemat, /kolor[^\n]*pochodzen/i);
+  assert.match(schemat, /tytuł[^\n]*(nagłówka|z treści)/i);
 });
 
 test('schemat danych wymienia wszystkie pola-relacje', () => {
@@ -77,7 +86,7 @@ test('schemat danych wymienia wszystkie pola-relacje', () => {
   }
 });
 
-test('schemat wymienia rodzaje zadań zgodne z walidatorem', () => {
+test('schemat wymienia rodzaje epizodów zgodne z walidatorem', () => {
   const schemat = czytaj('docs/guides/SCHEMAT_DANYCH.md');
   for (const rodzaj of RODZAJE_EPIZODU) {
     assert.ok(schemat.includes(rodzaj), `schemat nie opisuje rodzaju ${rodzaj}`);

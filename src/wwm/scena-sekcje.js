@@ -50,13 +50,17 @@ export function podzielScene(body) {
       continue;
     }
 
-    if (BLOK_OTWARCIA_RE.test(t)) { otwarcie = t; continue; }
+    if (BLOK_OTWARCIA_RE.test(t)) {
+      otwarcie = t;
+      if (biezaca) biezaca.warstwy += 1;
+      continue;
+    }
     if (t === '}}') { otwarcie = null; continue; }
 
     const h = linia.match(/^##\s+(.+?)\s*$/);
     if (h) {
       zamknij();
-      biezaca = { tytul: h[1], otwarcie, linie: [] };
+      biezaca = { tytul: h[1], otwarcie, warstwy: 0, linie: [] };
       continue;
     }
     if (biezaca) biezaca.linie.push(linia);
@@ -99,7 +103,7 @@ export function podzielNaBoksy(body) {
   const zamknijBoks = () => {
     zamknijBlok();
     if (!boks) return;
-    if (boks.bloki.length > 0) boksy.push(boks);
+    if (boks.bloki.length > 0) { boks.warstwy = boks.bloki.length; boksy.push(boks); }
     boks = null;
   };
 

@@ -21,6 +21,9 @@ zachodnich ani publicystyka o grze.
   `{{zrodlo` z adresem w `zrodla`. Wniosek o związku z grą to `{{hipoteza`.
 - Sekcja `## Nawiązania kulturowe` w scenie zbiera to, co scena wnosi.
 
+> **Adnotacja (0016):** nazwy bloków zmienione — `{{wiedza` → `{{model`,
+> `{{zrodlo` → `{{kwerenda` (z adresem w `zrodla`), `{{hipoteza` → `{{model pewnosc=NN`.
+
 ## Konsekwencje
 
 - Czytelnik odróżnia „gra to pokazała” od „kultura chińska zna ten motyw”.

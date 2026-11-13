@@ -14,6 +14,9 @@ import { renderEpizod, renderRozdzial, renderRozdzialy } from './render-epizod.j
 import { renderListe, renderHipotezy, renderTagi, renderTag } from './render-listy.js';
 import { renderSzukanie } from './render-szukaj.js';
 import { renderCoNowego, renderOBazie } from './render-o-bazie.js';
+import {
+  zaladujDane, dociagnijStrone, dociagnijTeksty, dociagnijCoNowego, czyTrybPlikow,
+} from './ladowanie.js';
 
 /** Mapa tras list ↔ tras encji (dla podświetlenia nawigacji). */
 const LISTA_TRAS = {
@@ -22,9 +25,35 @@ const LISTA_TRAS = {
   kontekst: 'konteksty', pojecie: 'pojecia', relacja: 'relacje',
 };
 
-function renderuj(trasa) {
+/**
+ * Trasy, których dane trzeba dociągnąć przed renderem. Listy, chronologia i strona
+ * główna pracują na indeksie — nie czekają na sieć (ADR 0017).
+ */
+const TRASY_STRONY = new Set([
+  'rozdzial', 'epizod', 'scena', 'postac', 'sekta', 'kraina', 'miejsce',
+  'kontekst', 'pojecie', 'watek', 'relacja',
+]);
+
+/** Token renderu: szybka nawigacja nie może pozwolić starszemu widokowi nadpisać nowszego. */
+let tokenRender = 0;
+
+async function renderuj(trasa) {
   const app = globalThis.document?.getElementById('app');
   if (!app) return;
+  const moj = ++tokenRender;
+  if (trasa.nazwa === 'szukaj' && trasa.query?.q) await dociagnijTeksty();
+  if (trasa.nazwa === 'co-nowego') await dociagnijCoNowego();
+  if (TRASY_STRONY.has(trasa.nazwa) && trasa.param) {
+    try {
+      await dociagnijStrone(trasa.param);
+    } catch (blad) {
+      if (moj !== tokenRender) return;
+      app.innerHTML = rama('glowna', 'Nie udało się wczytać strony',
+        `<p class="pusto">${blad.message}</p><p><a href="#/">Wróć na początek</a></p>`);
+      return;
+    }
+  }
+  if (moj !== tokenRender) return;
 
   let aktywna = trasa.nazwa;
   let tytul = 'Kronika';
@@ -144,5 +173,21 @@ function podepnijFiltry() {
 podepnijSkokiWStronie();
 podepnijFiltry();
 
-const stop = uruchomRouter(renderuj);
-if (globalThis.__WWM_TEST__) globalThis.__WWM_STOP__ = stop;
+/** Start: dane (indeks + dziennik), potem router. Błąd startu jest widoczny, nie cichy. */
+async function start() {
+  try {
+    await zaladujDane();
+  } catch (blad) {
+    const app = globalThis.document?.getElementById('app');
+    if (app) {
+      app.innerHTML = `<div class="stan-pusty"><p>Nie udało się wczytać kroniki: ${blad.message}</p>
+        <p>Jeśli otwierasz plik bezpośrednio z dysku, potrzebny jest serwer — uruchom <code>npm run serve</code>.</p></div>`;
+    }
+    return;
+  }
+  const stop = uruchomRouter(renderuj);
+  if (globalThis.__WWM_TEST__) globalThis.__WWM_STOP__ = stop;
+  if (czyTrybPlikow()) globalThis.document?.documentElement?.setAttribute('data-tryb', 'pliki');
+}
+
+start();

@@ -19,7 +19,7 @@ tagi: [zaslepka, qinghe]
 utworzono: 2026-11-13
 ---
 
-{{skrypt
+{{dostawa
 
 ## Treść sceny
 
@@ -43,7 +43,7 @@ za sylwetką, która znika we mgle.
 
 }}
 
-{{hipoteza pewnosc=70
+{{model pewnosc=70
 
 ## Analiza
 

@@ -35,8 +35,9 @@ Poza katalogami typów leżą dwa pliki:
    zatrzymuje build.
 5. **Granica opowieści jest twarda.** Strona może opisywać tylko to, co zostało już
    opowiedziane — pilnuje tego `rozgrywka/postep.json` (ADR 0007).
-6. **Poziomy wiarygodności zamiast jednolitej narracji:** `{{skrypt`, `{{streszczenie`,
-   `{{menu`, `{{zrodlo`, `{{wiedza`, `{{hipoteza pewnosc=NN`, `{{struktura`.
+6. **Boks to sekcja, kolor to źródło.** Tytuł boksu pochodzi z nagłówka `##`; w środku
+   leżą warstwy `{{dostawa`, `{{opracowanie`, `{{kwerenda`, `{{model`. Hipoteza jest
+   zawsze `{{model pewnosc=NN`. Jeden boks może mieć kilka warstw (ADR 0016).
 7. **Hipoteza wymaga pewności** (0–100). Zmiana twierdzenia wymaga wpisu w `interpretacje:`.
 8. **Swoboda formy.** Sekcje obowiązkowe są nieliczne; reszta należy do autora wpisu.
 

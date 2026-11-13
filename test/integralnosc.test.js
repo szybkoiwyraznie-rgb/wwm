@@ -10,6 +10,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 
 import { zbudujDane } from '../tools/build.mjs';
@@ -155,6 +156,29 @@ test('artefakt buildu nie zawiera śladów nieudanego renderu', () => {
   for (const slad of ['[object Object]', 'class="martwy-link"', 'undefined</']) {
     assert.ok(!widoczne.includes(slad), `artefakt zawiera "${slad}" w treści widocznej dla czytelnika`);
   }
-  assert.match(html, /WWM_DATA/);
   assert.match(html, /id="app"/);
+});
+
+test('powłoka trzyma indeks, a ciała stron leżą w dist/data/', () => {
+  const sciezka = path.join(ROOT, 'dist/index.html');
+  const katalog = path.join(ROOT, 'dist/data');
+  if (!fs.existsSync(sciezka) || !fs.existsSync(katalog)) return; // build jeszcze nie ruszył
+  const html = fs.readFileSync(sciezka, 'utf8');
+  assert.match(html, /WWM_B64/, 'powłoka ma spakowany indeks');
+  assert.match(html, /WWM_TRYB = 'pliki'/);
+  assert.ok(!html.includes('globalThis.WWM_DATA = {'), 'powłoka nie zawiera ciał stron w całości');
+
+  // Indeks wystarcza listom: metadane są w powłoce, ciała — w plikach.
+  const indeks = JSON.parse(zlib.gunzipSync(Buffer.from(html.match(/WWM_B64 = "([^"]+)"/)[1], 'base64')).toString('utf8'));
+  const slugi = Object.keys(indeks.strony);
+  assert.ok(slugi.length > 0);
+  for (const slug of slugi) {
+    assert.ok(!('html' in indeks.strony[slug]), `indeks nie niesie ciała strony ${slug}`);
+    assert.ok(fs.existsSync(path.join(katalog, `${slug}.json`)), `brak pliku danych dla ${slug}`);
+  }
+  // Ciało wczytane z pliku ma dokładnie te pola, których oczekują renderery.
+  const scena = JSON.parse(fs.readFileSync(path.join(katalog, 'zaslepka-sc01.json'), 'utf8'));
+  assert.ok(scena.sekcje || scena.html, 'ciało sceny ma sekcje albo html');
+  assert.ok(fs.existsSync(path.join(katalog, 'teksty.json')));
+  assert.ok(fs.existsSync(path.join(katalog, 'co-nowego.json')));
 });

@@ -1,6 +1,6 @@
 # 0001 — Jeden samowystarczalny artefakt HTML
 
-**Status:** przyjęta (2026-11-13) · **Zastępuje:** — · **Zastąpiona przez:** —
+**Status:** przyjęta (2026-11-13) · **Zastępuje:** — · **Zastąpiona przez:** częściowo 0017 (powłoka + drzewo danych zamiast jednego pliku z całą treścią)
 
 ## Kontekst
 

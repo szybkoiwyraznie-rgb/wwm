@@ -17,6 +17,10 @@ z wartościowaniem — to jedna z najlepszych praktyk tamtego repo.
 - `pewnosc=` przysługuje wyłącznie blokowi hipotezy; inne poziomy z tym atrybutem to błąd.
 - Zmiana pewności jest zmianą twierdzenia i wymaga wpisu w `interpretacje:` (ADR 0006).
 
+> **Adnotacja (0016):** zapis zmieniony — hipoteza to warstwa `{{model pewnosc=NN}}`;
+> `{{hipoteza}}` jest rozpoznawana jako wycofana i podpowiada zamiennik. Zasada
+> „bez pewności nie istnieje” obowiązuje bez zmian.
+
 ## Konsekwencje
 
 - Hipoteza bez pewności nie przechodzi walidacji.

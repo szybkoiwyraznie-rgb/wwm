@@ -60,7 +60,7 @@ export function wyciagnijHipotezy(md, { licznik = null, tytulStrony = '' } = {})
     const m = t0.match(BLOK_OTWARCIA_RE);
     if (!m) { i += 1; continue; }
 
-    const poziom = m[1];
+    const pochodzenie = m[1];
     const atrybuty = parsujAtrybutyBloku(m[2]);
     const tresc = [];
     i += 1;
@@ -80,7 +80,8 @@ export function wyciagnijHipotezy(md, { licznik = null, tytulStrony = '' } = {})
     }
     i += 1; // zamknięcie bloku
 
-    if (poziom !== 'hipoteza') continue;
+    // Interpretacje to fragmenty wiedzy modelu z oszacowaną pewnością.
+    if (pochodzenie !== 'model' || !atrybuty.has('pewnosc')) continue;
     const pewnosc = Number(atrybuty.get('pewnosc'));
     if (!Number.isInteger(pewnosc) || pewnosc < 0 || pewnosc > 100) continue;
 

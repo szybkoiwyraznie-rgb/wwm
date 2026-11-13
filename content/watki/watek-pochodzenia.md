@@ -12,7 +12,7 @@ tagi: [zaslepka]
 utworzono: 2026-11-13
 ---
 
-{{streszczenie
+{{opracowanie
 
 ## Opis
 

@@ -9,7 +9,7 @@ tagi: [zaslepka]
 utworzono: 2026-11-13
 ---
 
-{{streszczenie
+{{opracowanie
 
 ## Opis
 
@@ -18,7 +18,7 @@ więcej, niż mówi, a wędrowiec nie ma nawet jak go odnaleźć.
 
 }}
 
-{{hipoteza pewnosc=25
+{{model pewnosc=25
 
 ## Odczytanie
 

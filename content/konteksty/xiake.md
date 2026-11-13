@@ -10,7 +10,7 @@ tagi: [wuxia, kultura-chin]
 utworzono: 2026-11-13
 ---
 
-{{wiedza
+{{model
 
 ## Opis
 
@@ -25,7 +25,7 @@ człowieka, któremu dał słowo.
 
 }}
 
-{{hipoteza pewnosc=55
+{{model pewnosc=55
 
 ## W opowieści
 

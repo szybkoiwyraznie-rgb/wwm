@@ -9,7 +9,8 @@
     "build": "node tools/build.mjs",
     "serve": "node tools/serve.mjs",
     "start": "node tools/serve.mjs",
-    "zapis": "node tools/sprawdz-zapis.mjs"
+    "zapis": "node tools/sprawdz-zapis.mjs",
+    "build:single": "node tools/build.mjs --single"
   },
   "engines": {
     "node": ">=22"

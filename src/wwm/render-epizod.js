@@ -12,7 +12,7 @@
 import { escapeHtml } from './markdown.js';
 import { hrefDlaSlug } from './links.js';
 import { dajDane, dajStrone, listaRozdzialow, epizodyRozdzialu, scenyEpizodu } from './data.js';
-import { naglowekStrony, stanPusty, okruszki, odmiana } from './render.js';
+import { naglowekStrony, stanPusty, okruszki, odmiana, chipTypu, kolumnaBoczna, ukladDwuKolumn } from './render.js';
 
 const RODZAJE_EPIZODU = {
   glowny: 'wątek główny',
@@ -78,13 +78,14 @@ export function renderEpizod(slug) {
     ? `<p class="sekcja-stopka">Dalej: <a href="${hrefDlaSlug(nastepny.slug, 'epizod')}">${escapeHtml(nastepny.tytul)}</a></p>`
     : '<p class="sekcja-stopka pusto">Dalej opowieść jeszcze nie została opowiedziana.</p>';
 
-  return `${naglowek}
-${boksyStrony(epizod)}
+  const tresc = `${boksyStrony(epizod)}
 <section class="boks">
   <h2>Sceny po kolei</h2>
   ${listaScenEpizodu(sceny)}
   ${stopka}
 </section>`;
+
+  return `${naglowek}${ukladDwuKolumn(tresc, kolumnaBocznaEpizodu(epizod, rozdzial))}`;
 }
 
 export function renderRozdzial(slug) {
@@ -128,13 +129,61 @@ export function renderRozdzial(slug) {
     ? `<p class="sekcja-stopka">Następny rozdział: <a href="${hrefDlaSlug(nastepny.slug, 'rozdzial')}">${escapeHtml(nastepny.tytul)}</a></p>`
     : '';
 
-  return `${naglowek}
-${boksyStrony(rozdzial)}
+  const tresc = `${boksyStrony(rozdzial)}
 <section class="boks">
   <h2>Epizody</h2>
   ${listaEpizodow}
   ${stopka}
 </section>`;
+
+  return `${naglowek}${ukladDwuKolumn(tresc, kolumnaBocznaRozdzialu(rozdzial))}`;
+}
+
+/** Kontekst epizodu: rozdział, kraina, sekty, postacie, wątki. */
+function kolumnaBocznaEpizodu(epizod, rozdzial) {
+  const dane = dajDane();
+  const grupy = [];
+  const dodaj = (tytul, pole) => {
+    const wartosc = epizod[pole];
+    const slugi = Array.isArray(wartosc) ? wartosc : (wartosc ? [wartosc] : []);
+    const strony = slugi.map((s) => dane.strony[s]).filter(Boolean);
+    if (strony.length === 0) return;
+    grupy.push({
+      tytul,
+      html: `<ul class="chipy">${strony.map((s) => `<li>${chipTypu(s.slug, s.typ, s.tytul, '')}</li>`).join('')}</ul>`,
+    });
+  };
+  if (rozdzial) {
+    grupy.push({
+      tytul: 'Rozdział',
+      html: `<ul class="chipy"><li>${chipTypu(rozdzial.slug, 'rozdzial', rozdzial.tytul, '')}</li></ul>`,
+    });
+  }
+  dodaj('Krainy', 'krainy');
+  dodaj('Miejsca', 'miejsca');
+  dodaj('Sekty', 'sekty');
+  dodaj('Postacie', 'postacie');
+  dodaj('Wątki', 'watki');
+  return kolumnaBoczna(grupy, 'Kontekst epizodu');
+}
+
+/** Kontekst rozdziału: krainy, sekty, wątki i postacie, które w nim występują. */
+function kolumnaBocznaRozdzialu(rozdzial) {
+  const dane = dajDane();
+  const grupy = [];
+  const dodaj = (tytul, pole) => {
+    const strony = (rozdzial[pole] ?? []).map((s) => dane.strony[s]).filter(Boolean);
+    if (strony.length === 0) return;
+    grupy.push({
+      tytul,
+      html: `<ul class="chipy">${strony.map((s) => `<li>${chipTypu(s.slug, s.typ, s.tytul, '')}</li>`).join('')}</ul>`,
+    });
+  };
+  dodaj('Krainy', 'krainy');
+  dodaj('Sekty', 'sekty');
+  dodaj('Wątki', 'watki');
+  dodaj('Postacie', 'postacie');
+  return kolumnaBoczna(grupy, 'Kontekst rozdziału');
 }
 
 export function renderRozdzialy() {

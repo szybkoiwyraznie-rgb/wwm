@@ -7,17 +7,20 @@
  * 2. Renderuje markdown stron z resolverem wikilinków, dzieli strony scen
  *    i epizodów na boksy i planuje kotwice hipotez.
  * 3. Skleja moduły ESM z `src/wwm` w jeden zasięg (tools/module-graph.mjs).
- * 4. Wstrzykuje styl, dane (WWM_DATA) i kod do szkieletu index.html.
+ * 4. Dzieli dane na **indeks** (metadane, graf, słowniki) i **ciała stron**
+ *    (ADR 0017). Powłoka zawiera styl, kod i indeks spakowany gzip+base64;
+ *    ciała leżą w `dist/data/<slug>.json` i są dociągane przy wejściu w stronę.
  *
- * Uruchomienie: node tools/build.mjs [--out dist/index.html]
+ * Uruchomienie: node tools/build.mjs [--out dist/index.html] [--single]
  *
- * Artefakt działa identycznie z file:// i przez HTTPS — dlatego routing
- * jest po hashu, a wyszukiwanie po stronie przeglądarki.
+ * `--single` pakuje całość w jeden plik (archiwum offline, działa z file://).
+ * Tryb domyślny wymaga serwera HTTP — tak publikuje Pages.
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import { collectModules, assertNoNameCollisions, stripModuleSyntax } from './module-graph.mjs';
 import {
@@ -189,7 +192,7 @@ export async function zbudujDane({ root = ROOT } = {}) {
       for (const pr of plan.problemy) problemy.push(`${s.slug}: ${pr}`);
       const stanKotwic = {};
       sekcje = czesci.map((cz) => {
-        const zrodlo = `${cz.otwarcie ?? '{{skrypt'}\n\n## ${cz.tytul}\n\n${cz.tresc}\n\n}}`;
+        const zrodlo = `${cz.otwarcie ?? '{{dostawa'}\n\n## ${cz.tytul}\n\n${cz.tresc}\n\n}}`;
         const wynik = renderMarkdown(zrodlo, {
           resolveLink: resolver,
           wymagajPoziomu: true,
@@ -199,7 +202,7 @@ export async function zbudujDane({ root = ROOT } = {}) {
           }),
         });
         for (const pr of wynik.problemy) problemy.push(`${s.slug} (${cz.tytul}): ${pr}`);
-        return { tytul: cz.tytul, html: wynik.html };
+        return { tytul: cz.tytul, html: wynik.html, warstwy: cz.warstwy ?? 1 };
       });
     }
 
@@ -209,13 +212,14 @@ export async function zbudujDane({ root = ROOT } = {}) {
       boksy = podzielNaBoksy(s.body).map((b) => ({
         tytul: b.tytul,
         html: b.bloki.map((bl) => {
-          const wynik = renderMarkdown(`${bl.otwarcie ?? '{{streszczenie'}\n\n${bl.tresc}\n\n}}`, {
+          const wynik = renderMarkdown(`${bl.otwarcie ?? '{{opracowanie'}\n\n${bl.tresc}\n\n}}`, {
             resolveLink: resolver,
             wymagajPoziomu: true,
           });
           for (const pr of wynik.problemy) problemy.push(`${s.slug}: ${pr}`);
           return wynik.html;
         }).join('\n'),
+        warstwy: b.bloki.length,
       }));
     }
 
@@ -285,7 +289,40 @@ export async function zbudujDane({ root = ROOT } = {}) {
   return dane;
 }
 
-export async function zbuduj({ out, root = ROOT } = {}) {
+/**
+ * Dzieli dane na indeks i ciała stron (ADR 0017).
+ *
+ * Indeks to wszystko, czego potrzebują listy, chronologia, strona główna i graf:
+ * typ, tytuł, streszczenie, odsyłacze, kolejność, daty, interpretacje.
+ * Ciało (html, boksy, sekcje) jedzie osobno — czytelnik otwiera jedną scenę,
+ * a nie całą kronikę.
+ */
+export function podzielDane(dane) {
+  const POLA_CIALA = ['html', 'boksy', 'sekcje'];
+  const indeksStron = {};
+  const ciala = {};
+  const teksty = {};
+
+  for (const [slug, strona] of Object.entries(dane.strony)) {
+    const indeks = { ...strona };
+    const cialo = {};
+    for (const pole of POLA_CIALA) {
+      if (indeks[pole] !== undefined) { cialo[pole] = indeks[pole]; delete indeks[pole]; }
+    }
+    if (strona.tekst !== undefined) { teksty[slug] = strona.tekst; delete indeks.tekst; }
+    indeksStron[slug] = indeks;
+    if (Object.keys(cialo).length > 0) ciala[slug] = cialo;
+  }
+
+  return {
+    indeks: { ...dane, strony: indeksStron, coNowego: [] },
+    ciala,
+    teksty,
+    coNowego: dane.coNowego ?? [],
+  };
+}
+
+export async function zbuduj({ out, root = ROOT, single = false } = {}) {
   out = out ?? path.join(root, 'dist/index.html');
   const dane = await zbudujDane({ root });
 
@@ -300,7 +337,13 @@ export async function zbuduj({ out, root = ROOT } = {}) {
     })
     .join('\n\n');
 
-  const daneJs = `// ===== WWM_DATA (wstrzyknięte przez build) =====\nglobalThis.WWM_DATA = ${JSON.stringify(dane, null, 2)};`;
+  // Powłoka: indeks spakowany. Tryb jednoplikowy: całość w WWM_DATA.
+  const podzial = single ? null : podzielDane(dane);
+  const daneJs = single
+    ? `// ===== WWM_DATA (tryb jednoplikowy) =====\nglobalThis.WWM_DATA = ${JSON.stringify(dane, null, 2)};`
+    : `// ===== WWM_TRYB + indeks (gzip/base64, ADR 0017) =====\n`
+      + `globalThis.WWM_TRYB = 'pliki';\n`
+      + `globalThis.WWM_B64 = ${JSON.stringify(zlib.gzipSync(JSON.stringify(podzial.indeks)).toString('base64'))};`;
 
   const shell = fs.readFileSync(path.join(ROOT, 'src/wwm/index.html'), 'utf8');
   for (const znacznik of ['<!--STYL-->', '<!--BUNDLE-->']) {
@@ -319,7 +362,25 @@ export async function zbuduj({ out, root = ROOT } = {}) {
   const cel = path.resolve(out);
   fs.mkdirSync(path.dirname(cel), { recursive: true });
   fs.writeFileSync(cel, html);
-  console.log(`Zbudowano ${path.relative(ROOT, cel)} (${(html.length / 1024).toFixed(1)} kB, ${moduly.length} modułów)`);
+
+  if (!single) {
+    const katalog = path.join(path.dirname(cel), 'data');
+    fs.rmSync(katalog, { recursive: true, force: true });
+    fs.mkdirSync(katalog, { recursive: true });
+    const zapisz = (nazwa, wartosc) => fs.writeFileSync(path.join(katalog, nazwa), JSON.stringify(wartosc));
+    for (const [slug, cialo] of Object.entries(podzial.ciala)) zapisz(`${slug}.json`, cialo);
+    zapisz('teksty.json', podzial.teksty);
+    zapisz('co-nowego.json', podzial.coNowego);
+    const rozmiar = (p) => fs.statSync(p).size;
+    const bajtyCial = Object.keys(podzial.ciala)
+      .reduce((n, s) => n + rozmiar(path.join(katalog, `${s}.json`)), 0);
+    console.log(`Zbudowano ${path.relative(ROOT, cel)} (powłoka ${(html.length / 1024).toFixed(1)} kB, ${moduly.length} modułów)`);
+    console.log(`  data/: ${Object.keys(podzial.ciala).length} ciał stron (${(bajtyCial / 1024).toFixed(1)} kB), `
+      + `teksty ${(rozmiar(path.join(katalog, 'teksty.json')) / 1024).toFixed(1)} kB, `
+      + `dziennik ${(rozmiar(path.join(katalog, 'co-nowego.json')) / 1024).toFixed(1)} kB`);
+  } else {
+    console.log(`Zbudowano ${path.relative(ROOT, cel)} (${(html.length / 1024).toFixed(1)} kB, ${moduly.length} modułów)`);
+  }
   return cel;
 }
 
@@ -327,5 +388,6 @@ const jestMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToP
 if (jestMain) {
   const i = process.argv.indexOf('--out');
   const out = i >= 0 ? process.argv[i + 1] : undefined;
-  zbuduj({ out }).catch((e) => { console.error(e.message); process.exit(1); });
+  const single = process.argv.includes('--single');
+  zbuduj({ out, single }).catch((e) => { console.error(e.message); process.exit(1); });
 }

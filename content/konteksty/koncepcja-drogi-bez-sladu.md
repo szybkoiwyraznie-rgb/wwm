@@ -7,7 +7,7 @@ tagi: [wuxia, motyw-podrozy]
 utworzono: 2026-11-13
 ---
 
-{{wiedza
+{{model
 
 ## Opis
 
@@ -17,7 +17,7 @@ drogami, po skałach i dachach, właśnie dlatego, że nikt tam ich nie oczekuje
 
 }}
 
-{{hipoteza pewnosc=35
+{{model pewnosc=35
 
 ## W opowieści
 

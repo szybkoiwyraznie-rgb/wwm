@@ -47,13 +47,14 @@ potem pisz wpisy.
 
 1. Frontmatter wg `SCHEMAT_DANYCH.md` §3 — `epizod`, `numer_sceny`, `kolejnosc`,
    `streszczenie`, `zapis`, listy `postacie`/`miejsca`/`watki`/`konteksty`.
-2. `{{skrypt` + `## Treść sceny` + blok `:::zapis` — **dosłowny** fragment archiwum.
+2. `{{dostawa` + `## Treść sceny` + blok `:::zapis` — **dosłowny** fragment archiwum.
    Każdy blok `:::zapis` jest osobnym cytatem; wklejaj bez przeredagowania, bez skracania
    w środku zdania i bez poprawiania literówek.
 3. `## Analiza` z podsekcjami + pole `sekcje_analizy` mapujące je na nagłówki analizy.
-4. Bloki analizy według pochodzenia informacji: `{{streszczenie` (co się stało),
-   `{{wiedza` (kontekst kulturowy bez potwierdzenia), `{{zrodlo` (potwierdzone, z adresem
-   w `zrodla`), `{{hipoteza pewnosc=NN` (wniosek).
+4. Warstwy analizy według pochodzenia informacji — **w jednym boksie**, pod jednym
+   tytułem „Analiza sceny” (ADR 0016): `{{opracowanie` (co wynika wprost z dostawy),
+   `{{kwerenda` (tło historyczne, z adresem w `zrodla`), `{{model pewnosc=NN` (co z tego
+   może wyniknąć). Trzy warstwy, nie trzy boksy.
 5. `## Nawiązania kulturowe` — gdy scena wnosi motyw z literatury, filmu lub sztuk walki.
 6. `## Wątki w scenie` — co dany wątek zyskuje w tej scenie.
 

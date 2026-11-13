@@ -12,7 +12,7 @@ tagi: [zaslepka]
 utworzono: 2026-11-13
 ---
 
-{{streszczenie
+{{opracowanie
 
 ## Opis
 
@@ -22,7 +22,7 @@ zdąży o nie zapytać.
 
 }}
 
-{{hipoteza pewnosc=40
+{{model pewnosc=40
 
 ## Rola
 

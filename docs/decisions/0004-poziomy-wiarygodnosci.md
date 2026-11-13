@@ -1,6 +1,6 @@
 # 0004 — Poziomy wiarygodności jako kolor fragmentu
 
-**Status:** przyjęta (2026-11-13) · **Zastępuje:** — · **Zastąpiona przez:** —
+**Status:** przyjęta (2026-11-13) · **Zastępuje:** — · **Zastąpiona przez:** 0016 (słownik poziomów: cztery pochodzenia zamiast siedmiu; kolor należy do warstwy w boksie)
 
 ## Kontekst
 

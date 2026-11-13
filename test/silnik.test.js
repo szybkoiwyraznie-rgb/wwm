@@ -10,7 +10,7 @@ import assert from 'node:assert/strict';
 import { SLUG_RE, slugify, parseWikilinks, hrefDlaSlug, hrefListy } from '../src/wwm/links.js';
 import { parseFrontmatter } from '../src/wwm/frontmatter.js';
 import {
-  renderMarkdown, POZIOMY_BLOKU, POZIOMY_WYCOFANE, badgePewnosci, poziomPewnosci, czyPewnosc,
+  renderMarkdown, POCHODZENIA, RODZAJE_TRESCI, POZIOMY_WYCOFANE, badgePewnosci, poziomPewnosci, czyPewnosc,
 } from '../src/wwm/markdown.js';
 
 test('slugify prowadzi polskie znaki do ASCII i nie zostawia myślników na brzegach', () => {
@@ -75,47 +75,82 @@ interpretacje:
   assert.match(data.interpretacje[0].poprzednio, /\n/, 'skalar blokowy zachowuje złamanie wiersza');
 });
 
+test('frontmatter czyta adresy w liście blokowej jako skalary, nie obiekty', () => {
+  // Adres URL ma dwukropek, więc wygląda jak `klucz: wartość`. Bez wyjątku
+  // pole `zrodla:` zamieniało link w obiekt i walidacja odrzucała własną treść.
+  const { data } = parseFrontmatter('---\nzrodla:\n  - https://pl.wikipedia.org/wiki/Wuxia\ntagi: [a]\n---\n');
+  assert.deepEqual(data.zrodla, ['https://pl.wikipedia.org/wiki/Wuxia']);
+});
+
 test('frontmatter odrzuca nieznaną składnię zamiast ją przełknąć', () => {
   assert.throws(() => parseFrontmatter('---\ntagi:\n  - a\n b\n---\n'), /frontmatter/);
   assert.throws(() => parseFrontmatter('---\ntytyl: a: b\n---\n'), /cudzysłów/);
 });
 
-test('renderer wymaga poziomu na każdym fragmencie treści', () => {
+test('renderer wymaga pochodzenia i rodzaju na każdym fragmencie treści', () => {
   const bez = renderMarkdown('Sam akapit', { wymagajPoziomu: true });
   assert.equal(bez.problemy.length, 1);
-  assert.match(bez.problemy[0], /bez poziomu/);
+  assert.match(bez.problemy[0], /bez pochodzenia/);
 
-  const z = renderMarkdown('{{streszczenie\n\n## Opis\n\nAkapit\n}}', { wymagajPoziomu: true });
+  const z = renderMarkdown('{{opracowanie\n\n## Opis\n\nAkapit\n}}', { wymagajPoziomu: true });
   assert.deepEqual(z.problemy, []);
-  assert.match(z.html, /data-poziom="streszczenie"/);
+  assert.match(z.html, /data-poziom="opracowanie"/);
 });
 
-test('hipoteza bez pewności jest błędem, a z pewnością dostaje plakietkę', () => {
-  const bez = renderMarkdown('{{hipoteza\n\n## Analiza\n\nTekst\n}}', { wymagajPoziomu: true });
+test('interpretacja bez pewności jest błędem, a z pewnością dostaje plakietkę', () => {
+  const bez = renderMarkdown('{{model rodzaj=interpretacja\n\n## Analiza\n\nTekst\n}}', { wymagajPoziomu: true });
   assert.ok(bez.problemy.some((p) => /wymaga atrybutu pewnosc/.test(p)));
 
-  const z = renderMarkdown('{{hipoteza pewnosc=85\n\n## Analiza\n\nTekst\n}}', { wymagajPoziomu: true });
+  const z = renderMarkdown('{{model pewnosc=85\n\n## Analiza\n\nTekst\n}}', { wymagajPoziomu: true });
   assert.deepEqual(z.problemy, []);
   assert.match(z.html, /pewność 85%/);
   assert.match(z.html, /data-pewnosc="85"/);
 });
 
 test('pewność przysługuje wyłącznie hipotezie', () => {
-  const p = renderMarkdown('{{streszczenie pewnosc=50\n\nTekst\n}}', { wymagajPoziomu: true });
+  const p = renderMarkdown('{{opracowanie pewnosc=50\n\nTekst\n}}', { wymagajPoziomu: true });
   assert.ok(p.problemy.some((x) => /przysługuje tylko/.test(x)));
 });
 
-test('wycofane nazwy poziomów podpowiadają zamiennik', () => {
+test('wycofane nazwy bloków podpowiadają zamiennik', () => {
   for (const [stary, nowy] of Object.entries(POZIOMY_WYCOFANE)) {
     const r = renderMarkdown(`{{${stary}\n\nTekst\n}}`, { wymagajPoziomu: true });
-    assert.ok(r.problemy.some((x) => x.includes(`{{${nowy}}}`)), `${stary} → ${nowy}`);
+    assert.ok(r.problemy.some((x) => x.includes(nowy)), `${stary} → ${nowy}`);
   }
-  assert.ok(POZIOMY_BLOKU.includes('hipoteza'));
-  assert.ok(!POZIOMY_BLOKU.includes('wiedza') === false, 'wiedza zostaje jako kontekst kulturowy');
+  assert.deepEqual(POCHODZENIA, ['dostawa', 'opracowanie', 'kwerenda', 'model']);
+  assert.ok(RODZAJE_TRESCI.includes('interpretacja'));
+  assert.ok(RODZAJE_TRESCI.includes('kontekst'));
+});
+
+test('ten sam boks mieści warstwy o różnym pochodzeniu', () => {
+  const kwerenda = renderMarkdown('{{kwerenda\n\n## Kontekst kulturowy\n\nZe źródła.\n}}', { wymagajPoziomu: true });
+  const model = renderMarkdown('{{model\n\n## Kontekst kulturowy\n\nZ pamięci.\n}}', { wymagajPoziomu: true });
+  assert.match(kwerenda.html, /poziom-kwerenda/);
+  assert.match(model.html, /poziom-model/);
+  // Ten sam tytuł warstwy, inny kolor — o to chodzi w modelu dwuosiowym.
+  assert.match(kwerenda.html, /Kontekst kulturowy/);
+  assert.match(model.html, /Kontekst kulturowy/);
+  assert.notEqual(
+    kwerenda.html.match(/class="fragment[^"]*"/)[0],
+    model.html.match(/class="fragment[^"]*"/)[0],
+  );
+});
+
+test('hipoteza jest zawsze wiedzą modelu', () => {
+  const zle = renderMarkdown('{{kwerenda rodzaj=interpretacja pewnosc=40\n\nTekst\n}}', { wymagajPoziomu: true });
+  assert.ok(zle.problemy.some((x) => /wiedzą modelu/.test(x)));
+  const dobrze = renderMarkdown('{{model pewnosc=40\n\nTekst\n}}', { wymagajPoziomu: true });
+  assert.deepEqual(dobrze.problemy, []);
+  assert.match(dobrze.html, /rodzaj-interpretacja/);
+
+  // Wiedza modelu bez pewności to tło kulturowe, nie hipoteza.
+  const tlo = renderMarkdown('{{model\n\nTekst\n}}', { wymagajPoziomu: true });
+  assert.deepEqual(tlo.problemy, []);
+  assert.doesNotMatch(tlo.html, /rodzaj-interpretacja/);
 });
 
 test('martwy wikilink nie jest cichy', () => {
-  const r = renderMarkdown('{{streszczenie\n\n[[nie-ma-takiej]]\n}}', {
+  const r = renderMarkdown('{{opracowanie\n\n[[nie-ma-takiej]]\n}}', {
     wymagajPoziomu: true,
     resolveLink: () => null,
   });
@@ -124,7 +159,7 @@ test('martwy wikilink nie jest cichy', () => {
 });
 
 test('istniejący wikilink staje się odsyłaczem z tytułem', () => {
-  const r = renderMarkdown('{{streszczenie\n\n[[xiake|wędrowny rycerz]]\n}}', {
+  const r = renderMarkdown('{{opracowanie\n\n[[xiake|wędrowny rycerz]]\n}}', {
     wymagajPoziomu: true,
     resolveLink: (slug) => (slug === 'xiake' ? { href: '#/kontekst/xiake', tytul: 'Xiake' } : null),
   });
@@ -134,7 +169,7 @@ test('istniejący wikilink staje się odsyłaczem z tytułem', () => {
 });
 
 test('tabela z pionkiem w wikilinku nie rozjeżdża kolumn', () => {
-  const r = renderMarkdown('{{struktura\n\n| Wątek | Ślad |\n|---|---|\n| [[a\\|Alfa]] | x |\n| [[b|Beta]] | y |\n}}', {
+  const r = renderMarkdown('{{opracowanie rodzaj=spis\n\n| Wątek | Ślad |\n|---|---|\n| [[a\\|Alfa]] | x |\n| [[b|Beta]] | y |\n}}', {
     wymagajPoziomu: true,
     resolveLink: (slug) => ({ href: `#/x/${slug}`, tytul: slug }),
   });
@@ -143,7 +178,7 @@ test('tabela z pionkiem w wikilinku nie rozjeżdża kolumn', () => {
 });
 
 test('blok zapisu zachowuje złamania wiersza i nie renderuje nagłówków jako sekcji', () => {
-  const r = renderMarkdown('{{skrypt\n\n## Treść sceny\n\n:::zapis\n**A:** raz\ndwa\n:::\n}}', {
+  const r = renderMarkdown('{{dostawa\n\n## Treść sceny\n\n:::zapis\n**A:** raz\ndwa\n:::\n}}', {
     wymagajPoziomu: true,
   });
   assert.match(r.html, /class="zapis-tekst"/);
@@ -162,7 +197,7 @@ test('progi pewności mają trzy poziomy i czytelne etykiety', () => {
 });
 
 test('renderer escapuje HTML z treści', () => {
-  const r = renderMarkdown('{{streszczenie\n\n<script>alert(1)</script>\n}}', { wymagajPoziomu: true });
+  const r = renderMarkdown('{{opracowanie\n\n<script>alert(1)</script>\n}}', { wymagajPoziomu: true });
   assert.ok(!r.html.includes('<script>'));
   assert.match(r.html, /&lt;script&gt;/);
 });

@@ -58,12 +58,21 @@ export function renderOBazie() {
 </section>
 <section class="boks">
   <h2>Skąd wiadomo, co jest prawdą opowieści</h2>
-  <p>Słowa bohaterów i narrację poznajemy z samej historii. Streszczenia i powiązania
+  <p>Słowa bohaterów i narrację poznajemy z samej historii. Streszczenia i spisy powiązań
   porządkują to, co już się wydarzyło. Tło kulturowe — chińskie księgi, poematy, obyczaj
   jianghu — jest oznaczone osobno, bo należy do świata, z którego opowieść wyrasta,
   a nie do jej wydarzeń.</p>
+  <p>Kolor mówi, skąd wiemy: <strong>z opowieści</strong> — słowa samej historii;
+  <strong>opracowanie</strong> — streszczenie i wniosek wyciągnięty wprost z tego, co
+  powiedziano; <strong>źródła sprawdzone</strong> — twierdzenie potwierdzone zewnętrznie,
+  z adresem i datą; <strong>wiedza modelu</strong> — przypuszczenie albo tło, którego
+  nie potwierdza żadne źródło. Czytelnik ma prawo wiedzieć, kiedy patrzy na takie zdanie.</p>
+  <p>Tytuł boksu mówi osobno, o czym fragment jest. Jeden boks może mieć kilka warstw
+  w różnych kolorach — cytat, wniosek, tło historyczne i przypuszczenie o dalszym ciągu
+  stoją pod wspólnym tytułem „Analiza sceny”, bo należą do jednej myśli, a nie do trzech
+  osobnych rozdziałów.</p>
   <p>Tam, gdzie historia nie mówi wprost, a wniosek daje się uzasadnić, stoi interpretacja
-  z oszacowaną pewnością. Nigdy nie udaje faktu.</p>
+  z oszacowaną pewnością. Nigdy nie udaje faktu — i zawsze jest przypuszczeniem, nigdy cytatem.</p>
 </section>
 <section class="boks">
   <h2>Granica opowieści</h2>

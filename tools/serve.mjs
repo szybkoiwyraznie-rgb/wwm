@@ -39,7 +39,17 @@ const server = http.createServer((req, res) => {
 
   if (!filePath.startsWith(DIST)) { res.statusCode = 403; res.end('Forbidden'); return; }
   if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) filePath = path.join(filePath, 'index.html');
-  if (!fs.existsSync(filePath)) filePath = path.join(DIST, 'index.html'); // SPA: hash routing
+
+  // Brakujący plik w `data/` to 404, nie powłoka: HTML w miejscu JSON-a byłby
+  // cichym błędem parsowania (ADR 0017). Reszta ścieżek wraca do SPA — routing po hashu.
+  if (!fs.existsSync(filePath)) {
+    if (reqPath.startsWith('/data/')) {
+      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end(`Brak pliku ${reqPath} — uruchom npm run build`);
+      return;
+    }
+    filePath = path.join(DIST, 'index.html');
+  }
 
   try {
     const data = fs.readFileSync(filePath);
@@ -56,5 +66,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  console.log(`WWM — baza fabuły — podgląd na http://${HOST}:${PORT} (dist/index.html)`);
+  console.log(`WWM — kronika opowieści — podgląd na http://${HOST}:${PORT} (dist/index.html + data/)`);
 });

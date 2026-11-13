@@ -32,14 +32,20 @@ przy pierwszym prawdziwym zapisie z gry; wszystkie mają znacznik `zaslepka`.
 ## Szybki start
 
 ```bash
-npm test          # integralność kroniki, języka i dokumentacji
-npm run build     # → dist/index.html (jeden samowystarczalny plik)
-npm run serve     # podgląd na http://0.0.0.0:3000
+npm test             # integralność kroniki, języka i dokumentacji
+npm run build        # → dist/index.html (powłoka) + dist/data/ (ciała stron)
+npm run build:single # → wszystko w jednym pliku, do otwarcia z dysku
+npm run serve        # podgląd na http://0.0.0.0:3000
 ```
 
-Witryna otwiera się też bezpośrednio z dysku (`file://`) — routing jest po hashu,
-wyszukiwanie działa po stronie przeglądarki, zero zależności runtime. Katalog `dist/`
-jest produktem buildu: nie jest wersjonowany i wolno go w każdej chwili nadpisać.
+Domyślny build daje **powłokę i drzewo danych** (ADR 0017): `index.html` niesie styl,
+kod i spakowany indeks, a treść stron leży w `dist/data/<slug>.json` i jest dociągana
+przy wejściu w stronę. Kronika rośnie więc w plikach, a nie w jednym dokumencie —
+czytelnik nie pobiera całej opowieści, żeby przeczytać jedną scenę. Potrzebny jest serwer
+HTTP (tak publikuje Pages); `npm run build:single` zostaje dla archiwum offline i `file://`.
+
+Katalog `dist/` jest produktem buildu: nie jest wersjonowany i wolno go w każdej chwili
+nadpisać. Kopiowanie gdzie indziej oznacza **oba** elementy: `index.html` i `data/`.
 
 ## Mapa projektu
 
@@ -91,11 +97,13 @@ Witryna jest publiczna i indeksowana.
 
 Architektura jest hybrydą dwóch wcześniejszych kronik właściciela:
 
-- **[srw](https://github.com/szybkoiwyraznie-rgb/srw)** — poziomy wiarygodności wiedzy
-  na fragmencie, boksy sekcji, walidacja grafu przy buildzie, jeden samowystarczalny
-  artefakt HTML i publikacja na Pages;
+- **[srw](https://github.com/szybkoiwyraznie-rgb/srw)** — kolor fragmentu mówiący o źródle
+  (dostawa, opracowanie, kwerenda, wiedza modelu), boksy sekcji z warstwami w środku,
+  układ 3:1 z kontekstem w wąskiej kolumnie, walidacja grafu przy buildzie i publikacja
+  na Pages;
 - **VN Database** (repozytorium prywatne) — hipotezy z szacowaną pewnością, historia
-  interpretacji w boksie, bramy pokrycia materiału i sekcje analizy powiązane z treścią.
+  interpretacji w boksie, bramy pokrycia materiału, sekcje analizy powiązane z treścią
+  oraz powłoka z drzewem danych zamiast jednego pliku z całością.
 
 Różnica wobec obu: jednostką jest scena gry open-world, a nie misja taktyczna ani scena
 visual novel. Stąd własna hierarchia (rozdział → epizod → scena), osobne działy sekt i krain,

@@ -191,30 +191,85 @@ Każde z tych pól jest sprawdzane: cel musi istnieć i mieć właściwy typ.
 Poza frontmatterem graf tworzą **wikilinki** w treści: `[[slug]]` albo `[[slug|etykieta]]`.
 Martwy wikilink przerywa build. Sekcja „Powiązania” powstaje sama z obu źródeł.
 
-## 5. Poziomy wiarygodności (boksy)
+## 5. Boksy: tytuł z treści, kolor ze źródła
 
-Treść dzieli się na boksy. Poziom mówi, **czym fragment jest**, a nie jak bardzo jest pewny.
-Otwarcie bloku to linia `{{poziom`, zamknięcie — linia `}}`. Bloki nie zagnieżdżają się.
+Boks to **sekcja strony** — tytuł bierze się z nagłówka `##`, nie z koloru (ADR 0016).
+W środku boksu leżą **warstwy**, a każda ma kolor zależny od tego, skąd pochodzi.
+Dzięki temu „Analiza sceny” jest jedną sekcją z trzema warstwami, a nie trzema osobnymi
+boksami o niemal identycznym tytule.
 
-| Blok | Rola | Do czego |
+```
+{{opracowanie
+## Analiza sceny
+Co wynika wprost z tego, co powiedziano.
+}}
+
+{{kwerenda
+To samo wydarzenie w chińskich kronikach — z adresem źródła.
+}}
+
+{{model pewnosc=40
+Co z tego może wyniknąć dalej.
+}}
+```
+
+**Cztery kolory — jedyna oś pochodzenia.** Kolor nigdy nie mówi, o czym fragment jest.
+
+| Pochodzenie | Kolor | Skąd wiemy |
 |---|---|---|
-| `{{skrypt` | słowa opowieści | dialogi i narracja w dosłownym brzmieniu |
-| `{{streszczenie` | streszczenie | zwięzły opis wydarzeń własnymi słowami |
-| `{{menu` | kronika i księgi | opisy świata spisane w grze: encyklopedia, dziennik, karty postaci |
-| `{{zrodlo` | sprawdzone źródło | twierdzenie potwierdzone w źródle zewnętrznym (adres w `zrodla`) |
-| `{{wiedza` | kontekst kulturowy | tło z kultury Chin i wuxia, bez potwierdzenia w źródle |
-| `{{hipoteza pewnosc=NN` | interpretacja | odczytanie opowieści z jawną pewnością |
-| `{{struktura` | powiązania | wyliczenie relacji, nie narracja |
+| `dostawa` | biały | słowa i obrazy wzięte wprost z historii |
+| `opracowanie` | zielony | streszczenie i wniosek wyciągnięty wprost z tego, co powiedziano |
+| `kwerenda` | niebieski | twierdzenie potwierdzone źródłem zewnętrznym, z adresem i datą |
+| `model` | żółty | wniosek, hipoteza i tło kulturowe bez potwierdzenia w źródle |
+
+**Rodzaj treści** (`rodzaj=…`) jest opcjonalną etykietą warstwy wewnątrz boksu — mówi,
+czym fragment jest, gdy tytuł boksu tego nie rozstrzyga:
+
+| Rodzaj | Etykieta |
+|---|---|
+| `scena` | scena |
+| `streszczenie` | streszczenie |
+| `wnioski` | wnioski |
+| `watek` | wątek |
+| `swiat` | świat opowieści |
+| `kontekst` | kontekst kulturowy |
+| `interpretacja` | interpretacja |
+| `spis` | spis powiązań |
+
+**Zapis:** `{{pochodzenie}}` albo `{{pochodzenie rodzaj=…}}`, np. `{{dostawa}}`,
+`{{kwerenda}}`, `{{model pewnosc=40}}`, `{{opracowanie rodzaj=spis}}`.
+Zamknięcie to linia `}}`. Kolory się nie zagnieżdżają.
 
 Zasady:
 
-- `pewnosc=` przysługuje **wyłącznie** `{{hipoteza}}` i jest liczbą 0–100.
-- `{{hipoteza}}` bez `pewnosc=` to błąd — interpretacja bez prawdopodobieństwa nie istnieje.
-- Progi opisowe: **≥ 80** mocno uzasadnione, **50–79** możliwe, **< 50** słabo uzasadnione.
+- **Hipoteza to zawsze wiedza modelu.** `{{model pewnosc=NN}}` — i nic innego. Interpretacja
+  nie może udawać cytatu ani kwerendy; build odrzuca `{{kwerenda rodzaj=interpretacja}}`.
+- **Wiedza modelu wymaga `pewnosc=`** (0–100). Bez szacunku byłaby twierdzeniem
+  nieodróżnialnym od faktu. Atrybut przysługuje wyłącznie temu pochodzeniu.
+- **Kwerenda wymaga adresu źródła** — pola `zrodla:` albo sekcji `## Źródła` z linkiem
+  http(s). Twierdzenie bez dowodu nie może być niebieskie.
+- **Kilka warstw w jednym boksie to norma**, nie wyjątek: cytat z opowieści, wniosek,
+  tło historyczne i hipoteza o dalszym ciągu mogą stać pod jednym tytułem.
+- Progi pewności: **≥ 80** mocno uzasadnione, **50–79** możliwe, **< 50** słabo uzasadnione.
   Pewność jest szacunkiem porządkowym, nie statystyką; nie podnosi się jej bez nowego dowodu.
-- Poziom `skrypt` nie służy do parafrazy. Skrót to `streszczenie`.
+- Warstwa `dostawa` nie służy do parafrazy. Skrót to `opracowanie`.
+- Kolory nigdy nie są jedynym nośnikiem znaczenia — przy każdej warstwie stoi nazwa
+  pochodzenia, a przy wiedzy modelu także procent pewności (dostępność, druk czarno-biały).
 - Blok `:::zapis` (potrójny dwukropek) to osobny mechanizm: surowy cytat archiwum wewnątrz
   sceny, sprawdzany znak po znaku przez `npm run zapis`.
+
+**Wycofane nazwy** budują się z podpowiedzią, nie z błędem „nieznany poziom”:
+
+| Było | Jest |
+|---|---|
+| `{{skrypt` | `{{dostawa` |
+| `{{streszczenie` | `{{opracowanie` |
+| `{{menu` | `{{dostawa` (rodzaj: świat opowieści) |
+| `{{zrodlo` | `{{kwerenda` |
+| `{{wiedza` | `{{model` |
+| `{{hipoteza pewnosc=N` | `{{model pewnosc=N` |
+| `{{struktura` | `{{opracowanie rodzaj=spis` |
+| `{{pochodzenie/rodzaj` | `{{pochodzenie` + `rodzaj=…` |
 
 ## 6. Historia interpretacji
 

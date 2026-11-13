@@ -42,6 +42,10 @@ const META = new RegExp([
 /** Zdejmuje kod silnika i znaczniki — zostaje to, co czyta człowiek. */
 function tekstWidoczny(html) {
   return String(html)
+    // „wiedza modelu” to nazwa pochodzenia nadana przez właściciela — mówi o źródle
+    // twierdzenia, nie o narzędziu, którym kronika powstała. Poza tą frazą słowo
+    // „model” w widocznym tekście jest naruszeniem.
+    .replace(/wiedza modelu/gi, ' ').replace(/modelu wiedzy/gi, ' ')
     .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
     .replace(/<div class="zapis-tekst">[\s\S]*?<\/div>/g, ' ')

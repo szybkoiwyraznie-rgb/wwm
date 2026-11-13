@@ -16,7 +16,7 @@ tagi: [zaslepka]
 utworzono: 2026-11-13
 ---
 
-{{streszczenie
+{{opracowanie
 
 ## Streszczenie
 
@@ -26,7 +26,7 @@ tłumaczy, że tacy ludzie imion nie mają.
 
 }}
 
-{{hipoteza pewnosc=45
+{{model pewnosc=45
 
 ## Rola ostrzeżenia
 

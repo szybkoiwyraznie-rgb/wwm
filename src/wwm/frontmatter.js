@@ -196,8 +196,11 @@ function parsujListe(pozycje, key) {
     });
   }
 
-  // Lista skalarów: żaden wpis nie ma pola ani linii kontynuacji.
-  if (grupy.every((g) => g.linie.length === 1 && !KV_RE.test(g.linie[0].tekst))) {
+  // Lista skalarów: żaden wpis nie ma pola ani linii kontynuacji. Adres URL
+  // wygląda jak `klucz: wartość` („https://…”), ale skalarem jest — bez tego
+  // `zrodla:` zamieniało link w obiekt `{ https: "//…" }`.
+  const czyAdres = (tekst) => /^https?:\/\/\S+$/.test(tekst);
+  if (grupy.every((g) => g.linie.length === 1 && (!KV_RE.test(g.linie[0].tekst) || czyAdres(g.linie[0].tekst)))) {
     return grupy.map((g) => parseScalar(g.linie[0].tekst, key, g.nr));
   }
 

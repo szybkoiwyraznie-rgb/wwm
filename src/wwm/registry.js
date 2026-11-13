@@ -14,7 +14,7 @@
  */
 
 import { SLUG_RE, hrefDlaSlug, slugify } from './links.js';
-import { BLOK_OTWARCIA_RE, parsujAtrybutyBloku, POZIOMY_BLOKU, czyPewnosc } from './markdown.js';
+import { BLOK_OTWARCIA_RE, parsujAtrybutyBloku, POCHODZENIA, RODZAJE_TRESCI, czyPewnosc } from './markdown.js';
 
 /**
  * Typy stron. Katalog `content/<dział>` musi zgadzać się z typem (ADR 0003).
@@ -179,7 +179,7 @@ export function wytnijSekcje(body) {
   return tytuly;
 }
 
-/** Bloki poziomu w treści: `[{ poziom, atrybuty }]`, pomijając bloki surowe. */
+/** Bloki treści: `[{ pochodzenie, rodzaj, atrybuty }]`, pomijając bloki surowe. */
 export function wytnijBloki(body) {
   const bloki = [];
   let wZapisie = false;
@@ -188,9 +188,26 @@ export function wytnijBloki(body) {
     if (/^:::/.test(t)) { wZapisie = !wZapisie; continue; }
     if (wZapisie) continue;
     const m = t.match(BLOK_OTWARCIA_RE);
-    if (m) bloki.push({ poziom: m[1], atrybuty: parsujAtrybutyBloku(m[2]) });
+    if (m) {
+      const atrybuty = parsujAtrybutyBloku(m[2]);
+      const pochodzenie = m[1];
+      // `{{model pewnosc=…}}` bez podanego rodzaju to interpretacja — taka sama
+      // reguła jak w rendererze, żeby walidacja nie rozjechała się z widokiem.
+      const rodzaj = atrybuty.get('rodzaj')
+        ?? (pochodzenie === 'model' && atrybuty.has('pewnosc') ? 'interpretacja' : null);
+      bloki.push({ pochodzenie, rodzaj, atrybuty });
+    }
   }
   return bloki;
+}
+
+/**
+ * Czy strona podaje adres źródła: pole `zrodla` albo sekcja „## Źródła” z linkiem http(s).
+ * Blok `{{kwerenda/…}}` bez tego byłby twierdzeniem bez dowodu (ADR 0009, 0015).
+ */
+export function maBlokZrodla(body) {
+  const sekcja = String(body ?? '').match(/^##\s+Źródła[ \t]*$([\s\S]*?)(?=^##\s|$(?![\s\S]))/m);
+  return Boolean(sekcja && /https?:\/\//.test(sekcja[1]));
 }
 
 /** Wycina treść bloku `:::zapis … :::` (wszystkie bloki, w kolejności). */
@@ -283,18 +300,23 @@ export function walidujStrone(strona, ctx) {
     }
   }
 
-  // Poziomy wiarygodności: każdy blok ma poziom, hipoteza ma pewność.
+  // Pochodzenie (kolor) i opcjonalny rodzaj (warstwa) — interpretacja ma pewność.
   for (const blok of wytnijBloki(strona.body ?? '')) {
-    if (!POZIOMY_BLOKU.includes(blok.poziom)) continue; // o nieznanym poziomie mówi renderer
+    if (!POCHODZENIA.includes(blok.pochodzenie)) continue; // o nieznanym pochodzeniu mówi renderer
+    if (blok.rodzaj && !RODZAJE_TRESCI.includes(blok.rodzaj)) continue;
     const pewnosc = blok.atrybuty.get('pewnosc');
-    if (blok.poziom === 'hipoteza' && pewnosc === undefined) {
-      p.push(`${gdzie}: blok {{hipoteza}} bez pewnosc= (ADR 0005)`);
+    if (blok.rodzaj === 'interpretacja' && pewnosc === undefined) {
+      p.push(`${gdzie}: interpretacja bez pewnosc= (ADR 0005)`);
     }
-    if (blok.poziom === 'hipoteza' && pewnosc !== undefined && !czyPewnosc(pewnosc)) {
+    if (pewnosc !== undefined && !czyPewnosc(pewnosc)) {
       p.push(`${gdzie}: pewność "${pewnosc}" poza zakresem 0–100`);
     }
-    if (blok.poziom !== 'hipoteza' && pewnosc !== undefined) {
-      p.push(`${gdzie}: atrybut pewnosc przysługuje tylko {{hipoteza}}`);
+    if (pewnosc !== undefined && blok.pochodzenie !== 'model') {
+      p.push(`${gdzie}: atrybut pewnosc przysługuje tylko wiedzy modelu — {{${blok.pochodzenie}}} jest pewne z definicji`);
+    }
+    // Kwerenda bez adresu źródła to twierdzenie bez dowodu — ten sam wymóg co pole `zrodla`.
+    if (blok.pochodzenie === 'kwerenda' && !(Array.isArray(strona.zrodla) && strona.zrodla.length > 0) && !maBlokZrodla(strona.body)) {
+      p.push(`${gdzie}: blok kwerendy bez adresu źródła — dodaj pole "zrodla" albo sekcję „## Źródła”`);
     }
   }
 

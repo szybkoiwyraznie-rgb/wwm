@@ -16,7 +16,7 @@ tagi: [zaslepka]
 utworzono: 2026-11-13
 ---
 
-{{streszczenie
+{{opracowanie
 
 ## Streszczenie
 
@@ -26,7 +26,7 @@ wcześniej, niż wędrowiec zdążył zapytać o drogę.
 
 }}
 
-{{hipoteza pewnosc=35
+{{model pewnosc=35
 
 ## Kto zostawił zwój
 

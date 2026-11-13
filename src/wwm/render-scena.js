@@ -13,18 +13,24 @@
 import { escapeHtml, badgePewnosci, parsujAtrybutyBloku, BLOK_OTWARCIA_RE } from './markdown.js';
 import { hrefDlaSlug } from './links.js';
 import { dajDane, dajStrone, listaScenChronologicznie, rozdzialSceny, epizodSceny } from './data.js';
-import { naglowekStrony, stanPusty, okruszki, chipTypu } from './render.js';
+import { naglowekStrony, stanPusty, okruszki, chipTypu, kolumnaBoczna, ukladDwuKolumn } from './render.js';
 import { podzielScene } from './scena-sekcje.js';
 
 /** Sekcje sceny w kolejności czytania (lewa kolumna) i kontekst (prawa). */
 const LEWA = ['Treść sceny', 'Analiza', 'Nawiązania kulturowe', 'Wątki w scenie'];
 
+/**
+ * Sekcja sceny to jeden boks; w środku leżą warstwy w kolorach pochodzenia.
+ * Tytuł boksu pochodzi z `##` w treści, nie z koloru — dlatego „Analiza sceny”
+ * pozostaje jedną sekcją, choćby mieściła cytat, kwerendę i hipotezę.
+ */
 function blokSekcji(sekcja) {
   const etykieta = sekcja.otwarcie?.match(BLOK_OTWARCIA_RE);
-  const poziom = etykieta?.[1] ?? 'skrypt';
+  const pochodzenie = etykieta?.[1] ?? 'dostawa';
   const atrybuty = parsujAtrybutyBloku(etykieta?.[2] ?? '');
-  const pewnosc = atrybuty.get('pewnosc');
-  return `<section class="boks boks-${escapeHtml(poziom)}" data-poziom="${escapeHtml(poziom)}">
+  const warstwy = sekcja.warstwy ?? 1;
+  return `<section class="boks boks-${escapeHtml(pochodzenie)}${warstwy > 1 ? ' boks-z-warstwami' : ''}"
+    data-poziom="${escapeHtml(pochodzenie)}"${warstwy > 1 ? ` data-warstwy="${warstwy}"` : ''}>
     ${sekcja.html}
   </section>`;
 }
@@ -33,7 +39,7 @@ function kolumnaKontekstu(scena) {
   const dane = dajDane();
   const grupy = [];
 
-  const lista = (tytul, pole, typ, klasa = '') => {
+  const lista = (tytul, pole, typ) => {
     const wartosc = scena[pole];
     const slugi = Array.isArray(wartosc) ? wartosc : (wartosc ? [wartosc] : []);
     if (slugi.length === 0) return;
@@ -42,10 +48,7 @@ function kolumnaKontekstu(scena) {
       .filter(Boolean)
       .map((s) => `<li>${chipTypu(s.slug, s.typ, s.tytul, '')}</li>`)
       .join('');
-    grupy.push(`<div class="kontekst-grupa ${klasa}">
-      <h3>${escapeHtml(tytul)}</h3>
-      <ul class="chipy">${pozycje}</ul>
-    </div>`);
+    grupy.push({ tytul, html: `<ul class="chipy">${pozycje}</ul>` });
   };
 
   lista('Kraina', 'krainy', 'kraina');
@@ -57,17 +60,16 @@ function kolumnaKontekstu(scena) {
 
   const hipotezy = Array.isArray(scena.hipotezy) ? scena.hipotezy : [];
   if (hipotezy.length > 0) {
-    grupy.push(`<div class="kontekst-grupa">
-      <h3>Interpretacje tej sceny</h3>
-      <ul class="chipy">
+    grupy.push({
+      tytul: 'Interpretacje tej sceny',
+      html: `<ul class="chipy">
         ${hipotezy.map((h) => `<li><a class="chip chip-hipoteza" href="#${escapeHtml(h.kotwica)}">
           <span class="chip-typ">interpretacja</span>${escapeHtml(h.sekcja)} ${badgePewnosci(h.pewnosc)}</a></li>`).join('')}
-      </ul>
-    </div>`);
+      </ul>`,
+    });
   }
 
-  if (grupy.length === 0) return '';
-  return `<aside class="kontekst" aria-label="Kontekst sceny">${grupy.join('')}</aside>`;
+  return kolumnaBoczna(grupy, 'Kontekst sceny');
 }
 
 function nawigacjaScen(scena) {
@@ -116,13 +118,11 @@ export function renderScena(slug) {
   const pozostale = sekcje.filter((s) => !LEWA.includes(s.tytul));
 
   const tresc = sekcje.length > 0
-    ? `<div class="uklad-sceny">
-        <div class="kolumna-glowna">
-          ${lewa.map(blokSekcji).join('\n')}
-          ${pozostale.map(blokSekcji).join('\n')}
-        </div>
-        ${kolumnaKontekstu(scena)}
-      </div>`
+    ? ukladDwuKolumn(
+      `${lewa.map(blokSekcji).join('\n')}
+          ${pozostale.map(blokSekcji).join('\n')}`,
+      kolumnaKontekstu(scena),
+    )
     : '<p class="pusto">Ta scena nie ma jeszcze opisu.</p>';
 
   return `${naglowek}${tresc}${nawigacjaScen(scena)}`;

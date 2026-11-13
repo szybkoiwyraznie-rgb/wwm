@@ -129,10 +129,14 @@ odnotuj wynik i zakończ turę.
   zgodą na spoiler. Granicę wyznacza `rozgrywka/postep.json`.
 - **Nie wymyślaj faktów.** Czego nie ma w zapisie i czego nie potwierdza źródło, tego nie
   wpisujesz jako ustalenia. Nieznany szczegół pomijasz; lukę zapisujesz wewnętrznie.
-- **Rozdzielaj poziomy.** `skrypt` / `streszczenie` / `menu` / `zrodlo` / `wiedza` /
-  `hipoteza` / `struktura` — patrz `docs/guides/SCHEMAT_DANYCH.md`.
-- **Interpretacja bez pewności nie istnieje.** `{{hipoteza pewnosc=0–100}}`; pewność jest
+- **Kolor mówi skąd, tytuł mówi co.** Boks to sekcja `##`; w środku leżą warstwy
+  `{{dostawa}}` / `{{opracowanie}}` / `{{kwerenda}}` / `{{model}}` (ADR 0016). Jeden boks
+  może mieć trzy warstwy — nie rozbijaj „Analizy sceny” na trzy boksy o tym samym tytule.
+- **Kwerenda bez dowodu nie istnieje.** `{{kwerenda}}` wymaga pola `zrodla:` albo sekcji
+  `## Źródła` z adresem http(s). Build przerywa, gdy twierdzenie nie ma adresu.
+- **Interpretacja to zawsze wiedza modelu.** `{{model pewnosc=0–100}}`; pewność jest
   szacunkiem porządkowym, nie statystyką, i nie wolno jej podnosić bez nowego dowodu.
+  Wiedza modelu bez pewności to tło kulturowe, nie hipoteza.
 - **Zmiana decyzji wymaga wpisu `interpretacje:`** z dosłownym brzmieniem poprzedniej wersji
   i czasem, w którym przestała obowiązywać (ADR 0006).
 

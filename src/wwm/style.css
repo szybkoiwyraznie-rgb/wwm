@@ -21,13 +21,13 @@
   --cien: 0 1px 2px rgba(60, 45, 25, .07), 0 8px 24px rgba(60, 45, 25, .06);
 
   /* Poziomy wiarygodności — cztery pytania czytelnika (ADR 0004) */
-  --poz-skrypt: #fffdf8;         --poz-skrypt-ramka: #cdc0a9;
-  --poz-streszczenie: #eef7ee;   --poz-streszczenie-ramka: #b9d8bd;
-  --poz-menu: #eef1fa;           --poz-menu-ramka: #b9c4e0;
-  --poz-zrodlo: #f4f6f2;         --poz-zrodlo-ramka: #c0c9bb;
-  --poz-wiedza: #fdf5e2;         --poz-wiedza-ramka: #ddc78e;
+  /* Pochodzenie treści — cztery kolory, jedna oś (ADR 0015). */
+  --poz-dostawa: #fffdf8;        --poz-dostawa-ramka: #cdc0a9;
+  --poz-opracowanie: #eef7ee;    --poz-opracowanie-ramka: #b9d8bd;
+  --poz-kwerenda: #e8f1fb;       --poz-kwerenda-ramka: #b3cee9;
+  --poz-model: #fdf5e2;          --poz-model-ramka: #ddc78e;
+  /* Interpretacja bierze kolor pochodzenia, ale ma własny akcent. */
   --poz-hipoteza: #f4eefb;       --poz-hipoteza-ramka: #c4aee0;
-  --poz-struktura: #eef3f7;      --poz-struktura-ramka: #b8cbd8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,13 +45,11 @@
     --ramka-2: #453f35;
     --cien: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
 
-    --poz-skrypt: #211f1a;         --poz-skrypt-ramka: #453f35;
-    --poz-streszczenie: #1a231b;   --poz-streszczenie-ramka: #2f4a33;
-    --poz-menu: #1a1d26;           --poz-menu-ramka: #2e3850;
-    --poz-zrodlo: #1d201c;         --poz-zrodlo-ramka: #3a4438;
-    --poz-wiedza: #251f13;         --poz-wiedza-ramka: #544425;
+    --poz-dostawa: #211f1a;        --poz-dostawa-ramka: #453f35;
+    --poz-opracowanie: #1a231b;    --poz-opracowanie-ramka: #2f4a33;
+    --poz-kwerenda: #16202b;       --poz-kwerenda-ramka: #2b4256;
+    --poz-model: #251f13;          --poz-model-ramka: #544425;
     --poz-hipoteza: #221a2a;       --poz-hipoteza-ramka: #4a3760;
-    --poz-struktura: #171e24;      --poz-struktura-ramka: #2f3f4b;
   }
 }
 
@@ -235,7 +233,9 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 
 /* ── Scena: dwie kolumny ───────────────────────────────────────── */
 
-.uklad-sceny { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 32px; align-items: start; }
+/* Trzy czwarte na treść, ćwiartka na kontekst (wzorzec: SRW). Kolumna boczna
+   jest przyklejona, żeby powiązania były pod ręką przy przewijaniu długiej sceny. */
+.uklad-sceny { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); gap: 32px; align-items: start; }
 .kolumna-glowna { min-width: 0; }
 
 .kontekst {
@@ -245,6 +245,12 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
   font-size: .9rem;
 }
 .kontekst-grupa h3 { margin-bottom: .4em; }
+.kontekst .powiazania-grupa { margin: 0 0 10px; }
+.kontekst .powiazania-grupa > summary { cursor: pointer; font-family: var(--sans); font-size: .82rem; letter-spacing: .04em; text-transform: uppercase; color: var(--tusz-3); }
+.kontekst .powiazania-grupa ul { list-style: none; padding: 0; margin: .35em 0 0; }
+.kontekst .powiazania-grupa li { margin: 0 0 3px; font-size: .88rem; }
+.kontekst .lista-wystapien { list-style: none; padding: 0; margin: 0; font-size: .88rem; }
+.kontekst .lista-wystapien li { margin: 0 0 4px; }
 .chipy { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 
 .chip {
@@ -263,26 +269,41 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 /* ── Poziomy wiarygodności ─────────────────────────────────────── */
 
 .fragment { border-radius: 12px; padding: 18px 20px; margin: 0 0 16px; border: 1px solid var(--ramka); background: var(--panel); }
-.fragment.poziom-skrypt        { background: var(--poz-skrypt);        border-color: var(--poz-skrypt-ramka); }
-.fragment.poziom-streszczenie  { background: var(--poz-streszczenie);  border-color: var(--poz-streszczenie-ramka); }
-.fragment.poziom-menu          { background: var(--poz-menu);          border-color: var(--poz-menu-ramka); }
-.fragment.poziom-zrodlo        { background: var(--poz-zrodlo);        border-color: var(--poz-zrodlo-ramka); }
-.fragment.poziom-wiedza        { background: var(--poz-wiedza);        border-color: var(--poz-wiedza-ramka); }
-.fragment.poziom-hipoteza      { background: var(--poz-hipoteza);      border-color: var(--poz-hipoteza-ramka); }
-.fragment.poziom-struktura     { background: var(--poz-struktura);     border-color: var(--poz-struktura-ramka); }
+.fragment.poziom-dostawa      { background: var(--poz-dostawa);      border-color: var(--poz-dostawa-ramka); }
+.fragment.poziom-opracowanie  { background: var(--poz-opracowanie);  border-color: var(--poz-opracowanie-ramka); }
+.fragment.poziom-kwerenda     { background: var(--poz-kwerenda);     border-color: var(--poz-kwerenda-ramka); }
+.fragment.poziom-model        { background: var(--poz-model);        border-color: var(--poz-model-ramka); }
 
-.boks-skrypt        { background: var(--poz-skrypt); }
-.boks-streszczenie  { background: var(--poz-streszczenie); }
-.boks-menu          { background: var(--poz-menu); }
-.boks-zrodlo        { background: var(--poz-zrodlo); }
-.boks-wiedza        { background: var(--poz-wiedza); }
-.boks-hipoteza      { background: var(--poz-hipoteza); }
-.boks-struktura     { background: var(--poz-struktura); }
+/* Interpretacja: kolor pochodzenia + pasek z boku, bo to, co odczytane, ma być
+   rozpoznawalne na pierwszy rzut oka niezależnie od tego, skąd pochodzi. */
+.fragment.rodzaj-interpretacja { box-shadow: inset 3px 0 0 var(--poz-hipoteza-ramka); }
+
+.boks-dostawa      { background: var(--poz-dostawa); }
+.boks-opracowanie  { background: var(--poz-opracowanie); }
+.boks-kwerenda     { background: var(--poz-kwerenda); }
+.boks-model        { background: var(--poz-model); }
+.boks-rodzaj-interpretacja { box-shadow: inset 3px 0 0 var(--poz-hipoteza-ramka); }
+
+/* Boks z warstwami: tytuł należy do boksu, kolory do warstw w środku.
+   Warstwy odstają od tytułu tylko tyle, żeby było widać, że to jeden tekst. */
+.boks-z-warstwami { padding-bottom: 8px; }
+.boks-z-warstwami > h2 { margin-bottom: .55em; }
+.boks-z-warstwami > .fragment { margin: 8px 0; border-radius: 8px; }
+.boks-z-warstwami > .fragment:last-child { margin-bottom: 0; }
+.boks-z-warstwami > .fragment > h3,
+.boks-z-warstwami > .fragment > h2 { margin-top: 0; }
 
 .naglowek-fragmentu { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .naglowek-fragmentu h2, .naglowek-fragmentu h3 { margin-bottom: .5em; border-bottom: 0; padding-bottom: 0; }
 .poziom-plakietki { display: inline-flex; align-items: center; gap: 6px; flex: 0 0 auto; }
-.poziom-etykieta { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tusz-3); border: 1px solid var(--ramka-2); border-radius: 999px; padding: 2px 8px; }
+.poziom-etykieta { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tusz-2); border: 1px solid var(--ramka-2); border-radius: 999px; padding: 2px 8px; }
+/* Pochodzenie obok rodzaju: kolor kropki + nazwa, żeby kolor nie był jedynym nośnikiem. */
+.pochodzenie-etykieta { display: inline-flex; align-items: center; gap: 5px; font-size: .72rem; color: var(--tusz-3); }
+.pochodzenie-etykieta::before { content: ""; width: 8px; height: 8px; border-radius: 2px; border: 1px solid var(--ramka-2); }
+.pochodzenie-etykieta.pochodzenie-dostawa::before { background: var(--poz-dostawa); border-color: var(--poz-dostawa-ramka); }
+.pochodzenie-etykieta.pochodzenie-opracowanie::before { background: var(--poz-opracowanie); border-color: var(--poz-opracowanie-ramka); }
+.pochodzenie-etykieta.pochodzenie-kwerenda::before { background: var(--poz-kwerenda); border-color: var(--poz-kwerenda-ramka); }
+.pochodzenie-etykieta.pochodzenie-model::before { background: var(--poz-model); border-color: var(--poz-model-ramka); }
 .poziom-nad-trescia { margin: 0 0 .6em; }
 
 .pewnosc { font-size: .72rem; font-variant-numeric: tabular-nums; border-radius: 999px; padding: 2px 8px; border: 1px solid currentColor; }
@@ -425,22 +446,22 @@ th { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color:
 .stopka-czas { margin: 14px 0 0; color: var(--tusz-3); font-size: .8rem; }
 
 .legenda-tytul { margin: 0 0 .7em; font-weight: 700; color: var(--tusz); }
+.legenda-os { margin: 0 0 12px; }
+.legenda-os:last-child { margin-bottom: 0; }
+.legenda-rodzaje { margin: .2em 0 .6em; color: var(--tusz-2); font-size: .9rem; }
 .legenda-lista { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 6px 20px; }
 .legenda-lista li { display: flex; align-items: baseline; gap: 8px; margin: 0; }
 .legenda-probka { width: 12px; height: 12px; border-radius: 3px; border: 1px solid var(--ramka-2); flex: 0 0 auto; }
-.legenda-probka.poziom-skrypt { background: var(--poz-skrypt); border-color: var(--poz-skrypt-ramka); }
-.legenda-probka.poziom-streszczenie { background: var(--poz-streszczenie); border-color: var(--poz-streszczenie-ramka); }
-.legenda-probka.poziom-menu { background: var(--poz-menu); border-color: var(--poz-menu-ramka); }
-.legenda-probka.poziom-zrodlo { background: var(--poz-zrodlo); border-color: var(--poz-zrodlo-ramka); }
-.legenda-probka.poziom-wiedza { background: var(--poz-wiedza); border-color: var(--poz-wiedza-ramka); }
-.legenda-probka.poziom-hipoteza { background: var(--poz-hipoteza); border-color: var(--poz-hipoteza-ramka); }
-.legenda-probka.poziom-struktura { background: var(--poz-struktura); border-color: var(--poz-struktura-ramka); }
+.legenda-probka.poziom-dostawa { background: var(--poz-dostawa); border-color: var(--poz-dostawa-ramka); }
+.legenda-probka.poziom-opracowanie { background: var(--poz-opracowanie); border-color: var(--poz-opracowanie-ramka); }
+.legenda-probka.poziom-kwerenda { background: var(--poz-kwerenda); border-color: var(--poz-kwerenda-ramka); }
+.legenda-probka.poziom-model { background: var(--poz-model); border-color: var(--poz-model-ramka); }
 .legenda-pewnosc { margin: .9em 0 0; color: var(--tusz-3); font-size: .8rem; }
 
 /* ── Responsywność ─────────────────────────────────────────────── */
 
 @media (max-width: 980px) {
-  .uklad-sceny { grid-template-columns: 1fr; }
+  .uklad-sceny { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .kontekst { position: static; }
   .chrono-scena { grid-template-columns: 12px 1fr; gap: 0 10px; }
 }

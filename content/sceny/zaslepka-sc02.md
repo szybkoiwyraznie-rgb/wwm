@@ -17,7 +17,7 @@ tagi: [zaslepka, qinghe]
 utworzono: 2026-11-13
 ---
 
-{{skrypt
+{{dostawa
 
 ## Treść sceny
 
@@ -38,7 +38,7 @@ i rozpoznaje własne imię wypisane tuszem.
 
 }}
 
-{{hipoteza pewnosc=60
+{{model pewnosc=60
 
 ## Analiza
 
@@ -49,7 +49,7 @@ kto odszedł dawno temu. To osłabia wersję, że klasztor jest po prostu pusty.
 
 }}
 
-{{streszczenie
+{{opracowanie
 
 ## Nawiązania kulturowe
 
@@ -59,7 +59,7 @@ po mistrzu, nie po uczniu.
 
 }}
 
-{{struktura
+{{opracowanie rodzaj=spis
 
 ## Wątki w scenie
 

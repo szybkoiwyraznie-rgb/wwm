@@ -15,7 +15,7 @@ tagi: [zaslepka, qinghe]
 utworzono: 2026-11-13
 ---
 
-{{streszczenie
+{{opracowanie
 
 ## Opis
 
@@ -25,7 +25,7 @@ kto podróżuje, ten nocuje pod dachem, który ktoś inny zostawił otwarty.
 
 }}
 
-{{wiedza
+{{model
 
 ## Krajobraz i obyczaj
 

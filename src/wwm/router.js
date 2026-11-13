@@ -36,9 +36,22 @@ export function aktualnaTrasa() {
   return parsujHash(globalThis.location?.hash ?? '');
 }
 
-/** Rejestruje nasłuch zmian hasha + start; zwraca funkcję stopu (testy). */
+/**
+ * Rejestruje nasłuch zmian hasha + start; zwraca funkcję stopu (testy).
+ * `obejrz` może być asynchroniczny (dociąganie ciała strony, ADR 0017) — router
+ * nie czeka, a błąd renderu trafia do konsoli zamiast zniknąć bez śladu.
+ */
 export function uruchomRouter(obejrz) {
-  const zmiana = () => obejrz(aktualnaTrasa());
+  const zmiana = () => {
+    try {
+      const wynik = obejrz(aktualnaTrasa());
+      if (wynik && typeof wynik.catch === 'function') {
+        wynik.catch((blad) => globalThis.console?.error?.('render:', blad));
+      }
+    } catch (blad) {
+      globalThis.console?.error?.('render:', blad);
+    }
+  };
   globalThis.addEventListener?.('hashchange', zmiana);
   zmiana();
   return () => globalThis.removeEventListener?.('hashchange', zmiana);

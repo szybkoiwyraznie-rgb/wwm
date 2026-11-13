@@ -95,26 +95,49 @@ ${html}
 }
 
 /**
- * Legenda poziomów wiarygodności (ADR 0004). Kolejność jest znacząca:
- * od słów gry do wniosku czytelnika.
+ * Legenda w stopce (ADR 0016). Jedna oś: kolor mówi, skąd wiemy. Tytuł boksu
+ * pochodzi z treści strony, a nie z koloru — dlatego legenda nie udaje, że
+ * każdy kolor to osobny rodzaj sekcji.
  */
 export function legendaPoziomow() {
-  const pozycje = [
-    ['skrypt', 'słowa opowieści', 'dialogi i narracja w dosłownym brzmieniu'],
-    ['streszczenie', 'streszczenie', 'co się wydarzyło, opowiedziane własnymi słowami'],
-    ['menu', 'kronika i księgi', 'opisy świata spisane w grze: encyklopedia, dziennik, karty postaci'],
-    ['zrodlo', 'sprawdzone źródło', 'potwierdzone w źródle zewnętrznym'],
-    ['wiedza', 'kontekst kulturowy', 'tło z kultury Chin i wuxia, bez potwierdzenia w źródle'],
-    ['hipoteza', 'interpretacja', 'odczytanie opowieści z oszacowaną pewnością'],
-    ['struktura', 'powiązania', 'kto, gdzie i kiedy — wyliczenie, nie opowieść'],
+  const pochodzenia = [
+    ['dostawa', 'z opowieści', 'słowa i obrazy wzięte wprost z historii'],
+    ['opracowanie', 'opracowanie', 'streszczenie i wniosek wyciągnięty wprost z tego, co powiedziano'],
+    ['kwerenda', 'źródła sprawdzone', 'twierdzenie potwierdzone źródłem, z adresem i datą'],
+    ['model', 'wiedza modelu', 'wniosek, hipoteza i tło kulturowe bez potwierdzenia w źródle'],
   ];
   return `<div class="legenda">
-  <p class="legenda-tytul">Kolory mówią, czym jest fragment — nie, jak bardzo jest pewny</p>
+  <p class="legenda-tytul">Kolor mówi, skąd to wiemy — tytuł boksu mówi, o czym jest</p>
   <ul class="legenda-lista">
-    ${pozycje.map(([id, nazwa, opis]) => `<li><span class="legenda-probka poziom-${id}" aria-hidden="true"></span><strong>${nazwa}</strong> — ${opis}</li>`).join('')}
+    ${pochodzenia.map(([id, nazwa, opis]) => `<li><span class="legenda-probka poziom-${id}" aria-hidden="true"></span><strong>${nazwa}</strong> — ${opis}</li>`).join('')}
   </ul>
-  <p class="legenda-pewnosc">Pewność interpretacji: ${PROGI_PEWNOSCI.map((p) => `${p.od}–${p.od === 80 ? 100 : p.od === 50 ? 79 : 49}% ${p.etykieta}`).join(' · ')}</p>
+  <p class="legenda-pewnosc">Jeden boks może mieć kilka warstw w różnych kolorach: cytat, wniosek, tło z kwerendy i hipotezę o dalszym ciągu. Hipoteza jest zawsze przypuszczeniem — nie cytatem — i ma oszacowaną pewność: ${PROGI_PEWNOSCI.map((p) => `${p.od}–${p.od === 80 ? 100 : p.od === 50 ? 79 : 49}% ${p.etykieta}`).join(' · ')}.</p>
 </div>`;
+}
+
+/**
+ * Kolumna kontekstu (1/4 szerokości): kim, gdzie, w jakim wątku. Na wąskim ekranie
+ * zjeżdża pod treść, bo przy 250 px czytanie dłuższego tekstu przestaje być czytaniem.
+ * Jedna funkcja dla scen, epizodów, rozdziałów i encji — inaczej każda strona
+ * wymyśla własny układ i powiązania lądują raz z boku, raz na dole.
+ */
+export function kolumnaBoczna(grupy, etykieta = 'Kontekst') {
+  const wypelnione = (grupy ?? []).filter((g) => g && g.html);
+  if (wypelnione.length === 0) return '';
+  return `<aside class="kontekst" aria-label="${escapeHtml(etykieta)}">
+    ${wypelnione.map((g) => `<div class="kontekst-grupa">
+      <h3>${escapeHtml(g.tytul)}</h3>
+      ${g.html}
+    </div>`).join('')}
+  </aside>`;
+}
+
+/** Układ: treść w kolumnie głównej, kontekst w wąskiej kolumnie po prawej. */
+export function ukladDwuKolumn(tresc, boczna) {
+  return `<div class="uklad-sceny">
+      <div class="kolumna-glowna">${tresc}</div>
+      ${boczna}
+    </div>`;
 }
 
 export function okruszki(elementy) {
