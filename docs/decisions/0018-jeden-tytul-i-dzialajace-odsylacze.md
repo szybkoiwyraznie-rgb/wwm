@@ -166,6 +166,16 @@ link nie był badany. Test na danych zastąpiła brama na całym widoku: treść
 i stopka razem. To ta sama lekcja co poprzednio, tylko o jeden poziom dalej: dane nie
 wystarczą, potrzebny jest wyrenderowany HTML.
 
+## Bez dubla w kolumnie i z pewnością po prawej (uwagi właściciela)
+
+22. **Interpretacja żyje tylko w treści.** Chip w kolumnie bocznej powtarzał fragment:
+    to samo pytanie, ta sama pewność, dwa miejsca. Pytanie ma sens tam, gdzie stoi
+    odpowiedź. Kolumna zostaje przy powiązaniach i występowaniu w opowieści.
+23. **Pewność przy prawej krawędzi także nad treścią.** Fragment bez nagłówka ma
+    plakietki w `<p class="poziom-nad-trescia">` — to nie był flex, więc pochodzenie
+    i pewność stały obok siebie po lewej. Teraz `space-between`: pochodzenie po lewej,
+    pewność przy prawym marginesie.
+
 ## Konsekwencje
 
 - **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na

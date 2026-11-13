@@ -455,3 +455,27 @@ test('hipoteza ma kolor hipotezy, tło kulturowe — kolor tła', async () => {
   }
   assert.deepEqual([...new Set(problemy)], []);
 });
+
+test('interpretacja stoi w treści, nie w kolumnie bocznej', async () => {
+  // Chip w kolumnie dublował fragment z treści: ta sama pewność i to samo zdanie
+  // w dwóch miejscach. Pytanie interpretacji ma sens tylko tam, gdzie stoi odpowiedź.
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const widoki = {
+    scena: (await import('../src/wwm/render-scena.js')).renderScena,
+    epizod: (await import('../src/wwm/render-epizod.js')).renderEpizod,
+    rozdzial: (await import('../src/wwm/render-epizod.js')).renderRozdzial,
+    encja: (await import('../src/wwm/render-encja.js')).renderEncja,
+  };
+  const problemy = [];
+  for (const strona of Object.values(dane.strony)) {
+    const html = (widoki[strona.typ] ?? widoki.encja)(strona.slug);
+    const i = html.indexOf('<aside');
+    if (i === -1) continue;
+    const kolumna = html.slice(i);
+    if (/chip-hipoteza|href="#hip-/.test(kolumna)) {
+      problemy.push(`${strona.slug}: interpretacja powtórzona w kolumnie bocznej`);
+    }
+  }
+  assert.deepEqual([...new Set(problemy)], []);
+});

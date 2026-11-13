@@ -320,7 +320,13 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 .pochodzenie-etykieta.pochodzenie-opracowanie::before { background: var(--poz-opracowanie); border-color: var(--poz-opracowanie-ramka); }
 .pochodzenie-etykieta.pochodzenie-kwerenda::before { background: var(--poz-kwerenda); border-color: var(--poz-kwerenda-ramka); }
 .pochodzenie-etykieta.pochodzenie-model::before { background: var(--poz-model); border-color: var(--poz-model-ramka); }
-.poziom-nad-trescia { margin: 0 0 .6em; }
+/* Plakietki nad treścią (fragment bez nagłówka): pochodzenie po lewej, pewność
+   przy prawej krawędzi. Wcześniej obie stały obok siebie w lewym górnym rogu. */
+.poziom-nad-trescia {
+  margin: 0 0 .6em; display: flex; align-items: center;
+  justify-content: space-between; gap: 10px; flex-wrap: wrap;
+}
+.poziom-nad-trescia .pewnosc { margin-left: auto; }
 
 .pewnosc { font-size: .72rem; font-variant-numeric: tabular-nums; border-radius: 999px; padding: 2px 8px; border: 1px solid currentColor; }
 .pewnosc-wysoka { color: #2f6b3f; }

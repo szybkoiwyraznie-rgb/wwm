@@ -166,13 +166,6 @@ function wystapienia(strona) {
 }
 
 /** Skrót listy interpretacji do kolumny bocznej — pełny spis stoi w treści. */
-function skrotHipotez(hipotezy) {
-  if (!hipotezy || hipotezy.length === 0) return '';
-  return `<ul class="chipy">
-    ${hipotezy.map((h) => `<li><a class="chip chip-hipoteza" href="#${escapeHtml(h.kotwica)}">${escapeHtml(h.pytanie ?? 'odczytanie sceny')} ${badgePewnosci(h.pewnosc)}</a></li>`).join('')}
-  </ul>`;
-}
-
 function skrotWystapien(strona) {
   const html = wystapienia(strona);
   return html;
@@ -200,13 +193,13 @@ export function renderEncja(slug) {
     sciezka,
   });
 
-  const hipotezy = Array.isArray(strona.hipotezy) ? strona.hipotezy : [];
+  // Interpretacje NIE trafiają do kolumny bocznej: fragment stoi w treści, z tą
+  // samą pewnością i własnym nagłówkiem. Chip obok był dublem (ADR 0018).
 
-  // Kontekst z prawej: powiązania, występowanie w opowieści i spis interpretacji.
+  // Kontekst z prawej: powiązania i występowanie w opowieści.
   // Wcześniej wszystko szło jedną kolumną, więc powiązania zjadały pół strony
   // i spychały treść poza pierwszy ekran (wzorzec: SRW — 3:1).
   const boczna = kolumnaBoczna([
-    { tytul: 'Interpretacje', html: skrotHipotez(hipotezy) },
     { tytul: 'W opowieści', html: skrotWystapien(strona) },
     { tytul: 'Powiązania', html: skrotPowiazan(strona) },
   ], 'Kontekst strony');
