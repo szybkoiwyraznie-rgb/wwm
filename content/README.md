@@ -17,7 +17,6 @@ Nie ma tu kodu ani konfiguracji — tylko ludzie, miejsca, wydarzenia i związki
 | `miejsca/` | `miejsce` | konkretne miejsca: świątynie, gospody, przełęcze |
 | `konteksty/` | `kontekst` | nawiązania kulturowe: literatura, film, obyczaje wuxia |
 | `pojecia/` | `pojecie` | hasła świata: przedmioty, obyczaje, wydarzenia |
-| `relacje/` | `relacja` | związki między postaciami |
 
 Poza katalogami typów leżą dwa pliki:
 

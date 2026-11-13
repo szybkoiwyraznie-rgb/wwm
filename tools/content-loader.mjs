@@ -24,7 +24,6 @@ export const KATALOGI = [
   { katalog: 'content/miejsca', typ: 'miejsce' },
   { katalog: 'content/konteksty', typ: 'kontekst' },
   { katalog: 'content/pojecia', typ: 'pojecie' },
-  { katalog: 'content/relacje', typ: 'relacja' },
 ];
 
 export function wczytajPlikiMarkdown(katalog, { root = '.' } = {}) {

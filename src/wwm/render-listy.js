@@ -18,6 +18,7 @@ import { naglowekStrony, stanPusty, okruszki, odmiana, nazwaTypu, nazwaTypuWMnog
 
 const TYTULY = {
   scena: ['Sceny', 'Wszystkie opowiedziane sceny, w kolejności zdarzeń.'],
+  epizod: ['Epizody', 'Zwarte odcinki opowieści: po kilka scen z jednego miejsca i czasu.'],
   watek: ['Wątki', 'Nici fabularne biegnące przez sceny, epizody i rozdziały.'],
   postac: ['Postacie', 'Kto występuje w opowieści.'],
   sekta: ['Sekty', 'Wspólnoty, szkoły i bractwa, do których należą postacie.'],
@@ -25,7 +26,6 @@ const TYTULY = {
   miejsce: ['Miejsca', 'Konkretne miejsca w krainach: świątynie, gospody, przełęcze.'],
   kontekst: ['Konteksty kulturowe', 'Nawiązania do literatury, filmu, mitów i obyczaju wuxia.'],
   pojecie: ['Hasła', 'Pojęcia świata: przedmioty, obyczaje, wydarzenia, wierzenia.'],
-  relacja: ['Relacje', 'Związki między postaciami.'],
 };
 
 function wartosciRozdzialow() {

@@ -87,9 +87,9 @@ postaci z wiedzy o grze — dopóki scena tego nie mówi, pole zostaje puste.
 
 Nie zakładaj strony na podstawie domysłu z innych stron ani z wiedzy o grze.
 
-## Krok 6 — relacje i wątki
+## Krok 6 — wątki i powiązania
 
-- Uzupełnij pola-relacje w obie strony, gdzie to naturalne (scena ↔ postać ↔ relacja).
+- Uzupełnij pola-relacje w obie strony, gdzie to naturalne (scena ↔ postać ↔ wątek).
 - Relacja powstaje, gdy zapis pokazuje **konkretne** zachowanie między postaciami; pole
   `postacie` musi mieć ≥ 2 slugi, bez powtórzeń.
 - Wątek aktualizuj tylko wtedy, gdy scena rzeczywiście go posuwa; `stan` zmieniaj świadomie.

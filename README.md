@@ -63,7 +63,6 @@ nadpisać. Kopiowanie gdzie indziej oznacza **oba** elementy: `index.html` i `da
 | `content/miejsca/` | konkretne miejsca w krainach |
 | `content/konteksty/` | nawiązania kulturowe: literatura, film, obyczaje wuxia |
 | `content/pojecia/` | hasła świata: przedmioty, obyczaje, wydarzenia |
-| `content/relacje/` | związki między postaciami |
 | `content/co-nowego.md` | dziennik nowych rozdziałów i scen widoczny w witrynie |
 | `src/wwm/` | silnik kroniki (ESM, zero zależności) |
 | `tools/` | build, serwer podglądu, runner testów, kontrola zapisu |

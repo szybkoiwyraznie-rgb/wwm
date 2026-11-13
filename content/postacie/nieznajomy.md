@@ -7,7 +7,6 @@ pierwsze_wystapienie: zaslepka-sc01
 kraina: qinghe
 miejsca: [przystan-mgly]
 watki: [watek-pochodzenia]
-relacje: [relacja-wedrowiec-nieznajomy]
 tagi: [zaslepka]
 utworzono: 2026-11-13
 ---

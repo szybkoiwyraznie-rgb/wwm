@@ -22,7 +22,7 @@ import {
 const LISTA_TRAS = {
   rozdzial: 'rozdzialy', epizod: 'epizody', scena: 'sceny', watek: 'watki',
   postac: 'postacie', sekta: 'sekty', kraina: 'krainy', miejsce: 'miejsca',
-  kontekst: 'konteksty', pojecie: 'pojecia', relacja: 'relacje',
+  kontekst: 'konteksty', pojecie: 'pojecia',
 };
 
 /**
@@ -31,7 +31,7 @@ const LISTA_TRAS = {
  */
 const TRASY_STRONY = new Set([
   'rozdzial', 'epizod', 'scena', 'postac', 'sekta', 'kraina', 'miejsce',
-  'kontekst', 'pojecie', 'watek', 'relacja',
+  'kontekst', 'pojecie', 'watek',
 ]);
 
 /** Token renderu: szybka nawigacja nie może pozwolić starszemu widokowi nadpisać nowszego. */
@@ -85,7 +85,6 @@ async function renderuj(trasa) {
     case 'pojecie':
     case 'kontekst':
     case 'watek':
-    case 'relacja':
       html = renderEncja(trasa.param);
       tytul = nazwaTypu(trasa.nazwa);
       aktywna = LISTA_TRAS[trasa.nazwa];
@@ -94,11 +93,13 @@ async function renderuj(trasa) {
     case 'epizody':
     case 'sceny':
     case 'postacie':
+    case 'krainy':
+    case 'sekty':
     case 'miejsca':
     case 'pojecia':
     case 'konteksty':
     case 'watki':
-    case 'relacje': {
+    {
       const typ = Object.keys(LISTA_TRAS).find((t) => LISTA_TRAS[t] === trasa.nazwa);
       html = renderListe(typ, trasa.query);
       tytul = nazwaTypu(typ, 'wiele');

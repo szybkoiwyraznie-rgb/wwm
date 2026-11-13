@@ -26,7 +26,6 @@ content/<katalog>/<slug>.md
 | `miejsce` | `content/miejsca/` | konkretne miejsce: świątynia, gospoda, przełęcz |
 | `kontekst` | `content/konteksty/` | nawiązanie kulturowe: księga, poemat, obyczaj wuxia |
 | `pojecie` | `content/pojecia/` | hasło świata: przedmiot, obyczaj, wydarzenie |
-| `relacja` | `content/relacje/` | związek między postaciami |
 
 Typ i katalog muszą się zgadzać. Nazwa pliku **jest** slugiem (`SLUG_RE`: `[a-z0-9-]`,
 bez znaków diakrytycznych i CJK). Slug jest niezmienny — zmiana zrywa cały graf.
@@ -109,7 +108,7 @@ dosłownym fragmentem archiwum (ADR 0008).
 | `przydzial` | funkcja w świecie (np. strażnik przystani) |
 | `pierwsze_wystapienie` | slug sceny pierwszego pojawienia się |
 | `sekta`, `kraina` | pojedyncze slugi przynależności |
-| `krainy`, `miejsca`, `watki`, `relacje` | listy slugów |
+| `krainy`, `miejsca`, `watki` | listy slugów |
 
 ### `sekta`
 
@@ -155,14 +154,6 @@ dosłownym fragmentem archiwum (ADR 0008).
 | `rodzaj` | `organizacja` / `frakcja` / `miejscowosc` / `kultura` / `technika` / `przedmiot` / `wydarzenie` / `inne` |
 | `postacie`, `krainy`, `sekty`, `miejsca`, `konteksty` | listy slugów |
 
-### `relacja`
-
-| Pole | Znaczenie |
-|---|---|
-| `postacie` | lista ≥ 2 slugów, bez powtórzeń |
-| `rodzaj_relacji` | `rodzina` / `przyjazn` / `romans` / `rywalizacja` / `konflikt` / `sojusz` / `mentor` / `tajemnica` / `inne` |
-| `watki` | lista slugów |
-
 ## 4. Pola-relacje (graf)
 
 Każde z tych pól jest sprawdzane: cel musi istnieć i mieć właściwy typ.
@@ -184,7 +175,6 @@ Każde z tych pól jest sprawdzane: cel musi istnieć i mieć właściwy typ.
 | `miejsca` | miejsce | lista |
 | `postacie` | postać | lista |
 | `watki` | wątek | lista |
-| `relacje` | relacja | lista |
 | `konteksty` | kontekst | lista |
 | `pojecia` | pojęcie | lista |
 

@@ -54,7 +54,7 @@ który epizod i scena to są. Wynik pracy:
    potwierdzenia).
 7. **Katalogi treści:** `content/rozdzialy/`, `content/epizody/`, `content/sceny/`,
    `content/watki/`, `content/postacie/`, `content/sekty/`, `content/krainy/`,
-   `content/miejsca/`, `content/konteksty/`, `content/pojecia/`, `content/relacje/` —
+   `content/miejsca/`, `content/konteksty/`, `content/pojecia/` —
    jeden typ strony na katalog (ADR 0003).
 8. **Dziennik zmian** — nowy wpis na górze `content/co-nowego.md`, nagłówek
    `## RRRR-MM-DD GG:MM` (czas publikacji, strefa `Europe/Warsaw`).

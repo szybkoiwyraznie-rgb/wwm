@@ -52,7 +52,6 @@ export const TRASY = {
   miejsce: 'miejsce',
   kontekst: 'kontekst',
   pojecie: 'pojecie',
-  relacja: 'relacja',
 };
 
 /** Trasa LISTY dla typu strony (np. postac → #/postacie). */
@@ -67,7 +66,6 @@ export const LISTY = {
   miejsce: 'miejsca',
   kontekst: 'konteksty',
   pojecie: 'pojecia',
-  relacja: 'relacje',
 };
 
 /** Href strony encji. */

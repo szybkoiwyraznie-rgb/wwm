@@ -21,13 +21,13 @@ import { BLOK_OTWARCIA_RE, parsujAtrybutyBloku, POCHODZENIA, RODZAJE_TRESCI, czy
  *
  * Kolejność jest kolejnością opowieści, nie interfejsu gry (ADR 0013):
  * najpierw to, czym fabuła jest opowiedziana — rozdział, epizod, scena, wątek —
- * potem ludzie i świat, w którym się to dzieje, na końcu nawiązania i relacje.
+ * potem ludzie i świat, w którym się to dzieje, na końcu nawiązania kulturowe.
  * Nie ma typu „zadanie”: zadanie jest mechaniką gry, nie jednostką opowieści.
  */
 export const TYPY_STRON = [
   'rozdzial', 'epizod', 'scena', 'watek',
   'postac', 'sekta', 'kraina', 'miejsce',
-  'kontekst', 'pojecie', 'relacja',
+  'kontekst', 'pojecie',
 ];
 
 /** Role postaci w rozegranym materiale. */
@@ -73,11 +73,6 @@ export const RODZAJE_WATKU = [
   'glowny', 'poboczny', 'motyw', 'tajemnica', 'romans', 'polityczny', 'mistyczny', 'inne',
 ];
 
-/** Rodzaj relacji. */
-export const RODZAJE_RELACJI = [
-  'rodzina', 'przyjazn', 'romans', 'rywalizacja', 'konflikt', 'sojusz', 'mentor', 'tajemnica', 'inne',
-];
-
 const DATA_RE = /^\d{4}-\d{2}-\d{2}$/;
 const DATA_CZAS_RE = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
 
@@ -112,14 +107,13 @@ export const POLA_DOZWOLONE = {
     'miejsca', 'sekty', 'watki', 'konteksty', 'sekcje_analizy'],
   watek: [...WSPOLNE, 'rodzaj_watku', 'stan', 'postacie', 'sceny', 'rozdzialy', 'epizody', 'konteksty'],
   postac: [...WSPOLNE, 'rola', 'przydzial', 'pierwsze_wystapienie', 'sekta', 'kraina', 'krainy',
-    'miejsca', 'watki', 'relacje', 'pseudonim'],
+    'miejsca', 'watki', 'pseudonim'],
   sekta: [...WSPOLNE, 'rodzaj', 'siedziba', 'kraina', 'postacie', 'watki', 'konteksty', 'epizody'],
   kraina: [...WSPOLNE, 'rodzaj', 'region', 'rozdzial', 'sekty', 'postacie', 'miejsca', 'watki'],
   miejsce: [...WSPOLNE, 'rodzaj', 'kraina', 'sekta', 'postacie', 'konteksty'],
   kontekst: [...WSPOLNE, 'rodzaj', 'dzielo', 'rok', 'autor', 'postacie', 'pojecia', 'watki'],
   pojecie: [...WSPOLNE, 'rodzaj', 'postacie', 'krainy', 'sekty', 'miejsca', 'konteksty'],
-  relacja: [...WSPOLNE, 'postacie', 'rodzaj_relacji', 'watki'],
-};
+ };
 
 /** Pola-relacje: nazwa → typ celu i kształt wartości. */
 export const POLA_RELACJI = {
@@ -132,7 +126,6 @@ export const POLA_RELACJI = {
   miejsca: { typ: 'miejsce', wiele: true },
   postacie: { typ: 'postac', wiele: true },
   watki: { typ: 'watek', wiele: true },
-  relacje: { typ: 'relacja', wiele: true },
   konteksty: { typ: 'kontekst', wiele: true },
   pojecia: { typ: 'pojecie', wiele: true },
   nastepny: { typ: 'rozdzial', wiele: false },
@@ -154,7 +147,6 @@ export const SEKCJE_WYMAGANE = {
   pojecie: ['Opis'],
   kontekst: ['Opis'],
   watek: ['Opis'],
-  relacja: ['Opis'],
 };
 
 /**
@@ -420,15 +412,6 @@ export function walidujStrone(strona, ctx) {
       }
       break;
     }
-    case 'relacja': {
-      const postacie = Array.isArray(strona.postacie) ? strona.postacie : [];
-      if (postacie.length < 2) p.push(`${gdzie}: relacja wymaga co najmniej 2 postaci`);
-      if (new Set(postacie).size !== postacie.length) p.push(`${gdzie}: relacja powtarza postać`);
-      if (strona.rodzaj_relacji !== undefined && !RODZAJE_RELACJI.includes(strona.rodzaj_relacji)) {
-        p.push(`${gdzie}: rodzaj_relacji "${strona.rodzaj_relacji}" poza ${RODZAJE_RELACJI.join('/')}`);
-      }
-      break;
-    }
     default:
       break;
   }
@@ -642,7 +625,7 @@ export function odsylaczeStrony(strona) {
 export function policzStatystyki(strony) {
   const s = {
     rozdzial: 0, epizod: 0, scena: 0, watek: 0, postac: 0, sekta: 0,
-    kraina: 0, miejsce: 0, kontekst: 0, pojecie: 0, relacja: 0, powiazania: 0,
+    kraina: 0, miejsce: 0, kontekst: 0, pojecie: 0, powiazania: 0,
   };
   for (const p of strony) {
     if (Object.prototype.hasOwnProperty.call(s, p.typ)) s[p.typ] += 1;

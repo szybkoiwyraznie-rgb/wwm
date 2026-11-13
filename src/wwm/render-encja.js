@@ -1,5 +1,5 @@
 /**
- * Strona encji: postać, sekta, kraina, miejsce, hasło, kontekst kulturowy, wątek, relacja.
+ * Strona encji: postać, sekta, kraina, miejsce, hasło, kontekst kulturowy, wątek.
  *
  * Jedna strona = jedno pojęcie. Pod treścią stoi boks „Powiązania” budowany
  * z obu stron grafu (pole-relacje + wikilinki + backlinki), więc odsyłacz
@@ -19,7 +19,6 @@ const ETYKIETY_POL = {
   region: 'Region',
   rodzaj_watku: 'Rodzaj wątku',
   stan: 'Stan',
-  rodzaj_relacji: 'Rodzaj relacji',
   autor: 'Autor',
   rok: 'Rok',
   dzielo: 'Dzieło',
@@ -104,7 +103,7 @@ function powiazania(strona) {
 
   // Relacja pokazuje obie strony, także gdy pole wypełniono tylko po jednej.
   for (const [slug, cel] of Object.entries(dane.strony)) {
-    const pola = ['postacie', 'krainy', 'sekty', 'miejsca', 'watki', 'konteksty', 'relacje', 'sceny', 'epizody'];
+    const pola = ['postacie', 'krainy', 'sekty', 'miejsca', 'watki', 'konteksty', 'sceny', 'epizody'];
     for (const pole of pola) {
       const wartosc = cel[pole];
       if (Array.isArray(wartosc) && wartosc.includes(strona.slug)) dodaj(slug);
@@ -114,11 +113,11 @@ function powiazania(strona) {
 
   if (grupy.size === 0) return '';
 
-  const KOLEDY = ['rozdzial', 'epizod', 'scena', 'watek', 'postac', 'sekta', 'kraina', 'miejsce', 'kontekst', 'pojecie', 'relacja'];
+  const KOLEDY = ['rozdzial', 'epizod', 'scena', 'watek', 'postac', 'sekta', 'kraina', 'miejsce', 'kontekst', 'pojecie'];
   const NAZWY = {
     rozdzial: 'Rozdziały', epizod: 'Epizody', scena: 'Sceny', watek: 'Wątki',
     postac: 'Postacie', sekta: 'Sekty', kraina: 'Krainy', miejsce: 'Miejsca',
-    kontekst: 'Konteksty', pojecie: 'Hasła', relacja: 'Relacje',
+    kontekst: 'Konteksty', pojecie: 'Hasła',
   };
 
   const bloki = [...grupy.entries()]

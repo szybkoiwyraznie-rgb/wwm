@@ -151,7 +151,6 @@ function blokDzialow() {
     ['miejsce', 'Miejsca', 'miejsca'],
     ['kontekst', 'Konteksty kulturowe', 'konteksty'],
     ['pojecie', 'Hasła świata', 'pojecia'],
-    ['relacja', 'Relacje', 'relacje'],
   ];
   const kafelki = działy.map(([typ, etykieta, trasa]) => {
     const strony = Object.values(dane.strony).filter((s) => s.typ === typ);

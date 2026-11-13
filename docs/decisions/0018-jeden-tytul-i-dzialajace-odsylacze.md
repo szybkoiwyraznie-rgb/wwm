@@ -180,6 +180,24 @@ wystarczą, potrzebny jest wyrenderowany HTML.
     linków (powiązanie jest dwustronne z natury), a „w treści” nigdy się nie pokazywał.
     Zbieranie powodów zniknęło razem z etykietą — została lista nazw.
 
+## Koniec typu „relacja” i dwie puste sekcje (uwagi właściciela)
+
+25. **Typ `relacja` usunięty.** W bazach VN strona relacji ma sens, bo relacja jest
+    jednostką opowieści. Tutaj jest pochodną pól: kto zna kogo, wynika z `postacie`
+    i `watki`. Osobny wpis tylko powtarzał to, co już widać w powiązaniach.
+    Zniknął typ, katalog `content/relacje/`, trasy `#/relacje` i `#/relacja/:slug`,
+    pole `relacje` w postaciach oraz `rodzaj_relacji`. Zostało 10 typów stron.
+26. **`krainy` i `sekty` nie miały `case` w routerze.** Trasy istniały w menu i w
+    słowniku, ale wypadły ze switcha, więc spadały do `default:` i pokazywały
+    „Nie znaleziono” — co wygląda jak pusty dział, nie jak błąd. Mimo danych
+    (Qinghe, Studnia Niebios) sekcje wyglądały na puste.
+27. **`#/epizody` wywalało wyjątek.** `TYTULY['epizod']` nie istniało, a `listaEncji`
+    robiło z tego destructuring `undefined`. Lista epizodów była niedostępna.
+
+Nowa brama `test/trasy.test.js` sprawdza to, czego nie widział żaden test: czy każda
+trasa z menu i z list ma `case` w `renderuj()`, czy zwraca treść i czy pokazuje
+wszystkie pozycje danego typu.
+
 ## Konsekwencje
 
 - **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na

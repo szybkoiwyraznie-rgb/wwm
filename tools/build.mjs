@@ -303,7 +303,7 @@ export async function zbudujDane({ root = ROOT } = {}) {
   };
 
   const st = dane.statystyki;
-  console.log(`Dane bazy: ${Object.keys(stronyDane).length} stron — rozdziały: ${st.rozdzial}, epizody: ${st.epizod}, sceny: ${st.scena}, wątki: ${st.watek}, postacie: ${st.postac}, sekty: ${st.sekta}, krainy: ${st.kraina}, miejsca: ${st.miejsce}, konteksty: ${st.kontekst}, hasła: ${st.pojecie}, relacje: ${st.relacja}`);
+  console.log(`Dane bazy: ${Object.keys(stronyDane).length} stron — rozdziały: ${st.rozdzial}, epizody: ${st.epizod}, sceny: ${st.scena}, wątki: ${st.watek}, postacie: ${st.postac}, sekty: ${st.sekta}, krainy: ${st.kraina}, miejsca: ${st.miejsce}, konteksty: ${st.kontekst}, hasła: ${st.pojecie}`);
   console.log(`  powiązania: ${st.powiazania}`);
   return dane;
 }

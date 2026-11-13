@@ -12,7 +12,7 @@ export const TRASY_ZNAWE = [
   'rozdzialy', 'rozdzial', 'epizody', 'epizod', 'sceny', 'scena',
   'watki', 'watek', 'postacie', 'postac', 'sekty', 'sekta',
   'krainy', 'kraina', 'miejsca', 'miejsce', 'konteksty', 'kontekst',
-  'pojecia', 'pojecie', 'relacje', 'relacja',
+  'pojecia', 'pojecie',
   'hipotezy', 'tagi', 'tag', 'szukaj', 'co-nowego', 'o-bazie',
 ];
 
