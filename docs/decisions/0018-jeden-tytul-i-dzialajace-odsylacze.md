@@ -176,6 +176,10 @@ wystarczą, potrzebny jest wyrenderowany HTML.
     i pewność stały obok siebie po lewej. Teraz `space-between`: pochodzenie po lewej,
     pewność przy prawym marginesie.
 
+24. **Powiązania to same nazwy.** Dopisek „— odsyła tutaj” stał przy większości
+    linków (powiązanie jest dwustronne z natury), a „w treści” nigdy się nie pokazywał.
+    Zbieranie powodów zniknęło razem z etykietą — została lista nazw.
+
 ## Konsekwencje
 
 - **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na

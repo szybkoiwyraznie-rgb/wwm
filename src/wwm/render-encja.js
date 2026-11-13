@@ -91,26 +91,24 @@ function powiazania(strona) {
   const dane = dajDane();
   const grupy = new Map();
 
-  const dodaj = (slug, powod) => {
+  const dodaj = (slug) => {
     if (!slug || slug === strona.slug) return;
     const cel = dane.strony[slug];
     if (!cel) return;
-    if (!grupy.has(cel.typ)) grupy.set(cel.typ, new Map());
-    const grupa = grupy.get(cel.typ);
-    if (!grupa.has(slug)) grupa.set(slug, new Set());
-    grupa.get(slug).add(powod);
+    if (!grupy.has(cel.typ)) grupy.set(cel.typ, new Set());
+    grupy.get(cel.typ).add(slug);
   };
 
-  for (const slug of strona.linki ?? []) dodaj(slug, 'w treści');
-  for (const b of dane.backlinki?.[strona.slug] ?? []) dodaj(b.slug, 'odsyła tutaj');
+  for (const slug of strona.linki ?? []) dodaj(slug);
+  for (const b of dane.backlinki?.[strona.slug] ?? []) dodaj(b.slug);
 
   // Relacja pokazuje obie strony, także gdy pole wypełniono tylko po jednej.
   for (const [slug, cel] of Object.entries(dane.strony)) {
     const pola = ['postacie', 'krainy', 'sekty', 'miejsca', 'watki', 'konteksty', 'relacje', 'sceny', 'epizody'];
     for (const pole of pola) {
       const wartosc = cel[pole];
-      if (Array.isArray(wartosc) && wartosc.includes(strona.slug)) dodaj(slug, 'powiązanie zwrotne');
-      if (typeof wartosc === 'string' && wartosc === strona.slug) dodaj(slug, 'powiązanie zwrotne');
+      if (Array.isArray(wartosc) && wartosc.includes(strona.slug)) dodaj(slug);
+      if (typeof wartosc === 'string' && wartosc === strona.slug) dodaj(slug);
     }
   }
 
@@ -126,15 +124,15 @@ function powiazania(strona) {
   const bloki = [...grupy.entries()]
     .sort((a, b) => KOLEDY.indexOf(a[0]) - KOLEDY.indexOf(b[0]))
     .map(([typ, mapa]) => {
-      const pozycje = [...mapa.entries()];
+      const pozycje = [...mapa].map((slug) => [slug]);
       const widoczne = pozycje.slice(0, LIMIT_POWIAZAN);
       const reszta = pozycje.slice(LIMIT_POWIAZAN);
-      const link = ([slug, powody]) => {
+      // Sama nazwa. Dopisek „— odsyła tutaj” nic nie wnosił: każde powiązanie
+      // jest dwustronne z natury, więc etykieta stała przy większości linków.
+      const link = ([slug]) => {
         const cel = dane.strony[slug];
         const tytul = cel?.tytul ?? slug;
-        return `<li><a href="${hrefDlaSlug(slug, typ)}">${escapeHtml(tytul)}</a>${
-          [...powody].includes('powiązanie zwrotne') && !(strona.linki ?? []).includes(slug)
-            ? '<span class="meta"> — odsyła tutaj</span>' : ''}</li>`;
+        return `<li><a href="${hrefDlaSlug(slug, typ)}">${escapeHtml(tytul)}</a></li>`;
       };
       const ukryte = reszta.length > 0
         ? `<details class="zwijane"><summary>Pokaż pozostałe (${reszta.length})</summary><ul>${reszta.map(link).join('')}</ul></details>`

@@ -479,3 +479,25 @@ test('interpretacja stoi w treści, nie w kolumnie bocznej', async () => {
   }
   assert.deepEqual([...new Set(problemy)], []);
 });
+
+test('powiązania to same nazwy — bez dopisków o kierunku', async () => {
+  // „— odsyła tutaj” stało przy większości linków, bo powiązanie jest dwustronne
+  // z natury. Etykieta nic nie wnosiła, a zaśmiecała kolumnę (ADR 0018).
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const renderEncja = (await import('../src/wwm/render-encja.js')).renderEncja;
+  const problemy = [];
+  for (const strona of Object.values(dane.strony)) {
+    if (!['postac', 'sekta', 'kraina', 'miejsce', 'kontekst', 'pojecie', 'watek', 'relacja'].includes(strona.typ)) continue;
+    const html = renderEncja(strona.slug);
+    // Tylko sekcja „Powiązania” — „W opowieści” podaje numer sceny, i to zostaje.
+    const kolumna = html.slice(html.indexOf('<h3>Powiązania'));
+    for (const m of kolumna.matchAll(/<li><a [^>]*>([^<]+)<\/a>([\s\S]*?)<\/li>/g)) {
+      const dopisek = m[2].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+      if (dopisek) {
+        problemy.push(`${strona.slug}: dopisek przy „${m[1]}” → „${dopisek.slice(0, 40)}”`);
+      }
+    }
+  }
+  assert.deepEqual([...new Set(problemy)], []);
+});
