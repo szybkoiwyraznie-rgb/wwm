@@ -258,6 +258,9 @@ Zasady:
   i kolumny boczne pokazują je zamiast tytułu sekcji („Analiza” nic nie mówi).
 - **`streszczenie` podaje się jawnie.** Build nie wyciąga go z „Opisu”, bo to dosłowny
   początek boksu i pod tytułem wygląda jak dubel (ADR 0018).
+- **Wątki, postacie i miejsca wymienia się nazwami**, nie opisuje w tabeli. Spis
+  powiązań sceny stoi w kolumnie bocznej; boks w treści powtarzający go tabelą to
+  przerost formy (ADR 0018).
 - **Tytuł jest jeden.** Przy nagłówku stoi wyłącznie nazwa pochodzenia (i pewność przy
   interpretacji). `rodzaj=` nie jest wypisywany obok tytułu — powtarzałby go
   („Wątki w scenie” + „spis powiązań”, ADR 0018).

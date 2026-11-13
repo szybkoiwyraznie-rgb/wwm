@@ -58,13 +58,3 @@ powtarzany w opowieściach o wędrownych mistrzach: miejsce nauki zostaje
 po mistrzu, nie po uczniu.
 
 }}
-
-{{opracowanie rodzaj=spis
-
-## Wątki w scenie
-
-| Co się wtedy porusza | Czym daje o sobie znać |
-|---|---|
-| [[watek-pochodzenia]] | imię wędrowca na zwoju, którego nikt nie zostawił |
-
-}}

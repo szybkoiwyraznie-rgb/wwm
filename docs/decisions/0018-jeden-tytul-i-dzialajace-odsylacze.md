@@ -90,6 +90,17 @@ sugerowałaby, że to policzone ryzyko.
 - `pytanie=` i `rodzaj=interpretacja` wymagają pewności — inaczej build zgłasza błąd.
 - `pewnosc=0` nie wyświetla plakietki: zero to brak twierdzenia, nie „bardzo niepewne”.
 
+## Wątki się wymienia, nie opisuje (decyzja właściciela)
+
+Tabela `Co się wtedy porusza | Czym daje o sobie znać` była przerostem formy: żeby
+powiedzieć „w tej scenie jest wątek pochodzenia wędrowca”, powstała tabela z dwiema
+kolumnami wymyślonymi na siłę, a nagłówki po polsku czytały się jak bełkot.
+
+- **Wątek to nazwa, nie akapit.** Wystarczy wymienić: „Wątki: Pochodzenie wędrowca”.
+- **Nie dublujemy kolumny bocznej**, która i tak wymienia wątki sceny wraz z linkiem.
+  Boks „Wątki w scenie” zniknął; jeśli kiedyś wróci, to jako lista nazw — bez tabeli,
+  bez kolumny z jednozdaniowym opisem i bez nagłówków-konstrukcji.
+
 ## Konsekwencje
 
 - **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na
