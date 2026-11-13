@@ -7,6 +7,7 @@ stan: otwarty
 postacie: [mlody-wedrowiec, nieznajomy, starzec-z-przystani]
 sceny: [zaslepka-sc01, zaslepka-sc02]
 rozdzialy: [rozdzial-1]
+epizody: [epizod-1-1, epizod-1-2]
 tagi: [zaslepka]
 utworzono: 2026-11-13
 ---

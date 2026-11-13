@@ -5,6 +5,7 @@ tytul: "Młody wędrowiec"
 rola: protagonista
 przydzial: "bez przynależności"
 pierwsze_wystapienie: zaslepka-sc01
+kraina: qinghe
 miejsca: [przystan-mgly, klasztor-echa]
 watki: [watek-pochodzenia]
 relacje: [relacja-wedrowiec-nieznajomy]

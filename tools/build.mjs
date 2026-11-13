@@ -29,7 +29,7 @@ import { parseWikilinks } from '../src/wwm/links.js';
 import { wyciagnijHipotezy } from '../src/wwm/hipotezy.js';
 import {
   zbudujRejestr, resolverLinkow, walidujStrone, policzBacklinki, policzTagi, policzStatystyki,
-  sprawdzGraniceFabuly, sprawdzPorzadekZadan, sprawdzWiernoscSceny, odsylaczeStrony, POLA_RELACJI,
+  sprawdzGraniceFabuly, sprawdzPorzadekEpizodow, sprawdzWiernoscSceny, odsylaczeStrony, POLA_RELACJI,
 } from '../src/wwm/registry.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -148,7 +148,7 @@ export async function zbudujDane({ root = ROOT } = {}) {
   // ── 2. Bramy fabularne ──────────────────────────────────────────
   const sceny = strony.filter((s) => s.typ === 'scena');
   problemy.push(...sprawdzGraniceFabuly(sceny, postep));
-  problemy.push(...sprawdzPorzadekZadan(strony.filter((s) => s.typ === 'zadanie'), strony.filter((s) => s.typ === 'rozdzial')));
+  problemy.push(...sprawdzPorzadekEpizodow(strony.filter((s) => s.typ === 'epizod'), strony.filter((s) => s.typ === 'rozdzial')));
 
   // Odsyłacz do archiwum zapisu musi istnieć w `rozgrywka/zapisy/` — inaczej
   // scena nie ma z czym porównać dosłowności i brama wierności kłamie.
@@ -280,7 +280,7 @@ export async function zbudujDane({ root = ROOT } = {}) {
   };
 
   const st = dane.statystyki;
-  console.log(`Dane bazy: ${Object.keys(stronyDane).length} stron — rozdziały: ${st.rozdzial}, zadania: ${st.zadanie}, sceny: ${st.scena}, postacie: ${st.postac}, miejsca: ${st.miejsce}, hasła: ${st.pojecie}, konteksty: ${st.kontekst}, wątki: ${st.watek}, relacje: ${st.relacja}`);
+  console.log(`Dane bazy: ${Object.keys(stronyDane).length} stron — rozdziały: ${st.rozdzial}, epizody: ${st.epizod}, sceny: ${st.scena}, wątki: ${st.watek}, postacie: ${st.postac}, sekty: ${st.sekta}, krainy: ${st.kraina}, miejsca: ${st.miejsce}, konteksty: ${st.kontekst}, hasła: ${st.pojecie}, relacje: ${st.relacja}`);
   console.log(`  powiązania: ${st.powiazania}`);
   return dane;
 }

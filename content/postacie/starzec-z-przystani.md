@@ -4,6 +4,7 @@ slug: starzec-z-przystani
 tytul: "Starzec z przystani"
 rola: sojusznik
 pierwsze_wystapienie: zaslepka-sc01
+kraina: qinghe
 miejsca: [przystan-mgly, klasztor-echa]
 watki: [watek-pochodzenia]
 tagi: [zaslepka]

@@ -1,6 +1,6 @@
 # 0008 — Scena jest jednostką śledzenia fabuły
 
-**Status:** przyjęta (2026-11-13) · **Zastępuje:** — · **Zastąpiona przez:** —
+**Status:** przyjęta (2026-11-13) · **Zastępuje:** — · **Zastąpiona przez:** częściowo 0013 (rama nad sceną: epizod zamiast zadania; sama scena bez zmian)
 
 ## Kontekst
 

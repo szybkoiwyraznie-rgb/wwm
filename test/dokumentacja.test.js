@@ -13,7 +13,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { TYPY_STRON, POLA_DOZWOLONE, POLA_RELACJI, RODZAJE_ZADANIA } from '../src/wwm/registry.js';
+import { TYPY_STRON, POLA_DOZWOLONE, POLA_RELACJI, RODZAJE_EPIZODU } from '../src/wwm/registry.js';
 import { POZIOMY_BLOKU } from '../src/wwm/markdown.js';
 import { KATALOGI } from '../tools/content-loader.mjs';
 
@@ -79,7 +79,7 @@ test('schemat danych wymienia wszystkie pola-relacje', () => {
 
 test('schemat wymienia rodzaje zadań zgodne z walidatorem', () => {
   const schemat = czytaj('docs/guides/SCHEMAT_DANYCH.md');
-  for (const rodzaj of RODZAJE_ZADANIA) {
+  for (const rodzaj of RODZAJE_EPIZODU) {
     assert.ok(schemat.includes(rodzaj), `schemat nie opisuje rodzaju ${rodzaj}`);
   }
 });

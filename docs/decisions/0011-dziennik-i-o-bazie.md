@@ -1,6 +1,6 @@
 # 0011 — Dziennik nowego pokrycia i strona „O bazie”
 
-**Status:** przyjęta (2026-11-13) · **Zastępuje:** — · **Zastąpiona przez:** —
+**Status:** przyjęta (2026-11-13) · **Zastępuje:** — · **Zastąpiona przez:** częściowo 0014 (język dziennika i strony „Jak czytać kronikę”)
 
 ## Kontekst
 

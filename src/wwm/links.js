@@ -43,26 +43,30 @@ export function slugify(tytul) {
  */
 export const TRASY = {
   rozdzial: 'rozdzial',
-  zadanie: 'zadanie',
+  epizod: 'epizod',
   scena: 'scena',
-  postac: 'postac',
-  miejsce: 'miejsce',
-  pojecie: 'pojecie',
-  kontekst: 'kontekst',
   watek: 'watek',
+  postac: 'postac',
+  sekta: 'sekta',
+  kraina: 'kraina',
+  miejsce: 'miejsce',
+  kontekst: 'kontekst',
+  pojecie: 'pojecie',
   relacja: 'relacja',
 };
 
 /** Trasa LISTY dla typu strony (np. postac → #/postacie). */
 export const LISTY = {
   rozdzial: 'rozdzialy',
-  zadanie: 'zadania',
+  epizod: 'epizody',
   scena: 'sceny',
-  postac: 'postacie',
-  miejsce: 'miejsca',
-  pojecie: 'pojecia',
-  kontekst: 'konteksty',
   watek: 'watki',
+  postac: 'postacie',
+  sekta: 'sekty',
+  kraina: 'krainy',
+  miejsce: 'miejsca',
+  kontekst: 'konteksty',
+  pojecie: 'pojecia',
   relacja: 'relacje',
 };
 
@@ -78,7 +82,7 @@ export function hrefListy(typ) {
   return lista ? `#/${lista}` : '#/';
 }
 
-/** Href listy przefiltrowanej (np. sceny jednego zadania, miejsca jednego rozdziału). */
+/** Href listy przefiltrowanej (np. sceny jednego epizodu, miejsca jednej krainy). */
 export function hrefFiltru(typ, pole, wartosc) {
   return `${hrefListy(typ)}?${pole}=${encodeURIComponent(wartosc)}`;
 }

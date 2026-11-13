@@ -27,10 +27,10 @@ człowieka, któremu dał słowo.
 
 {{hipoteza pewnosc=55
 
-## Związek z grą
+## W opowieści
 
 Młody wędrowiec ma cechy xiake: nie ma przynależności, podróżuje sam i nosi
-miecz, którego w rozegranym materiale jeszcze nie użył. Pewność średnia, bo
-gra nie nazywa go wprost tym słowem.
+miecz, którego dotąd nie dobył. Pewność średnia, bo nikt nie nazywa go
+wprost tym słowem.
 
 }}

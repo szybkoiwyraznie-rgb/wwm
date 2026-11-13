@@ -56,18 +56,29 @@ export function listaRozdzialow() {
   return listaStron('rozdzial').sort((a, b) => (a.numer ?? 0) - (b.numer ?? 0));
 }
 
-/** Zadania rozdziału w kolejności `kolejnosc`. */
-export function zadaniaRozdzialu(slugRozdzialu) {
-  return listaStron('zadanie')
+/** Epizody rozdziału w kolejności `kolejnosc`. */
+export function epizodyRozdzialu(slugRozdzialu) {
+  return listaStron('epizod')
     .filter((z) => z.rozdzial === slugRozdzialu)
     .sort((a, b) => (a.kolejnosc ?? 0) - (b.kolejnosc ?? 0));
 }
 
-/** Sceny zadania w kolejności numerycznej numeru sceny. */
-export function scenyZadania(slugZadania) {
+/** Sceny epizodu w kolejności numerycznej numeru sceny. */
+export function scenyEpizodu(slugEpizodu) {
   return listaStron('scena')
-    .filter((s) => s.zadanie === slugZadania)
+    .filter((s) => s.epizod === slugEpizodu)
     .sort((a, b) => porownajNumeryScen(String(a.numer_sceny ?? ''), String(b.numer_sceny ?? '')));
+}
+
+/** Epizod sceny. */
+export function epizodSceny(scena) {
+  return scena?.epizod ? dajStrone(scena.epizod) : null;
+}
+
+/** Kraina sceny: pierwsza z listy `krainy`, w której rozgrywa się scena. */
+export function krainySceny(scena) {
+  const slugi = Array.isArray(scena?.krainy) ? scena.krainy : [];
+  return slugi.map((slug) => dajStrone(slug)).filter(Boolean);
 }
 
 /**
@@ -84,10 +95,10 @@ export function ostatniaScena() {
   return scena ? dajStrone(scena) : listaScenChronologicznie().at(-1) ?? null;
 }
 
-/** Rozdział zawierający daną scenę (przez zadanie). */
+/** Rozdział zawierający daną scenę (przez epizod). */
 export function rozdzialSceny(scena) {
-  const zadanie = scena?.zadanie ? dajStrone(scena.zadanie) : null;
-  return zadanie?.rozdzial ? dajStrone(zadanie.rozdzial) : null;
+  const epizod = epizodSceny(scena);
+  return epizod?.rozdzial ? dajStrone(epizod.rozdzial) : null;
 }
 
 /** Postęp: ile scen rozegrano, gdzie jesteśmy, jaki procent rozdziału domknięty. */

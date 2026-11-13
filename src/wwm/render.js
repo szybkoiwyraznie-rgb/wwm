@@ -10,18 +10,23 @@ import { hrefDlaSlug } from './links.js';
 
 export const NAZWA_TYPU = {
   rozdzial: ['rozdział', 'rozdziały', 'rozdziałów'],
-  zadanie: ['zadanie', 'zadania', 'zadań'],
+  epizod: ['epizod', 'epizody', 'epizodów'],
   scena: ['scena', 'sceny', 'scen'],
-  postac: ['postać', 'postacie', 'postaci'],
-  miejsce: ['miejsce', 'miejsca', 'miejsc'],
-  pojecie: ['hasło', 'hasła', 'haseł'],
-  kontekst: ['kontekst', 'konteksty', 'kontekstów'],
   watek: ['wątek', 'wątki', 'wątków'],
+  postac: ['postać', 'postacie', 'postaci'],
+  sekta: ['sekta', 'sekty', 'sekt'],
+  kraina: ['kraina', 'krainy', 'krain'],
+  miejsce: ['miejsce', 'miejsca', 'miejsc'],
+  kontekst: ['kontekst', 'konteksty', 'kontekstów'],
+  pojecie: ['hasło', 'hasła', 'haseł'],
   relacja: ['relacja', 'relacje', 'relacji'],
 };
 
+/** Kolejność działów = kolejność opowieści (ADR 0013). */
 export const KOLEJNOSC_TYPOW = [
-  'rozdzial', 'zadanie', 'scena', 'postac', 'miejsce', 'pojecie', 'kontekst', 'watek', 'relacja',
+  'rozdzial', 'epizod', 'scena', 'watek',
+  'postac', 'sekta', 'kraina', 'miejsce',
+  'kontekst', 'pojecie', 'relacja',
 ];
 
 /** Odmiana rzeczownika: 1 scena / 2 sceny / 5 scen. */
@@ -46,13 +51,13 @@ export function nazwaTypuWMnogiej(n, typ) {
 }
 
 const MENU = [
-  { trasa: 'sceny', etykieta: 'Sceny' },
+  { trasa: 'chronologia', etykieta: 'Chronologia' },
   { trasa: 'rozdzialy', etykieta: 'Rozdziały' },
-  { trasa: 'postacie', etykieta: 'Postacie' },
-  { trasa: 'miejsca', etykieta: 'Miejsca' },
   { trasa: 'watki', etykieta: 'Wątki' },
+  { trasa: 'postacie', etykieta: 'Postacie' },
+  { trasa: 'krainy', etykieta: 'Krainy' },
+  { trasa: 'sekty', etykieta: 'Sekty' },
   { trasa: 'konteksty', etykieta: 'Konteksty' },
-  { trasa: 'hipotezy', etykieta: 'Hipotezy' },
 ];
 
 export function rama(aktywna, tytul, html, opcje = {}) {
@@ -67,11 +72,11 @@ export function rama(aktywna, tytul, html, opcje = {}) {
   <div class="naglowek-wnetrze">
     <a class="logo" href="#/">
       <span class="logo-wwm">Where Winds Meet</span>
-      <span class="logo-db">baza fabuły</span>
+      <span class="logo-db">kronika jianghu</span>
     </a>
-    <nav class="nawigacja" aria-label="Działy bazy">${nawigacja}</nav>
+    <nav class="nawigacja" aria-label="Działy opowieści">${nawigacja}</nav>
     <form class="szukaj" role="search" onsubmit="return szukajZeStrony(this)">
-      <input type="search" name="q" placeholder="Szukaj" aria-label="Szukaj w bazie"
+      <input type="search" name="q" placeholder="Szukaj" aria-label="Szukaj w opowieści"
              value="${escapeHtml(opcje.szukaj ?? '')}" autocomplete="off">
     </form>
   </div>
@@ -95,20 +100,20 @@ ${html}
  */
 export function legendaPoziomow() {
   const pozycje = [
-    ['skrypt', 'zapis rozgrywki', 'dosłowne słowa z gry'],
-    ['streszczenie', 'streszczenie', 'co gra mówi, opowiedziane własnymi słowami'],
-    ['menu', 'interfejs gry', 'opisy z ekranów gry: dziennik, karty postaci'],
+    ['skrypt', 'słowa opowieści', 'dialogi i narracja w dosłownym brzmieniu'],
+    ['streszczenie', 'streszczenie', 'co się wydarzyło, opowiedziane własnymi słowami'],
+    ['menu', 'kronika i księgi', 'opisy świata spisane w grze: encyklopedia, dziennik, karty postaci'],
     ['zrodlo', 'sprawdzone źródło', 'potwierdzone w źródle zewnętrznym'],
-    ['wiedza', 'wiedza o kulturze', 'kontekst bez potwierdzenia w źródle'],
-    ['hipoteza', 'hipoteza', 'wniosek autora bazy, z oszacowaną pewnością'],
-    ['struktura', 'spis powiązań', 'tabela albo lista relacji, nie proza'],
+    ['wiedza', 'kontekst kulturowy', 'tło z kultury Chin i wuxia, bez potwierdzenia w źródle'],
+    ['hipoteza', 'interpretacja', 'odczytanie opowieści z oszacowaną pewnością'],
+    ['struktura', 'powiązania', 'kto, gdzie i kiedy — wyliczenie, nie opowieść'],
   ];
   return `<div class="legenda">
   <p class="legenda-tytul">Kolory mówią, czym jest fragment — nie, jak bardzo jest pewny</p>
   <ul class="legenda-lista">
     ${pozycje.map(([id, nazwa, opis]) => `<li><span class="legenda-probka poziom-${id}" aria-hidden="true"></span><strong>${nazwa}</strong> — ${opis}</li>`).join('')}
   </ul>
-  <p class="legenda-pewnosc">Pewność hipotezy: ${PROGI_PEWNOSCI.map((p) => `${p.od}–${p.od === 80 ? 100 : p.od === 50 ? 79 : 49}% ${p.etykieta}`).join(' · ')}</p>
+  <p class="legenda-pewnosc">Pewność interpretacji: ${PROGI_PEWNOSCI.map((p) => `${p.od}–${p.od === 80 ? 100 : p.od === 50 ? 79 : 49}% ${p.etykieta}`).join(' · ')}</p>
 </div>`;
 }
 

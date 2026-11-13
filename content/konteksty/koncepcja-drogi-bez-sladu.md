@@ -19,7 +19,7 @@ drogami, po skałach i dachach, właśnie dlatego, że nikt tam ich nie oczekuje
 
 {{hipoteza pewnosc=35
 
-## Związek z grą
+## W opowieści
 
 Zdanie „tam, gdzie nie ma śladów” jest w tej konwencji nie wskazówką
 geograficzną, a warunkiem: wędrowiec ma przestać być przewidywalny.

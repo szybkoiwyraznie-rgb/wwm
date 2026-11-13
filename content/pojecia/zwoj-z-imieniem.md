@@ -4,6 +4,7 @@ slug: zwoj-z-imieniem
 tytul: "Zwój z imieniem"
 rodzaj: przedmiot
 postacie: [mlody-wedrowiec]
+krainy: [qinghe]
 miejsca: [klasztor-echa]
 konteksty: [xiake]
 tagi: [zaslepka, qinghe]

@@ -182,7 +182,7 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 
 /* ── Listy ─────────────────────────────────────────────────────── */
 
-.lista-scen-krotka, .lista-hipotez-krotka, .lista-scen-chronologia, .lista-scen-zadania, .lista-wystapien, .lista-rozdzialow, .lista-rozdzialow-rozwinieta, .lista-zadan, .lista-hipotez, .lista-dziennika, .lista-wynikow { list-style: none; padding: 0; margin: 0; }
+.lista-scen-krotka, .lista-hipotez-krotka, .lista-scen-chronologia, .lista-scen-epizodu, .lista-wystapien, .lista-rozdzialow, .lista-rozdzialow-rozwinieta, .lista-epizodow, .lista-hipotez, .lista-dziennika, .lista-wynikow { list-style: none; padding: 0; margin: 0; }
 
 .wiersz-sceny {
   display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: baseline;
@@ -227,11 +227,11 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 .rozdzial-karta:last-child { border-bottom: 0; }
 .rozdzial-tytul { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; }
 
-.zadanie-wiersz { padding: 14px 0; border-bottom: 1px solid var(--ramka); }
-.zadanie-wiersz:last-child { border-bottom: 0; }
-.zadanie-tytul { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; }
-.zadanie-sceny { color: var(--tusz-3); font-size: .82rem; margin-left: 10px; }
-.zadanie-streszczenie { margin: .3em 0 0; color: var(--tusz-2); font-size: .92rem; }
+.epizod-wiersz { padding: 14px 0; border-bottom: 1px solid var(--ramka); }
+.epizod-wiersz:last-child { border-bottom: 0; }
+.epizod-tytul { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; }
+.epizod-sceny { color: var(--tusz-3); font-size: .82rem; margin-left: 10px; }
+.epizod-streszczenie { margin: .3em 0 0; color: var(--tusz-2); font-size: .92rem; }
 
 /* ── Scena: dwie kolumny ───────────────────────────────────────── */
 
@@ -255,6 +255,7 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 .chip:hover { text-decoration: none; border-color: var(--akcent); color: var(--tusz); }
 .chip-typ { font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tusz-3); }
 .chip-hipoteza { background: var(--poz-hipoteza); border-color: var(--poz-hipoteza-ramka); }
+.chip-mala { padding: 2px 8px; font-size: .76rem; }
 
 .boks { background: var(--panel); border: 1px solid var(--ramka); border-radius: 12px; padding: 20px 22px; margin: 0 0 18px; box-shadow: var(--cien); }
 .boks > h2:first-child { margin-top: 0; }
@@ -377,15 +378,33 @@ th { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color:
 
 /* ── Mapa postępu ──────────────────────────────────────────────── */
 
-.mapa-legenda { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; color: var(--tusz-3); font-size: .82rem; margin: 0 0 26px; }
-.mapa-rozdzial { margin: 0 0 30px; }
-.mapa-rozdzial > h2 { display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--ramka); padding-bottom: .4em; }
-.mapa-zadanie { display: grid; grid-template-columns: minmax(0, 240px) 1fr; gap: 6px 16px; align-items: center; padding: 7px 0; }
-.mapa-zadanie-tytul { font-size: .9rem; color: var(--tusz-2); }
-.mapa-sceny { display: flex; flex-wrap: wrap; gap: 3px; }
-.mapa-scena { width: 13px; height: 13px; border-radius: 3px; background: color-mix(in srgb, var(--akcent-2) 55%, transparent); display: inline-block; }
-.mapa-scena-granica { background: var(--akcent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--akcent) 30%, transparent); }
-.mapa-scena-pusta { width: 13px; height: 13px; border-radius: 3px; border: 1px dashed var(--ramka-2); display: inline-block; }
+/* ── Chronologia: opowieść w kolejności zdarzeń (ADR 0013) ────────── */
+
+.chrono-granica { margin: 0 0 30px; padding: 12px 16px; border-left: 3px solid var(--akcent);
+  background: color-mix(in srgb, var(--akcent) 6%, transparent); color: var(--tusz-2); font-size: .93rem; }
+
+.chrono-rozdzial { margin: 0 0 44px; }
+.chrono-rozdzial-tytul { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  margin: 0 0 6px; padding-bottom: .45em; border-bottom: 1px solid var(--ramka); font-size: 1.25rem; }
+.chrono-epizod { margin: 22px 0 0 4px; padding-left: 18px; border-left: 1px solid var(--ramka); }
+.chrono-epizod-tytul { margin: 0; font-size: 1rem; font-family: var(--sans); letter-spacing: .01em; }
+.chrono-epizod-opis { margin: .3em 0 0; color: var(--tusz-3); font-size: .88rem; max-width: 68ch; }
+
+.chrono-lista { list-style: none; margin: 14px 0 0; padding: 0; }
+.chrono-scena { position: relative; display: grid; grid-template-columns: 14px 1fr; gap: 0 14px; padding: 0 0 20px; }
+.chrono-scena:last-child { padding-bottom: 4px; }
+.chrono-znacznik { width: 11px; height: 11px; margin-top: 6px; border-radius: 50%;
+  background: var(--panel); border: 2px solid color-mix(in srgb, var(--akcent-2) 70%, var(--ramka-2)); }
+.chrono-scena::before { content: ""; position: absolute; left: 5px; top: 17px; bottom: 0; width: 1px;
+  background: var(--ramka); }
+.chrono-scena:last-child::before { display: none; }
+.chrono-tytul { font-size: 1rem; }
+.chrono-meta { display: block; color: var(--tusz-3); font-size: .78rem; letter-spacing: .02em; }
+.chrono-streszczenie { margin: .35em 0 0; color: var(--tusz-2); font-size: .92rem; max-width: 70ch; }
+.chrono-hipotezy { margin: .45em 0 0; font-size: .82rem; color: var(--tusz-2); }
+.chrono-tagi { margin: .45em 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tytul-oboczny { color: var(--tusz-3); font-size: .88rem; font-style: italic; }
 
 /* ── Dziennik, wyszukiwanie ────────────────────────────────────── */
 
@@ -425,7 +444,7 @@ th { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color:
 @media (max-width: 980px) {
   .uklad-sceny { grid-template-columns: 1fr; }
   .kontekst { position: static; }
-  .mapa-zadanie { grid-template-columns: 1fr; }
+  .chrono-scena { grid-template-columns: 12px 1fr; gap: 0 10px; }
 }
 
 @media (max-width: 620px) {

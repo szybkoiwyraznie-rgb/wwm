@@ -9,7 +9,7 @@ ten sam — nie ma dwóch prawd o tym, jak baza rośnie.
 | Co | Gdzie |
 |---|---|
 | Surowy zapis sesji gry | `rozgrywka/zapisy/<RRRR-MM-DD>-<nr>.md` |
-| Informacja, które zadanie/scena to są | w wiadomości właściciela lub w notatce nad sceną |
+| Informacja, który epizod i scena to są | w przekazanym zapisie lub w notatce nad sceną |
 | Granica rozegranej fabuły | `rozgrywka/postep.json` |
 
 Zapisu się nie poprawia. Archiwum jest dowodem, na którym opiera się weryfikacja
@@ -36,7 +36,7 @@ Podział wynika z gry, nie z wygody pisania:
   przejście przez miejsce), zamknięta w spójnym momencie,
 - minimum **2 elementy treści** (kwestie/narracje); pojedyncze zdanie dołącz do sąsiedniej
   sceny (ADR 0008),
-- `numer_sceny` to numer z zadania (`"1-1"`, `"2-3"`), a `kolejnosc` — globalna liczba
+- `numer_sceny` to numer w obrębie epizodu (`"1-1"`, `"2-3"`), a `kolejnosc` — globalna liczba
   w całej bazie, **ciągła od 1**, bez dziur i duplikatów,
 - granica między scenami nie może przecinać jednej wymiany zdań.
 
@@ -45,7 +45,7 @@ potem pisz wpisy.
 
 ## Krok 3 — wpis sceny (`content/sceny/<slug>.md`)
 
-1. Frontmatter wg `SCHEMAT_DANYCH.md` §3 — `zadanie`, `numer_sceny`, `kolejnosc`,
+1. Frontmatter wg `SCHEMAT_DANYCH.md` §3 — `epizod`, `numer_sceny`, `kolejnosc`,
    `streszczenie`, `zapis`, listy `postacie`/`miejsca`/`watki`/`konteksty`.
 2. `{{skrypt` + `## Treść sceny` + blok `:::zapis` — **dosłowny** fragment archiwum.
    Każdy blok `:::zapis` jest osobnym cytatem; wklejaj bez przeredagowania, bez skracania
@@ -57,26 +57,34 @@ potem pisz wpisy.
 5. `## Nawiązania kulturowe` — gdy scena wnosi motyw z literatury, filmu lub sztuk walki.
 6. `## Wątki w scenie` — co dany wątek zyskuje w tej scenie.
 
-## Krok 4 — zadanie i rozdział
+## Krok 4 — epizod i rozdział
 
-- Nowe zadanie: `content/zadania/<slug>.md` z `rozdzial`, `kolejnosc` (ciągła w rozdziale),
+- Nowy epizod: `content/epizody/<slug>.md` z `rozdzial`, `kolejnosc` (ciągła w rozdziale),
   `rodzaj`, `status`, `sceny` i `## Streszczenie`.
-- Rozdział: `content/rozdzialy/<slug>.md` z `numer`, `region`, `zadania`, `status`,
-  `## Streszczenie`; `nastepny` tylko gdy następny rozdział istnieje jako strona.
-- Numeracja zadań i rozdziałów musi być ciągła — build to sprawdza.
+- Rozdział: `content/rozdzialy/<slug>.md` z `numer`, `tytul_oboczny` (tytuł poematu
+  w oryginale i po polsku), `epizody`, `watki`, `krainy`, `sekty`, `status`, `## Streszczenie`;
+  `nastepny` tylko gdy następny rozdział istnieje jako strona.
+- Numeracja epizodów i rozdziałów musi być ciągła — build to sprawdza.
+- **Epizod, nie zadanie.** Jednostką opowieści jest wydarzenie, nie wpis w dzienniku zadań
+  (ADR 0013). Jeśli zapis obejmuje kilka zadań składających się na jedno wydarzenie — to jest
+  jeden epizod.
 
 ## Krok 5 — encje
 
-Dla każdej postaci, miejsca, hasła i kontekstu, który pojawia się **wprost** w scenie:
+Dla każdej postaci, sekty, krainy, miejsca, hasła i kontekstu, który pojawia się **wprost**
+w scenie:
 
-- **istnieje** → dopisz scenę do jej pól (`sceny` u wątku, `postacie`, `miejsca`) i uzupełnij
-  treść, jeśli zapis wniósł nową informację; nie zmieniaj sluga,
+- **istnieje** → dopisz scenę do jej pól (`sceny` u wątku, `postacie`, `miejsca`, `sekty`,
+  `krainy`) i uzupełnij treść, jeśli zapis wniósł nową informację; nie zmieniaj sluga,
 - **nie istnieje i jest potrzebna** → nowy plik w odpowiednim katalogu, `## Opis`,
-  `pierwsze_wystapienie` (postać) lub `rozdzial` (miejsce),
-- **nie istnieje i nie jest potrzebna** → nie zakładaj wpisu. Martwy wpis bez treści
-  obciąża bazę i niczego nie tłumaczy.
+  `pierwsze_wystapienie` (postać), `kraina` (miejsce), `siedziba` (sekta),
+- **nie istnieje i nie jest potrzebna** → nie zakładaj strony. Pusta strona niczego nie
+  tłumaczy.
 
-Nie zakładaj encji na podstawie domysłu z innych stron ani z wiedzy o grze.
+Kraina i sekta pojawiają się tylko wtedy, gdy opowieść je nazywa. Nie zgadujemy przynależności
+postaci z wiedzy o grze — dopóki scena tego nie mówi, pole zostaje puste.
+
+Nie zakładaj strony na podstawie domysłu z innych stron ani z wiedzy o grze.
 
 ## Krok 6 — relacje i wątki
 
@@ -99,12 +107,15 @@ Na górze `content/co-nowego.md` nowy wpis:
 ```
 
 Czas publikacji w strefie `Europe/Warsaw`, format `RRRR-MM-DD GG:MM`. Do dziennika trafia
-**nowe pokrycie** fabuły; poprawki istniejących wpisów idą do `interpretacje:`.
+**nowe pokrycie** historii; poprawki istniejących stron idą do `interpretacje:`.
+
+Wpis mówi o opowieści, nie o pracy: „Scena 1-3 — pierwsze spotkanie z odźwiernym klasztoru;
+wątek pochodzenia zyskuje drugi trop”, a nie „dodano wpis i zaktualizowano tagi” (ADR 0014).
 
 ## Krok 8 — bramki jakości
 
 ```bash
-npm test          # integralność bazy i dokumentacji
+npm test          # integralność kroniki, języka i dokumentacji
 npm run build     # dist/index.html
 npm run zapis     # dosłowność scen + pokrycie archiwum
 ```

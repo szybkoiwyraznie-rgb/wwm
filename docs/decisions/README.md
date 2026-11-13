@@ -25,18 +25,21 @@ częścią wartości tego repozytorium.
 | [0005](0005-hipotezy-z-pewnoscia.md) | Hipotezy z prawdopodobieństwem | przyjęta |
 | [0006](0006-historia-interpretacji.md) | Historia interpretacji zamiast cichej poprawki | przyjęta |
 | [0007](0007-granica-fabuly.md) | Twarda granica rozegranej fabuły | przyjęta |
-| [0008](0008-scena-jednostka.md) | Scena jest jednostką śledzenia fabuły | przyjęta |
+| [0008](0008-scena-jednostka.md) | Scena jest jednostką śledzenia fabuły | przyjęta, rama zmieniona przez 0013 |
 | [0009](0009-relacje-jako-graf.md) | Relacje w grafie dwukierunkowo | przyjęta |
 | [0010](0010-konteksty-kulturowe.md) | Konteksty kulturowe jako osobna warstwa | przyjęta |
 | [0011](0011-dziennik-i-o-bazie.md) | Dziennik nowego pokrycia i strona „O bazie” | przyjęta |
 | [0012](0012-sesja-galaz-pr.md) | Jedna sesja, jedna gałąź, jeden PR | przyjęta |
+| [0013](0013-opowiesc-przed-mechanika.md) | Opowieść przed mechaniką: nowy zestaw typów stron | przyjęta |
+| [0014](0014-kronika-nie-mowi-o-sobie.md) | Kronika mówi o świecie, nie o sobie | przyjęta |
 
 ## Kiedy powstaje nowy ADR
 
 - zmiana schematu danych albo zamkniętej listy wartości,
 - nowy typ strony, nowy poziom wiarygodności, nowa trasa,
 - zmiana modelu publikacji (artefakt, hosting, workflow),
-- decyzja o granicach projektu (co w bazie jest, a czego nie ma),
+- decyzja o granicach projektu (co w kronice jest, a czego nie ma),
+- decyzja o języku widocznej treści i jego bramie testowej,
 - odejście od zasady „zero zależności”.
 
 Drobna poprawka treści, literówka w dokumencie albo nowa scena nie wymagają ADR-a.

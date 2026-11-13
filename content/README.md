@@ -1,25 +1,27 @@
-# Zawartość bazy
+# Zawartość kroniki
 
-Ten katalog to **baza wiedzy o fabule**. Jeden plik markdown = jedna strona witryny.
-Nie ma tu kodu ani konfiguracji — tylko opisy świata gry i relacje między nimi.
+Ten katalog to **opowieść i świat**. Jeden plik markdown = jedna strona kroniki.
+Nie ma tu kodu ani konfiguracji — tylko ludzie, miejsca, wydarzenia i związki między nimi.
 
 ## Katalogi
 
 | Katalog | Typ strony | Co zawiera |
 |---|---|---|
-| `rozdzialy/` | `rozdzial` | rozdział gry: region, rama fabularna, lista zadań |
-| `zadania/` | `zadanie` | zadanie główne lub poboczne, grupa scen |
-| `sceny/` | `scena` | **jednostka śledzenia fabuły** — dosłowny zapis z archiwum i analiza |
-| `postacie/` | `postac` | osoby występujące w rozegranym materiale |
-| `miejsca/` | `miejsce` | krainy, miasta, obiekty |
-| `pojecia/` | `pojecie` | hasła świata: organizacje, techniki, przedmioty, wydarzenia |
-| `konteksty/` | `kontekst` | nawiązania kulturowe: literatura, film, motywy wuxia |
-| `watki/` | `watek` | nici fabularne biegnące przez sceny |
+| `rozdzialy/` | `rozdzial` | rozdział opowieści: tytuł z poematu, rama epizodów |
+| `epizody/` | `epizod` | epizod: kilka scen tworzących jedno wydarzenie |
+| `sceny/` | `scena` | **jednostka opowieści** — dosłowne słowa i analiza |
+| `watki/` | `watek` | nici fabularne biegnące przez sceny i rozdziały |
+| `postacie/` | `postac` | osoby występujące w opowieści |
+| `sekty/` | `sekta` | szkoły walki, klany, bractwa, gildie |
+| `krainy/` | `kraina` | prowincje, regiony i miasta |
+| `miejsca/` | `miejsce` | konkretne miejsca: świątynie, gospody, przełęcze |
+| `konteksty/` | `kontekst` | nawiązania kulturowe: literatura, film, obyczaje wuxia |
+| `pojecia/` | `pojecie` | hasła świata: przedmioty, obyczaje, wydarzenia |
 | `relacje/` | `relacja` | związki między postaciami |
 
 Poza katalogami typów leżą dwa pliki:
 
-- `co-nowego.md` — dziennik nowego pokrycia fabuły (wpisy `## RRRR-MM-DD GG:MM`,
+- `co-nowego.md` — dziennik nowych rozdziałów i scen (wpisy `## RRRR-MM-DD GG:MM`,
   najnowszy na górze),
 - `README.md` — ten plik (nie jest stroną bazy i nie trafia do artefaktu).
 
@@ -31,8 +33,8 @@ Poza katalogami typów leżą dwa pliki:
 3. **Nieznane pole frontmattera to błąd.** Literówka nie może po cichu wypaść z grafu.
 4. **Każdy slug-relacja musi istnieć.** Martwy odsyłacz (w polu lub wikilinku `[[…]]`)
    zatrzymuje build.
-5. **Granica fabuły jest twarda.** Strona może opisywać tylko to, co zostało rozegrane —
-   pilnuje tego `rozgrywka/postep.json` (ADR 0007).
+5. **Granica opowieści jest twarda.** Strona może opisywać tylko to, co zostało już
+   opowiedziane — pilnuje tego `rozgrywka/postep.json` (ADR 0007).
 6. **Poziomy wiarygodności zamiast jednolitej narracji:** `{{skrypt`, `{{streszczenie`,
    `{{menu`, `{{zrodlo`, `{{wiedza`, `{{hipoteza pewnosc=NN`, `{{struktura`.
 7. **Hipoteza wymaga pewności** (0–100). Zmiana twierdzenia wymaga wpisu w `interpretacje:`.

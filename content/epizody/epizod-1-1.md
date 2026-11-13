@@ -1,15 +1,17 @@
 ---
-typ: zadanie
-slug: zadanie-1-1
+typ: epizod
+slug: epizod-1-1
 tytul: "Deszcz nad przystanią"
 rozdzial: rozdzial-1
 kolejnosc: 1
-rodzaj: glowne
+rodzaj: glowny
 status: rozegrane
 sceny: [zaslepka-sc01]
 postacie: [mlody-wedrowiec, nieznajomy, starzec-z-przystani]
+krainy: [qinghe]
 miejsca: [przystan-mgly]
 watki: [watek-pochodzenia]
+konteksty: [koncepcja-drogi-bez-sladu]
 tagi: [zaslepka]
 utworzono: 2026-11-13
 ---
@@ -26,10 +28,10 @@ tłumaczy, że tacy ludzie imion nie mają.
 
 {{hipoteza pewnosc=45
 
-## Hipoteza
+## Rola ostrzeżenia
 
-Nieznajomy wie o wędrowcu więcej, niż mówi, i celowo kieruje go w miejsce,
-w którym czeka zwój. Pewność średnia, bo tekst nie daje dowodu na powiązanie
-obu scen poza kolejnością i wspólnym pośrednikiem, jakim jest starzec.
+Obcy nie mówi, czego trzeba szukać zamiast drogi — wskazuje kierunek, który sam
+nazwał „tam, gdzie nie ma śladów”. Możliwe, że to nie rada, a próba: sprawdzenie,
+czy wędrowiec pojmie ją bez dalszych słów.
 
 }}

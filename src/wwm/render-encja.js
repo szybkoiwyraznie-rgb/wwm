@@ -1,5 +1,5 @@
 /**
- * Strona encji: postać, miejsce, hasło, kontekst kulturowy, wątek, relacja.
+ * Strona encji: postać, sekta, kraina, miejsce, hasło, kontekst kulturowy, wątek, relacja.
  *
  * Jedna strona = jedno pojęcie. Pod treścią stoi boks „Powiązania” budowany
  * z obu stron grafu (pole-relacje + wikilinki + backlinki), więc odsyłacz
@@ -23,7 +23,7 @@ const ETYKIETY_POL = {
   autor: 'Autor',
   rok: 'Rok',
   dzielo: 'Dzieło',
-  pseudonim: 'Pseudonim w grze',
+  pseudonim: 'Pseudonim',
 };
 
 const LISTA = 'content-encje';
@@ -31,7 +31,7 @@ const LIMIT_POWIAZAN = 50;
 
 function boksyEncji(strona) {
   const boksy = strona.boksy ?? [];
-  if (boksy.length === 0) return '<p class="pusto">Wpis nie ma jeszcze treści.</p>';
+  if (boksy.length === 0) return '<p class="pusto">Ta strona nie ma jeszcze opisu.</p>';
   return boksy.map((b) => `<section class="boks">
     ${b.tytul ? `<h2>${escapeHtml(b.tytul)}</h2>` : ''}
     ${b.html}
@@ -45,6 +45,18 @@ function metryka(strona) {
     const wartosc = strona[pole];
     if (wartosc === undefined || wartosc === null || wartosc === '') continue;
     pary.push([etykieta, Array.isArray(wartosc) ? wartosc.join(', ') : String(wartosc)]);
+  }
+  if (strona.kraina) {
+    const k = dane.strony[strona.kraina];
+    if (k) pary.push(['Kraina', `<a href="${hrefDlaSlug(k.slug, 'kraina')}">${escapeHtml(k.tytul)}</a>`]);
+  }
+  if (strona.sekta) {
+    const s = dane.strony[strona.sekta];
+    if (s) pary.push(['Sekta', `<a href="${hrefDlaSlug(s.slug, 'sekta')}">${escapeHtml(s.tytul)}</a>`]);
+  }
+  if (strona.siedziba) {
+    const s = dane.strony[strona.siedziba];
+    if (s) pary.push(['Siedziba', `<a href="${hrefDlaSlug(s.slug, 'miejsce')}">${escapeHtml(s.tytul)}</a>`]);
   }
   if (strona.rozdzial && strona.typ !== 'rozdzial') {
     const r = dane.strony[strona.rozdzial];
@@ -75,7 +87,7 @@ function powiazania(strona) {
 
   // Relacja pokazuje obie strony, także gdy pole wypełniono tylko po jednej.
   for (const [slug, cel] of Object.entries(dane.strony)) {
-    const pola = ['postacie', 'miejsca', 'watki', 'konteksty', 'relacje', 'sceny', 'zadania'];
+    const pola = ['postacie', 'krainy', 'sekty', 'miejsca', 'watki', 'konteksty', 'relacje', 'sceny', 'epizody'];
     for (const pole of pola) {
       const wartosc = cel[pole];
       if (Array.isArray(wartosc) && wartosc.includes(strona.slug)) dodaj(slug, 'powiązanie zwrotne');
@@ -85,10 +97,11 @@ function powiazania(strona) {
 
   if (grupy.size === 0) return '';
 
-  const KOLEDY = ['rozdzial', 'zadanie', 'scena', 'postac', 'miejsce', 'pojecie', 'kontekst', 'watek', 'relacja'];
+  const KOLEDY = ['rozdzial', 'epizod', 'scena', 'watek', 'postac', 'sekta', 'kraina', 'miejsce', 'kontekst', 'pojecie', 'relacja'];
   const NAZWY = {
-    rozdzial: 'Rozdziały', zadanie: 'Zadania', scena: 'Sceny', postac: 'Postacie',
-    miejsce: 'Miejsca', pojecie: 'Hasła', kontekst: 'Konteksty', watek: 'Wątki', relacja: 'Relacje',
+    rozdzial: 'Rozdziały', epizod: 'Epizody', scena: 'Sceny', watek: 'Wątki',
+    postac: 'Postacie', sekta: 'Sekty', kraina: 'Krainy', miejsce: 'Miejsca',
+    kontekst: 'Konteksty', pojecie: 'Hasła', relacja: 'Relacje',
   };
 
   const bloki = [...grupy.entries()]
@@ -125,28 +138,27 @@ function wystapienia(strona) {
   const dane = dajDane();
   const sceny = listaStron('scena').filter((s) => (s.postacie ?? []).includes(strona.slug)
     || (s.miejsca ?? []).includes(strona.slug)
+    || (s.krainy ?? []).includes(strona.slug)
+    || (s.sekty ?? []).includes(strona.slug)
     || (s.konteksty ?? []).includes(strona.slug));
   if (sceny.length === 0) return '';
   const posortowane = sceny.sort((a, b) => (a.kolejnosc ?? 0) - (b.kolejnosc ?? 0));
   return `<section class="boks boks-wystapienia">
-    <h2>W scenach</h2>
+    <h2>W opowieści</h2>
     <ol class="lista-wystapien">
       ${posortowane.map((s) => `<li><a href="${hrefDlaSlug(s.slug, 'scena')}">${escapeHtml(s.tytul)}</a>
-        <span class="meta">#${s.kolejnosc}</span></li>`).join('')}
+        <span class="meta">${s.numer_sceny ? escapeHtml(String(s.numer_sceny)) : ''}</span></li>`).join('')}
     </ol>
   </section>`;
 }
 
 export function renderEncja(slug) {
   const strona = dajStrone(slug);
-  if (!strona || ['scena', 'zadanie', 'rozdzial'].includes(strona.typ)) {
+  if (!strona || ['scena', 'epizod', 'rozdzial'].includes(strona.typ)) {
     return stanPusty('Nie ma takiej strony.', '<a href="#/">Strona główna</a>');
   }
 
-  const sciezka = okruszki([
-    { etykieta: 'Baza', href: '#/' },
-    { etykieta: strona.tytul },
-  ]);
+  const sciezka = okruszki([{ etykieta: strona.tytul }]);
 
   const naglowek = naglowekStrony({
     tytul: strona.tytul,
@@ -154,7 +166,6 @@ export function renderEncja(slug) {
     meta: [
       strona.tytul_ja ? escapeHtml(strona.tytul_ja) : '',
       strona.tytul_en ? escapeHtml(strona.tytul_en) : '',
-      strona.czas?.zaktualizowano ? `ostatnia zmiana: ${escapeHtml(strona.czas.zaktualizowano)}` : '',
     ].filter(Boolean).join(' · '),
     sciezka,
   });
@@ -162,7 +173,7 @@ export function renderEncja(slug) {
   const hipotezy = Array.isArray(strona.hipotezy) ? strona.hipotezy : [];
   const blokHipotez = hipotezy.length > 0
     ? `<section class="boks boks-hipotezy">
-        <h2>Hipotezy</h2>
+        <h2>Interpretacje</h2>
         <ul class="lista-hipotez-krotka">${hipotezy.map((h) => `<li>
           <a href="#${escapeHtml(h.kotwica)}">${escapeHtml(h.sekcja)}</a> ${badgePewnosci(h.pewnosc)}
         </li>`).join('')}</ul>

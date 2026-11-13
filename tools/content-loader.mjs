@@ -15,13 +15,15 @@ import { parseFrontmatter } from '../src/wwm/frontmatter.js';
 /** Katalogi treści → typ strony (ADR 0003). */
 export const KATALOGI = [
   { katalog: 'content/rozdzialy', typ: 'rozdzial' },
-  { katalog: 'content/zadania', typ: 'zadanie' },
+  { katalog: 'content/epizody', typ: 'epizod' },
   { katalog: 'content/sceny', typ: 'scena' },
-  { katalog: 'content/postacie', typ: 'postac' },
-  { katalog: 'content/miejsca', typ: 'miejsce' },
-  { katalog: 'content/pojecia', typ: 'pojecie' },
-  { katalog: 'content/konteksty', typ: 'kontekst' },
   { katalog: 'content/watki', typ: 'watek' },
+  { katalog: 'content/postacie', typ: 'postac' },
+  { katalog: 'content/sekty', typ: 'sekta' },
+  { katalog: 'content/krainy', typ: 'kraina' },
+  { katalog: 'content/miejsca', typ: 'miejsce' },
+  { katalog: 'content/konteksty', typ: 'kontekst' },
+  { katalog: 'content/pojecia', typ: 'pojecie' },
   { katalog: 'content/relacje', typ: 'relacja' },
 ];
 

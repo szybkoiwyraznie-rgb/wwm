@@ -7,27 +7,33 @@
 
 ## 1. Czym jest ten projekt
 
-**Dziennik rozgrywki** w grę *Where Winds Meet*, prowadzony równolegle z graniem, w formie
-wiki o świecie gry. Baza rośnie w tempie przechodzenia scen: jedna dostawa zapisu = kilka
-nowych wpisów.
+**Kronika opowieści** z gry *Where Winds Meet*, prowadzona równolegle z graniem: historia
+wędrowca w świecie jianghu, rozdział po rozdziale i scena po scenie. Kronika rośnie w tempie
+przechodzenia historii: jeden przekazany zapis = kilka nowych scen.
 
 Czym to **nie jest**:
 
 - nie jest encyklopedią całej gry ani serwisem fanowskim — opisujemy **tylko to, co zostało
-  rozegrane**,
+  już opowiedziane**,
+- **nie mówi o sobie** — widoczna treść opowiada świat i wydarzenia, nigdy proces ich
+  powstawania (ADR 0014),
 - nie jest poradnikiem, listą buildów ani bazą przedmiotów — interesuje nas fabuła, świat
   i kultura, z której gra czerpie,
 - nie jest projektem tłumaczeniowym — repozytorium `wherewindsmeet` prowadzi osobną sprawę
   polskiej wersji językowej i nie dostarcza tu materiału.
 
-Trzy zdania wyznaczające wszystkie decyzje: **właściciel gra i wrzuca zapis scen. Agent
-buduje z niego bazę. Witryna istnieje po to, żeby czytać fabułę i widzieć, skąd wiadomo to,
-co jest napisane.**
+Trzy zdania wyznaczające wszystkie decyzje: **właściciel gra i przekazuje zapis scen. Agent
+zamienia go w opowieść. Witryna istnieje po to, żeby czytać historię i widzieć, skąd wiadomo
+to, co jest w niej napisane.**
+
+Typy stron opisują **opowieść, nie interfejs gry** (ADR 0013): rozdział, epizod, scena, wątek,
+postać, sekta, kraina, miejsce, kontekst, pojęcie, relacja. Nie ma strony „zadanie” ani „mapa
+postępu” — zadanie jest mechaniką gry, a mapa jest o graniu, nie o historii.
 
 ## 2. Pętla sceny (po dostawie nowego zapisu)
 
 Materiał wejściowy: fragment zapisu rozgrywki w `rozgrywka/zapisy/<plik>.md` plus informacja,
-które zadanie i scena to są. Wynik pracy:
+który epizod i scena to są. Wynik pracy:
 
 1. **Aktualizacja granicy fabuły.** `rozgrywka/postep.json` → `ostatnia_scena` wskazuje
    ostatnią scenę, którą właściciel rozegrał. **Ta zmiana idzie pierwsza**, bo dopiero ona
@@ -35,10 +41,10 @@ które zadanie i scena to są. Wynik pracy:
 2. **Wpis sceny** `content/sceny/<slug>.md` — dosłowny blok `:::zapis` z tekstem z archiwum,
    streszczenie, analiza z podsekcjami i jawnym mapowaniem `sekcje_analizy`. Strona sceny
    jest najważniejsza: z niej wynikają wszystkie odsyłacze.
-3. **Wpis zadania i rozdziału.** Nowe zadanie dostaje `kolejnosc` w rozdziale; rozdział —
-   numer i listę zadań. Numeracja musi być ciągła (build to sprawdza).
-4. **Encje** — dla każdej postaci, miejsca, hasła i kontekstu kulturowego, który pojawia się
-   w scenie **wprost**. Nowe encje powstają tylko z dostawy, nie z domysłu po treści innej
+3. **Wpis epizodu i rozdziału.** Nowy epizod dostaje `kolejnosc` w rozdziale; rozdział —
+   numer, tytuł oboczny z poematu i listę epizodów. Numeracja musi być ciągła (build to sprawdza).
+4. **Encje** — dla każdej postaci, sekty, krainy, miejsca, hasła i kontekstu kulturowego,
+   który pojawia się w scenie **wprost**. Nowe encje powstają tylko z dostawy, nie z domysłu po treści innej
    encji. Encja istniejąca **nie jest duplikowana**: dopisujesz jej nowe wystąpienie w polu
    `sceny`/`postacie` i uzupełniasz treść, jeśli zapis wniósł coś nowego.
 5. **Relacje** — pola frontmattera (`postacie`, `miejsca`, `watki`, `konteksty`) plus
@@ -46,9 +52,10 @@ które zadanie i scena to są. Wynik pracy:
 6. **Analiza i kontekst** — co pochodzi z kultury chińskiej lub konwencji wuxia, a co jest
    autorskie gry. Rozdzielaj `zrodlo` (sprawdzone w źródle) od `wiedza` (kontekst bez
    potwierdzenia).
-7. **Katalogi treści:** `content/rozdzialy/`, `content/zadania/`, `content/sceny/`,
-   `content/postacie/`, `content/miejsca/`, `content/pojecia/`, `content/konteksty/`,
-   `content/watki/`, `content/relacje/` — jeden typ strony na katalog (ADR 0003).
+7. **Katalogi treści:** `content/rozdzialy/`, `content/epizody/`, `content/sceny/`,
+   `content/watki/`, `content/postacie/`, `content/sekty/`, `content/krainy/`,
+   `content/miejsca/`, `content/konteksty/`, `content/pojecia/`, `content/relacje/` —
+   jeden typ strony na katalog (ADR 0003).
 8. **Dziennik zmian** — nowy wpis na górze `content/co-nowego.md`, nagłówek
    `## RRRR-MM-DD GG:MM` (czas publikacji, strefa `Europe/Warsaw`).
 9. **Zielono** — `npm test` i `npm run build` muszą przejść. Build nie wypuści artefaktu
@@ -104,7 +111,7 @@ odnotuj wynik i zakończ turę.
 - **Commituj często, pushuj natychmiast.** Każdy zielony krok to osobny commit. Przed commitem
   sprawdź `git rev-parse --abbrev-ref HEAD` i `git status --short`.
 - **Tylko przyrostowo, nigdy force push, nigdy push do `main`.**
-- **Domyślna zgoda dotyczy jakości bazy**, nie dowolnych funkcji silnika czy przebudowy
+- **Domyślna zgoda dotyczy jakości kroniki**, nie dowolnych funkcji silnika czy przebudowy
   workflowów. Takie pomysły zgłaszaj jako propozycje.
 
 ## 4. Twarde zasady danych
@@ -117,35 +124,37 @@ odnotuj wynik i zakończ turę.
   przy błędzie.
 - **Zapisu rozgrywki nie poprawiasz.** `rozgrywka/zapisy/**` to archiwum: czytasz i zostawiasz
   bez zmian. Nowy fragment dopisuje właściciel albo agent na jego polecenie, na końcu pliku.
-- **Nie wyprzedzaj fabuły.** Nie dodawaj wydarzeń, postaci ani ról ujawnianych później, nawet
-  jeśli zna je źródło zewnętrzne albo pamięć modelu. Pochodzenie informacji nie jest zgodą
-  na spoiler. Granicę wyznacza `rozgrywka/postep.json`.
+- **Nie wyprzedzaj opowieści.** Nie dodawaj wydarzeń, postaci ani ról ujawnianych później,
+  nawet jeśli zna je źródło zewnętrzne albo pamięć modelu. Pochodzenie informacji nie jest
+  zgodą na spoiler. Granicę wyznacza `rozgrywka/postep.json`.
 - **Nie wymyślaj faktów.** Czego nie ma w zapisie i czego nie potwierdza źródło, tego nie
   wpisujesz jako ustalenia. Nieznany szczegół pomijasz; lukę zapisujesz wewnętrznie.
 - **Rozdzielaj poziomy.** `skrypt` / `streszczenie` / `menu` / `zrodlo` / `wiedza` /
   `hipoteza` / `struktura` — patrz `docs/guides/SCHEMAT_DANYCH.md`.
-- **Hipoteza bez pewności nie istnieje.** `{{hipoteza pewnosc=0–100}}`; pewność jest
+- **Interpretacja bez pewności nie istnieje.** `{{hipoteza pewnosc=0–100}}`; pewność jest
   szacunkiem porządkowym, nie statystyką, i nie wolno jej podnosić bez nowego dowodu.
 - **Zmiana decyzji wymaga wpisu `interpretacje:`** z dosłownym brzmieniem poprzedniej wersji
   i czasem, w którym przestała obowiązywać (ADR 0006).
 
 ## 5. Swoboda formy jest zaletą
 
-**Treść o świecie, nie o procedurach.** Widoczna witryna opisuje fabułę, świat, postacie,
-miejsca i mechaniki gry. Nie pisz o „dostawie”, „właścicielu”, pracy agenta ani o działaniu
-bazy. Zamiast relacjonować pozyskanie informacji, opisz przedmiot wpisu. Procedury należą do
-dokumentacji i opisu PR.
+**Treść o świecie, nie o procedurach.** Widoczna treść opisuje wydarzenia, osoby, miejsca,
+sekty i obyczaj jianghu. Nie pisz o „dostawie”, „właścicielu”, pracy agenta, „bazie”,
+„wpisach”, „stronach”, „tagach” ani o działaniu witryny. Zamiast relacjonować pozyskanie
+informacji, opisz przedmiot sceny. Procedury należą do dokumentacji i opisu PR — nigdy do
+kroniki. Pilnuje tego `test/jezyk.test.js`; zielony test nie zastępuje wyczucia, ale
+czerwony zatrzymuje build.
 
 Różne modele i różne sesje mają prawo pisać inaczej, dlatego:
 
 - **nie ma zamkniętej listy sekcji** — obowiązkowe są tylko `## Opis` (encje), `## Streszczenie`
-  (rozdział, zadanie) oraz `## Treść sceny` i `## Analiza` (scena),
+  (rozdział, epizod) oraz `## Treść sceny` i `## Analiza` (scena),
 - **nie ma obowiązkowego słownika tagów** — tagi są swobodne, byle slugami,
 - **nie ma jednego słusznego stylu narracji** — pisz konkretnie, nie jednolicie,
 - **stare wpisy można zmieniać** — poprawianie i pogłębianie jest normalną pracą, o ile nie
   łamie §4.
 
-Jedyne, czego naprawdę pilnujemy: **graf się nie rozjeżdża, granica fabuły trzyma,
+Jedyne, czego naprawdę pilnujemy: **graf się nie rozjeżdża, granica opowieści trzyma,
 a czytelnik wie, skąd pochodzi informacja.**
 
 ## 6. Czego nie robić

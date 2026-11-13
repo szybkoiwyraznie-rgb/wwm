@@ -2,12 +2,13 @@
 typ: scena
 slug: zaslepka-sc02
 tytul: "Zwój pod bramą"
-zadanie: zadanie-1-2
+epizod: epizod-1-2
 numer_sceny: "1-1"
 kolejnosc: 2
 streszczenie: "W opuszczonym klasztorze wędrowiec znajduje zwój z własnym imieniem, przewiązany czerwoną nicią."
 zapis: zaslepka-001.md
 postacie: [mlody-wedrowiec, starzec-z-przystani]
+krainy: [qinghe]
 miejsca: [klasztor-echa]
 watki: [watek-pochodzenia]
 sekcje_analizy:

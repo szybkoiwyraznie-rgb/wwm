@@ -6,14 +6,13 @@
  * analizy prowadzą odsyłaczem do odpowiadającego fragmentu zapisu, bo to
  * właśnie ta korespondencja jest treścią strony.
  *
- * Kolejność scen (← poprzednia / następna →) idzie po globalnym porządku
- * rozegrania, nie po numerze w zadaniu — czytelnik przechodzi fabułę tak,
- * jak ją zagrał.
+ * Kolejność scen (← poprzednia / następna →) idzie po porządku opowieści,
+ * nie po numerze w epizodzie — czytelnik idzie historią tak, jak biegnie.
  */
 
 import { escapeHtml, badgePewnosci, parsujAtrybutyBloku, BLOK_OTWARCIA_RE } from './markdown.js';
 import { hrefDlaSlug } from './links.js';
-import { dajDane, dajStrone, listaScenChronologicznie, rozdzialSceny } from './data.js';
+import { dajDane, dajStrone, listaScenChronologicznie, rozdzialSceny, epizodSceny } from './data.js';
 import { naglowekStrony, stanPusty, okruszki, chipTypu } from './render.js';
 import { podzielScene } from './scena-sekcje.js';
 
@@ -49,18 +48,20 @@ function kolumnaKontekstu(scena) {
     </div>`);
   };
 
+  lista('Kraina', 'krainy', 'kraina');
   lista('Miejsce', 'miejsca', 'miejsce');
   lista('Postacie', 'postacie', 'postac');
+  lista('Sekty', 'sekty', 'sekta');
   lista('Wątki', 'watki', 'watek');
   lista('Kontekst kulturowy', 'konteksty', 'kontekst');
 
   const hipotezy = Array.isArray(scena.hipotezy) ? scena.hipotezy : [];
   if (hipotezy.length > 0) {
     grupy.push(`<div class="kontekst-grupa">
-      <h3>Hipotezy w tej scenie</h3>
+      <h3>Interpretacje tej sceny</h3>
       <ul class="chipy">
         ${hipotezy.map((h) => `<li><a class="chip chip-hipoteza" href="#${escapeHtml(h.kotwica)}">
-          <span class="chip-typ">hipoteza</span>${escapeHtml(h.sekcja)} ${badgePewnosci(h.pewnosc)}</a></li>`).join('')}
+          <span class="chip-typ">interpretacja</span>${escapeHtml(h.sekcja)} ${badgePewnosci(h.pewnosc)}</a></li>`).join('')}
       </ul>
     </div>`);
   }
@@ -79,23 +80,23 @@ function nawigacjaScen(scena) {
   return `<nav class="nawigacja-scen" aria-label="Kolejne sceny">
   ${poprzednia
     ? `<a class="nav-poprzednia" href="${hrefDlaSlug(poprzednia.slug, 'scena')}"><span class="nav-kierunek" aria-hidden="true">←</span><span class="nav-etykieta">poprzednia scena</span><span class="nav-tytul">${escapeHtml(poprzednia.tytul)}</span></a>`
-    : '<span class="nav-puste">Początek rozegranej fabuły</span>'}
+    : '<span class="nav-puste">Początek opowieści</span>'}
   ${nastepna
     ? `<a class="nav-nastepna" href="${hrefDlaSlug(nastepna.slug, 'scena')}"><span class="nav-kierunek" aria-hidden="true">→</span><span class="nav-etykieta">następna scena</span><span class="nav-tytul">${escapeHtml(nastepna.tytul)}</span></a>`
-    : '<span class="nav-puste nav-granica">Tu kończy się rozegrana fabuła</span>'}
+    : '<span class="nav-puste nav-granica">Tu urywa się opowieść</span>'}
 </nav>`;
 }
 
 export function renderScena(slug) {
   const scena = dajStrone(slug);
-  if (!scena || scena.typ !== 'scena') return stanPusty('Nie ma takiej sceny.', '<a href="#/sceny">Wszystkie sceny</a>');
+  if (!scena || scena.typ !== 'scena') return stanPusty('Nie ma takiej sceny.', '<a href="#/chronologia">Chronologia opowieści</a>');
 
-  const zadanie = scena.zadanie ? dajStrone(scena.zadanie) : null;
+  const epizod = epizodSceny(scena);
   const rozdzial = rozdzialSceny(scena);
   const sciezka = okruszki([
-    { etykieta: 'Sceny', href: '#/sceny' },
+    { etykieta: 'Chronologia', href: '#/chronologia' },
     ...(rozdzial ? [{ etykieta: rozdzial.tytul, href: hrefDlaSlug(rozdzial.slug, 'rozdzial') }] : []),
-    ...(zadanie ? [{ etykieta: zadanie.tytul, href: hrefDlaSlug(zadanie.slug, 'zadanie') }] : []),
+    ...(epizod ? [{ etykieta: epizod.tytul, href: hrefDlaSlug(epizod.slug, 'epizod') }] : []),
     { etykieta: scena.tytul },
   ]);
 
@@ -103,9 +104,9 @@ export function renderScena(slug) {
     tytul: scena.tytul,
     opis: scena.streszczenie ? escapeHtml(scena.streszczenie) : '',
     meta: [
-      scena.kolejnosc ? `scena #${scena.kolejnosc} w kolejności rozgrywki` : '',
-      scena.numer_sceny ? `numer w zadaniu: ${escapeHtml(String(scena.numer_sceny))}` : '',
-      scena.czas?.zaktualizowano ? `ostatnia zmiana: ${escapeHtml(scena.czas.zaktualizowano)}` : '',
+      scena.numer_sceny ? `scena ${escapeHtml(String(scena.numer_sceny))}` : '',
+      epizod ? `<a href="${hrefDlaSlug(epizod.slug, 'epizod')}">${escapeHtml(epizod.tytul)}</a>` : '',
+      rozdzial ? `<a href="${hrefDlaSlug(rozdzial.slug, 'rozdzial')}">${escapeHtml(rozdzial.tytul)}</a>` : '',
     ].filter(Boolean).join(' · '),
     sciezka,
   });
@@ -122,7 +123,7 @@ export function renderScena(slug) {
         </div>
         ${kolumnaKontekstu(scena)}
       </div>`
-    : '<p class="pusto">Scena nie ma jeszcze treści.</p>';
+    : '<p class="pusto">Ta scena nie ma jeszcze opisu.</p>';
 
   return `${naglowek}${tresc}${nawigacjaScen(scena)}`;
 }

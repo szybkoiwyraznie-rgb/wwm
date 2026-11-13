@@ -1,9 +1,9 @@
 /**
- * Listy działów: sceny, postacie, miejsca, hasła, konteksty, wątki, relacje.
+ * Listy działów: sceny, postacie, sekty, krainy, miejsca, hasła, konteksty, wątki, relacje.
  *
  * Każda lista ma własne kryterium porządku, bo każda odpowiada na inne pytanie:
- * sceny idą kolejnością rozgrywki (to jest oś fabuły), a encje — alfabetycznie
- * albo od ostatniej zmiany. Mieszanie tych porządków myli czytelnika.
+ * sceny idą kolejnością opowieści (to jest jej oś), a osoby i miejsca —
+ * alfabetycznie albo od ostatniej zmiany. Mieszanie tych porządków myli czytelnika.
  *
  * Filtry siedzą w adresie (`#/sceny?rozdzial=…`), więc wynik da się podlinkować.
  */
@@ -12,19 +12,25 @@ import { escapeHtml, badgePewnosci } from './markdown.js';
 import { hrefDlaSlug, hrefFiltru, LISTY } from './links.js';
 import {
   dajDane, dajStrone, listaStron, listaPosortowana, listaWedlugAktualizacji,
-  listaRozdzialow, zadaniaRozdzialu, scenyZadania, listaScenChronologicznie, rozdzialSceny,
+  listaRozdzialow, epizodyRozdzialu, scenyEpizodu, listaScenChronologicznie, rozdzialSceny,
 } from './data.js';
 import { naglowekStrony, stanPusty, okruszki, odmiana, nazwaTypu, nazwaTypuWMnogiej } from './render.js';
 
 const TYTULY = {
-  scena: ['Sceny', 'Wszystkie rozegrane sceny w kolejności rozgrywki.'],
-  postac: ['Postacie', 'Kto występuje w rozegranej fabule.'],
-  miejsce: ['Miejsca', 'Krainy, miasta i zakątki, w których rozgrywa się akcja.'],
-  pojecie: ['Hasła', 'Pojęcia świata: organizacje, przedmioty, wydarzenia, kultury.'],
-  kontekst: ['Konteksty kulturowe', 'Nawiązania do literatury, filmu, mitów i terminów wuxia.'],
-  watek: ['Wątki', 'Nici fabularne biegnące przez sceny.'],
+  scena: ['Sceny', 'Wszystkie opowiedziane sceny, w kolejności zdarzeń.'],
+  watek: ['Wątki', 'Nici fabularne biegnące przez sceny, epizody i rozdziały.'],
+  postac: ['Postacie', 'Kto występuje w opowieści.'],
+  sekta: ['Sekty', 'Wspólnoty, szkoły i bractwa, do których należą postacie.'],
+  kraina: ['Krainy', 'Prowincje, miasta i okolice, w których toczy się historia.'],
+  miejsce: ['Miejsca', 'Konkretne miejsca w krainach: świątynie, gospody, przełęcze.'],
+  kontekst: ['Konteksty kulturowe', 'Nawiązania do literatury, filmu, mitów i obyczaju wuxia.'],
+  pojecie: ['Hasła', 'Pojęcia świata: przedmioty, obyczaje, wydarzenia, wierzenia.'],
   relacja: ['Relacje', 'Związki między postaciami.'],
 };
+
+function wartosciRozdzialow() {
+  return listaRozdzialow().map((r) => ({ wartosc: r.slug, etykieta: r.tytul }));
+}
 
 function pasekFiltrow(typ, query, opcje) {
   const grupy = opcje.map(({ pole, etykieta, wartosci }) => {
@@ -43,28 +49,24 @@ function pasekFiltrow(typ, query, opcje) {
   return `<form class="filtry" data-lista="${escapeHtml(LISTY[typ] ?? '')}">${grupy.join('')}</form>`;
 }
 
-function wartosciRozdzialow() {
-  return listaRozdzialow().map((r) => ({ wartosc: r.slug, etykieta: r.tytul }));
-}
-
 function listaScen(query = {}) {
   let sceny = listaScenChronologicznie();
 
   if (query.rozdzial) {
-    const dozwolone = new Set(zadaniaRozdzialu(query.rozdzial).map((z) => z.slug));
-    sceny = sceny.filter((s) => dozwolone.has(s.zadanie));
+    const dozwolone = new Set(epizodyRozdzialu(query.rozdzial).map((z) => z.slug));
+    sceny = sceny.filter((s) => dozwolone.has(s.epizod));
   }
-  if (query.zadanie) sceny = sceny.filter((s) => s.zadanie === query.zadanie);
+  if (query.epizod) sceny = sceny.filter((s) => s.epizod === query.epizod);
 
-  const zadania = listaStron('zadanie');
-  const filtrZadania = query.rozdzial ? zadaniaRozdzialu(query.rozdzial) : zadania;
+  const epizody = listaStron('epizod');
+  const filtrEpizodu = query.rozdzial ? epizodyRozdzialu(query.rozdzial) : epizody;
 
   const filtry = pasekFiltrow('scena', query, [
     { pole: 'rozdzial', etykieta: 'Rozdział', wartosci: wartosciRozdzialow() },
     {
-      pole: 'zadanie',
-      etykieta: 'Zadanie',
-      wartosci: filtrZadania
+      pole: 'epizod',
+      etykieta: 'Epizod',
+      wartosci: filtrEpizodu
         .slice()
         .sort((a, b) => (a.kolejnosc ?? 0) - (b.kolejnosc ?? 0))
         .map((z) => ({ wartosc: z.slug, etykieta: z.tytul })),
@@ -75,26 +77,26 @@ function listaScen(query = {}) {
     tytul: TYTULY.scena[0],
     opis: TYTULY.scena[1],
     meta: `${sceny.length} ${odmiana(sceny.length, ['scena', 'sceny', 'scen'])} · od pierwszej do ostatniej`,
-    sciezka: okruszki([{ etykieta: 'Baza', href: '#/' }, { etykieta: 'Sceny' }]),
+    sciezka: okruszki([{ etykieta: 'Chronologia', href: '#/chronologia' }, { etykieta: 'Sceny' }]),
   });
 
   if (sceny.length === 0) {
     return `${naglowek}${filtry}${stanPusty('Brak scen spełniających kryteria.', '<a href="#/sceny">Pokaż wszystkie sceny</a>')}`;
   }
 
-  // Grupowanie po zadaniu pozwala czytać fabułę ciągiem, nie skakać po liście.
+  // Grupowanie po epizodzie pozwala czytać opowieść ciągiem, nie skakać po liście.
   const grupy = [];
   for (const s of sceny) {
     const ostatnia = grupy.at(-1);
-    if (ostatnia && ostatnia.zadanie === s.zadanie) ostatnia.sceny.push(s);
-    else grupy.push({ zadanie: s.zadanie, sceny: [s] });
+    if (ostatnia && ostatnia.epizod === s.epizod) ostatnia.sceny.push(s);
+    else grupy.push({ epizod: s.epizod, sceny: [s] });
   }
 
   const html = grupy.map((g) => {
-    const zadanie = g.zadanie ? dajStrone(g.zadanie) : null;
-    const rozdzial = zadanie ? dajStrone(zadanie.rozdzial) : null;
-    const naglowekGrupy = zadanie
-      ? `<h2 class="grupa-tytul">${rozdzial ? `<span class="grupa-rozdzial">${escapeHtml(rozdzial.tytul)}</span>` : ''}<a href="${hrefDlaSlug(zadanie.slug, 'zadanie')}">${escapeHtml(zadanie.tytul)}</a></h2>`
+    const epizod = g.epizod ? dajStrone(g.epizod) : null;
+    const rozdzial = epizod ? dajStrone(epizod.rozdzial) : null;
+    const naglowekGrupy = epizod
+      ? `<h2 class="grupa-tytul">${rozdzial ? `<span class="grupa-rozdzial">${escapeHtml(rozdzial.tytul)}</span>` : ''}<a href="${hrefDlaSlug(epizod.slug, 'epizod')}">${escapeHtml(epizod.tytul)}</a></h2>`
       : '';
     return `<section class="grupa-scen">
       ${naglowekGrupy}
@@ -128,15 +130,25 @@ function listaEncji(typ, query = {}) {
   let strony = listaPosortowana(typ);
   const filtryOpcje = [];
 
-  if (query.rozdzial) {
-    const dozwolone = new Set(zadaniaRozdzialu(query.rozdzial).map((z) => z.slug));
+  const KOLUMNA_SCENY = {
+    postac: 'postacie', sekta: 'sekty', kraina: null, miejsce: 'miejsca',
+    kontekst: 'konteksty', pojecie: null,
+  };
+
+  if (query.kraina) {
+    const kraina = query.kraina;
     strony = strony.filter((s) => {
-      if (s.rozdzial === query.rozdzial) return true;
-      const sceny = listaStron('scena').filter((sc) => dozwolone.has(sc.zadanie));
-      const pole = typ === 'postac' ? 'postacie' : typ === 'miejsce' ? 'miejsca' : 'konteksty';
-      return sceny.some((sc) => (sc[pole] ?? []).includes(s.slug));
+      if (s.kraina === kraina || (s.krainy ?? []).includes(kraina)) return true;
+      if (typ === 'kraina') return false;
+      const pole = KOLUMNA_SCENY[typ];
+      if (!pole) return false;
+      return listaStron('scena').some((sc) => (sc.krainy ?? []).includes(kraina) && (sc[pole] ?? []).includes(s.slug));
     });
-    filtryOpcje.push({ pole: 'rozdzial', etykieta: 'Rozdział', wartosci: wartosciRozdzialow() });
+    filtryOpcje.push({
+      pole: 'kraina',
+      etykieta: 'Kraina',
+      wartosci: listaStron('kraina').map((k) => ({ wartosc: k.slug, etykieta: k.tytul })),
+    });
   }
 
   if (typ === 'kontekst' && query.rodzaj) strony = strony.filter((s) => s.rodzaj === query.rodzaj);
@@ -146,13 +158,13 @@ function listaEncji(typ, query = {}) {
     tytul,
     opis,
     meta: nazwaTypuWMnogiej(strony.length, typ),
-    sciezka: okruszki([{ etykieta: 'Baza', href: '#/' }, { etykieta: tytul }]),
+    sciezka: okruszki([{ etykieta: tytul }]),
   });
 
   const filtry = pasekFiltrow(typ, query, filtryOpcje);
 
   if (strony.length === 0) {
-    return `${naglowek}${filtry}${stanPusty(`Baza nie ma jeszcze żadnej strony w dziale „${tytul}”.`, 'Dział zapełnia się razem z rozegraną fabułą.')}`;
+    return `${naglowek}${filtry}${stanPusty(`Nie ma tu jeszcze żadnej strony w dziale „${tytul}”.`, 'Dział zapełnia się razem z opowieścią.')}`;
   }
 
   return `${naglowek}${filtry}<ul class="lista-encji lista-${typ}">${strony.map(kartaEncji).join('')}</ul>`;
@@ -172,14 +184,14 @@ export function renderHipotezy(query = {}) {
   const razem = wszystkie.reduce((n, s) => n + s.hipotezy.length, 0);
 
   const naglowek = naglowekStrony({
-    tytul: 'Hipotezy',
-    opis: 'Miejsca, w których baza nie ma pewności. Każda hipoteza ma oszacowaną pewność i historię zmian — widać, co było twierdzone wcześniej i kiedy przestało obowiązywać.',
-    meta: `${razem} ${odmiana(razem, ['hipoteza', 'hipotezy', 'hipotez'])} na ${wszystkie.length} ${odmiana(wszystkie.length, ['stronie', 'stronach', 'stronach'])}`,
-    sciezka: okruszki([{ etykieta: 'Baza', href: '#/' }, { etykieta: 'Hipotezy' }]),
+    tytul: 'Interpretacje',
+    opis: 'Miejsca, w których opowieść pozwala na więcej niż jedno odczytanie. Każde ma oszacowaną pewność i historię zmian — widać, co przyjęto wcześniej i kiedy przestało obowiązywać.',
+    meta: `${razem} ${odmiana(razem, ['interpretacja', 'interpretacje', 'interpretacji'])} w ${wszystkie.length} ${odmiana(wszystkie.length, ['miejscu', 'miejscach', 'miejscach'])}`,
+    sciezka: okruszki([{ etykieta: 'Interpretacje' }]),
   });
 
   if (wszystkie.length === 0) {
-    return `${naglowek}${stanPusty('Baza nie zawiera jeszcze żadnej hipotezy.', 'Fioletowe boksy pojawiają się tam, gdzie wniosek wykracza poza to, co mówi gra.')}`;
+    return `${naglowek}${stanPusty('Nie ma jeszcze żadnej interpretacji.', 'Pojawiają się tam, gdzie opowieść nie mówi wprost, a wniosek da się uzasadnić.')}`;
   }
 
   const html = wszystkie.map((s) => `<li class="wiersz-hipotezy">
@@ -198,16 +210,16 @@ export function renderHipotezy(query = {}) {
 
 export function renderTagi() {
   const dane = dajDane();
-  const tagi = Object.entries(dane.tagi ?? {}).sort((a, b) => b[1].length - a[1].length);
+  const motywy = Object.entries(dane.tagi ?? {}).sort((a, b) => b[1].length - a[1].length);
   const naglowek = naglowekStrony({
-    tytul: 'Tagi',
-    opis: 'Swobodne etykiety łączące strony niezależnie od działów.',
-    meta: `${tagi.length} ${odmiana(tagi.length, ['tag', 'tagi', 'tagów'])}`,
-    sciezka: okruszki([{ etykieta: 'Baza', href: '#/' }, { etykieta: 'Tagi' }]),
+    tytul: 'Motywy',
+    opis: 'Powracające motywy łączą sceny, osoby i miejsca ponad podziałem na krainy i rozdziały.',
+    meta: `${motywy.length} ${odmiana(motywy.length, ['motyw', 'motywy', 'motywów'])}`,
+    sciezka: okruszki([{ etykieta: 'Motywy' }]),
   });
-  if (tagi.length === 0) return `${naglowek}${stanPusty('Baza nie ma jeszcze tagów.')}`;
-  return `${naglowek}<ul class="chmura-tagow">${tagi.map(([tag, strony]) =>
-    `<li><a class="chip" href="#/tag/${encodeURIComponent(tag)}">${escapeHtml(tag)} <span class="meta">${strony.length}</span></a></li>`).join('')}</ul>`;
+  if (motywy.length === 0) return `${naglowek}${stanPusty('Żaden motyw nie powtórzył się jeszcze w opowieści.')}`;
+  return `${naglowek}<ul class="chmura-tagow">${motywy.map(([motyw, strony]) =>
+    `<li><a class="chip" href="#/tag/${encodeURIComponent(motyw)}">${escapeHtml(motyw)} <span class="meta">${strony.length}</span></a></li>`).join('')}</ul>`;
 }
 
 export function renderTag(tag) {
@@ -215,10 +227,10 @@ export function renderTag(tag) {
   const slugi = dane.tagi?.[tag] ?? [];
   const strony = slugi.map((s) => dane.strony[s]).filter(Boolean);
   const naglowek = naglowekStrony({
-    tytul: `Tag: ${tag}`,
+    tytul: `Motyw: ${tag}`,
     meta: nazwaTypuWMnogiej(strony.length, 'scena'),
-    sciezka: okruszki([{ etykieta: 'Baza', href: '#/' }, { etykieta: 'Tagi', href: '#/tagi' }, { etykieta: tag }]),
+    sciezka: okruszki([{ etykieta: 'Motywy', href: '#/tagi' }, { etykieta: tag }]),
   });
-  if (strony.length === 0) return `${naglowek}${stanPusty(`Nie ma stron z tagiem „${tag}”.`)}`;
+  if (strony.length === 0) return `${naglowek}${stanPusty(`Motyw „${tag}” nie powraca jeszcze w żadnej scenie.`)}`;
   return `${naglowek}<ul class="lista-encji">${strony.map(kartaEncji).join('')}</ul>`;
 }

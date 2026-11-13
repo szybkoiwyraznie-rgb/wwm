@@ -3,8 +3,7 @@ typ: miejsce
 slug: przystan-mgly
 tytul: "Przystań we mgle"
 rodzaj: przystan
-region: "Qinghe"
-rozdzial: rozdzial-1
+kraina: qinghe
 postacie: [mlody-wedrowiec, nieznajomy, starzec-z-przystani]
 tagi: [zaslepka, qinghe]
 utworzono: 2026-11-13

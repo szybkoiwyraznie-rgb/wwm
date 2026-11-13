@@ -3,15 +3,16 @@
  * identycznie z file:// i przez HTTPS, bez konfiguracji serwera.
  *
  * Postać trasy: #/<nazwa>[/<param>][?zapytanie]
- * Przykłady: #/  #/scena/qinghe-001  #/sceny?rozdzial=rozdzial-1
+ * Przykłady: #/  #/scena/rozstanie-na-przystani  #/chronologia
  *            #/szukaj?q=kaifeng  #/hipotezy  #/tag/qinghe
  */
 
 export const TRASY_ZNAWE = [
-  'glowna', 'mapa',
-  'rozdzialy', 'rozdzial', 'zadania', 'zadanie', 'sceny', 'scena',
-  'postacie', 'postac', 'miejsca', 'miejsce', 'pojecia', 'pojecie',
-  'konteksty', 'kontekst', 'watki', 'watek', 'relacje', 'relacja',
+  'glowna', 'chronologia',
+  'rozdzialy', 'rozdzial', 'epizody', 'epizod', 'sceny', 'scena',
+  'watki', 'watek', 'postacie', 'postac', 'sekty', 'sekta',
+  'krainy', 'kraina', 'miejsca', 'miejsce', 'konteksty', 'kontekst',
+  'pojecia', 'pojecie', 'relacje', 'relacja',
   'hipotezy', 'tagi', 'tag', 'szukaj', 'co-nowego', 'o-bazie',
 ];
 

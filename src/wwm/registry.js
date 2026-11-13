@@ -16,9 +16,18 @@
 import { SLUG_RE, hrefDlaSlug, slugify } from './links.js';
 import { BLOK_OTWARCIA_RE, parsujAtrybutyBloku, POZIOMY_BLOKU, czyPewnosc } from './markdown.js';
 
-/** Typy stron. Katalog `content/<dział>` musi zgadzać się z typem (ADR 0003). */
+/**
+ * Typy stron. Katalog `content/<dział>` musi zgadzać się z typem (ADR 0003).
+ *
+ * Kolejność jest kolejnością opowieści, nie interfejsu gry (ADR 0013):
+ * najpierw to, czym fabuła jest opowiedziana — rozdział, epizod, scena, wątek —
+ * potem ludzie i świat, w którym się to dzieje, na końcu nawiązania i relacje.
+ * Nie ma typu „zadanie”: zadanie jest mechaniką gry, nie jednostką opowieści.
+ */
 export const TYPY_STRON = [
-  'rozdzial', 'zadanie', 'scena', 'postac', 'miejsce', 'pojecie', 'kontekst', 'watek', 'relacja',
+  'rozdzial', 'epizod', 'scena', 'watek',
+  'postac', 'sekta', 'kraina', 'miejsce',
+  'kontekst', 'pojecie', 'relacja',
 ];
 
 /** Role postaci w rozegranym materiale. */
@@ -26,11 +35,25 @@ export const ROLE_POSTACI = [
   'protagonista', 'antagonista', 'sojusznik', 'mentor', 'drugoplanowa', 'narrator', 'inne',
 ];
 
-/** Rodzaj zadania — odpowiada podziałowi zadań w grze. */
-export const RODZAJE_ZADANIA = ['glowne', 'poboczne', 'spotkanie', 'eksploracja'];
+/**
+ * Rodzaj epizodu — jak opowieść jest prowadzona, nie jak gra nazywa zadanie.
+ * `glowny` to wątek główny, `poboczny` — opowieść poboczna, `spotkanie`
+ * i `zwiad` to krótkie historie świata, `wspomnienie` — retrospekcja.
+ */
+export const RODZAJE_EPIZODU = ['glowny', 'poboczny', 'spotkanie', 'zwiad', 'wspomnienie'];
 
-/** Status zadania/rozdziału względem rozegranego materiału. */
+/** Status rozdziału/epizodu względem rozegranej opowieści. */
 export const STATUSY = ['rozegrane', 'w-toku', 'nierozpoczete'];
+
+/** Rodzaj sekty — wspólnoty, do której należą postacie. */
+export const RODZAJE_SEKTY = [
+  'szkola', 'klan', 'bractwo', 'gildia', 'zakon', 'dwór', 'inne',
+];
+
+/** Rodzaj krainy — skala geografii opowieści, od prowincji po okolicę. */
+export const RODZAJE_KRAINY = [
+  'prowincja', 'region', 'miasto', 'dzielnica', 'kraina', 'inne',
+];
 
 /** Rodzaj hasła — warstwa świata. */
 export const RODZAJE_POJECIA = [
@@ -83,40 +106,50 @@ export function czyPoprawnaDataCzas(s) {
 const WSPOLNE = ['typ', 'slug', 'tytul', 'tytul_ja', 'tytul_en', 'tagi', 'zrodla', 'utworzono', 'interpretacje'];
 
 export const POLA_DOZWOLONE = {
-  rozdzial: [...WSPOLNE, 'numer', 'region', 'zadania', 'postacie', 'miejsca', 'status', 'nastepny'],
-  zadanie: [...WSPOLNE, 'rozdzial', 'kolejnosc', 'rodzaj', 'status', 'sceny', 'postacie', 'miejsca', 'watki'],
-  scena: [...WSPOLNE, 'zadanie', 'numer_sceny', 'kolejnosc', 'streszczenie', 'zapis', 'postacie', 'miejsca',
-    'watki', 'konteksty', 'sekcje_analizy'],
-  postac: [...WSPOLNE, 'rola', 'przydzial', 'pierwsze_wystapienie', 'miejsca', 'watki', 'relacje', 'pseudonim'],
-  miejsce: [...WSPOLNE, 'rodzaj', 'region', 'rozdzial', 'postacie', 'konteksty'],
-  pojecie: [...WSPOLNE, 'rodzaj', 'postacie', 'miejsca', 'konteksty'],
-  kontekst: [...WSPOLNE, 'rodzaj', 'dzielo', 'rok', 'autor', 'postacie', 'pojecia'],
-  watek: [...WSPOLNE, 'rodzaj_watku', 'stan', 'postacie', 'sceny', 'rozdzialy'],
+  rozdzial: [...WSPOLNE, 'numer', 'tytul_oboczny', 'epizody', 'watki', 'krainy', 'sekty', 'postacie', 'status', 'nastepny'],
+  epizod: [...WSPOLNE, 'rozdzial', 'kolejnosc', 'rodzaj', 'status', 'sceny', 'postacie', 'krainy', 'sekty', 'miejsca', 'watki', 'konteksty'],
+  scena: [...WSPOLNE, 'epizod', 'numer_sceny', 'kolejnosc', 'streszczenie', 'zapis', 'postacie', 'krainy',
+    'miejsca', 'sekty', 'watki', 'konteksty', 'sekcje_analizy'],
+  watek: [...WSPOLNE, 'rodzaj_watku', 'stan', 'postacie', 'sceny', 'rozdzialy', 'epizody', 'konteksty'],
+  postac: [...WSPOLNE, 'rola', 'przydzial', 'pierwsze_wystapienie', 'sekta', 'kraina', 'krainy',
+    'miejsca', 'watki', 'relacje', 'pseudonim'],
+  sekta: [...WSPOLNE, 'rodzaj', 'siedziba', 'kraina', 'postacie', 'watki', 'konteksty', 'epizody'],
+  kraina: [...WSPOLNE, 'rodzaj', 'region', 'rozdzial', 'sekty', 'postacie', 'miejsca', 'watki'],
+  miejsce: [...WSPOLNE, 'rodzaj', 'kraina', 'sekta', 'postacie', 'konteksty'],
+  kontekst: [...WSPOLNE, 'rodzaj', 'dzielo', 'rok', 'autor', 'postacie', 'pojecia', 'watki'],
+  pojecie: [...WSPOLNE, 'rodzaj', 'postacie', 'krainy', 'sekty', 'miejsca', 'konteksty'],
   relacja: [...WSPOLNE, 'postacie', 'rodzaj_relacji', 'watki'],
 };
 
 /** Pola-relacje: nazwa → typ celu i kształt wartości. */
 export const POLA_RELACJI = {
   rozdzial: { typ: 'rozdzial', wiele: false },
-  zadanie: { typ: 'zadanie', wiele: false },
-  zadania: { typ: 'zadanie', wiele: true },
+  epizod: { typ: 'epizod', wiele: false },
+  epizody: { typ: 'epizod', wiele: true },
   sceny: { typ: 'scena', wiele: true },
-  postacie: { typ: 'postac', wiele: true },
+  krainy: { typ: 'kraina', wiele: true },
+  sekty: { typ: 'sekta', wiele: true },
   miejsca: { typ: 'miejsce', wiele: true },
+  postacie: { typ: 'postac', wiele: true },
   watki: { typ: 'watek', wiele: true },
   relacje: { typ: 'relacja', wiele: true },
   konteksty: { typ: 'kontekst', wiele: true },
   pojecia: { typ: 'pojecie', wiele: true },
   nastepny: { typ: 'rozdzial', wiele: false },
   pierwsze_wystapienie: { typ: 'scena', wiele: false },
+  sekta: { typ: 'sekta', wiele: false },
+  kraina: { typ: 'kraina', wiele: false },
+  siedziba: { typ: 'miejsce', wiele: false },
 };
 
 /** Sekcje wymagane w treści strony, zależnie od typu. */
 export const SEKCJE_WYMAGANE = {
   rozdzial: ['Streszczenie'],
-  zadanie: ['Streszczenie'],
+  epizod: ['Streszczenie'],
   scena: ['Treść sceny', 'Analiza'],
   postac: ['Opis'],
+  sekta: ['Opis'],
+  kraina: ['Opis'],
   miejsce: ['Opis'],
   pojecie: ['Opis'],
   kontekst: ['Opis'],
@@ -282,24 +315,24 @@ export function walidujStrone(strona, ctx) {
       }
       break;
     }
-    case 'zadanie': {
+    case 'epizod': {
       if (typeof strona.rozdzial !== 'string' || strona.rozdzial === '') {
-        p.push(`${gdzie}: zadanie wymaga pola "rozdzial"`);
+        p.push(`${gdzie}: epizod wymaga pola "rozdzial"`);
       }
-      if (strona.rodzaj !== undefined && !RODZAJE_ZADANIA.includes(strona.rodzaj)) {
-        p.push(`${gdzie}: rodzaj "${strona.rodzaj}" poza ${RODZAJE_ZADANIA.join('/')}`);
+      if (strona.rodzaj !== undefined && !RODZAJE_EPIZODU.includes(strona.rodzaj)) {
+        p.push(`${gdzie}: rodzaj "${strona.rodzaj}" poza ${RODZAJE_EPIZODU.join('/')}`);
       }
       if (!Number.isInteger(strona.kolejnosc) || strona.kolejnosc < 1) {
-        p.push(`${gdzie}: zadanie wymaga liczbowego "kolejnosc" ≥ 1 (kolejność w rozdziale)`);
+        p.push(`${gdzie}: epizod wymaga liczbowego "kolejnosc" ≥ 1 (kolejność w rozdziale)`);
       }
       break;
     }
     case 'scena': {
-      if (typeof strona.zadanie !== 'string' || strona.zadanie === '') {
-        p.push(`${gdzie}: scena wymaga pola "zadanie"`);
+      if (typeof strona.epizod !== 'string' || strona.epizod === '') {
+        p.push(`${gdzie}: scena wymaga pola "epizod"`);
       }
       if (typeof strona.numer_sceny !== 'string' || strona.numer_sceny.trim() === '') {
-        p.push(`${gdzie}: "numer_sceny" musi być niepustym tekstem (numeracja zależy od zadania)`);
+        p.push(`${gdzie}: "numer_sceny" musi być niepustym tekstem (numeracja zależy od epizodu)`);
       }
       if (typeof strona.streszczenie !== 'string' || strona.streszczenie.trim() === '') {
         p.push(`${gdzie}: scena wymaga niepustego pola "streszczenie"`);
@@ -325,11 +358,22 @@ export function walidujStrone(strona, ctx) {
       }
       break;
     }
+    case 'sekta': {
+      if (strona.rodzaj !== undefined && !RODZAJE_SEKTY.includes(strona.rodzaj)) {
+        p.push(`${gdzie}: rodzaj "${strona.rodzaj}" poza ${RODZAJE_SEKTY.join('/')}`);
+      }
+      break;
+    }
+    case 'kraina': {
+      if (strona.rodzaj !== undefined && !RODZAJE_KRAINY.includes(strona.rodzaj)) {
+        p.push(`${gdzie}: rodzaj "${strona.rodzaj}" poza ${RODZAJE_KRAINY.join('/')}`);
+      }
+      break;
+    }
     case 'miejsce': {
+      // Miejsce stoi w krainie; dawny klucz `rozdzial` wycofano (ADR 0013).
       if (strona.rozdzial !== undefined) {
-        const cel = ctx.bySlug.get(strona.rozdzial);
-        if (!cel) p.push(`${gdzie}: "rozdzial" → "${strona.rozdzial}" nie istnieje w bazie`);
-        else if (cel.typ !== 'rozdzial') p.push(`${gdzie}: "rozdzial" → "${strona.rozdzial}" ma typ "${cel.typ}"`);
+        p.push(`${gdzie}: pole "rozdzial" należy do epizodu, nie do miejsca — użyj "kraina"`);
       }
       break;
     }
@@ -483,20 +527,20 @@ export function sprawdzGraniceFabuly(sceny, postep) {
 }
 
 /**
- * Brama zadania i rozdziału: liczby porządkowe muszą być ciągłe i zgodne
+ * Brama epizodu i rozdziału: liczby porządkowe muszą być ciągłe i zgodne
  * z relacjami, bo inaczej lista „co dalej” kłamie.
  */
-export function sprawdzPorzadekZadan(zadania, rozdzialy) {
+export function sprawdzPorzadekEpizodow(epizody, rozdzialy) {
   const problemy = [];
   const poRozdziale = new Map();
-  for (const z of zadania) {
+  for (const z of epizody) {
     if (!poRozdziale.has(z.rozdzial)) poRozdziale.set(z.rozdzial, []);
     poRozdziale.get(z.rozdzial).push(z);
   }
   for (const [slugRozdzialu, lista] of poRozdziale) {
     const numery = lista.map((z) => z.kolejnosc).sort((a, b) => a - b);
     for (let n = 1; n <= (numery.at(-1) ?? 0); n += 1) {
-      if (!numery.includes(n)) problemy.push(`${slugRozdzialu}: brak zadania o kolejnosc ${n} — numeracja w rozdziale musi być ciągła`);
+      if (!numery.includes(n)) problemy.push(`${slugRozdzialu}: brak epizodu o kolejnosc ${n} — numeracja w rozdziale musi być ciągła`);
     }
   }
   const numeryRozdzialow = rozdzialy.map((r) => r.numer).sort((a, b) => a - b);
@@ -508,7 +552,7 @@ export function sprawdzPorzadekZadan(zadania, rozdzialy) {
 
 const porownajNumery = new Intl.Collator('pl', { numeric: true, sensitivity: 'base' }).compare;
 
-/** Sceny zadania w kolejności numerycznej (1-2 przed 1-10). */
+/** Sceny w kolejności numerycznej numeru sceny (1-2 przed 1-10). */
 export function sortujSceny(sceny) {
   return [...sceny].sort((a, b) => porownajNumery(String(a.numer_sceny ?? ''), String(b.numer_sceny ?? '')));
 }
@@ -575,8 +619,8 @@ export function odsylaczeStrony(strona) {
 /** Agregaty widoczne na stronie głównej i w stopce. */
 export function policzStatystyki(strony) {
   const s = {
-    rozdzial: 0, zadanie: 0, scena: 0, postac: 0, miejsce: 0,
-    pojecie: 0, kontekst: 0, watek: 0, relacja: 0, powiazania: 0,
+    rozdzial: 0, epizod: 0, scena: 0, watek: 0, postac: 0, sekta: 0,
+    kraina: 0, miejsce: 0, kontekst: 0, pojecie: 0, relacja: 0, powiazania: 0,
   };
   for (const p of strony) {
     if (Object.prototype.hasOwnProperty.call(s, p.typ)) s[p.typ] += 1;

@@ -7,18 +7,19 @@ import { uruchomRouter } from './router.js';
 import { rama, tytulStrony, nieZnalesc, nazwaTypu } from './render.js';
 import { czasStrony, coNowegoCzas, czasBazy } from './data.js';
 import { renderGlowna } from './render-home.js';
-import { renderMapa } from './mapa.js';
+import { renderChronologia } from './chronologia.js';
 import { renderEncja } from './render-encja.js';
 import { renderScena } from './render-scena.js';
-import { renderZadanie, renderRozdzial, renderRozdzialy } from './render-zadanie.js';
+import { renderEpizod, renderRozdzial, renderRozdzialy } from './render-epizod.js';
 import { renderListe, renderHipotezy, renderTagi, renderTag } from './render-listy.js';
 import { renderSzukanie } from './render-szukaj.js';
 import { renderCoNowego, renderOBazie } from './render-o-bazie.js';
 
 /** Mapa tras list ↔ tras encji (dla podświetlenia nawigacji). */
 const LISTA_TRAS = {
-  rozdzial: 'rozdzialy', zadanie: 'zadania', scena: 'sceny', postac: 'postacie',
-  miejsce: 'miejsca', pojecie: 'pojecia', kontekst: 'konteksty', watek: 'watki', relacja: 'relacje',
+  rozdzial: 'rozdzialy', epizod: 'epizody', scena: 'sceny', watek: 'watki',
+  postac: 'postacie', sekta: 'sekty', kraina: 'krainy', miejsce: 'miejsca',
+  kontekst: 'konteksty', pojecie: 'pojecia', relacja: 'relacje',
 };
 
 function renderuj(trasa) {
@@ -26,26 +27,28 @@ function renderuj(trasa) {
   if (!app) return;
 
   let aktywna = trasa.nazwa;
-  let tytul = 'Baza';
+  let tytul = 'Kronika';
   let html;
 
   switch (trasa.nazwa) {
     case 'glowna':
-      html = renderGlowna(); tytul = 'Fabuła'; aktywna = 'glowna'; break;
+      html = renderGlowna(); tytul = 'Kronika'; aktywna = 'glowna'; break;
 
-    case 'mapa':
-      html = renderMapa(); tytul = 'Mapa postępu'; break;
+    case 'chronologia':
+      html = renderChronologia(); tytul = 'Chronologia'; break;
 
     case 'rozdzial':
       html = renderRozdzial(trasa.param); tytul = 'Rozdział'; aktywna = 'rozdzialy'; break;
-    case 'zadanie':
-      html = renderZadanie(trasa.param); tytul = 'Zadanie'; aktywna = 'sceny'; break;
+    case 'epizod':
+      html = renderEpizod(trasa.param); tytul = 'Epizod'; aktywna = 'chronologia'; break;
     case 'scena':
-      html = renderScena(trasa.param); tytul = 'Scena'; aktywna = 'sceny'; break;
+      html = renderScena(trasa.param); tytul = 'Scena'; aktywna = 'chronologia'; break;
     case 'rozdzialy':
       html = renderRozdzialy(); tytul = 'Rozdziały'; break;
 
     case 'postac':
+    case 'sekta':
+    case 'kraina':
     case 'miejsce':
     case 'pojecie':
     case 'kontekst':
@@ -56,7 +59,7 @@ function renderuj(trasa) {
       aktywna = LISTA_TRAS[trasa.nazwa];
       break;
 
-    case 'zadania':
+    case 'epizody':
     case 'sceny':
     case 'postacie':
     case 'miejsca':
@@ -70,12 +73,12 @@ function renderuj(trasa) {
       break;
     }
 
-    case 'hipotezy': html = renderHipotezy(trasa.query); tytul = 'Hipotezy'; break;
-    case 'tagi': html = renderTagi(); tytul = 'Tagi'; break;
-    case 'tag': html = renderTag(trasa.param); tytul = `Tag: ${trasa.param ?? ''}`; aktywna = 'tagi'; break;
+    case 'hipotezy': html = renderHipotezy(trasa.query); tytul = 'Interpretacje'; break;
+    case 'tagi': html = renderTagi(); tytul = 'Motywy'; break;
+    case 'tag': html = renderTag(trasa.param); tytul = `Motyw: ${trasa.param ?? ''}`; aktywna = 'tagi'; break;
     case 'szukaj': html = renderSzukanie(trasa.query.q); tytul = 'Szukaj'; break;
     case 'co-nowego': html = renderCoNowego(); tytul = 'Co nowego'; break;
-    case 'o-bazie': html = renderOBazie(); tytul = 'O bazie'; break;
+    case 'o-bazie': html = renderOBazie(); tytul = 'Jak czytać kronikę'; break;
 
     default: html = nieZnalesc(trasa.param ?? 'strona'); tytul = 'Nie znaleziono'; break;
   }

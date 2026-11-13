@@ -1,20 +1,22 @@
 /**
- * „Co nowego” i „O bazie”.
+ * „Co nowego” i „Jak czytać kronikę”.
  *
- * Dziennik mówi o nowym pokryciu fabuły, nie o pracy redakcyjnej (ADR 0011):
- * czytelnika interesuje, że doszła scena albo postać, nie że poprawiono literówkę.
+ * Dziennik mówi wyłącznie o nowym pokryciu opowieści (ADR 0011, 0014): czytelnika
+ * interesuje, że doszła scena, postać albo wątek — nie to, że poprawiono zdanie
+ * albo zmieniono układ strony. Poprawki mają własną historię w `interpretacje:`
+ * i w boksie „Poprzednia wersja” na stronie, której dotyczą.
  */
 
 import { escapeHtml } from './markdown.js';
 import { dajDane } from './data.js';
-import { naglowekStrony, stanPusty, okruszki, legendaPoziomow, odmiana } from './render.js';
+import { naglowekStrony, stanPusty, okruszki, legendaPoziomow } from './render.js';
 
 export function renderCoNowego() {
   const wpisy = dajDane().coNowego ?? [];
   const naglowek = naglowekStrony({
     tytul: 'Co nowego',
-    opis: 'Kolejne sceny, postacie i hasła dopisane do bazy — najnowsze u góry.',
-    sciezka: okruszki([{ etykieta: 'Baza', href: '#/' }, { etykieta: 'Co nowego' }]),
+    opis: 'Kolejne sceny, osoby i miejsca dopisane do opowieści — najnowsze u góry.',
+    sciezka: okruszki([{ etykieta: 'Co nowego' }]),
   });
 
   if (wpisy.length === 0) {
@@ -29,58 +31,47 @@ export function renderCoNowego() {
   </ol>`;
 }
 
-const ZASADY = [
-  ['Scena jest jednostką', 'Fabuła rośnie scena po scenie. Scena to wymiana, która zmienia miejsce, czas albo skład rozmowy — nie pojedyncze zdanie.'],
-  ['Żadnych spoilerów', 'Baza opisuje tylko to, co zostało rozegrane. Nie ma tu wydarzeń, postaci ani ról wykraczających poza widzianą fabułę, nawet jeśli są znane z innych źródeł.'],
-  ['Kolor mówi, czym jest fragment', 'Białe tło to dosłowne słowa z gry. Zielone — streszczenie. Niebieskie — spis powiązań. Fioletowe — wniosek autora bazy.'],
-  ['Pewność mówi, jak mocny jest wniosek', 'Każda hipoteza ma oszacowaną pewność i historię zmian. Gdy wniosek się zmienia, poprzednie brzmienie zostaje w boksie pod „Poprzednią wersją” wraz z datą, kiedy przestało obowiązywać.'],
-  ['Kontekst kulturowy jest osobno', 'Nawiązania do chińskiej literatury, historii i konwencji wuxia mają własny dział i własne oznaczenie pochodzenia — bo gra czerpie z nich świadomie, ale to nie jest jeszcze fabuła gry.'],
-];
-
+/**
+ * Legenda poziomów i zasady czytania. Strona mówi o tym, jak czytać opowieść
+ * i skąd wiadomo, co w niej jest pewne — a nie o tym, jak powstała.
+ */
 export function renderOBazie() {
-  const dane = dajDane();
-  const st = dane.statystyki ?? {};
-
   const naglowek = naglowekStrony({
-    tytul: 'O bazie',
-    opis: 'Jak działa ta baza i skąd pochodzą informacje w niej zapisane.',
-    sciezka: okruszki([{ etykieta: 'Baza', href: '#/' }, { etykieta: 'O bazie' }]),
+    tytul: 'Jak czytać kronikę',
+    opis: 'Świat opowieści i klucz do oznaczeń: skąd wiadomo, co jest słowami historii, a co domysłem.',
+    sciezka: okruszki([{ etykieta: 'Jak czytać kronikę' }]),
   });
-
-  const liczby = [
-    ['scena', 'scen'],
-    ['zadanie', 'zadań'],
-    ['postac', 'postaci'],
-    ['miejsce', 'miejsc'],
-    ['pojecie', 'haseł'],
-    ['kontekst', 'kontekstów'],
-    ['watek', 'wątków'],
-    ['relacja', 'relacji'],
-  ].map(([typ, etykieta]) => `<li><strong>${st[typ] ?? 0}</strong> ${etykieta}</li>`).join('');
 
   return `${naglowek}
 <section class="boks">
-  <h2>Zasady</h2>
-  <dl class="lista-zasad">
-    ${ZASADY.map(([tytul, opis]) => `<div><dt>${escapeHtml(tytul)}</dt><dd>${escapeHtml(opis)}</dd></div>`).join('')}
-  </dl>
+  <h2>Świat opowieści</h2>
+  <p><em>Where Winds Meet</em> rozgrywa się w Chinach 962 roku, w epoce Pięciu Dynastii,
+  u progu nowej dynastii Song. Jianghu — świat wędrownych mistrzów i szkół walki —
+  rządzi się własnym prawem: słowem danym raz i długiem, którego nie da się spłacić.
+  Historię opowiada wędrowiec szukający własnego pochodzenia.</p>
+  <p>Od pierwszych scen wiadomo, że odpowiedzi nie leżą na drodze. Leżą w bocznych ścieżkach,
+  w cudzych wspomnieniach i w księgach, które przechowują sekty.</p>
 </section>
 <section class="boks">
-  <h2>Legenda kolorów</h2>
+  <h2>Klucz do oznaczeń</h2>
   ${legendaPoziomow()}
 </section>
 <section class="boks">
-  <h2>Co jest w bazie</h2>
-  <ul class="liczby-bazy">${liczby}</ul>
-  ${dane.czasBazy?.utworzono ? `<p class="meta">Pierwszy wpis: ${escapeHtml(dane.czasBazy.utworzono)} · ostatnia zmiana: ${escapeHtml(dane.czasBazy.zaktualizowano ?? '')}</p>` : ''}
+  <h2>Skąd wiadomo, co jest prawdą opowieści</h2>
+  <p>Słowa bohaterów i narrację poznajemy z samej historii. Streszczenia i powiązania
+  porządkują to, co już się wydarzyło. Tło kulturowe — chińskie księgi, poematy, obyczaj
+  jianghu — jest oznaczone osobno, bo należy do świata, z którego opowieść wyrasta,
+  a nie do jej wydarzeń.</p>
+  <p>Tam, gdzie historia nie mówi wprost, a wniosek daje się uzasadnić, stoi interpretacja
+  z oszacowaną pewnością. Nigdy nie udaje faktu.</p>
 </section>
 <section class="boks">
-  <h2>Skąd pochodzą informacje</h2>
-  <p>Zapis rozgrywki pochodzi z samej gry. Streszczenia i analizy są pisane na jego podstawie.
-  Wiedza o kulturze Chin i konwencji wuxia jest oznaczana osobno, bo bywa niepewna i wymaga
-  źródła. Wnioski, których nie da się wyprowadzić wprost z tekstu, są hipotezami z pewnością —
-  nigdy nie udają faktów.</p>
-  <p class="meta">Baza jest nieoficjalna i niepowiązana z twórcami gry. Nazwy własne zachowują
-  pisownię oryginalną.</p>
+  <h2>Granica opowieści</h2>
+  <p>Kronika opisuje tylko to, co zostało już opowiedziane. Nie wyprzedza wydarzeń,
+  nie zdradza ról ani losów postaci, które jeszcze się nie pojawiły — nawet jeśli
+  historia zna je z innych źródeł. Miejsce, w którym opowieść się zatrzymuje, widać
+  na stronie głównej i w chronologii.</p>
+  <p class="meta">Nazwy własne zachowują pisownię oryginalną. Kronika jest nieoficjalna
+  i niepowiązana z twórcami gry.</p>
 </section>`;
 }

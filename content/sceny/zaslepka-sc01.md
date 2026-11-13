@@ -2,12 +2,13 @@
 typ: scena
 slug: zaslepka-sc01
 tytul: "Deszcz nad przystanią"
-zadanie: zadanie-1-1
+epizod: epizod-1-1
 numer_sceny: "1-1"
 kolejnosc: 1
 streszczenie: "Nieznajomy ostrzega wędrowca, że droga go nie doprowadzi, i znika we mgle. Starzec z przystani tłumaczy, że tacy ludzie nie mają imion."
 zapis: zaslepka-001.md
 postacie: [mlody-wedrowiec, nieznajomy, starzec-z-przystani]
+krainy: [qinghe]
 miejsca: [przystan-mgly]
 watki: [watek-pochodzenia]
 konteksty: [koncepcja-drogi-bez-sladu]

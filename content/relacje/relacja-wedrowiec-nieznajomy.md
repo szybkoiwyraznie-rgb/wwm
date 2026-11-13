@@ -20,7 +20,7 @@ więcej, niż mówi, a wędrowiec nie ma nawet jak go odnaleźć.
 
 {{hipoteza pewnosc=25
 
-## Hipoteza
+## Odczytanie
 
 Możliwe, że nieznajomy nie jest osobą, a rolą — pełnioną kolejno przez różnych
 ludzi. Pewność niska, bo jedyny ślad to zdanie starca o bezimienności.

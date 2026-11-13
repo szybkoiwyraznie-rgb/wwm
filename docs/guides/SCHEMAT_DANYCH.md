@@ -1,8 +1,12 @@
 # Schemat danych
 
-Jak wygląda wpis w bazie, jakie pola są dozwolone i co je egzekwuje. Reguły opisane tutaj
-są sprawdzane przez kod (`src/wwm/registry.js`), a nie tylko deklarowane — build nie wypuści
-artefaktu, w którym któraś z nich jest złamana.
+Jak wygląda strona w kronice, jakie pola są dozwolone i co je egzekwuje. Reguły opisane
+tutaj sprawdza kod (`src/wwm/registry.js`) — build nie wypuści artefaktu, w którym któraś
+z nich jest złamana.
+
+**Zasada nadrzędna (ADR 0013):** typy stron opisują **opowieść**, nie interfejs gry.
+Nie ma strony „zadanie”, „mapa postępu” ani „baza” — są rozdziały, epizody, sceny, wątki,
+postacie, sekty, krainy i miejsca.
 
 ## 1. Jedna strona = jeden plik
 
@@ -10,17 +14,19 @@ artefaktu, w którym któraś z nich jest złamana.
 content/<katalog>/<slug>.md
 ```
 
-| Typ (`typ:`) | Katalog | Co opisuje |
+| Typ (`typ:`) | Katalog | Co opowiada |
 |---|---|---|
-| `rozdzial` | `content/rozdzialy/` | rozdział gry — region i rama fabularna |
-| `zadanie` | `content/zadania/` | zadanie główne lub poboczne, grupa scen |
-| `scena` | `content/sceny/` | **jednostka śledzenia fabuły** — dosłowny zapis i analiza |
-| `postac` | `content/postacie/` | osoba występująca w rozegranym materiale |
-| `miejsce` | `content/miejsca/` | kraina, miasto, obiekt |
-| `pojecie` | `content/pojecia/` | hasło świata: organizacja, technika, przedmiot, wydarzenie |
-| `kontekst` | `content/konteksty/` | nawiązanie kulturowe: literatura, film, motyw wuxia |
+| `rozdzial` | `content/rozdzialy/` | rozdział historii — rama epizodów |
+| `epizod` | `content/epizody/` | epizod: kilka scen tworzących jedno wydarzenie |
+| `scena` | `content/sceny/` | **jednostka opowieści** — dosłowne słowa i analiza |
 | `watek` | `content/watki/` | nić fabularna biegnąca przez sceny i rozdziały |
-| `relacja` | `content/relacje/` | związek między dwiema lub więcej postaciami |
+| `postac` | `content/postacie/` | osoba występująca w opowieści |
+| `sekta` | `content/sekty/` | szkoła walki, klan, bractwo, gildia |
+| `kraina` | `content/krainy/` | prowincja, region, miasto — skala geografii opowieści |
+| `miejsce` | `content/miejsca/` | konkretne miejsce: świątynia, gospoda, przełęcz |
+| `kontekst` | `content/konteksty/` | nawiązanie kulturowe: księga, poemat, obyczaj wuxia |
+| `pojecie` | `content/pojecia/` | hasło świata: przedmiot, obyczaj, wydarzenie |
+| `relacja` | `content/relacje/` | związek między postaciami |
 
 Typ i katalog muszą się zgadzać. Nazwa pliku **jest** slugiem (`SLUG_RE`: `[a-z0-9-]`,
 bez znaków diakrytycznych i CJK). Slug jest niezmienny — zmiana zrywa cały graf.
@@ -31,16 +37,16 @@ bez znaków diakrytycznych i CJK). Slug jest niezmienny — zmiana zrywa cały g
 |---|---|---|
 | `typ` | tak | jeden z typów powyżej |
 | `slug` | tak | identyfikator; musi zgadzać się z nazwą pliku |
-| `tytul` | tak | nazwa widoczna w witrynie |
+| `tytul` | tak | nazwa widoczna w kronice |
 | `tytul_ja` | nie | zapis oryginalny (pismo chińskie) |
-| `tytul_en` | nie | nazwa angielska z gry |
-| `tagi` | nie | lista slugów, swobodna; wzorzec `[a-z0-9-]` |
+| `tytul_en` | nie | nazwa angielska |
+| `tagi` | nie | lista slugów, swobodna |
 | `zrodla` | nie | lista adresów http(s) potwierdzających twierdzenia |
 | `utworzono` | nie | data `RRRR-MM-DD` |
-| `interpretacje` | nie | historia zmian decyzji — §5 |
+| `interpretacje` | nie | historia zmian decyzji — §6 |
 
-**Nieznane pole jest błędem.** Literówka w nazwie pola po cichu wypadałaby z grafu, więc
-walidator jej nie toleruje. Pustą listę (`[]`) wolno zostawić — znaczy „jeszcze nie wiem”.
+**Nieznane pole jest błędem.** Literówka w nazwie pola po cichu wypadałaby z grafu.
+Pustą listę (`[]`) wolno zostawić — znaczy „jeszcze nie wiem”.
 
 ## 3. Pola specyficzne per typ
 
@@ -49,24 +55,24 @@ walidator jej nie toleruje. Pustą listę (`[]`) wolno zostawić — znaczy „j
 | Pole | Znaczenie |
 |---|---|
 | `numer` | liczba ≥ 1; numeracja rozdziałów musi być ciągła |
-| `region` | nazwa krainy w grze (tekst, np. Qinghe) |
-| `zadania` | lista slugów zadań w rozdziale |
-| `postacie`, `miejsca` | listy slugów występujących w rozdziale |
+| `tytul_oboczny` | tytuł chiński z poematu i jego polskie brzmienie |
+| `epizody` | lista slugów epizodów rozdziału |
+| `watki`, `krainy`, `sekty`, `postacie` | listy slugów |
 | `status` | `rozegrane` / `w-toku` / `nierozpoczete` |
 | `nastepny` | slug następnego rozdziału (pojedynczy) |
 
 Sekcja obowiązkowa: `## Streszczenie`.
 
-### `zadanie`
+### `epizod`
 
 | Pole | Znaczenie |
 |---|---|
 | `rozdzial` | slug rozdziału (pojedynczy) |
 | `kolejnosc` | liczba ≥ 1 — pozycja w rozdziale, ciągła |
-| `rodzaj` | `glowne` / `poboczne` / `spotkanie` / `eksploracja` |
+| `rodzaj` | `glowny` / `poboczny` / `spotkanie` / `zwiad` / `wspomnienie` |
 | `status` | jak wyżej |
-| `sceny` | lista slugów scen zadania |
-| `postacie`, `miejsca`, `watki` | listy slugów |
+| `sceny` | lista slugów scen epizodu |
+| `postacie`, `krainy`, `sekty`, `miejsca`, `watki`, `konteksty` | listy slugów |
 
 Sekcja obowiązkowa: `## Streszczenie`.
 
@@ -74,17 +80,25 @@ Sekcja obowiązkowa: `## Streszczenie`.
 
 | Pole | Znaczenie |
 |---|---|
-| `zadanie` | slug zadania (pojedynczy) |
-| `numer_sceny` | numer w obrębie zadania jako **tekst** (`"1-1"`, `"2-7"`) |
-| `kolejnosc` | globalny porządek rozegrania, liczba ≥ 1, ciągła od 1 |
-| `streszczenie` | jedno–dwa zdania; wymagane, bo trafia na listy |
+| `epizod` | slug epizodu (pojedynczy) |
+| `numer_sceny` | numer w obrębie epizodu jako **tekst** (`"1-1"`, `"2-7"`) |
+| `kolejnosc` | globalny porządek opowieści, liczba ≥ 1, ciągła od 1 |
+| `streszczenie` | jedno–dwa zdania; trafia na listy i do chronologii |
 | `zapis` | nazwa pliku w `rozgrywka/zapisy/`, z którego pochodzi `:::zapis` |
-| `postacie`, `miejsca`, `watki`, `konteksty` | listy slugów |
+| `postacie`, `krainy`, `miejsca`, `sekty`, `watki`, `konteksty` | listy slugów |
 | `sekcje_analizy` | mapowanie `"Podsekcja → Nagłówek analizy"` |
 
 Sekcje obowiązkowe: `## Treść sceny` i `## Analiza`. Scena musi mieć **co najmniej dwa**
 elementy treści (kwestie/narracje) i **co najmniej jeden** blok `:::zapis`, który jest
 dosłownym fragmentem archiwum (ADR 0008).
+
+### `watek`
+
+| Pole | Znaczenie |
+|---|---|
+| `rodzaj_watku` | `glowny` / `poboczny` / `motyw` / `tajemnica` / `romans` / `polityczny` / `mistyczny` / `inne` |
+| `stan` | swobodny tekst: otwarty, zamknięty, zawieszony |
+| `postacie`, `sceny`, `rozdzialy`, `epizody`, `konteksty` | listy slugów |
 
 ### `postac`
 
@@ -92,27 +106,37 @@ dosłownym fragmentem archiwum (ADR 0008).
 |---|---|
 | `rola` | `protagonista` / `antagonista` / `sojusznik` / `mentor` / `drugoplanowa` / `narrator` / `inne` |
 | `pseudonim` | przydomek, jeśli różny od `tytul` |
-| `przydzial` | krótka funkcja w świecie (np. strażnik przystani) |
+| `przydzial` | funkcja w świecie (np. strażnik przystani) |
 | `pierwsze_wystapienie` | slug sceny pierwszego pojawienia się |
-| `miejsca`, `watki`, `relacje` | listy slugów |
+| `sekta`, `kraina` | pojedyncze slugi przynależności |
+| `krainy`, `miejsca`, `watki`, `relacje` | listy slugów |
 
-Sekcja obowiązkowa: `## Opis`.
+### `sekta`
+
+| Pole | Znaczenie |
+|---|---|
+| `rodzaj` | `szkola` / `klan` / `bractwo` / `gildia` / `zakon` / `dwór` / `inne` |
+| `siedziba` | slug miejsca (pojedynczy) |
+| `kraina` | slug krainy |
+| `postacie`, `watki`, `konteksty`, `epizody` | listy slugów |
+
+### `kraina`
+
+| Pole | Znaczenie |
+|---|---|
+| `rodzaj` | `prowincja` / `region` / `miasto` / `dzielnica` / `kraina` / `inne` |
+| `region` | większa całość, jeśli kraina jest jej częścią (tekst) |
+| `rozdzial` | slug rozdziału, w którym kraina się pojawia |
+| `sekty`, `postacie`, `miejsca`, `watki` | listy slugów |
 
 ### `miejsce`
 
 | Pole | Znaczenie |
 |---|---|
-| `rodzaj` | swobodny tekst: miasto, klasztor, przełęcz… |
-| `region` | kraina |
-| `rozdzial` | slug rozdziału, w którym miejsce po raz pierwszy się pojawia |
+| `rodzaj` | swobodny tekst: świątynia, gospoda, przełęcz… |
+| `kraina` | slug krainy (pojedynczy) |
+| `sekta` | slug sekty, do której miejsce należy |
 | `postacie`, `konteksty` | listy slugów |
-
-### `pojecie`
-
-| Pole | Znaczenie |
-|---|---|
-| `rodzaj` | `organizacja` / `frakcja` / `miejscowosc` / `kultura` / `technika` / `przedmiot` / `wydarzenie` / `inne` |
-| `postacie`, `miejsca`, `konteksty` | listy slugów |
 
 ### `kontekst`
 
@@ -121,16 +145,15 @@ Sekcja obowiązkowa: `## Opis`.
 | `rodzaj` | `ksiega` / `poemat` / `film` / `serial` / `manga` / `gra` / `opera` / `podanie` / `termin` / `inne` |
 | `dzielo` | tytuł dzieła, jeśli kontekst je wskazuje |
 | `autor` | autor lub tradycja |
-| `rok` | liczba całkowita (rok powstania / wydania) |
-| `postacie`, `pojecia` | listy slugów |
+| `rok` | liczba całkowita |
+| `postacie`, `pojecia`, `watki` | listy slugów |
 
-### `watek`
+### `pojecie`
 
 | Pole | Znaczenie |
 |---|---|
-| `rodzaj_watku` | `glowny` / `poboczny` / `motyw` / `tajemnica` / `romans` / `polityczny` / `mistyczny` / `inne` |
-| `stan` | swobodny tekst: otwarty, zamknięty, zawieszony |
-| `postacie`, `sceny`, `rozdzialy` | listy slugów |
+| `rodzaj` | `organizacja` / `frakcja` / `miejscowosc` / `kultura` / `technika` / `przedmiot` / `wydarzenie` / `inne` |
+| `postacie`, `krainy`, `sekty`, `miejsca`, `konteksty` | listy slugów |
 
 ### `relacja`
 
@@ -142,20 +165,24 @@ Sekcja obowiązkowa: `## Opis`.
 
 ## 4. Pola-relacje (graf)
 
-Każde z tych pól jest sprawdzane: cel musi istnieć i mieć właściwy typ. Wartość pojedyncza,
-jeśli pole nie jest listą.
+Każde z tych pól jest sprawdzane: cel musi istnieć i mieć właściwy typ.
 
 | Pole | Cel | Kształt |
 |---|---|---|
 | `rozdzial` | rozdział | pojedynczy |
 | `nastepny` | rozdział | pojedynczy |
-| `zadanie` | zadanie | pojedynczy |
+| `epizod` | epizod | pojedynczy |
+| `kraina` | kraina | pojedynczy |
+| `sekta` | sekta | pojedynczy |
+| `siedziba` | miejsce | pojedynczy |
 | `pierwsze_wystapienie` | scena | pojedynczy |
-| `zadania` | zadanie | lista |
+| `epizody` | epizod | lista |
 | `sceny` | scena | lista |
 | `rozdzialy` | rozdział | lista |
-| `postacie` | postać | lista |
+| `krainy` | kraina | lista |
+| `sekty` | sekta | lista |
 | `miejsca` | miejsce | lista |
+| `postacie` | postać | lista |
 | `watki` | wątek | lista |
 | `relacje` | relacja | lista |
 | `konteksty` | kontekst | lista |
@@ -164,9 +191,34 @@ jeśli pole nie jest listą.
 Poza frontmatterem graf tworzą **wikilinki** w treści: `[[slug]]` albo `[[slug|etykieta]]`.
 Martwy wikilink przerywa build. Sekcja „Powiązania” powstaje sama z obu źródeł.
 
-## 5. Historia interpretacji
+## 5. Poziomy wiarygodności (boksy)
 
-Zmiana twierdzenia wymaga wpisu w `interpretacje:`. To lista obiektów:
+Treść dzieli się na boksy. Poziom mówi, **czym fragment jest**, a nie jak bardzo jest pewny.
+Otwarcie bloku to linia `{{poziom`, zamknięcie — linia `}}`. Bloki nie zagnieżdżają się.
+
+| Blok | Rola | Do czego |
+|---|---|---|
+| `{{skrypt` | słowa opowieści | dialogi i narracja w dosłownym brzmieniu |
+| `{{streszczenie` | streszczenie | zwięzły opis wydarzeń własnymi słowami |
+| `{{menu` | kronika i księgi | opisy świata spisane w grze: encyklopedia, dziennik, karty postaci |
+| `{{zrodlo` | sprawdzone źródło | twierdzenie potwierdzone w źródle zewnętrznym (adres w `zrodla`) |
+| `{{wiedza` | kontekst kulturowy | tło z kultury Chin i wuxia, bez potwierdzenia w źródle |
+| `{{hipoteza pewnosc=NN` | interpretacja | odczytanie opowieści z jawną pewnością |
+| `{{struktura` | powiązania | wyliczenie relacji, nie narracja |
+
+Zasady:
+
+- `pewnosc=` przysługuje **wyłącznie** `{{hipoteza}}` i jest liczbą 0–100.
+- `{{hipoteza}}` bez `pewnosc=` to błąd — interpretacja bez prawdopodobieństwa nie istnieje.
+- Progi opisowe: **≥ 80** mocno uzasadnione, **50–79** możliwe, **< 50** słabo uzasadnione.
+  Pewność jest szacunkiem porządkowym, nie statystyką; nie podnosi się jej bez nowego dowodu.
+- Poziom `skrypt` nie służy do parafrazy. Skrót to `streszczenie`.
+- Blok `:::zapis` (potrójny dwukropek) to osobny mechanizm: surowy cytat archiwum wewnątrz
+  sceny, sprawdzany znak po znaku przez `npm run zapis`.
+
+## 6. Historia interpretacji
+
+Zmiana twierdzenia wymaga wpisu w `interpretacje:`:
 
 ```yaml
 interpretacje:
@@ -185,51 +237,16 @@ interpretacje:
 | `dotyczy` | czego dotyczy (opcjonalnie) |
 | `fragment` | tytuł sekcji, w której pokaże się boks „Poprzednia wersja” |
 | `poprzednio` | **dosłowne** brzmienie zastąpionego tekstu, nie streszczenie |
-| `pewnosc` | nowa pewność hipotezy, jeśli dotyczy |
+| `pewnosc` | nowa pewność interpretacji |
 | `pewnosc_poprzedniego` | poprzednia pewność |
 
-`fragment` musi wskazywać istniejącą sekcję `##` w treści. Wpis bez `poprzednio` jest
-dozwolony (pierwsza wersja), ale `poprzednio` bez `fragment` — nie.
+`fragment` musi wskazywać istniejącą sekcję `##` w treści.
 
-## 6. Poziomy wiarygodności (boksy)
+## 7. Język widocznej treści
 
-Treść dzieli się na boksy. Poziom mówi, **czym fragment jest**, a nie jak bardzo jest pewny —
-dlatego kolor jest cechą pochodzenia informacji. Otwarcie bloku to linia `{{poziom`,
-zamknięcie — linia `}}`. Bloki nie zagnieżdżają się.
-
-| Blok | Kolor / rola | Do czego |
-|---|---|---|
-| `{{skrypt` | dosłowny zapis | tekst sceny przepisany bez zmian z archiwum |
-| `{{streszczenie` | streszczenie | zwięzły opis bez cytowania |
-| `{{menu` | opis z ekranu | treść przepisana z UI gry: opisy zadań, notatki, dziennik |
-| `{{zrodlo` | potwierdzone źródłem | twierdzenie sprawdzone w źródle zewnętrznym (adres w `zrodla`) |
-| `{{wiedza` | kontekst niepotwierdzony | wiedza ogólna: kultura Chin, konwencja wuxia |
-| `{{hipoteza pewnosc=NN` | hipoteza | wniosek z jawnym prawdopodobieństwem |
-| `{{struktura` | spis powiązań | wyliczenie relacji, nie narracja |
-
-Zasady:
-
-- `pewnosc=` przysługuje **wyłącznie** `{{hipoteza}}` i jest liczbą 0–100.
-- `{{hipoteza}}` bez `pewnosc=` to błąd — hipoteza bez prawdopodobieństwa nie istnieje.
-- Progi opisowe: **≥ 80** — bardzo prawdopodobne, **50–79** — możliwe, **< 50** — słabo
-  uzasadnione. Pewność jest szacunkiem porządkowym, nie statystyką; nie podnosi się jej bez
-  nowego dowodu.
-- Poziom `skrypt` nie służy do parafrazy. Jeśli tekst został skrócony, to jest
-  `streszczenie`.
-- Blok `:::zapis` (potrójny dwukropek) to osobny mechanizm: surowy cytat archiwum wewnątrz
-  sceny, sprawdzany znak po znaku przez `npm run zapis`.
-
-## 7. Sekcje i swoboda formy
-
-Obowiązkowe są tylko sekcje wymienione przy typach. Poza nimi wolno dodawać dowolne `##` —
-„Tło”, „Nawiązania kulturowe”, „Wątki w scenie”, „Sprzeczności”, „Pytania otwarte”.
-Scena ma dodatkowo:
-
-- `## Analiza` z podsekcjami mapowanymi przez `sekcje_analizy`,
-- `## Nawiązania kulturowe` — gdy scena wnosi kontekst,
-- `## Wątki w scenie` — gdy trzeba pokazać, co wątek tu zyskuje.
-
-Nie ma zamkniętego słownika tagów ani jednego obowiązującego stylu narracji.
+Wszystko, co czyta człowiek — opisy, streszczenia, nagłówki, legenda, dziennik — mówi
+o świecie i wydarzeniach. Nie mówi o powstawaniu kroniki, o bazie, o materiałach ani
+o pracy redakcyjnej. Pilnuje tego `test/jezyk.test.js` (ADR 0014).
 
 ## 8. Minimalny przykład
 
@@ -238,13 +255,13 @@ Nie ma zamkniętego słownika tagów ani jednego obowiązującego stylu narracji
 typ: scena
 slug: przyklad-sc01
 tytul: "Przykładowa scena"
-zadanie: zadanie-1-1
+epizod: epizod-1-1
 numer_sceny: "1-1"
 kolejnosc: 1
 streszczenie: "Jedno zdanie o tym, co się wydarzyło."
 zapis: przyklad-001.md
 postacie: [przykladowa-postac]
-miejsca: [przykladowe-miejsce]
+krainy: [qinghe]
 tagi: [przyklad]
 utworzono: 2026-11-13
 ---
@@ -263,10 +280,10 @@ utworzono: 2026-11-13
 
 ## Analiza
 
-Wniosek z uzasadnieniem, którego nie da się potwierdzić w zapisie.
+Wniosek z uzasadnieniem, którego nie da się potwierdzić wprost.
 
 }}
 ```
 
 Walidacja: `src/wwm/registry.js` (`walidujStrone`, `sprawdzGraniceFabuly`,
-`sprawdzWiernoscSceny`). Granica fabuły: ADR 0007. Poziomy: ADR 0005.
+`sprawdzWiernoscSceny`). Granica opowieści: ADR 0007. Poziomy: ADR 0004. Typy: ADR 0013.

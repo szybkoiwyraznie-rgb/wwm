@@ -35,12 +35,12 @@ export function renderSzukanie(q) {
   const zapytanie = String(q ?? '').trim();
   const naglowek = naglowekStrony({
     tytul: 'Szukaj',
-    opis: 'Szuka w tytułach, streszczeniach, opisach i treści scen.',
-    sciezka: okruszki([{ etykieta: 'Baza', href: '#/' }, { etykieta: 'Szukaj' }]),
+    opis: 'Szuka w tytułach, streszczeniach, opisach i słowach scen.',
+    sciezka: okruszki([{ etykieta: 'Szukaj' }]),
   });
 
   if (zapytanie === '') {
-    return `${naglowek}${stanPusty('Wpisz frazę w polu u góry.', 'Szukanie działa w całości w przeglądarce — nic nie wychodzi na zewnątrz.')}`;
+    return `${naglowek}${stanPusty('Wpisz frazę w polu u góry.', 'Szukaj imienia, miejsca albo słowa, które padło w dialogu.')}`;
   }
 
   const fraza = normalizuj(zapytanie);

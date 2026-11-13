@@ -6,3 +6,6 @@ node_modules/
 
 .DS_Store
 *.log
+
+# Pobrane paczki źródłowe (np. archiwum tłumaczenia) — poza historią repo.
+google_drive/

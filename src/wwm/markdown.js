@@ -4,7 +4,7 @@
  * Obsługiwane: nagłówki #..####, akapity, **pogrubienie**, *kursywa*,
  * `kod`, [link](url), [[wikilink]] i [[wikilink|etykieta]] (przez resolver),
  * listy -/1., cytaty >, tabele pipe, pozioma linia ---, obrazy ![alt](src),
- * oraz blok `:::zapis ... :::` na dosłowny tekst z zapisu rozgrywki.
+ * oraz blok `:::zapis ... :::` na dosłowny tekst sceny.
  *
  * Poziom wiarygodności (ADR 0004) zaznacza się na fragmencie, nie na stronie:
  *   {{hipoteza pewnosc=70
@@ -321,7 +321,7 @@ export function renderMarkdown(md, {
  * nie ma z czym jej zestawić.
  */
 const ETYKIETY_POZIOMU = {
-  skrypt: 'zapis rozgrywki',
+  skrypt: 'słowa opowieści',
   streszczenie: 'streszczenie',
   menu: 'interfejs gry',
   zrodlo: 'sprawdzone źródło',

@@ -1,13 +1,15 @@
 ---
 typ: rozdzial
 slug: rozdzial-1
-tytul: "Rozdział 1 — Niebo bez przystani"
+tytul: "Rozdział pierwszy"
 numer: 1
-region: "Qinghe"
+tytul_oboczny: "踏莎行 · 神仙不渡 — Niebo bez przystani"
 status: w-toku
-zadania: [zadanie-1-1, zadanie-1-2]
+epizody: [epizod-1-1, epizod-1-2]
+watki: [watek-pochodzenia]
+krainy: [qinghe]
+sekty: []
 postacie: [mlody-wedrowiec, nieznajomy, starzec-z-przystani]
-miejsca: [przystan-mgly, klasztor-echa]
 tagi: [zaslepka, qinghe]
 utworzono: 2026-11-13
 ---

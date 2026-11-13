@@ -4,6 +4,7 @@ slug: nieznajomy
 tytul: "Nieznajomy"
 rola: drugoplanowa
 pierwsze_wystapienie: zaslepka-sc01
+kraina: qinghe
 miejsca: [przystan-mgly]
 watki: [watek-pochodzenia]
 relacje: [relacja-wedrowiec-nieznajomy]
