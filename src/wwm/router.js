@@ -33,7 +33,11 @@ export function parsujHash(hash) {
 }
 
 export function aktualnaTrasa() {
-  return parsujHash(globalThis.location?.hash ?? '');
+  const hash = globalThis.location?.hash ?? '';
+  // Sam `#kotwica` to skok w treści, nie trasa: trasa zostaje ta, która jest
+  // w `location` zapisana wcześniej. Inaczej router renderowałby „nie ma strony”.
+  if (czyKotwicaWewnetrzna(hash)) return { nazwa: 'kotwica', param: null, query: {} };
+  return parsujHash(hash);
 }
 
 /**

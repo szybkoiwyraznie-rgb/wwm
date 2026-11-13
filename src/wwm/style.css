@@ -286,17 +286,19 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 .fragment.poziom-dostawa      { background: var(--poz-dostawa);      border-color: var(--poz-dostawa-ramka); }
 .fragment.poziom-opracowanie  { background: var(--poz-opracowanie);  border-color: var(--poz-opracowanie-ramka); }
 .fragment.poziom-kwerenda     { background: var(--poz-kwerenda);     border-color: var(--poz-kwerenda-ramka); }
+/* Wiedza modelu bez procentu to tło kulturowe — żółta. Z procentem to hipoteza,
+   czyli interpretacja — fioletowa w całości. Jeden fragment nie może mieć dwóch
+   kolorów naraz (wcześniej żółty środek + fioletowa obwódka czytały się jak błąd). */
 .fragment.poziom-model        { background: var(--poz-model);        border-color: var(--poz-model-ramka); }
-
-/* Interpretacja: kolor pochodzenia + pasek z boku, bo to, co odczytane, ma być
-   rozpoznawalne na pierwszy rzut oka niezależnie od tego, skąd pochodzi. */
-.fragment.rodzaj-interpretacja { box-shadow: inset 3px 0 0 var(--poz-hipoteza-ramka); }
+.fragment.poziom-model.rodzaj-interpretacja,
+.fragment.rodzaj-interpretacja {
+  background: var(--poz-hipoteza); border-color: var(--poz-hipoteza-ramka);
+}
 
 .boks-dostawa      { background: var(--poz-dostawa); }
 .boks-opracowanie  { background: var(--poz-opracowanie); }
 .boks-kwerenda     { background: var(--poz-kwerenda); }
 .boks-model        { background: var(--poz-model); }
-.boks-rodzaj-interpretacja { box-shadow: inset 3px 0 0 var(--poz-hipoteza-ramka); }
 
 /* Boks z warstwami: tytuł należy do boksu, kolory do warstw w środku.
    Warstwy odstają od tytułu tylko tyle, żeby było widać, że to jeden tekst. */

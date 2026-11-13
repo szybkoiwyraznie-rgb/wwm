@@ -138,6 +138,26 @@ rodzaju treści. Kolor należy do warstw, nie do tytułu.
 21. **Dziennik jest na stronie głównej**, nad sekcją „Rozdziały” (trzy ostatnie wpisy
     + odsyłacz do całości). Wcześniej był tylko w stopce, czyli poza zasięgiem wzroku.
 
+## Hipoteza to cały fiolet (decyzja właściciela)
+
+Fragment z pewnością to hipoteza i ma **jeden** kolor — fioletowy, także tło i obwódkę.
+Wcześniej zostawał żółty (kolor tła kulturowego) z fioletowym paskiem z boku, więc jeden
+boks miał dwa kolory naraz. Reguła: `{{model}}` bez pewności = żółty (tło kulturowe),
+`{{model pewnosc=N}}` = fioletowy (hipoteza). Brama pilnuje, że fragment z `data-pewnosc`
+ma klasę `rodzaj-interpretacja`, a interpretacja zawsze ma pewność.
+
+## Kotwica raz jeszcze: to nie link był zepsuty, a router
+
+Chip na stronie „Xiake” wskazywał istniejącą kotwicę `#hip-w-opowiesci` — i dalej
+prowadził donikąd. Przyczyna: `aktualnaTrasa()` parsował samo `#hip-…` jak trasę, więc
+router renderował stan „nie ma takiej strony”. Teraz hash bez ukośnika daje trasę
+`kotwica`, której `renderuj()` nie renderuje (tylko przewija), a kliknięcia w odsyłacze
+`#…` są przechwytywane, żeby nie podmieniały hasha trasy.
+
+Poprzednia poprawka sprawdzała **istnienie kotwicy**, więc była zielona, choć kliknięcie
+i tak kończyło się pustą stroną. Brama testuje teraz **zachowanie**: `aktualnaTrasa()`
+na samym `#kotwica` musi zwrócić `kotwica`, a nie `nieznana`.
+
 ## Dlaczego audyt tego nie złapał
 
 Poprzednia brama sprawdzała odsyłacze w **danych** strony (`html`, `boksy`, `sekcje`).

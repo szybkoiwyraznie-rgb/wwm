@@ -40,6 +40,9 @@ let tokenRender = 0;
 async function renderuj(trasa) {
   const app = globalThis.document?.getElementById('app');
   if (!app) return;
+  // Skok do miejsca w treści: nie renderujemy strony od nowa, tylko przewijamy.
+  // Renderowanie kosztowałoby migotanie i zgubiło pozycję czytania.
+  if (trasa.nazwa === 'kotwica') return;
   const moj = ++tokenRender;
   if (trasa.nazwa === 'szukaj' && trasa.query?.q) await dociagnijTeksty();
   if (trasa.nazwa === 'co-nowego') await dociagnijCoNowego();
@@ -146,9 +149,12 @@ function podepnijSkokiWStronie() {
   const d = globalThis.document;
   if (!d?.addEventListener) return;
   d.addEventListener('click', (e) => {
-    const link = e.target?.closest?.('[data-cel]');
+    // Każdy odsyłacz `#kotwica` w obrębie tej samej strony obsługujemy ręcznie:
+    // natywna nawigacja podmieniłaby hash i router uznał to za nową trasę.
+    const link = e.target?.closest?.('a[href^="#"]:not([href^="#/"])');
     if (!link) return;
-    const cel = d.getElementById(link.dataset.cel);
+    const celId = link.dataset.cel ?? decodeURIComponent(link.getAttribute('href').slice(1));
+    const cel = d.getElementById(celId);
     if (!cel) return;
     e.preventDefault();
     cel.scrollIntoView({ behavior: 'smooth', block: 'start' });

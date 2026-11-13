@@ -112,7 +112,8 @@ export function legendaPoziomow() {
   ];
   return `<div class="legenda">
   <p class="legenda-tytul">Kolor mówi, skąd to wiemy — tytuł boksu mówi, o czym jest</p>
-  <p class="legenda-opis">Jeden boks może mieć kilka warstw w różnych kolorach; nazwa pochodzenia stoi przy każdej z nich.</p>
+  <p class="legenda-opis">Jeden boks może mieć kilka warstw w różnych kolorach; nazwa pochodzenia stoi przy każdej z nich.
+  Wiedza modelu z pewnością to hipoteza i ma kolor fioletowy; bez pewności to tło kulturowe i zostaje żółte.</p>
   <ul class="legenda-lista">
     ${pochodzenia.map(([id, nazwa, opis]) => `<li><span class="legenda-probka poziom-${id}" aria-hidden="true"></span><strong>${nazwa}</strong> — ${opis}</li>`).join('')}
   </ul>

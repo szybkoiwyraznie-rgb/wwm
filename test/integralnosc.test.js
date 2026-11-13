@@ -412,8 +412,46 @@ test('każdy odsyłacz wewnętrzny w WIDOKU ma cel — także w kolumnie bocznej
 
 test('goła kotwica nie jest traktowana jak trasa', async () => {
   // Router na `#hip-rola` renderował „Nie ma takiej strony” — a to skok w treści.
-  const { czyKotwicaWewnetrzna } = await import('../src/wwm/router.js');
+  globalThis.location = { hash: '#/kontekst/xiake' };
+  const { czyKotwicaWewnetrzna, aktualnaTrasa } = await import('../src/wwm/router.js');
   assert.equal(czyKotwicaWewnetrzna('#hip-rola'), true);
   assert.equal(czyKotwicaWewnetrzna('#/scena/x'), false);
   assert.equal(czyKotwicaWewnetrzna('#'), false);
+
+  // Samo `#kotwica` w adresie NIE może dać trasy „nieznana”: to skok w treści.
+  // Wcześniej `aktualnaTrasa()` parsował je jak trasę i renderował stan pusty.
+  globalThis.location.hash = '#hip-rola';
+  assert.equal(aktualnaTrasa().nazwa, 'kotwica');
+  globalThis.location.hash = '#/kontekst/xiake';
+  assert.equal(aktualnaTrasa().nazwa, 'kontekst');
+  globalThis.location.hash = '';
+  assert.equal(aktualnaTrasa().nazwa, 'glowna');
+});
+
+test('hipoteza ma kolor hipotezy, tło kulturowe — kolor tła', async () => {
+  // Wiedza modelu z pewnością jest hipotezą (fiolet), bez pewności — tłem (żółć).
+  // Wcześniej fragment miał żółty środek i fioletową obwódkę jednocześnie.
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const widoki = {
+    scena: (await import('../src/wwm/render-scena.js')).renderScena,
+    epizod: (await import('../src/wwm/render-epizod.js')).renderEpizod,
+    rozdzial: (await import('../src/wwm/render-epizod.js')).renderRozdzial,
+    encja: (await import('../src/wwm/render-encja.js')).renderEncja,
+  };
+  const problemy = [];
+  for (const strona of Object.values(dane.strony)) {
+    const html = (widoki[strona.typ] ?? widoki.encja)(strona.slug);
+    for (const m of html.matchAll(/<div class="(fragment [^"]*)"[^>]*>/g)) {
+      const klasy = m[1];
+      const maPewnosc = /data-pewnosc=/.test(m[0]);
+      if (maPewnosc && !/rodzaj-interpretacja/.test(klasy)) {
+        problemy.push(`${strona.slug}: fragment z pewnością bez rodzaju interpretacja`);
+      }
+      if (/rodzaj-interpretacja/.test(klasy) && !maPewnosc) {
+        problemy.push(`${strona.slug}: interpretacja bez pewności`);
+      }
+    }
+  }
+  assert.deepEqual([...new Set(problemy)], []);
 });
