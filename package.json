@@ -1,0 +1,17 @@
+{
+  "name": "wwm-database",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Where Winds Meet — baza fabuły: dziennik rozgrywki i wiki o świecie gry, scena po scenie",
+  "scripts": {
+    "test": "node tools/run-tests.mjs",
+    "build": "node tools/build.mjs",
+    "serve": "node tools/serve.mjs",
+    "start": "node tools/serve.mjs",
+    "zapis": "node tools/sprawdz-zapis.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
