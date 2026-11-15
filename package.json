@@ -1,0 +1,18 @@
+{
+  "name": "wwm-database",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Where Winds Meet — kronika opowieści: historia wędrowca w świecie jianghu, scena po scenie",
+  "scripts": {
+    "test": "node tools/run-tests.mjs",
+    "build": "node tools/build.mjs",
+    "serve": "node tools/serve.mjs",
+    "start": "node tools/serve.mjs",
+    "zapis": "node tools/sprawdz-zapis.mjs",
+    "build:single": "node tools/build.mjs --single"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

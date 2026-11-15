@@ -1,0 +1,216 @@
+# 0018 — Jeden tytuł boksu i odsyłacze, które mają cel
+
+**Status:** przyjęta (2026-11-13) · **Zastępuje:** — · **Zastępuje fragmenty:** 0016 · **Zastąpiona przez:** —
+
+## Kontekst
+
+Po wdrożeniu warstw i kolumn (0016) właściciel przeszedł stronę sceny i wypisał pięć rzeczy,
+które nie działają albo nie mają sensu:
+
+1. chip „Interpretacja · Analiza · pewność 60%” w prawej kolumnie prowadzi do pustej strony,
+2. pod tytułem sceny stoi zdanie bez etykiety — nie wiadomo, czym jest,
+3. okruszki sklejają się w zbitok: `Chronologia›Rozdział pierwszy›Klasztor echa›Zwój pod bramą`,
+4. w tabeli wątków widać `watek-pochodzenia` — slug zamiast nazwy,
+5. boksy mają po dwa tytuły: „Analiza” + „interpretacja”, „Wątki w scenie” + „spis powiązań”.
+
+Każdy z tych punktów to inny błąd, ale mają wspólną przyczynę: **elementy dodane dla
+porządku w danych przeciekły do widoku**. Kotwica bez celu, streszczenie bez etykiety,
+slug bez nazwy, rodzaj treści bez potrzeby.
+
+## Decyzja
+
+1. **Chip interpretacji prowadzi do kotwicy, która istnieje.** Build nadaje blokowi
+   interpretacji `id` (`kotwicaInterpretacji`) z tego samego licznika, z którego powstaje
+   inwentarz interpretacji — chip i cel nie mogą się rozjechać. Test sprawdza, że każdy
+   odsyłacz `#…` ma cel na stronie.
+2. **Interpretacje stoją w jednym miejscu.** Na stronie encji — tylko w kolumnie bocznej
+   (w treści nie ma ich drugi raz). Na stronie sceny — są sekcją treści, więc kolumna ich
+   nie powtarza.
+3. **Tytuł strony sceny to tytuł sceny.** Streszczenie zostaje w danych (listy, chronologia,
+   wyszukiwarka), ale nie pod tytułem: bez etykiety źródła wyglądało jak urwany fragment.
+4. **Odsyłacz pokazuje nazwę, nie adres.** `[[slug]]` bez etykiety renderuje się jako tytuł
+   strony (`Pochodzenie wędrowca`), nie jako `watek-pochodzenia`. Slug jest adresem.
+5. **Okruszki mają widoczne odstępy** (spacja + separator + spacja, układ w linii), żeby
+   sąsiednie ogniwa nie sklejały się w jeden wyraz.
+6. **Jeden tytuł boksu.** Plakietka przy nagłówku mówi wyłącznie, skąd wiemy (pochodzenie,
+   a przy interpretacji także pewność). Rodzaj treści nie jest już wypisywany obok tytułu —
+   powtarzał go („Wątki w scenie” + „spis powiązań”). Atrybut `rodzaj=` zostaje w danych
+   i w klasach CSS, bo odpowiada za układ warstwy, nie za napis.
+
+## Uzupełnienie po przejściu strony „Droga bez śladów” (ten sam dzień)
+
+Ta sama przyczyna, trzy nowe objawy — i jeden błąd, którego nie widziały żadne dane:
+
+7. **Nagłówek nie dubluje tytułu.** `okruszki()` zwracało gołe `<span>` z tytułem
+   bieżącej strony; pod streszczeniem stał więc drugi „Droga bez śladów”. Teraz
+   ścieżka jest `<p class="okruszki">`, a przy jednym ogniwie nie renderuje się wcale
+   (tytuł już jest w `<h1>`).
+8. **Streszczenie nie jest wyciągiem z „Opisu”** (i nie ma go wcale, gdy strona nie ma
+   własnego pola `streszczenie` ani sekcji `## Streszczenie`). Wcześniej build brał
+   pierwsze zdanie opisu, więc pod tytułem powtarzał się dosłownie początek boksu.
+9. **Metryka nie pokazuje etykiet magazynowych.** „Rodzaj: termin” nic nie mówi
+   czytelnikowi; rodzaje zostają tylko tam, gdzie znaczą coś na stronie.
+
+**Błąd w parserze, nie w widoku:** `##` w środku bloku `{{…}}` zamykał blok **razem
+z jego otwarciem**. Treść po nagłówku renderowała się jako domyślne „opracowanie”
+(stąd zielony boks na wiedzy modelu), a interpretacja gubiła `pewnosc=` i kotwicę
+(stąd fioletowy chip bez celu). Otwarcie obowiązuje teraz do jawnego `}}`.
+
+## Przegląd wszystkich typów stron (ten sam dzień)
+
+Po scenie i kontekście przeszedłem każdy typ strony i każdy widok listowy tym samym
+filtrem: *czy to zdanie mówi o świecie, czy o warsztacie?* Trzy klasy błędów powtarzały
+się poza sceną — wszystkie naprawione u źródła, nie w pojedynczych widokach:
+
+10. **Wartości słownikowe w widoku.** `rodzaj: glowny` wyświetlało się dosłownie
+    („Rodzaj wątku: glowny”, „wątek główny” obok „rozdział:”). Jedna funkcja
+    `nazwaRodzaju()` tłumaczy wartości z plików na język opowieści — korzystają z niej
+    metryka encji i widok epizodu, zamiast dwóch lokalnych map.
+11. **Powtórzony akapit.** Boks „Streszczenie” stał obok tego samego streszczenia pod
+    tytułem (epizody, rozdziały, encje). Boks jest teraz filtrowany: streszczenie żyje
+    wyłącznie jako lead.
+12. **Etykiety magazynowe w metryce.** „Rodzaj: termin”, „Stan: otwarty” — notatki
+    redakcyjne. Zostają tylko pola, które coś mówią o świecie.
+13. **Tytuł boksu jako nazwa odczytania.** Lista interpretacji pokazywała „Analiza”
+    (tytuł sekcji) zamiast pytania, na które blok odpowiada. Interpretacja ma teraz
+    atrybut `pytanie=` („Kto ułożył krąg z kamieni i zostawił zwój?”); bez niego
+    lista mówi „odczytanie sceny”, nigdy tytułem boksu.
+14. **Nagłówki tabeli to zdania o opowieści.** `WĄTEK | ŚLAD W SCENIE` → `Co się wtedy
+    porusza | Czym daje o sobie znać`.
+
+## Pewność należy do przypuszczenia, nie do tła (decyzja właściciela)
+
+`{{model}}` **bez** `pewnosc=` to tło kulturowe — konwencja, obyczaj, znaczenie słowa.
+Zostaje w kolorze wiedzy modelu (to nadal wiedza modelu, nie źródło), ale **nie dostaje
+etykiety pewności**: liczba przy zdaniu o obyczaju nie ma czego szacować i tylko
+sugerowałaby, że to policzone ryzyko.
+
+- `{{model pewnosc=N}}` = przypuszczenie; pewność jest jego cechą i stoi w plakietce.
+- `{{model}}` = tło; brak liczby jest informacją, nie brakiem.
+- `pytanie=` i `rodzaj=interpretacja` wymagają pewności — inaczej build zgłasza błąd.
+- `pewnosc=0` nie wyświetla plakietki: zero to brak twierdzenia, nie „bardzo niepewne”.
+
+## Wątki się wymienia, nie opisuje (decyzja właściciela)
+
+Tabela `Co się wtedy porusza | Czym daje o sobie znać` była przerostem formy: żeby
+powiedzieć „w tej scenie jest wątek pochodzenia wędrowca”, powstała tabela z dwiema
+kolumnami wymyślonymi na siłę, a nagłówki po polsku czytały się jak bełkot.
+
+- **Wątek to nazwa, nie akapit.** Wystarczy wymienić: „Wątki: Pochodzenie wędrowca”.
+- **Nie dublujemy kolumny bocznej**, która i tak wymienia wątki sceny wraz z linkiem.
+  Boks „Wątki w scenie” zniknął; jeśli kiedyś wróci, to jako lista nazw — bez tabeli,
+  bez kolumny z jednozdaniowym opisem i bez nagłówków-konstrukcji.
+
+## Tytuł boksu stoi nad warstwami (decyzja właściciela)
+
+Na scenie tytuł `Treść sceny` leżał **wewnątrz** kolorowanego podboksu, razem z plakietką
+„z opowieści”. Czytało się to tak, jakby „Treść sceny” było nazwą źródła — a to nazwa
+rodzaju treści. Kolor należy do warstw, nie do tytułu.
+
+- `<section class="boks">` ma **tylko** tytuł (`<h2>Treść sceny</h2>`) — bez koloru
+  i bez `data-poziom`; kolorowanie boksu sugerowało pochodzenie całej sekcji.
+- Tytuł jest **pierwszym** elementem sekcji, zawsze nad warstwami.
+- Plakietka pochodzenia trafia do warstwy — czyli do jej nagłówka (`Otwarta brama`,
+  a w analizie `Otwarta brama ↦`).
+- Build nie wstawia już `## <tytuł sekcji>` do treści warstwy: tytuł renderuje widok.
+
+## Lead, nawigacja i chronologia (uwagi właściciela)
+
+15. **Wstęp wypełnia kolumnę.** Wszystkie leady miały `max-width` w `ch` (68–80),
+    więc łamały się w połowie kolumny i wyglądały jak urwany akapit. Szerokość
+    wyznacza kolumna, nie `ch`.
+16. **„Co nowego” i „Jak czytać kronikę” były nieosiągalne** — trasy istniały, ale
+    żadna nawigacja do nich nie prowadziła. Oba wejścia są teraz w stopce.
+17. **Chronologia startuje zwinięta.** `details/summary` na rozdziałach: ekran pokazuje
+    kształt opowieści (ile rozdziałów, gdzie jesteśmy), a nie wszystkie sceny naraz.
+18. **Wiersz sceny nie dubluje epizodu.** Nazwa epizodu stoi nad scenami jako nagłówek;
+    w wierszu była powtórzona i „striplowana”. Zostaje numer sceny.
+
+## Kotwica to nie trasa (uwagi właściciela, strona „Nieznajomy”)
+
+19. **Router traktował `#hip-rola` jak trasę.** Hash zaczynający się od czegoś innego
+    niż `/` to skok w obrębie strony; router renderował na nim „Nie ma takiej strony”.
+    Teraz takie adresy obsługuje `scrollIntoView`, a trasa zostaje nietknięta —
+    `location.hash = '#kotwica'` podmieniałby cały adres na samą kotwicę.
+20. **Chip interpretacji nie ucina treści.** `inline-flex` przy długim pytaniu
+    rozjeżdżał plakietkę poza ramkę. Chip jest `flex` z `justify-content: space-between`:
+    pytanie się zawija, pewność stoi przy prawej krawędzi i nie wchodzi na słowa.
+21. **Dziennik jest na stronie głównej**, nad sekcją „Rozdziały” (trzy ostatnie wpisy
+    + odsyłacz do całości). Wcześniej był tylko w stopce, czyli poza zasięgiem wzroku.
+
+## Hipoteza to cały fiolet (decyzja właściciela)
+
+Fragment z pewnością to hipoteza i ma **jeden** kolor — fioletowy, także tło i obwódkę.
+Wcześniej zostawał żółty (kolor tła kulturowego) z fioletowym paskiem z boku, więc jeden
+boks miał dwa kolory naraz. Reguła: `{{model}}` bez pewności = żółty (tło kulturowe),
+`{{model pewnosc=N}}` = fioletowy (hipoteza). Brama pilnuje, że fragment z `data-pewnosc`
+ma klasę `rodzaj-interpretacja`, a interpretacja zawsze ma pewność.
+
+## Kotwica raz jeszcze: to nie link był zepsuty, a router
+
+Chip na stronie „Xiake” wskazywał istniejącą kotwicę `#hip-w-opowiesci` — i dalej
+prowadził donikąd. Przyczyna: `aktualnaTrasa()` parsował samo `#hip-…` jak trasę, więc
+router renderował stan „nie ma takiej strony”. Teraz hash bez ukośnika daje trasę
+`kotwica`, której `renderuj()` nie renderuje (tylko przewija), a kliknięcia w odsyłacze
+`#…` są przechwytywane, żeby nie podmieniały hasha trasy.
+
+Poprzednia poprawka sprawdzała **istnienie kotwicy**, więc była zielona, choć kliknięcie
+i tak kończyło się pustą stroną. Brama testuje teraz **zachowanie**: `aktualnaTrasa()`
+na samym `#kotwica` musi zwrócić `kotwica`, a nie `nieznana`.
+
+## Dlaczego audyt tego nie złapał
+
+Poprzednia brama sprawdzała odsyłacze w **danych** strony (`html`, `boksy`, `sekcje`).
+Chip interpretacji powstaje dopiero w kolumnie bocznej **przy renderze** — więc jego
+link nie był badany. Test na danych zastąpiła brama na całym widoku: treść, kolumna
+i stopka razem. To ta sama lekcja co poprzednio, tylko o jeden poziom dalej: dane nie
+wystarczą, potrzebny jest wyrenderowany HTML.
+
+## Bez dubla w kolumnie i z pewnością po prawej (uwagi właściciela)
+
+22. **Interpretacja żyje tylko w treści.** Chip w kolumnie bocznej powtarzał fragment:
+    to samo pytanie, ta sama pewność, dwa miejsca. Pytanie ma sens tam, gdzie stoi
+    odpowiedź. Kolumna zostaje przy powiązaniach i występowaniu w opowieści.
+23. **Pewność przy prawej krawędzi także nad treścią.** Fragment bez nagłówka ma
+    plakietki w `<p class="poziom-nad-trescia">` — to nie był flex, więc pochodzenie
+    i pewność stały obok siebie po lewej. Teraz `space-between`: pochodzenie po lewej,
+    pewność przy prawym marginesie.
+
+24. **Powiązania to same nazwy.** Dopisek „— odsyła tutaj” stał przy większości
+    linków (powiązanie jest dwustronne z natury), a „w treści” nigdy się nie pokazywał.
+    Zbieranie powodów zniknęło razem z etykietą — została lista nazw.
+
+## Koniec typu „relacja” i dwie puste sekcje (uwagi właściciela)
+
+25. **Typ `relacja` usunięty.** W bazach VN strona relacji ma sens, bo relacja jest
+    jednostką opowieści. Tutaj jest pochodną pól: kto zna kogo, wynika z `postacie`
+    i `watki`. Osobny wpis tylko powtarzał to, co już widać w powiązaniach.
+    Zniknął typ, katalog `content/relacje/`, trasy `#/relacje` i `#/relacja/:slug`,
+    pole `relacje` w postaciach oraz `rodzaj_relacji`. Zostało 10 typów stron.
+26. **`krainy` i `sekty` nie miały `case` w routerze.** Trasy istniały w menu i w
+    słowniku, ale wypadły ze switcha, więc spadały do `default:` i pokazywały
+    „Nie znaleziono” — co wygląda jak pusty dział, nie jak błąd. Mimo danych
+    (Qinghe, Studnia Niebios) sekcje wyglądały na puste.
+27. **`#/epizody` wywalało wyjątek.** `TYTULY['epizod']` nie istniało, a `listaEncji`
+    robiło z tego destructuring `undefined`. Lista epizodów była niedostępna.
+
+Nowa brama `test/trasy.test.js` sprawdza to, czego nie widział żaden test: czy każda
+trasa z menu i z list ma `case` w `renderuj()`, czy zwraca treść i czy pokazuje
+wszystkie pozycje danego typu.
+
+## Konsekwencje
+
+- **Brama na przyszłość:** testy sprawdzają to na **wyrenderowanych widokach**, nie na
+  danych — każda strona renderuje się bez błędu, każdy odsyłacz `#…` ma cel, w nagłówku
+  nie ma luźnego tekstu poza `<h1>`/`<p>`, przy tytule nie stoi druga etykieta, a blok
+  z nagłówkiem zachowuje swoje pochodzenie. Regresja wywali CI, zanim zobaczy ją czytelnik.
+- **Nowe bramy:** żaden widok nie pokazuje surowej wartości słownikowej (`glowny`,
+  `tajemnica`…), a żaden akapit nie stoi na stronie dwa razy.
+- **Lekcja:** bramy danych nie widzą widoku. Chip powstaje przy renderze, więc „pusty”
+  odsyłacz przeszedł przez 63 testy. Każdy element generowany w widoku potrzebuje testu
+  na widoku.
+- **Mniej szumu w nagłówkach.** Dwa tytuły obok siebie czyta się jak błąd, nawet gdy oba
+  są prawdziwe; jeden tytuł i jedna plakietka mówią to samo krócej.
+- **Koszt:** informacja o rodzaju treści (np. że tabela jest spisem powiązań) znika
+  z nagłówka. Zostaje w treści i w układzie; jeśli okaże się potrzebna, wróci jako opis
+  w legendzie, nie jako drugi tytuł.

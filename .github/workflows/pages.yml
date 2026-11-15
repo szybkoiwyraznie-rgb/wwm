@@ -1,0 +1,61 @@
+name: Publikacja na GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Testy i build artefaktu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobranie repozytorium (pełna historia — daty stron)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Testy integralności bazy i dokumentacji
+        run: npm test
+
+      - name: Kontrola dosłowności scen
+        run: npm run zapis
+
+      - name: Build artefaktu
+        run: npm run build
+
+      - name: Konfiguracja Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Przygotowanie artefaktu
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Wdrożenie
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publikacja
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,5 @@
+{
+  "opis": "Granica rozegranej fabuły (ADR 0007). Pole `ostatnia_scena` wskazuje slug ostatniej sceny, którą właściciel rozegrał i przekazał. Build odrzuca każdą scenę leżącą dalej w kolejności rozegrania, więc materiały na przyszłość mogą leżeć w repozytorium bez ryzyka spoilera.",
+  "ostatnia_scena": "zaslepka-sc02",
+  "zaktualizowano": "2026-11-13"
+}

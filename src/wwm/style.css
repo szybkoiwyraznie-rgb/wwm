@@ -1,0 +1,524 @@
+/* Where Winds Meet — baza fabuły.
+   Priorytety: czytelność długiego tekstu, telefon/iPad, zero zależności.
+   Paleta: tusz i papier chińskiego rękopisu, akcent cynobrowy (朱砂) i jadeitowy.
+   Motyw jasny i ciemny — przełącznik w nagłówku, start od preferencji systemu. */
+
+:root {
+  --tlo: #f6f3ec;
+  --tlo-2: #efeade;
+  --panel: #fffdf8;
+  --panel-2: #f4efe3;
+  --tusz: #23201c;
+  --tusz-2: #4f4a42;
+  --tusz-3: #837a6c;
+  --akcent: #a8362b;          /* cynober */
+  --akcent-2: #2f5d50;        /* jadeit */
+  --ramka: #ded5c4;
+  --ramka-2: #cdc0a9;
+  --serif: 'Noto Serif SC', 'Songti SC', Georgia, 'Times New Roman', serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', Roboto, 'Helvetica Neue', sans-serif;
+  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --cien: 0 1px 2px rgba(60, 45, 25, .07), 0 8px 24px rgba(60, 45, 25, .06);
+
+  /* Poziomy wiarygodności — cztery pytania czytelnika (ADR 0004) */
+  /* Pochodzenie treści — cztery kolory, jedna oś (ADR 0015). */
+  --poz-dostawa: #fffdf8;        --poz-dostawa-ramka: #cdc0a9;
+  --poz-opracowanie: #eef7ee;    --poz-opracowanie-ramka: #b9d8bd;
+  --poz-kwerenda: #e8f1fb;       --poz-kwerenda-ramka: #b3cee9;
+  --poz-model: #fdf5e2;          --poz-model-ramka: #ddc78e;
+  /* Interpretacja bierze kolor pochodzenia, ale ma własny akcent. */
+  --poz-hipoteza: #f4eefb;       --poz-hipoteza-ramka: #c4aee0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tlo: #161512;
+    --tlo-2: #1d1b17;
+    --panel: #201e19;
+    --panel-2: #272420;
+    --tusz: #eae4d8;
+    --tusz-2: #c2b8a6;
+    --tusz-3: #8e8473;
+    --akcent: #e0745f;
+    --akcent-2: #79b8a0;
+    --ramka: #35312a;
+    --ramka-2: #453f35;
+    --cien: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+
+    --poz-dostawa: #211f1a;        --poz-dostawa-ramka: #453f35;
+    --poz-opracowanie: #1a231b;    --poz-opracowanie-ramka: #2f4a33;
+    --poz-kwerenda: #16202b;       --poz-kwerenda-ramka: #2b4256;
+    --poz-model: #251f13;          --poz-model-ramka: #544425;
+    --poz-hipoteza: #221a2a;       --poz-hipoteza-ramka: #4a3760;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--tlo);
+  color: var(--tusz);
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.72;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--akcent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3, h4 { line-height: 1.3; font-family: var(--serif); font-weight: 600; }
+h1 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin: 0 0 .35em; letter-spacing: -.01em; }
+h1 em { font-style: normal; color: var(--akcent); }
+h2 { font-size: 1.24rem; margin: 0 0 .7em; }
+h3 { font-size: .92rem; margin: 0 0 .5em; text-transform: uppercase; letter-spacing: .07em; color: var(--tusz-2); font-family: var(--sans); font-weight: 700; }
+
+p { margin: .75em 0; }
+ul, ol { margin: .6em 0; padding-left: 1.35em; }
+li { margin: .3em 0; }
+code { font-family: var(--mono); font-size: .87em; background: var(--panel-2); padding: .1em .35em; border-radius: 4px; }
+hr { border: 0; border-top: 1px solid var(--ramka); margin: 1.6em 0; }
+mark { background: rgba(168, 54, 43, .18); color: inherit; padding: 0 2px; border-radius: 2px; }
+
+.meta { color: var(--tusz-3); font-size: .85rem; }
+.mono { font-family: var(--mono); }
+.pusto { color: var(--tusz-3); font-style: italic; }
+
+.przeskok {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--akcent); color: #fff; padding: 10px 16px; border-radius: 0 0 8px 0;
+}
+.przeskok:focus { left: 0; }
+
+/* ── Nagłówek ───────────────────────────────────────────────────── */
+
+.naglowek {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--tlo) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ramka);
+}
+
+.naglowek-wnetrze {
+  max-width: 1200px; margin: 0 auto; padding: 10px 18px;
+  display: flex; flex-wrap: nowrap; gap: clamp(6px, 1vw, 18px); align-items: center;
+}
+
+.logo { display: flex; align-items: baseline; gap: 8px; flex: 0 0 auto; }
+.logo-wwm { color: var(--akcent); font-family: var(--serif); font-weight: 700; font-size: 1.05rem; letter-spacing: .01em; }
+.logo-db { color: var(--tusz-3); font-size: .7rem; text-transform: uppercase; letter-spacing: .16em; }
+.logo:hover { text-decoration: none; }
+.logo:hover .logo-db { color: var(--tusz-2); }
+
+.nawigacja { display: flex; flex-wrap: nowrap; gap: 0; flex: 0 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.nawigacja::-webkit-scrollbar { display: none; }
+.nawigacja a {
+  color: var(--tusz-2); padding: 5px clamp(5px, .7vw, 10px); border-radius: 6px;
+  font-size: clamp(.72rem, .9vw, .86rem); border: 1px solid transparent; white-space: nowrap;
+}
+.nawigacja a:hover { background: var(--panel); color: var(--tusz); text-decoration: none; }
+.nawigacja a.aktywna { color: var(--akcent); background: var(--panel); border-color: var(--ramka-2); }
+
+.szukaj { flex: 1 1 auto; min-width: 88px; max-width: 220px; margin-left: auto; }
+.szukaj input {
+  background: var(--panel); border: 1px solid var(--ramka); color: var(--tusz);
+  border-radius: 999px; padding: 7px 14px; font-size: .88rem; width: 100%; font-family: inherit;
+}
+.szukaj input:focus { outline: none; border-color: var(--akcent); }
+
+/* ── Treść ──────────────────────────────────────────────────────── */
+
+.tresc { max-width: 1200px; margin: 0 auto; padding: 30px 18px 40px; }
+.tresc > :last-child { margin-bottom: 0; }
+
+.okruszki { display: block; color: var(--tusz-3); font-size: .82rem; margin-bottom: 14px; line-height: 1.5; }
+.okruszek-sep { color: var(--tusz-3); }
+.okruszki a { color: var(--tusz-2); }
+.okruszek-sep { color: var(--ramka-2); }
+
+.naglowek-strony { margin-bottom: 26px; }
+/* Wstęp wypełnia kolumnę: pionowy pas tekstu na pół szerokości czyta się jak
+   urwany akapit, a nie jak lead. `ch` ograniczał go niezależnie od układu. */
+.wstep { color: var(--tusz-2); font-size: 1.02rem; margin: .2em 0 .5em; max-width: none; }
+.podtytul { color: var(--tusz-2); margin: .2em 0; font-size: .95rem; }
+
+/* ── Strona główna ─────────────────────────────────────────────── */
+
+.hero { padding: 8px 0 10px; }
+.hero-nadtytul { color: var(--akcent); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 10px; }
+.hero-opis { color: var(--tusz-2); font-size: 1.04rem; max-width: none; margin-top: 10px; }
+
+.hero-liczby { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 6px; }
+.kafelek {
+  flex: 1 1 130px; background: var(--panel); border: 1px solid var(--ramka);
+  border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px;
+  box-shadow: var(--cien); color: inherit; transition: border-color .15s, transform .15s;
+}
+a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform: translateY(-1px); }
+.kafelek-liczba { font-family: var(--serif); font-size: 1.7rem; font-weight: 700; color: var(--akcent); line-height: 1.1; }
+.kafelek-etykieta { color: var(--tusz-3); font-size: .82rem; }
+
+.kafli { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+
+.sekcja { margin: 44px 0 0; }
+.sekcja > h2 { display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--ramka); padding-bottom: .4em; }
+.sekcja-wstep { color: var(--tusz-2); max-width: none; }
+.sekcja-stopka { margin-top: 14px; font-size: .92rem; }
+
+/* Granica rozegranej fabuły — najważniejszy element strony głównej */
+.granica {
+  margin: 34px 0 0; padding: 22px 24px; border-radius: 14px;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--akcent) 8%, var(--panel)), var(--panel));
+  border: 1px solid color-mix(in srgb, var(--akcent) 28%, var(--ramka));
+  box-shadow: var(--cien);
+}
+.granica-etykieta { margin: 0; font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--akcent); font-weight: 700; }
+.granica-tytul { margin: .25em 0 .1em; font-size: clamp(1.4rem, 2.6vw, 1.85rem); }
+.granica-sciezka { margin: 0; color: var(--tusz-2); font-size: .92rem; }
+.granica-opis { margin: .8em 0 0; color: var(--tusz-2); max-width: none; font-size: .95rem; }
+.granica-pusta { background: var(--panel); border-color: var(--ramka); }
+
+/* ── Listy ─────────────────────────────────────────────────────── */
+
+.lista-scen-krotka, .lista-hipotez-krotka, .lista-scen-chronologia, .lista-scen-epizodu, .lista-wystapien, .lista-rozdzialow, .lista-rozdzialow-rozwinieta, .lista-epizodow, .lista-hipotez, .lista-dziennika, .lista-wynikow { list-style: none; padding: 0; margin: 0; }
+
+.wiersz-sceny {
+  display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: baseline;
+  padding: 11px 0; border-bottom: 1px solid var(--ramka);
+}
+.wiersz-sceny:last-child { border-bottom: 0; }
+.wiersz-numer { font-family: var(--mono); color: var(--tusz-3); font-size: .78rem; grid-row: span 2; }
+.wiersz-tytul { font-weight: 600; font-size: 1rem; }
+.wiersz-meta { color: var(--tusz-3); font-size: .84rem; grid-column: 2; }
+.wiersz-meta a { color: var(--tusz-2); }
+
+.wiersz-rozdzialu { padding: 13px 0; border-bottom: 1px solid var(--ramka); display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; }
+.wiersz-rozdzialu:last-child { border-bottom: 0; }
+.wiersz-rozdzialu .wiersz-tytul { font-family: var(--serif); font-size: 1.1rem; }
+
+.filtry { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 22px; padding: 12px 14px; background: var(--panel-2); border: 1px solid var(--ramka); border-radius: 10px; }
+.filtr { display: flex; align-items: center; gap: 8px; font-size: .86rem; color: var(--tusz-2); }
+.filtr select {
+  font-family: inherit; font-size: .86rem; padding: 5px 9px; border-radius: 7px;
+  border: 1px solid var(--ramka); background: var(--panel); color: var(--tusz);
+}
+
+.grupa-scen { margin: 0 0 34px; }
+.grupa-tytul { display: flex; flex-direction: column; gap: 2px; border-bottom: 1px solid var(--ramka); padding-bottom: .4em; font-size: 1.15rem; }
+.grupa-rozdzial { font-family: var(--sans); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--tusz-3); font-weight: 700; }
+
+.scena-wiersz { display: grid; grid-template-columns: 3.2rem 1fr auto; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--ramka); align-items: start; }
+.scena-wiersz:last-child { border-bottom: 0; }
+.scena-numer { font-family: var(--mono); font-size: .82rem; color: var(--tusz-3); padding-top: .15em; }
+.scena-tresc { min-width: 0; }
+.scena-tytul { font-weight: 600; font-size: 1.02rem; }
+.scena-streszczenie { margin: .25em 0 0; color: var(--tusz-2); font-size: .92rem; }
+.scena-meta { padding-top: .2em; }
+
+.karta-encji { padding: 14px 0; border-bottom: 1px solid var(--ramka); }
+.karta-encji:last-child { border-bottom: 0; }
+.karta-tytul { font-family: var(--serif); font-size: 1.08rem; font-weight: 600; }
+.karta-opis { margin: .25em 0 0; color: var(--tusz-2); font-size: .93rem; max-width: none; }
+.karta-meta { margin: .35em 0 0; }
+
+.rozdzial-karta { padding: 16px 0; border-bottom: 1px solid var(--ramka); }
+.rozdzial-karta:last-child { border-bottom: 0; }
+.rozdzial-tytul { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; }
+
+.epizod-wiersz { padding: 14px 0; border-bottom: 1px solid var(--ramka); }
+.epizod-wiersz:last-child { border-bottom: 0; }
+.epizod-tytul { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; }
+.epizod-sceny { color: var(--tusz-3); font-size: .82rem; margin-left: 10px; }
+.epizod-streszczenie { margin: .3em 0 0; color: var(--tusz-2); font-size: .92rem; }
+
+/* ── Scena: dwie kolumny ───────────────────────────────────────── */
+
+/* Trzy czwarte na treść, ćwiartka na kontekst (wzorzec: SRW). Kolumna boczna
+   jest przyklejona, żeby powiązania były pod ręką przy przewijaniu długiej sceny. */
+.uklad-sceny { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.kolumna-glowna { min-width: 0; }
+
+.kontekst {
+  position: sticky; top: 74px;
+  display: flex; flex-direction: column; gap: 22px;
+  padding: 16px; border: 1px solid var(--ramka); border-radius: 12px; background: var(--panel-2);
+  font-size: .9rem;
+}
+.kontekst-grupa h3 { margin-bottom: .4em; }
+.kontekst .powiazania-grupa { margin: 0 0 10px; }
+.kontekst .powiazania-grupa > summary { cursor: pointer; font-family: var(--sans); font-size: .82rem; letter-spacing: .04em; text-transform: uppercase; color: var(--tusz-3); }
+.kontekst .powiazania-grupa ul { list-style: none; padding: 0; margin: .35em 0 0; }
+.kontekst .powiazania-grupa li { margin: 0 0 3px; font-size: .88rem; }
+.kontekst .lista-wystapien { list-style: none; padding: 0; margin: 0; font-size: .88rem; }
+.kontekst .lista-wystapien li { margin: 0 0 4px; }
+.chipy { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 999px; border: 1px solid var(--ramka-2);
+  background: var(--panel); color: var(--tusz-2); font-size: .82rem;
+  max-width: 100%;
+}
+/* Chip interpretacji: pytanie może się zawijać, pewność zostaje przy prawej
+   krawędzi i nie nachodzi na tekst (wcześniej plakietka wchodziła na słowa). */
+.chip-hipoteza {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  width: 100%; border-radius: 14px; padding: 8px 10px; gap: 10px;
+  line-height: 1.35; text-align: left;
+}
+.chip-hipoteza > :first-child { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.chip-hipoteza .pewnosc { flex: 0 0 auto; margin-left: auto; white-space: nowrap; }
+.chip:hover { text-decoration: none; border-color: var(--akcent); color: var(--tusz); }
+.chip-typ { font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tusz-3); }
+.chip-hipoteza { background: var(--poz-hipoteza); border-color: var(--poz-hipoteza-ramka); }
+.chip-hipoteza:hover { border-color: var(--poz-hipoteza-ramka); }
+.chip-mala { padding: 2px 8px; font-size: .76rem; }
+
+.boks { background: var(--panel); border: 1px solid var(--ramka); border-radius: 12px; padding: 20px 22px; margin: 0 0 18px; box-shadow: var(--cien); }
+.boks > h2:first-child { margin-top: 0; }
+
+/* ── Poziomy wiarygodności ─────────────────────────────────────── */
+
+.fragment { border-radius: 12px; padding: 18px 20px; margin: 0 0 16px; border: 1px solid var(--ramka); background: var(--panel); }
+.fragment.poziom-dostawa      { background: var(--poz-dostawa);      border-color: var(--poz-dostawa-ramka); }
+.fragment.poziom-opracowanie  { background: var(--poz-opracowanie);  border-color: var(--poz-opracowanie-ramka); }
+.fragment.poziom-kwerenda     { background: var(--poz-kwerenda);     border-color: var(--poz-kwerenda-ramka); }
+/* Wiedza modelu bez procentu to tło kulturowe — żółta. Z procentem to hipoteza,
+   czyli interpretacja — fioletowa w całości. Jeden fragment nie może mieć dwóch
+   kolorów naraz (wcześniej żółty środek + fioletowa obwódka czytały się jak błąd). */
+.fragment.poziom-model        { background: var(--poz-model);        border-color: var(--poz-model-ramka); }
+.fragment.poziom-model.rodzaj-interpretacja,
+.fragment.rodzaj-interpretacja {
+  background: var(--poz-hipoteza); border-color: var(--poz-hipoteza-ramka);
+}
+
+.boks-dostawa      { background: var(--poz-dostawa); }
+.boks-opracowanie  { background: var(--poz-opracowanie); }
+.boks-kwerenda     { background: var(--poz-kwerenda); }
+.boks-model        { background: var(--poz-model); }
+
+/* Boks z warstwami: tytuł należy do boksu, kolory do warstw w środku.
+   Warstwy odstają od tytułu tylko tyle, żeby było widać, że to jeden tekst. */
+.boks-z-warstwami { padding-bottom: 8px; }
+.boks-z-warstwami > h2 { margin-bottom: .55em; }
+.boks-z-warstwami > .fragment { margin: 8px 0; border-radius: 8px; }
+.boks-z-warstwami > .fragment:last-child { margin-bottom: 0; }
+.boks-z-warstwami > .fragment > h3,
+.boks-z-warstwami > .fragment > h2 { margin-top: 0; }
+
+.naglowek-fragmentu { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.naglowek-fragmentu h2, .naglowek-fragmentu h3 { margin-bottom: .5em; border-bottom: 0; padding-bottom: 0; }
+.poziom-plakietki { display: inline-flex; align-items: center; gap: 6px; flex: 0 0 auto; }
+.poziom-etykieta { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tusz-2); border: 1px solid var(--ramka-2); border-radius: 999px; padding: 2px 8px; }
+/* Pochodzenie obok rodzaju: kolor kropki + nazwa, żeby kolor nie był jedynym nośnikiem. */
+.pochodzenie-etykieta { display: inline-flex; align-items: center; gap: 5px; font-size: .72rem; color: var(--tusz-3); }
+.pochodzenie-etykieta::before { content: ""; width: 8px; height: 8px; border-radius: 2px; border: 1px solid var(--ramka-2); }
+.pochodzenie-etykieta.pochodzenie-dostawa::before { background: var(--poz-dostawa); border-color: var(--poz-dostawa-ramka); }
+.pochodzenie-etykieta.pochodzenie-opracowanie::before { background: var(--poz-opracowanie); border-color: var(--poz-opracowanie-ramka); }
+.pochodzenie-etykieta.pochodzenie-kwerenda::before { background: var(--poz-kwerenda); border-color: var(--poz-kwerenda-ramka); }
+.pochodzenie-etykieta.pochodzenie-model::before { background: var(--poz-model); border-color: var(--poz-model-ramka); }
+/* Plakietki nad treścią (fragment bez nagłówka): pochodzenie po lewej, pewność
+   przy prawej krawędzi. Wcześniej obie stały obok siebie w lewym górnym rogu. */
+.poziom-nad-trescia {
+  margin: 0 0 .6em; display: flex; align-items: center;
+  justify-content: space-between; gap: 10px; flex-wrap: wrap;
+}
+.poziom-nad-trescia .pewnosc { margin-left: auto; }
+
+.pewnosc { font-size: .72rem; font-variant-numeric: tabular-nums; border-radius: 999px; padding: 2px 8px; border: 1px solid currentColor; }
+.pewnosc-wysoka { color: #2f6b3f; }
+.pewnosc-srednia { color: #8a6a12; }
+.pewnosc-niska { color: #94402f; }
+@media (prefers-color-scheme: dark) {
+  .pewnosc-wysoka { color: #7dc190; }
+  .pewnosc-srednia { color: #ddb85c; }
+  .pewnosc-niska { color: #e08b76; }
+}
+
+.zapis-tekst { font-family: var(--serif); font-size: 1.02rem; }
+.zapis-tekst p { margin: .65em 0; }
+.zapis-tekst strong { color: var(--akcent-2); font-weight: 600; }
+.zapis-tekst blockquote { margin: .9em 0; padding-left: 14px; border-left: 2px solid var(--ramka-2); color: var(--tusz-2); font-style: italic; }
+.zapis-tekst h3, .zapis-tekst h4 { font-family: var(--serif); text-transform: none; letter-spacing: 0; font-size: 1.02rem; color: var(--tusz); margin: 1.3em 0 .4em; }
+
+.skok-do-tresci { color: var(--tusz-2); }
+.skok-do-tresci .skok-do-tresci, .skok-do-tresci span { color: var(--tusz-3); margin-left: 6px; font-size: .85em; }
+
+.podswietlenie { animation: blysk 1.4s ease-out; }
+@keyframes blysk {
+  from { background: color-mix(in srgb, var(--akcent) 22%, transparent); }
+  to { background: transparent; }
+}
+
+/* ── Tabele ────────────────────────────────────────────────────── */
+
+.tabela-owijka { overflow-x: auto; margin: .9em 0; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--ramka); vertical-align: top; }
+th { font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: var(--tusz-3); background: var(--panel-2); }
+
+/* ── Nawigacja między scenami ──────────────────────────────────── */
+
+.nawigacja-scen { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 30px; }
+.nawigacja-scen > a, .nawigacja-scen > span {
+  display: flex; flex-direction: column; gap: 2px; padding: 14px 16px;
+  border: 1px solid var(--ramka); border-radius: 12px; background: var(--panel); color: inherit;
+}
+.nawigacja-scen > a:hover { text-decoration: none; border-color: var(--akcent); }
+.nav-nastepna { text-align: right; align-items: flex-end; }
+.nav-kierunek { color: var(--akcent); font-size: 1.1rem; line-height: 1; }
+.nav-etykieta { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--tusz-3); }
+.nav-tytul { font-family: var(--serif); font-weight: 600; }
+.nav-puste { color: var(--tusz-3); font-style: italic; justify-content: center; }
+.nav-granica { color: var(--akcent); font-style: normal; }
+
+/* ── Encje: metryka, powiązania ────────────────────────────────── */
+
+.metryka { display: flex; flex-wrap: wrap; gap: 8px 26px; margin: 0 0 24px; padding: 14px 16px; background: var(--panel-2); border: 1px solid var(--ramka); border-radius: 10px; font-size: .9rem; }
+.metryka div { display: flex; gap: 8px; align-items: baseline; }
+.metryka dt { color: var(--tusz-3); font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; }
+.metryka dd { margin: 0; }
+
+.boks-powiazania { background: var(--panel-2); }
+.powiazania-grupa { margin: 0 0 16px; }
+.powiazania-grupa ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.powiazania-grupa li { margin: 0; font-size: .92rem; }
+
+.zwijane summary { cursor: pointer; color: var(--tusz-2); font-size: .86rem; }
+.zwijane[open] summary { margin-bottom: .5em; }
+
+.lista-zasad { margin: 0; }
+.lista-zasad div { padding: 10px 0; border-bottom: 1px solid var(--ramka); }
+.lista-zasad div:last-child { border-bottom: 0; }
+.lista-zasad dt { font-weight: 700; margin-bottom: 2px; }
+.lista-zasad dd { margin: 0; color: var(--tusz-2); font-size: .94rem; }
+
+.liczby-bazy { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--tusz-2); }
+.liczby-bazy strong { color: var(--akcent); font-family: var(--serif); font-size: 1.1rem; }
+
+/* ── Hipotezy ──────────────────────────────────────────────────── */
+
+.hipotezy-liczby { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+.pill { font-size: .8rem; padding: 3px 10px; border-radius: 999px; border: 1px solid currentColor; }
+.pill-wysoka { color: #2f6b3f; }
+.pill-srednia { color: #8a6a12; }
+.pill-niska { color: #94402f; }
+@media (prefers-color-scheme: dark) {
+  .pill-wysoka { color: #7dc190; }
+  .pill-srednia { color: #ddb85c; }
+  .pill-niska { color: #e08b76; }
+}
+
+.wiersz-hipotezy { padding: 14px 0; border-bottom: 1px solid var(--ramka); }
+.wiersz-hipotezy:last-child { border-bottom: 0; }
+.wiersz-hipotezy-naglowek { display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; justify-content: space-between; }
+.boksy-hipotez-strony { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 6px; }
+.chip-hipotezy { display: inline-flex; align-items: center; gap: 10px; padding: 5px 10px; border-radius: 8px; background: var(--poz-hipoteza); border: 1px solid var(--poz-hipoteza-ramka); font-size: .86rem; color: var(--tusz-2); }
+.chip-hipotezy:hover { text-decoration: none; border-color: var(--akcent); }
+
+/* ── Chronologia: opowieść w kolejności zdarzeń (ADR 0013) ────────── */
+
+.chrono-granica { margin: 0 0 30px; padding: 12px 16px; border-left: 3px solid var(--akcent);
+  background: color-mix(in srgb, var(--akcent) 6%, transparent); color: var(--tusz-2); font-size: .93rem; }
+
+.chrono-rozdzial { margin: 0 0 44px; }
+/* Rozdział zwinięty: `summary` wygląda jak nagłówek i sam się nie zwija. */
+.chrono-rozdzial > summary { cursor: pointer; list-style: none; }
+.chrono-rozdzial > summary::-webkit-details-marker { display: none; }
+.chrono-rozdzial > summary::before {
+  content: "▸"; display: inline-block; width: 1em; color: var(--tusz-3);
+  transition: transform .15s ease;
+}
+.chrono-rozdzial[open] > summary::before { content: "▾"; }
+.chrono-rozdzial-tytul { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  margin: 0 0 6px; padding-bottom: .45em; border-bottom: 1px solid var(--ramka); font-size: 1.25rem; }
+.chrono-epizod { margin: 22px 0 0 4px; padding-left: 18px; border-left: 1px solid var(--ramka); }
+.chrono-epizod-tytul { margin: 0; font-size: 1rem; font-family: var(--sans); letter-spacing: .01em; }
+.chrono-epizod-opis { margin: .3em 0 0; color: var(--tusz-3); font-size: .88rem; max-width: none; }
+
+.chrono-lista { list-style: none; margin: 14px 0 0; padding: 0; }
+.chrono-scena { position: relative; display: grid; grid-template-columns: 14px 1fr; gap: 0 14px; padding: 0 0 20px; }
+.chrono-scena:last-child { padding-bottom: 4px; }
+.chrono-znacznik { width: 11px; height: 11px; margin-top: 6px; border-radius: 50%;
+  background: var(--panel); border: 2px solid color-mix(in srgb, var(--akcent-2) 70%, var(--ramka-2)); }
+.chrono-scena::before { content: ""; position: absolute; left: 5px; top: 17px; bottom: 0; width: 1px;
+  background: var(--ramka); }
+.chrono-scena:last-child::before { display: none; }
+.chrono-tytul { font-size: 1rem; }
+.chrono-meta { display: block; color: var(--tusz-3); font-size: .78rem; letter-spacing: .02em; }
+.chrono-streszczenie { margin: .35em 0 0; color: var(--tusz-2); font-size: .92rem; max-width: none; }
+.chrono-hipotezy { margin: .45em 0 0; font-size: .82rem; color: var(--tusz-2); }
+.chrono-tagi { margin: .45em 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tytul-oboczny { color: var(--tusz-3); font-size: .88rem; font-style: italic; }
+
+/* ── Dziennik, wyszukiwanie ────────────────────────────────────── */
+
+.wpis-dziennika { padding: 14px 0; border-bottom: 1px solid var(--ramka); }
+.wpis-dziennika:last-child { border-bottom: 0; }
+.wpis-data { margin: 0 0 .3em; font-family: var(--mono); font-size: .78rem; color: var(--tusz-3); }
+.wpis-tresc ul { margin: 0; }
+
+.wynik { padding: 12px 0; border-bottom: 1px solid var(--ramka); }
+.wynik:last-child { border-bottom: 0; }
+.wynik-tytul { font-weight: 600; }
+.wynik-wyimek { margin: .2em 0 0; color: var(--tusz-2); font-size: .9rem; }
+
+.chmura-tagow { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ── Stopka ────────────────────────────────────────────────────── */
+
+.stopka { border-top: 1px solid var(--ramka); background: var(--panel-2); margin-top: 48px; }
+.stopka-nawigacja { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 12px; font-size: .88rem; }
+.stopka-nawigacja a { color: var(--tusz-2); }
+.stopka-wnetrze { max-width: 1200px; margin: 0 auto; padding: 26px 18px 34px; font-size: .86rem; color: var(--tusz-2); }
+.stopka-czas { margin: 14px 0 0; color: var(--tusz-3); font-size: .8rem; }
+
+.legenda-tytul { margin: 0 0 .7em; font-weight: 700; color: var(--tusz); }
+.legenda-os { margin: 0 0 12px; }
+.legenda-os:last-child { margin-bottom: 0; }
+.legenda-rodzaje { margin: .2em 0 .6em; color: var(--tusz-2); font-size: .9rem; }
+.legenda-opis { margin: .1em 0 .7em; color: var(--tusz-3); font-size: .84rem; }
+.legenda-lista { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 6px 20px; }
+.legenda-lista li { display: flex; align-items: baseline; gap: 8px; margin: 0; }
+.legenda-probka { width: 12px; height: 12px; border-radius: 3px; border: 1px solid var(--ramka-2); flex: 0 0 auto; }
+.legenda-probka.poziom-dostawa { background: var(--poz-dostawa); border-color: var(--poz-dostawa-ramka); }
+.legenda-probka.poziom-opracowanie { background: var(--poz-opracowanie); border-color: var(--poz-opracowanie-ramka); }
+.legenda-probka.poziom-kwerenda { background: var(--poz-kwerenda); border-color: var(--poz-kwerenda-ramka); }
+.legenda-probka.poziom-model { background: var(--poz-model); border-color: var(--poz-model-ramka); }
+.legenda-pewnosc { margin: .9em 0 0; color: var(--tusz-3); font-size: .8rem; }
+
+/* ── Responsywność ─────────────────────────────────────────────── */
+
+@media (max-width: 980px) {
+  .uklad-sceny { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .kontekst { position: static; }
+  .chrono-scena { grid-template-columns: 12px 1fr; gap: 0 10px; }
+}
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .tresc { padding: 20px 14px 30px; }
+  .naglowek-wnetrze { padding: 8px 12px; gap: 8px; }
+  .logo-db { display: none; }
+  .szukaj { max-width: 120px; }
+  .scena-wiersz { grid-template-columns: 2.4rem 1fr; }
+  .scena-meta { display: none; }
+  .nawigacja-scen { grid-template-columns: 1fr; }
+  .nav-nastepna { text-align: left; align-items: flex-start; }
+  .boks, .fragment { padding: 16px 15px; }
+  .granica { padding: 18px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+
+@media print {
+  .naglowek, .stopka, .nawigacja-scen, .kontekst { display: none; }
+  .fragment { break-inside: avoid; }
+}
