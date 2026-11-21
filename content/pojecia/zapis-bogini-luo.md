@@ -4,6 +4,7 @@ slug: zapis-bogini-luo
 tytul: "Zapis „Bogini Rzeki Luo”"
 rodzaj: przedmiot
 tagi: [zwoj, rzeka, przemiana, mit]
+zrodla: [https://zh.wikisource.org/wiki/%E6%B4%9B%E7%A5%9E%E8%B3%A6]
 utworzono: 2026-11-21
 ---
 
@@ -21,16 +22,27 @@ na granicę świata żywych, nie do rzemieślnika od twarzy.
 
 }}
 
-{{opracowanie
+{{kwerenda
 
-## Bogini Luo
+## Nimfa rzeki Luo
 
-Bogini Rzeki Luo należy do najstarszych postaci chińskiej wyobraźni: córka Fuxi, utonęła
-w rzece Luo i została jej duchem, a poeta Cao Zhi opisał ją w *Nimfie rzeki Luo* jako piękność,
-której nie sposób objąć wzrokiem. Imię boskiej kobiety związanej z wodą jest więc w tej
-kulturze imieniem piękna i śmierci zarazem.
+Bogini Rzeki Luo (洛神, *Luòshén*) jest duchem rzeki Luo. W *Nimfie rzeki Luo* (洛神賦,
+*Luòshén fù*) Cao Zhi 曹植, napisanej w 222 roku, poeta spotyka ją nad wodą i pyta
+przewodnika, kim jest; ten odpowiada, że to *bogini rzeki He i Luo, imieniem Fufei* 宓妃.
+W podaniu Fufei jest córką Fuxi i utonęła w rzece, zostając jej duchem.
 
-Dlatego zapis jest żartem o cenach: żeby zmienić twarz, trzeba iść do tej, która sama straciła
-własną — a *cicha woda* jest miejscem, z którego nikt nie wraca.
+Opis ciała jest w tym poemacie miarą niemożliwego: *oddalona jaśnieje jak słońce wstające
+w porannej mgle, z bliska płonie jak lotos wychodzący z zielonej fali*. I ten sam poeta
+traci ją na końcu — *żałując, że drogi człowieka i ducha się rozchodzą*.
+
+}}
+
+{{model pewnosc=55 pytanie="Dlaczego zapis zmieniający twarz prowadzi właśnie nad rzekę Luo?"
+
+## Cena zmiany
+
+Jeśli bogini utonęła, żeby stać się pięknem, to zmiana twarzy w tej opowieści jest
+transakcją z kimś, kto oddał własną. Zapis mówi *odmienić oblicze*, nie *zdobyć nowe* —
+a słowo „odmienić” należy do języka przemiany, nie zakupu.
 
 }}
