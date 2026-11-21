@@ -18,7 +18,7 @@ posąg*, do którego porównany jest stary hełm — *bliźniaczo podobny do zbr
 bezgłowego kamiennego posągu w Kaplicy Generała*.
 
 Kaplica jest więc miejscem pamięci po kimś, kto stracił głowę w walce, i targiem zarazem:
-to tam handluje Brodacz Guang i tam przywozi *nową książkę z opowieściami*. W rozegranym
-materiale bohater do niej nie dociera.
+to tam handluje Brodacz Guang i tam przywozi *nową książkę z opowieściami*. W rozegranych
+scenach bohater jeszcze do niej nie dociera.
 
 }}

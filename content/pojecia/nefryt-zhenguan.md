@@ -18,7 +18,7 @@ Zhenguan!* — *nie wolno mu wynieść Nefrytu Zhenguan!*
 
 Nosi go Jiang Yan i według oskarżenia zagarnął go po zabiciu ojca. W chacie, trzy lata
 później, wisiorek jest już tylko tym, co wuj zostawił bohaterowi — i ginie tej samej nocy,
-w której pojawia się człowiek w czerni. Nikt w rozegranym materiale nie mówi, co jest
+w której pojawia się człowiek w czerni. Nikt w rozegranych scenach nie mówi, co jest
 w środku.
 
 }}

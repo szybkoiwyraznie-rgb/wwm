@@ -14,7 +14,7 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Postać, której w rozegranym materiale nie ma: bohater budzi się po spotkaniu z nim,
+Postać, której w rozegranych scenach nie ma: bohater budzi się po spotkaniu z nim,
 a Ruby *nikogo nie widziała*. Wiadomo tylko, co zostało: zabrany wisiorek, policzek, który
 pali, i wyryty znak smoczego wzoru zostawiony przy chacie.
 

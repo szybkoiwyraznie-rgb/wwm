@@ -21,7 +21,7 @@ W liście Wei jest *tym, który osiadł w Przystani Nieśmiertelnych* i przesta�
 na pisma.
 
 Między tymi trzema jest trzyletnia wyrwa: *gdzie on się podział na te trzy lata?* Nikt
-w rozegranym materiale tego nie mówi.
+w rozegranych scenach tego nie mówi.
 
 }}
 

@@ -21,7 +21,8 @@ Do włóczni przylgnęło przy tym zdanie, które jest raczej obrazem niż przep
 z zatopionego drewna, grot z gwiezdnego żelaza, rozgarnia góry jak miotełka*. Opisuje broń,
 nie ruch — i w tym obrazie jest cała jej historia.
 
-W materiale nie ma ani jednego cięcia, ani jednego ustawienia stopy. Sztuka włóczni jest
-tu przekazywana jak nazwisko: wiadomo, kto ją dostał i od kogo, a nie, na czym polega.
+W rozegranych scenach nie ma ani jednego cięcia, ani jednego ustawienia stopy. Sztuka
+włóczni jest przekazywana jak nazwisko: wiadomo, kto ją dostał i od kogo, a nie, na czym
+polega.
 
 }}

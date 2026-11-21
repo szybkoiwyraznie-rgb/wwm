@@ -155,7 +155,7 @@ a to, co widzimy teraz, jest drugim.
 
 Bohater nie zadaje w tej scenie ciosu, tylko przyjmuje go cudzym ciałem: *Chen Zixi przyjmuje
 cios za ciebie*. Po tym ciosie król pada martwy — drugi raz w tej samej scenie — a robak
-odlatuje *w dłoń mężczyzny na posągu Buddy*. To jedyne miejsce w rozegranym materiale, w którym
+odlatuje *w dłoń mężczyzny na posągu Buddy*. To jedyne miejsce w rozegranych scenach, w którym
 widać, kto trzyma nici: nie król, nie Chen, a figura z kamienia. Warto przy tym zauważyć, że
 mówi się *mężczyzny*, a nie *Buddy* — posąg jest miejscem, w którym stoi człowiek.
 

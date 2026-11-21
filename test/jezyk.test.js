@@ -30,7 +30,8 @@ const META = new RegExp([
   // „właściciel” tu nie należy: to zwykłe słowo o świecie (właściciel miecza, gospodarstwa).
   // Meta jest dopiero „właściciel bazy/kroniki/projektu” — to łapie WŁASCICIEL_PROJEKTU niżej.
   '\\bbaz[aeyi]\\b', '\\bbazie\\b', '\\bdostaw[a-ząćęłńóśźż]*\\b',
-  '\\barchiwum\\b', '\\bmateriał[a-ząćęłńóśźż]*\\b', '\\bmodel[a-ząćęłńóśźż]*\\b', '\\bagent[a-ząćęłńóśźż]*\\b',
+  // Miejscownik „materiale” pisze się bez „ł” — wzorzec na „materiał” go nie łapał.
+  '\\barchiwum\\b', '\\bmateria[łl][a-ząćęłńóśźż]*\\b', '\\bmodel[a-ząćęłńóśźż]*\\b', '\\bagent[a-ząćęłńóśźż]*\\b',
   '\\bprompt\\b', '\\bADR\\b', '\\bcommit\\b', '\\brepozytori[um]\\b', '\\bbuild\\b', '\\brender[a-ząćęłńóśźż]*\\b',
   // redakcja
   '\\bwpis[a-ząćęłńóśźż]*\\b', '\\bwpisy\\b', '\\bsekcj[a-ząćęłńóśźż]*\\b', '\\bodsyłacz[a-ząćęłńóśźż]*\\b',

@@ -23,7 +23,7 @@ przypomina bohaterowi o książce z opowieściami od Brodacza Guanga i to ona pi
 znajduje w chacie włócznię: *wodzu! tu jest włócznia, prawdziwa włócznia!*
 
 Stoi między bohaterem a ciotką Han: grozi skargą, wie o Uczcie Pierwszego Dzbana i wie,
-że ciotka Han *ogłosi coś ważnego*. W rozegranym materiale jest więc łączniczką między
+że ciotka Han *ogłosi coś ważnego*. W rozegranych scenach jest więc łączniczką między
 chatą a światem dorosłych.
 
 }}

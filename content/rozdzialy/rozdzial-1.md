@@ -34,7 +34,7 @@ Zapis gry podaje tytuł rozdziału pierwszy wprost, w bloku zadań: *Nieśmierte
 przypłyną*. Tytuł jest zdaniem o przystani — i zarazem pierwszym zdaniem zapowiedzi:
 ktoś, kto miał przypłynąć, nie przypłynie, a ludzie czekają na niego nad wodą.
 
-W rozegranym materiale tytuł jeszcze się nie domyka. Jest w nim jednak wszystko, co potrzebne,
+W rozegranych scenach tytuł jeszcze się nie domyka. Jest w nim jednak wszystko, co potrzebne,
 żeby go później rozpoznać: przystań, w której osiadł wuj, woda, po której nikt nie przypływa,
 i trzy lata ciszy.
 }}
