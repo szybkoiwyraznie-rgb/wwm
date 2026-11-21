@@ -71,14 +71,14 @@ utworzono: 2026-11-21
 
 ### Policzek
 
-Scena zaczyna się od przemocy, którą trzeba nazwać: Ruby *zabiła cię tak, że policzek aż
+Scena zaczyna się od przemocy, którą trzeba nazwać: Ruby *zbiła cię tak, że policzek aż
 pali* — a chwilę potem zaprzecza, żeby w ogóle uderzyła. Ten drobny fałsz jest wzorem
 całej rozmowy: oboje mówią jedno, a robią drugie, i oboje o tym wiedzą.
 
 Bohater kłamie z innego powodu niż Ruby. Mówi *coś mi się przywidziało*, choć przed chwilą
-sam wymienił trzy fakty: kimś był człowiek w czerni, że zniknął i że *zabrał tylko wisiorek*.
-Zaprzeczenie jest więc nie dla Ruby, a dla siebie — i Ruby to słyszy, bo w następnym zdaniu
-pyta, *czy coś przed nią nie ukrywa*.
+sam wymienił trzy fakty: że człowiek w czerni zniknął, że *zabrał tylko wisiorek* i że jemu
+nic nie zrobił. Zaprzeczenie jest więc nie dla Ruby, a dla siebie — i Ruby to słyszy, bo
+w następnym zdaniu pyta, czy coś przed nią nie ukrywa.
 
 Warto zauważyć, że Ruby nie widziała nikogo. Jej pytanie, *to jakiś wielki mistrz jianghu?*,
 jest dziecinne i przez to ważne: cała ta scena pokazuje, że bohater spotkał kogoś, kogo

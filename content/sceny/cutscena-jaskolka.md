@@ -60,8 +60,8 @@ Ojej!
 ### Obietnica dziecka
 
 Scena jest dialogiem bez etykiet mówcy i to nie jest usterka zapisu, a sedno: słychać
-w niej dwie osoby, ale nie wiadomo na pewno, kto mówi którą kwestię — dziecko czy wuja.
-Pewne jest tylko to, co mówi dziecko, bo tylko ono mówi *wuju Jiang*.
+w niej dwie osoby, ale nie wiadomo na pewno, kto mówi którą kwestię — dziecko czy wuj.
+Pewne jest tylko to, co mówi dziecko, bo ono samo zwraca się do wuja po imieniu: *wuju Jiang*.
 
 Dziecko recytuje świat jak lekcję: *Ośmiu Wspaniałych z Hedong*, *Dawne Przymierze Yanbei*,
 *Kronika świata sztuk walki*. To nie są nazwy z jego życia, a zasłyszane od kupców, którzy
