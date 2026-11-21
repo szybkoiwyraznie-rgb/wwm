@@ -95,7 +95,12 @@ test('przeredagowana scena nie przechodzi bramy dosłowności', () => {
   const zapisy = wczytajZapisy({ root: ROOT });
   const scena = wczytajStrony({ root: ROOT }).find((s) => s.typ === 'scena');
   const tekst = zapisy.get(`rozgrywka/zapisy/${path.basename(scena.zapis)}`);
-  const podmieniona = { ...scena, body: scena.body.replace('Deszcz bębni', 'Deszcz pada') };
+  // Zmieniamy pierwszy wiersz pierwszego cytatu — dowolny, bo scena nie zależy od treści.
+  // Wcześniej test podmieniał słowo z konkretnej zaślepki i po jej usunięciu przestał
+  // cokolwiek sprawdzać.
+  const pierwszy = scena.body.match(/^:::zapis\n(.+)$/m)?.[1];
+  assert.ok(pierwszy, 'scena ma niepusty cytat');
+  const podmieniona = { ...scena, body: scena.body.replace(pierwszy, `${pierwszy} (przeredagowane)`) };
   const problemy = sprawdzWiernoscSceny(podmieniona, tekst);
   assert.ok(problemy.some((p) => /nie jest dosłownym fragmentem/.test(p)));
 });

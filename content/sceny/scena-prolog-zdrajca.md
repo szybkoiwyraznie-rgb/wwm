@@ -1,0 +1,179 @@
+---
+typ: scena
+slug: scena-prolog-zdrajca
+tytul: "Zdrajca w Sali Powrotu Wiosny"
+epizod: epizod-prologi
+numer_sceny: "1-1"
+kolejnosc: 1
+streszczenie: "Chen Zixi przychodzi zabić Jiang Yana, a zostaje zaproszony na wino. Za Nefrytem Zhenguan rusza cały jianghu, Król Bez Oblicza wstaje po śmierci raz jeszcze, a Chen przyjmuje cios za bohatera."
+zapis: 2026-11-21-001.md
+postacie: [chen-zixi, jiang-wulang, youxia]
+krainy: [jiangnan]
+miejsca: [sala-powrotu-wiosny]
+sekty: [zloty-pawilon]
+watki: [watek-nefryt-zhenguan, watek-dawe-dzieje]
+konteksty: [nocny-deszcz-w-drodze, krol-bez-oblicza]
+sekcje_analizy:
+  - "Zdrajca przy jednym stole → Zdrajca przy jednym stole"
+  - "Pościg za nefrytem → Pościg za nefrytem"
+  - "Rachunek za życie → Rachunek za życie"
+  - "Martwy król otwiera oczy → Martwy król otwiera oczy"
+tagi: [prologi, wino, jadeit]
+utworzono: 2026-11-21
+---
+
+{{dostawa
+
+## Treść sceny
+
+### Zdrajca przy jednym stole
+
+:::zapis
+## Prolog 1
+
+**Chen Zixi:** Pan Sali Powrotu Wiosny
+**Jiang Wulang:** Zdrajca
+
+To ty.
+Zgadza się.
+Przyszedłem cię zabić.
+Choćby i na końcu drogi
+i łyk, co gardło zwilży.
+No i jak? Smakuje?
+Cienkie.
+Za to Hojna Wiosna z Jiangnanu jest słodka i gładka.
+Może by tak
+pojechać tam razem?
+Nie.
+Boisz się, że ściągniesz na mnie kłopoty?
+Niepotrzebnie.
+Ja się boję tylko, że oni nie odważą się przyjść.
+Brać go!
+Odebrać Nefryt Zhenguan!
+:::
+
+### Pościg za nefrytem
+
+:::zapis
+## Prolog 2
+
+**Człowiek jianghu:** Jiang Yan! Zabiłeś ojca i zagarnąłeś jadeit — każdy ma prawo cię zabić!
+**Chen Zixi:** Widać tajemnica tego jadeitowego wisiorka musi być przednia!
+**Jiang Yan:** Nie pytaj. Chodź.
+**Człowiek jianghu:** Za nim! Nie wolno mu wynieść Nefrytu Zhenguan!
+Tutaj są!
+Nie pozwólcie im uciec!
+**Chen Zixi:** Tss. Człowiek, którego cały świat chce zabić, a wciąż ma coś do ukrycia?
+**Jiang Yan:** Gorszy ode mnie. I jeszcze zapraszasz mnie na wycieczkę po Jiangnanie.
+**Chen Zixi:** I co z tego? Cały świat przeciw nam — to dopiero uciecha!
+Ha ha ha, Jiang Yan, Jiang Yan!
+**Chen Zixi:** Niezły strzał!
+**Jiang Yan:** Cicho. Uważaj!
+Hi hi hi, Nefryt Zhenguan, Nefryt Zhenguan!
+Ts.
+Łapcie ich!
+**Chen Zixi:** Nawet Złoty Pawilon się włączył? Tym razem narobiłeś sobie nie lada kłopotów.
+**Jiang Yan:** Boisz się?
+**Chen Zixi:** Ha! Tak długo żyjesz bez wyjścia, że nawet oschły bohater Jiang zaczął żartować? Rzadkość!
+Hmf.
+:::
+
+### Rachunek za życie
+
+:::zapis
+## Prolog 3
+
+Robi się ciekawie.
+Jak zawsze?
+**Chen Zixi:** Bohaterze Jiang, kiedy to nauczyłeś się tak zręcznie nadstawiać pod cudze ostrze?
+**Chen Zixi:** Uratuję ci życie raz, a ty postawisz mi dzban Wiosennej Obfitości. Uczciwa wymiana, co?
+
+*Kontekst*:
+Dowódca Złotego Pawilonu, Król Bez Oblicza
+:::
+
+### Martwy król otwiera oczy
+
+:::zapis
+Robak przelatuje i wnika w zwłoki: martwy Król Bez Oblicza znów otwiera oczy. W jednej chwili jawa miesza się z iluzją. Gdy wracasz do siebie, martwy Król Bez Oblicza znów atakuje, a Chen Zixi przyjmuje cios za ciebie. Po tym ciosie Król Bez Oblicza pada martwy, a robak odlatuje w dłoń mężczyzny na posągu Buddy.
+:::
+
+}}
+
+{{opracowanie
+
+## Analiza
+
+### Zdrajca przy jednym stole
+
+Scena otwiera się od słów, których nikt nie łagodzi: *zdrajca*. Chen Zixi nie mówi, kogo
+Jiang zdradził — imię zdrajcy jest w tym świecie wystarczające. Jiang nie zaprzecza ani
+nie pyta, skąd wyrok; odpowiada *zgadza się*, czyli przyjmuje oskarżenie w całości.
+
+Cały spór rozgrywa się przy stole i dotyczy wina. Chen kosztuje trunku i ocenia go
+jednym słowem — *cienkie* — a potem sam proponuje podróż i lepsze wino. To nie jest
+rozmowa zabójcy z ofiarą, a dwóch ludzi, którzy obyczaju picia używają jak języka:
+kto pił z kim, ten odracza cios. Jiang odmawia, ale jego odmowa dotyczy wyjazdu, nie
+walki — *niepotrzebnie*, mówi Chen, i w tym słowie jest cała różnica między nimi dwoma.
+
+Ważyć trzeba jedno zdanie: *ja się boję tylko, że oni nie odważą się przyjść*. Jiang
+boi się nie własnej śmierci, a tego, że przeciwnicy nie przyjdą. To zdanie człowieka,
+który czeka, a nie ucieka.
+
+### Pościg za nefrytem
+
+Imię, które w Sali nie padło, pada na ulicy: *Nefryt Zhenguan*. Padają też dwa zarzuty
+naraz — zabicie ojca i zagarnięcie jadeitu — i to drugie jest powodem, dla którego goni
+go cały jianghu, a nie jeden człowiek z wyrokiem.
+
+Chen nie pomaga Jiangowi dlatego, że wierzy w jego niewinność; pomaga, bo go to bawi:
+*człowiek, którego cały świat chce zabić, a wciąż ma coś do ukrycia* i *cały świat przeciw
+nam — to dopiero uciecha*. W tej scenie po raz pierwszy widzimy też, że Chen nie jest
+zwykłym najemnikiem: informacja, że *nawet Złoty Pawilon się włączył*, jest dla niego
+nowiną i powodem do kpiny z Jianga.
+
+Warto zauważyć, czego w pościgu nie ma: nikt nie mówi, co jest w wisiorku. Gonią imię,
+nie rzecz.
+
+### Rachunek za życie
+
+Ostatni fragment jest krótki i zmienia ton: Chen żartuje z tego, że Jiang *nauczył się
+zręcznie nadstawiać pod cudze ostrze*, i od razu wystawia rachunek — *uratuję ci życie raz,
+a ty postawisz mi dzban Wiosennej Obfitości*. Uczciwa wymiana, jak mówi, choć to on
+uratował życie, a nie Jiang.
+
+W tym miejscu pada też jedyny podpis w prologu: *dowódca Złotego Pawilonu, Król Bez Oblicza*.
+Nie wiadomo, do kogo należy — do Chena czy do kogoś, kto stoi za sceną. Sama niejednoznaczność
+jest tu informacją i dlatego zostaje w treści, nie w przypisie.
+
+### Martwy król otwiera oczy
+
+Ostatnie ogniwo sceny nie jest już walką, a obrazem: robak wchodzi w zwłoki i *martwy Król
+Bez Oblicza znów otwiera oczy*. To, co przed chwilą było żywe, okazuje się pierwszym życiem —
+a to, co widzimy teraz, jest drugim.
+
+Bohater nie zadaje w tej scenie ciosu, tylko przyjmuje go cudzym ciałem: *Chen Zixi przyjmuje
+cios za ciebie*. Po tym ciosie król pada martwy — drugi raz w tej samej scenie — a robak
+odlatuje *w dłoń mężczyzny na posągu Buddy*. To jedyne miejsce w rozegranym materiale, w którym
+widać, kto trzyma nici: nie król, nie Chen, a figura z kamienia. Warto przy tym zauważyć, że
+mówi się *mężczyzny*, a nie *Buddy* — posąg jest miejscem, w którym stoi człowiek.
+
+Wino i pieczęć rozpoznać można po obyczaju: dzban na stole znaczy w opowieściach rycerskich,
+że strony rozmawiają, a nie walczą, a pieczęć z nefrytu należała w cesarskich Chinach do
+insygniów urzędu — nosi się ją, żeby móc potwierdzić czyjeś słowo. To tłumaczy, dlaczego
+nikt nie próbuje wisiorka obejrzeć, tylko go *odebrać*.
+
+}}
+
+{{model pewnosc=45 pytanie="Czy Chen Zixi przyszedł zabić, czy sprawdzić?"
+
+## Co z tego wynika
+
+Zachowanie Chena jest sprzeczne z wyrokiem, który sam ogłasza. Mówi *przyszedłem cię zabić*
+i natychmiast zajmuje się smakiem wina; oskarża o zdradę i jako pierwszy proponuje wspólną
+podróż. Jeśli wyrok był prawdziwy, to Chen jest człowiekiem, który daje ofierze czas do rana.
+
+Jeśli nie — to przyszedł sprawdzić, czy Jiang nadal jest tym, za kogo go brano, i dopiero
+pościg za Nefrytem Zhenguan zmusił go do wyboru strony.
+
+}}

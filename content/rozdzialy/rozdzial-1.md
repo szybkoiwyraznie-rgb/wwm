@@ -1,49 +1,40 @@
 ---
 typ: rozdzial
 slug: rozdzial-1
-tytul: "Rozdział pierwszy"
+tytul: "Nieśmiertelni nie przypłyną"
+tytul_ja: "仙人渡不来"
 numer: 1
-tytul_oboczny: "踏莎行 · 神仙不渡 — Niebo bez przystani"
+epizody: [epizod-prologi, epizod-przebudzenie]
+watki: [watek-dawe-dzieje, watek-nefryt-zhenguan]
+krainy: [jiangnan, ziemie-tang]
+sekty: [zloty-pawilon]
+postacie: [youxia, ruby-zhou, jiang-wulang, chen-zixi, czlowiek-w-czerni, ciotka-han]
 status: w-toku
-epizody: [epizod-1-1, epizod-1-2]
-watki: [watek-pochodzenia]
-krainy: [qinghe]
-sekty: []
-postacie: [mlody-wedrowiec, nieznajomy, starzec-z-przystani]
-zrodla:
-  - https://en.wikipedia.org/wiki/Cipai
-tagi: [zaslepka, qinghe]
-utworzono: 2026-11-13
+tagi: [rozdzial-pierwszy]
+utworzono: 2026-11-21
 ---
 
 {{opracowanie
 
 ## Streszczenie
 
-Młody wędrowiec szuka śladu własnego pochodzenia. Trop prowadzi go nad przystań
-w Qinghe, gdzie nieznajomy wskazuje mu drogę bez śladów, a potem do opuszczonego
-klasztoru, w którym ktoś zostawił zwój z jego imieniem.
-
-}}
-
-{{kwerenda
-
-## Tytuł rozdziału
-
-踏莎行 (*Tà Shā Xíng*) to nie nazwa utworu, a **wzór melodyczny** — *cipai*. Oznacza
-zapis pieśni do gotowej melodii: dobiera się ton, rym i liczbę znaków w wersie. Ten wzór
-liczy 58 znaków i trzy rymy w każdej z dwóch strof. W chińskiej tradycji tytuły rozdziałów
-gier i powieści często biorą się właśnie z *cipai* — dlatego „Niebo bez przystani” jest
-podtytułem dopisanym do wzoru, a nie jego tłumaczeniem.
+Rozdział otwiera się od rzeczy już skończonych: od zdrady Jiang Yana, od pościgu za Nefrytem
+Zhenguan i od śmierci Króla Bez Oblicza, który w tej samej scenie umiera dwa razy. Potem
+opowieść przenosi się do dnia, w którym bohater budzi się po spotkaniu, którego nie pamięta,
+i przeszukuje chatę wuja. List, włócznia i wyblakły chwost mówią mu, że wuj miał życie,
+o którym nigdy nie opowiadał — a ciotka Han nazajutrz ogłosi coś, czego nikt się nie spodziewa.
 
 }}
 
 {{model
 
-## Co z tego wynika dla opowieści
+## Tytuł rozdziału
 
-Tytuł z *cipai* ustawia tonację: to zapis pieśni, nie nazwa miejsca. Rozdział zapowiada
-historię, która będzie opowiedziana, a nie strefę na mapie — i tak też układa się jego
-treść: najpierw przystań, potem klasztor, na końcu cudze słowo o bezimienności.
+Zapis gry podaje tytuł rozdziału pierwszy wprost, w bloku zadań: *Nieśmiertelni nie
+przypłyną*. Tytuł jest zdaniem o przystani — i zarazem pierwszym zdaniem zapowiedzi:
+ktoś, kto miał przypłynąć, nie przypłynie, a ludzie czekają na niego nad wodą.
 
+W rozegranym materiale tytuł jeszcze się nie domyka. Jest w nim jednak wszystko, co potrzebne,
+żeby go później rozpoznać: przystań, w której osiadł wuj, woda, po której nikt nie przypływa,
+i trzy lata ciszy.
 }}

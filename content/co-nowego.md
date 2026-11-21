@@ -1,5 +1,18 @@
 # Co nowego
 
+## 2026-11-21 17:40
+
+- Otwarcie powieści: rozdział pierwszy, *Nieśmiertelni nie przypłyną* — dwa epizody i cztery sceny.
+- Prologi: Chen Zixi przychodzi z wyrokiem zdrady do Jiang Yana i zostaje na winie; za Nefrytem
+  Zhenguan rusza cały jianghu, a Król Bez Oblicza wstaje po śmierci raz jeszcze.
+- Dzień przed Ucztą Pierwszego Dzbana: bohater budzi się po człowieku w czerni i przeszukuje
+  Bambusową Chatę. W ukrytej szufladce leży list Wei wzywający wuja do walki.
+- Na scenie: Youxia, Ruby Zhou, Jiang Wulang, Chen Zixi, ciotka Han, Brodacz Guang, człowiek
+  w czerni; ze świata — Złoty Pawilon, Przystań Nieśmiertelnych, Kaplica Generała.
+- Konteksty: picie na zgodę w opowieściach rycerskich, Król Bez Oblicza i posąg Buddy,
+  ciężar trzech lat, Kronika świata sztuk walki, Ośmiu Wspaniałych z Hedong, Przymierze Yanbei.
+- Z kroniki zniknął cały materiał przykładowy, na którym stał szkielet.
+
 Dziennik nowego pokrycia opowieści: kolejne sceny, osoby, miejsca i wątki.
 Poprawki istniejących stron nie trafiają do dziennika — mają własną historię
 w polu `interpretacje` i w boksie „Poprzednia wersja”.

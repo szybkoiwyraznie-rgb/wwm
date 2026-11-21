@@ -51,8 +51,9 @@ function metryka(strona) {
   for (const [pole, etykieta] of Object.entries(ETYKIETY_POL)) {
     const wartosc = strona[pole];
     if (wartosc === undefined || wartosc === null || wartosc === '') continue;
-    // Rodzaje przechodzą przez słownik: „Rodzaj wątku: glowny” to wartość z pliku.
-    const pokaz = /^rodzaj/.test(pole) || pole === 'stan'
+    // Rodzaje i role przechodzą przez słownik: „Rodzaj wątku: glowny” to wartość z pliku,
+    // a „Rola mentor” nie jest zdaniem o świecie.
+    const pokaz = /^rodzaj/.test(pole) || pole === 'stan' || pole === 'rola'
       ? (Array.isArray(wartosc) ? wartosc.map(nazwaRodzaju).join(', ') : nazwaRodzaju(wartosc))
       : (Array.isArray(wartosc) ? wartosc.join(', ') : String(wartosc));
     pary.push([etykieta, pokaz]);
