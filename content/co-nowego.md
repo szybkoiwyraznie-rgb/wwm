@@ -5,7 +5,7 @@
 - Broń z własnym obyczajem: prosty drewniany łuk i drewniana strzała — łucznictwo jako próba
   charakteru i sześć strzał na cztery strony świata z Księgi obrzędów — oraz pierścień jue,
   który znaczy rozstanie.
-- Drgający Nefryt jako materiał na dźwięk, obok opisu pracy w kuźni.
+- Drgający Nefryt jako kamień na dźwięk, obok pracy w kuźni.
 - Stara włócznia wuja: dochodzi cytat o grocie z gwiezdnego żelaza i sztuka przekazana
   z ojca na syna.
 
@@ -29,7 +29,7 @@
   w czerni; ze świata — Złoty Pawilon, Przystań Nieśmiertelnych, Kaplica Generała.
 - Konteksty: picie na zgodę w opowieściach rycerskich, Król Bez Oblicza i posąg Buddy,
   ciężar trzech lat, Kronika świata sztuk walki, Ośmiu Wspaniałych z Hedong, Przymierze Yanbei.
-- Z kroniki zniknął cały materiał przykładowy, na którym stał szkielet.
+- Z kroniki zniknęły wszystkie strony przykładowe, na których stał szkielet.
 
 Dziennik nowego pokrycia opowieści: kolejne sceny, osoby, miejsca i wątki.
 Poprawki istniejących stron nie trafiają do dziennika — mają własną historię
