@@ -24,10 +24,12 @@ Strzeże tego brama testowa, a nie tylko dobra wola.
 
 ## Status
 
-Fundamenty: struktura repozytorium, silnik witryny, walidacja integralności, build do jednego
-pliku HTML, CI i publikacja na GitHub Pages. Kronika zawiera **materiał zaślepkowy** — fikcyjne
-sceny istniejące tylko po to, żeby szkielet miał na czym działać. Zostaną usunięte w całości
-przy pierwszym prawdziwym zapisie z gry; wszystkie mają znacznik `zaslepka`.
+Fundamenty: struktura repozytorium, silnik witryny, walidacja integralności, build do powłoki
+i drzewa danych, CI i publikacja na GitHub Pages. Kronika opowiada **pierwszy rozdział**
+historii: prologi, w których widzi się dawne dzieje Jiang Wulanga i Chen Zixi, przebudzenie
+po spotkaniu z człowiekiem w czerni i dzień w chacie wuja Jianga przed Ucztą Pierwszego
+Dzbana. Materiał przykładowy, na którym stał szkielet, został usunięty przy pierwszym
+prawdziwym zapisie.
 
 ## Szybki start
 

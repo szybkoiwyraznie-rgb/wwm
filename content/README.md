@@ -45,12 +45,9 @@ Pełny schemat pól, przykłady i reguły walidacji:
 Procedura dopisywania sceny:
 [`../docs/guides/PRZEPLYW_SCENY.md`](../docs/guides/PRZEPLYW_SCENY.md).
 
-## Materiał zaślepkowy
+## Nie ma tu materiału przykładowego
 
-Wszystkie wpisy w tym katalogu są **zaślepką testową** (tag `zaslepka`): fikcyjne sceny,
-postacie i miejsca istniejące po to, żeby szkielet miał na czym działać. Zostaną usunięte
-w całości przy pierwszej prawdziwej dostawie. Lista plików do usunięcia:
-
-```bash
-grep -rl "zaslepka" content/ --include=*.md
-```
+Każda strona w tym katalogu pochodzi z rozegranej historii i ma pokrycie w archiwum zapisu
+(`rozgrywka/zapisy/`) albo w powiązaniu z wydarzeniem, które się w nim rozegrało. Materiał
+wymyślony, żeby szkielet miał na czym działać, został usunięty w całości przy pierwszym
+prawdziwym zapisie — i nie wraca.

@@ -1,5 +1,36 @@
 # Co nowego
 
+## 2026-11-21 19:20
+
+- Broń z własnym obyczajem: prosty drewniany łuk i drewniana strzała — łucznictwo jako próba
+  charakteru i sześć strzał na cztery strony świata z Księgi obrzędów — oraz pierścień jue,
+  który znaczy rozstanie.
+- Drgający Nefryt jako kamień na dźwięk, obok pracy w kuźni.
+- Stara włócznia wuja: dochodzi cytat o grocie z gwiezdnego żelaza i sztuka przekazana
+  z ojca na syna.
+
+## 2026-11-21 18:55
+
+- Rzeczy, które niosą własną opowieść: wyblakły chwost miecza i jego *zimowe słońce topiące
+  cienki lód*, zapis „Bogini Rzeki Luo”, stara włócznia wuja, moneta.
+- Leki i jedzenie w drodze: proszek tamujący krew z apteczką Yao Yaoyao, zioła z cytatem
+  z Ogrodu pouczeń, warzywa z grzybami, Echo Jade i jego głos kamienia.
+- Konteksty: mit Bogini Rzeki Luo z poematu Cao Zhi, drzwi kratowe i światło w domu
+  z traktatu o budownictwie.
+
+## 2026-11-21 17:40
+
+- Otwarcie powieści: rozdział pierwszy, *Nieśmiertelni nie przypłyną* — dwa epizody i cztery sceny.
+- Prologi: Chen Zixi przychodzi z wyrokiem zdrady do Jiang Yana i zostaje na winie; za Nefrytem
+  Zhenguan rusza cały jianghu, a Król Bez Oblicza wstaje po śmierci raz jeszcze.
+- Dzień przed Ucztą Pierwszego Dzbana: bohater budzi się po człowieku w czerni i przeszukuje
+  Bambusową Chatę. W ukrytej szufladce leży list Wei wzywający wuja do walki.
+- Na scenie: Youxia, Ruby Zhou, Jiang Wulang, Chen Zixi, ciotka Han, Brodacz Guang, człowiek
+  w czerni; ze świata — Złoty Pawilon, Przystań Nieśmiertelnych, Kaplica Generała.
+- Konteksty: picie na zgodę w opowieściach rycerskich, Król Bez Oblicza i posąg Buddy,
+  ciężar trzech lat, Kronika świata sztuk walki, Ośmiu Wspaniałych z Hedong, Przymierze Yanbei.
+- Z kroniki zniknęły wszystkie strony przykładowe, na których stał szkielet.
+
 Dziennik nowego pokrycia opowieści: kolejne sceny, osoby, miejsca i wątki.
 Poprawki istniejących stron nie trafiają do dziennika — mają własną historię
 w polu `interpretacje` i w boksie „Poprzednia wersja”.

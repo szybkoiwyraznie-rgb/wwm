@@ -190,21 +190,17 @@ test('workflow CI i Pages istnieją i pilnują testów oraz buildu', () => {
   assert.match(pages, /branches: \[main\]/);
 });
 
-test('materiał zaślepkowy jest oznaczony tagiem i policzalny', () => {
-  const sciezka = path.join(ROOT, 'content');
-  const zTagiem = [];
-  const stos = (katalog) => {
-    for (const e of fs.readdirSync(katalog, { withFileTypes: true })) {
-      const pelna = path.join(katalog, e.name);
-      if (e.isDirectory()) stos(pelna);
-      else if (e.name.endsWith('.md') && e.name !== 'README.md') {
-        if (fs.readFileSync(pelna, 'utf8').includes('zaslepka')) zTagiem.push(path.relative(ROOT, pelna));
-      }
+test('katalogi treści zawierają wyłącznie strony, nie dokumentację', () => {
+  // Strażnik po materiale przykładowym: każdy plik w katalogu typu jest stroną
+  // z frontmatterem, a nie notatką. README zostaje dokumentacją katalogu.
+  const problemy = [];
+  for (const { katalog } of KATALOGI) {
+    const abs = path.join(ROOT, katalog);
+    if (!fs.existsSync(abs)) continue;
+    for (const plik of fs.readdirSync(abs).filter((f) => f.endsWith('.md') && f !== 'README.md')) {
+      const tresc = fs.readFileSync(path.join(abs, plik), 'utf8');
+      if (!tresc.startsWith('---\n')) problemy.push(`${katalog}/${plik}: brak frontmattera`);
     }
-  };
-  stos(sciezka);
-  // Zaślepka musi być rozpoznawalna, żeby dała się usunąć jedną komendą.
-  for (const plik of zTagiem) {
-    assert.match(fs.readFileSync(path.join(ROOT, plik), 'utf8'), /tagi:.*zaslepka/);
   }
+  assert.deepEqual(problemy, []);
 });
