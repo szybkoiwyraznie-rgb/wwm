@@ -167,3 +167,17 @@ zwykłego markdownu, więc stawały się nagłówkami strony.
 **Obejście:** w cytacie `##` zamienia się na separator `---` między fragmentami, a separator
 na początku i na końcu jest usuwany (kreska na wejściu tylko psuje ramkę). Numery z ekranu
 nie trafiają do widoku — zgodnie z ADR 0019.
+
+## 17. Wszystko, co powstało w tej sesji, ma kilka godzin — nie „tygodnie”
+
+**Objaw:** w podsumowaniu dla właściciela zdania z pierwszej dostawy nazwałem „starszymi
+stronami, które przechodziły od tygodni”. Właściciel zaprotestował: to pierwsza dostawa
+i pierwsze strony w bazie.
+
+**Przyczyna:** `git log` pokazuje `6ee5d9a` o 16:29 i poprawkę o 19:52 tego samego dnia.
+Cała baza — szkielet, dostawa i poprawki — powstała w ciągu jednego popołudnia. Słowo
+„starsze” było prawdziwe tylko względem dwóch commitów, a fałszywe wobec historii projektu.
+
+**Obejście:** zanim nazwę coś „starszym”, „wcześniejszym” albo „od dawna”, sprawdzam datę
+w `git log`. W opisie pracy mówię, gdzie błąd był („w pierwszej dostawie”, „przed poprawką
+bramy”), a nie jak długo żył.
