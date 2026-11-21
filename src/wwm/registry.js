@@ -222,6 +222,14 @@ export function wytnijBlokiZapisu(body) {
 export const normalizujTekst = (t) => String(t ?? '').replace(/\s+/g, ' ').trim();
 
 /**
+ * Kwestia dialogowa zapisu: `**Ktoś:** kwestia` — z dwukropkiem w środku pogrubienia.
+ * Pisownia `**Ktoś**: kwestia` też jest kwestią; wiersz bez mówcy zostaje narracją.
+ * Kwestia jest niezależna od tego, jak renderer łamie akapit: liczy się to, że w zapisie
+ * stoi mówca, a nie to, że trafił do osobnego `<p>`.
+ */
+const KWESTIA_RE = /^\*\*[^*]+\*\*\s*:|^\*\*[^*]+:\*\*/;
+
+/**
  * Elementy sceny: kwestie (`**Postać:** …`) i narracja (akapity poza kwestiami).
  * Brama minimalnego rozmiaru sceny liczy je, żeby nie powstawały sceny jednozdaniowe.
  */
@@ -233,7 +241,7 @@ export function policzElementySceny(body) {
     for (const linia of blok.split('\n')) {
       const t = linia.trim();
       if (t === '') { wAkapicie = false; continue; }
-      if (/^\*\*[^*]+\*\*:/.test(t)) { kwestie += 1; wAkapicie = false; continue; }
+      if (KWESTIA_RE.test(t)) { kwestie += 1; wAkapicie = false; continue; }
       if (!wAkapicie) { narracja += 1; wAkapicie = true; }
     }
   }

@@ -12,6 +12,7 @@ import { parseFrontmatter } from '../src/wwm/frontmatter.js';
 import {
   renderMarkdown, POCHODZENIA, RODZAJE_TRESCI, POZIOMY_WYCOFANE, badgePewnosci, poziomPewnosci, czyPewnosc,
 } from '../src/wwm/markdown.js';
+import { policzElementySceny } from '../src/wwm/registry.js';
 
 test('slugify prowadzi polskie znaki do ASCII i nie zostawia myślników na brzegach', () => {
   assert.equal(slugify('Zwój z imieniem'), 'zwoj-z-imieniem');
@@ -200,4 +201,21 @@ test('renderer escapuje HTML z treści', () => {
   const r = renderMarkdown('{{opracowanie\n\n<script>alert(1)</script>\n}}', { wymagajPoziomu: true });
   assert.ok(!r.html.includes('<script>'));
   assert.match(r.html, /&lt;script&gt;/);
+});
+
+test('kwestia dialogowa liczy się jako element sceny w obu pisowniach mówcy', () => {
+  // Archiwum zapisuje mówcę jako `**Chen Zixi:** kwestia` — dwukropek w środku
+  // pogrubienia. Licznik, który rozpoznawał tylko `**Chen Zixi**: kwestia`,
+  // widział w dialogu samą narrację i wywalał poprawną scenę jako „za krótką”.
+  const dwukropekWSrodku = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Chen Zixi:** Pan Sali\n**Jiang Wulang:** Zdrajca\n:::\n\n}}';
+  const dwukropekPoPogrubieniu = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Ruby**: Wodzu!\n**Youxia**: Stój!\n:::\n\n}}';
+  const sameWiersze = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Rabak:** przelatuje\n**Rabak:** i wnika\n:::\n\n}}';
+  assert.deepEqual(policzElementySceny(dwukropekWSrodku), { kwestie: 2, narracja: 0, razem: 2 });
+  assert.deepEqual(policzElementySceny(dwukropekPoPogrubieniu), { kwestie: 2, narracja: 0, razem: 2 });
+  assert.equal(policzElementySceny(sameWiersze).kwestie, 2);
+});
+
+test('narracja bez mówcy zostaje osobnym elementem, a mówca go nie pożera', () => {
+  const zapis = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Youxia:** Może został ślad?\n\nInterakcja: Znak smoczego wzoru\n:::\n\n}}';
+  assert.deepEqual(policzElementySceny(zapis), { kwestie: 1, narracja: 1, razem: 2 });
 });
