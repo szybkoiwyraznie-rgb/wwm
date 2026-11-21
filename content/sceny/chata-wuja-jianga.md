@@ -3,7 +3,7 @@ typ: scena
 slug: chata-wuja-jianga
 tytul: "Przeszukanie chaty wuja"
 epizod: epizod-przebudzenie
-numer_sceny: "2-2"
+numer_sceny: "2-3"
 kolejnosc: 4
 streszczenie: "Bohater przeszukuje Bambusową Chatę: znajduje znak smoczego wzoru, starą włócznię, ukrytą szufladkę z listem Wei wzywającym wuja do walki oraz wyblakły chwost miecza. Ruby wraca i grozi skargą do ciotki Han, która nazajutrz na Uczcie Pierwszego Dzbana ma coś ogłosić."
 zapis: 2026-11-21-001.md

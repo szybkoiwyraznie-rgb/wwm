@@ -16,7 +16,7 @@ utworzono: 2026-11-21
 Jiang Wulang jest w kronice pod trzema imionami i każde mówi o innym czasie. W prologu
 nazywa go *bohaterem Jiang* i *Jiang Yanem* — człowiekiem, który zabił ojca, zagarnął jadeit
 i uciekał przed całym jianghu. W chacie jest *wujem Jiangiem*, przybranym ojcem, który
-tajnie uczył dziecko włóczni i nie powstrzymał go, kiedy przyszła pora iść w świat.
+tajnie uczył chłopca włóczni i nie powstrzymał go, kiedy przyszła pora iść w świat.
 W liście Wei jest *tym, który osiadł w Przystani Nieśmiertelnych* i przestał odpowiadać
 na pisma.
 

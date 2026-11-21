@@ -199,3 +199,20 @@ dialog stoi pod `## Prolog 4` i nie ma w nim ani Ruby, ani Youxii.
 fragment. Jeśli nie ma — nie tworzę sceny, tylko mówię w analizie i w opisie postaci, że
 wydarzenie rozgrywa się poza zapisem. Tytuł sceny biorę z jej własnej pierwszej kwestii
 albo z tego, co robi, a nie z tego, co chciałbym, żeby robiła.
+
+## 19. Tłumaczenie z chińskiego może mylić rodzaj — i wiek mówiącego
+
+**Objaw:** Prolog 4 czytałem jako wspomnienie z dzieciństwa Youxii i przypisałem jego kwestie
+Jiang Wulangowi. Właściciel poprawił: to scena współczesna, Ruby jest dziesięcio-, dwunastoletnią
+dziewczynką, Youxia ma około trzydziestu lat, a *wuj Jiang*, do którego Ruby mówi, to Youxia —
+nie Jiang Wulang, który zniknął trzy lata temu.
+
+**Przyczyna:** zapis nie daje etykiet mówcy, a polski rodzaj gramatyczny podpowiadał mężczyznę
+tam, gdzie w chińskim rodzaju nie ma. Do tego doszło moje założenie, że każdy prolog musi być
+dawniejszy od reszty — więc scena trafiła do epizodu wspomnień, choć stoi już w czasie
+teraźniejszym opowieści.
+
+**Obejście:** przy dialogu bez etykiet nie wnioskuję płci, wieku ani mówcy z form polskiego
+czasownika. Sprawdzam, kto jest w scenie według właściciela, i dopiero wtedy przypisuję
+kwestie. Prolog numerowany w zapisie nie musi być retrospekcją — o tym, czy scena jest
+wspomnieniem, decyduje miejsce w fabule, nie nazwa nagłówka.

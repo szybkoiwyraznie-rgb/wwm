@@ -1,9 +1,9 @@
 ---
 typ: scena
 slug: cutscena-przebudzenie
-tytul: "Gdybym tylko zobaczył jianghu"
+tytul: "Policzek i człowiek w czerni"
 epizod: epizod-przebudzenie
-numer_sceny: "2-1"
+numer_sceny: "2-2"
 kolejnosc: 3
 streszczenie: "Ruby cuci bohatera policzkiem i wypytuje go o człowieka w czerni, o którym on mówi, że mu się przywidział. Umowa o wyprawie do Kaplicy Generała zostaje przypomniana, a bohater zostaje sam przy chacie."
 zapis: 2026-11-21-001.md

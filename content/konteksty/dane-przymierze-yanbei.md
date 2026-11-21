@@ -12,7 +12,7 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Druga nazwa z dziecięcej wyliczanki. *Yanbei* to północ od przełęczy Yan — pogranicze,
+Druga nazwa z wyliczanki Ruby. *Yanbei* to północ od przełęczy Yan — pogranicze,
 na którym w chińskich dziejach stały garnizony i zawiązywały się sojusze między dowódcami
 a lokalnymi rodami. Samo słowo *przymierze* wskazuje, że nie jest to szkoła walki, a układ
 między siłami.

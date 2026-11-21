@@ -6,11 +6,11 @@ rozdzial: rozdzial-1
 kolejnosc: 1
 rodzaj: wspomnienie
 status: rozegrane
-sceny: [scena-prolog-zdrajca, cutscena-jaskolka]
+sceny: [scena-prolog-zdrajca]
 postacie: [chen-zixi, jiang-wulang, youxia]
 sekty: [zloty-pawilon]
 watki: [watek-nefryt-zhenguan, watek-dawe-dzieje]
-konteksty: [nocny-deszcz-w-drodze, krol-bez-oblicza, kronika-swiata-sztuk-walki]
+konteksty: [nocny-deszcz-w-drodze, krol-bez-oblicza]
 tagi: [prologi]
 utworzono: 2026-11-21
 ---
@@ -19,11 +19,10 @@ utworzono: 2026-11-21
 
 ## Streszczenie
 
-Dwie sceny pokazują czas, który w chwili rozpoczęcia opowieści już się skończył. Chen Zixi
+Jedna scena pokazuje czas, który w chwili rozpoczęcia opowieści już się skończył. Chen Zixi
 przychodzi do Jiang Yana z wyrokiem zdrady i zostaje zaproszony na wino; za Nefryt Zhenguan
 rusza potem cały jianghu, a martwy Król Bez Oblicza wstaje raz jeszcze i pada dopiero wtedy,
-gdy Chen przyjmuje cios za bohatera. Ostatnia scena cofa się głębiej — do dziecka, które
-chce zobaczyć jianghu, i do wuja, który na to nie odpowiada.
+gdy Chen przyjmuje cios za bohatera.
 
 }}
 
@@ -31,12 +30,10 @@ chce zobaczyć jianghu, i do wuja, który na to nie odpowiada.
 
 ## Jak te sceny stoją w opowieści
 
-Sceny są dwie i dzieli je wyraźna cezura czasu, ale łączy je jedna rzecz: obie mówią
-o Jiang Wulangu z zewnątrz, w chwilach, w których on nic nie wyjaśnia. Pierwsza widzi go
-jako zdrajcę i ściganego, druga jako przybranego ojca. Dopiero po nich wchodzimy do chaty,
-gdzie jest już tylko nieobecny.
+Cała scena mówi o Jiang Wulangu z zewnątrz, w chwilach, w których on nic nie wyjaśnia:
+widzimy go jako zdrajcę i ściganego, a zaraz potem jako nieobecnego, po którego przychodzi
+list.
 
-To uzasadnia jeden epizod rodzaju `wspomnienie`: scena ostatnia jest wyraźnie dawniejsza
-od dwóch pierwszych (bohater jest w niej dzieckiem), ale bez niej dwie pierwsze wisiałyby
-bez kontekstu — a z nią wiadomo, kogo ścigają i kto przyjął cios.
+To uzasadnia osobny epizod rodzaju `wspomnienie`. Prologi kończą się podwójnym pokonaniem
+Króla Bez Oblicza i od tego miejsca opowieść idzie już tylko naprzód, bez powrotów w przeszłość.
 }}

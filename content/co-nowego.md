@@ -20,11 +20,15 @@
 
 ## 2026-11-21 17:40
 
-- Otwarcie powieści: rozdział pierwszy, *Nieśmiertelni nie przypłyną* — dwa epizody i cztery sceny.
+- Otwarcie powieści: rozdział pierwszy, *Nieśmiertelni nie przypłyną* — dwa epizody i cztery
+  sceny; od Prologu 4 akcja idzie już tylko naprzód.
 - Prologi: Chen Zixi przychodzi z wyrokiem zdrady do Jiang Yana i zostaje na winie; za Nefrytem
   Zhenguan rusza cały jianghu, a Król Bez Oblicza wstaje po śmierci raz jeszcze.
-- Dzień przed Ucztą Pierwszego Dzbana: bohater budzi się po człowieku w czerni i przeszukuje
-  Bambusową Chatę. W ukrytej szufladce leży list Wei wzywający wuja do walki.
+- Obietnica dziecka: Ruby namawia Youxię, żeby zabrał ją w jianghu, i wylicza nazwy zasłyszane
+  od kupców. Rozmowę przerywa motyl.
+- Dzień przed Ucztą Pierwszego Dzbana: człowiek w czerni bije Youxię do utraty przytomności,
+  Ruby cuci go policzkiem, a potem on przeszukuje Bambusową Chatę. W ukrytej szufladce leży
+  list Wei wzywający wuja do walki.
 - Na scenie: Youxia, Ruby Zhou, Jiang Wulang, Chen Zixi, ciotka Han, Brodacz Guang, człowiek
   w czerni; ze świata — Złoty Pawilon, Przystań Nieśmiertelnych, Kaplica Generała.
 - Konteksty: picie na zgodę w opowieściach rycerskich, Król Bez Oblicza i posąg Buddy,

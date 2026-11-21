@@ -14,11 +14,12 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Dziewczyna, która budzi bohatera policzkiem — a potem zaprzecza, że go uderzyła: *kto by cię
-tam bił! wołałam i wołałam*. Mówi szybko, obraża się na pokaz i odwołuje obrazę w następnym
+Dziewczynka, na oko dziesięcio-, dwunastoletnia. To ona budzi bohatera policzkiem — a potem
+zaprzecza, że go uderzyła: *kto by cię tam bił! wołałam i wołałam*. Mówi szybko, obraża się na pokaz i odwołuje obrazę w następnym
 zdaniu, a każde jej zdanie jest jednocześnie informacją i żartem.
 
-Jest z nią umowa: *razem idziemy do Kaplicy Generała* i razem ruszają w jianghu. To ona
+Nazywa Youxię *wodzem*, a w scenie obietnicy mówi do niego *wuju Jiang*. Jest z nim umowa:
+*razem idziemy do Kaplicy Generała* i razem ruszają w jianghu. To ona
 przypomina bohaterowi o książce z opowieściami od Brodacza Guanga i to ona pierwsza
 znajduje w chacie włócznię: *wodzu! tu jest włócznia, prawdziwa włócznia!*
 
