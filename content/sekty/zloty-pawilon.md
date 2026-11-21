@@ -18,8 +18,9 @@ ludzie: *nawet Złoty Pawilon się włączył? tym razem narobiłeś sobie nie l
 W tym zdaniu Pawilon jest czymś, czego włączenie się znaczy więcej niż zwykły pościg —
 i czymś, o czym mówi się ze zdziwieniem, nie ze strachem.
 
-Chen jest w prologu podpisany jako *dowódca Złotego Pawilonu, Król Bez Oblicza*. Pawilon
-występuje więc tylko raz, jako siła, która dołącza do polowania na Nefryt Zhenguan, i nie
-wiadomo o nim nic więcej: ani gdzie ma siedzibę, ani kogo poza Chenem wysyła.
+W prologu stoi osobna linia: *kontekst: dowódca Złotego Pawilonu, Król Bez Oblicza* — to
+najpewniejsze, co o Pawilonie wiadomo, bo mówi, że ma dowódcę i że dowódca nosi tytuł,
+a nie imię. Pawilon występuje tylko raz, jako siła, która dołącza do polowania na Nefryt
+Zhenguan, i nie wiadomo o nim nic więcej: ani gdzie ma siedzibę, ani kogo wysyła.
 
 }}

@@ -142,9 +142,10 @@ zręcznie nadstawiać pod cudze ostrze*, i od razu wystawia rachunek — *uratuj
 a ty postawisz mi dzban Wiosennej Obfitości*. Uczciwa wymiana, jak mówi, choć to on
 uratował życie, a nie Jiang.
 
-W tym miejscu pada też jedyny podpis w prologu: *dowódca Złotego Pawilonu, Król Bez Oblicza*.
-Nie wiadomo, do kogo należy — do Chena czy do kogoś, kto stoi za sceną. Sama niejednoznaczność
-jest tu informacją i dlatego zostaje w treści, nie w przypisie.
+Na końcu pada też jedyny podpis w prologu: *kontekst: dowódca Złotego Pawilonu, Król Bez
+Oblicza*. Stoi on po kwestiach Chena, więc można by go wziąć za notkę o mówcy — ale osoba,
+która w tym samym dialogu wstaje po śmierci i pada martwa, nie może jednocześnie dalej
+żartować. Podpis należy więc raczej do tego, kto ginie, niż do tego, kto mówi.
 
 ### Martwy król otwiera oczy
 

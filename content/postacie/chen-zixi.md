@@ -29,14 +29,30 @@ i żartuje z tego, że *cały świat przeciw nam to dopiero uciecha*.
 
 ## Kto to jest
 
-Świat zna go jako *dowódcę Złotego Pawilonu, Króla Bez Oblicza* — to podpis, który stoi
-przy jego kwestiach w prologu. Złoty Pawilon wchodzi do pościgu razem z ludźmi, którzy chcą
-odebrać Nefryt Zhenguan, ale Chen nie wygląda na sługę: to on decyduje, kiedy stanąć w czyjej
-obronie.
+Chen jest tym, kto w prologu mówi najwięcej i najmniej o sobie. Przedstawia się tytułem —
+*pan Sali Powrotu Wiosny* — a nie nazwiskiem, i to jedyne miejsce, w którym sam się jakoś
+nazywa. Złoty Pawilon wchodzi do pościgu razem z ludźmi, którzy chcą odebrać Nefryt Zhenguan,
+ale Chen nie wygląda na sługę: to on decyduje, kiedy stanąć w czyjej obronie.
 
-Przyjmuje cios za Jiang Yana i po tym ciosie Król Bez Oblicza pada martwy — a Chen dalej
-mówi i dalej żartuje. W rozegranym materiale jest więc kimś, kto potrafi umrzeć i wrócić,
-albo kimś, kto nigdy nie był tym, za kogo go brano.
+Przyjmuje cios za Jiang Yana — i to jest jego jedyny czyn w całym prologu, który nie jest
+słowem. Po tym ciosie pada martwy Król Bez Oblicza, a Chen mówi dalej.
+
+}}
+
+{{model pewnosc=35 pytanie="Czy podpis „dowódca Złotego Pawilonu, Król Bez Oblicza” należy do Chena?"
+
+## Podpis w prologu
+
+W zapisie, tuż po scenie z rachunkiem za życie, stoi osobna linia: *kontekst: dowódca
+Złotego Pawilonu, Król Bez Oblicza*. Wygląda jak notka o mówcy i tak ją można przeczytać —
+ale w tej samej scenie Król Bez Oblicza wstaje po śmierci, przyjmuje cios i pada martwy,
+a Chen dalej żartuje. Jedna osoba nie umiera i nie mówi po śmierci w tym samym dialogu.
+
+Bezpieczniejsze czytanie jest inne: podpis należy do postaci, która w tej scenie ginie —
+czyli do tego, kto naprawdę nosi tytuł Króla Bez Oblicza — a Chen jest kimś obok, może jego
+podwładnym, może tym, kto tytuł nosi tylko z nazwy. Pewności nie ma, bo zapis nie mówi tego
+wprost; pewne jest tylko, że Chen i Król Bez Oblicza nie mogą być tą samą osobą w tej samej
+chwili.
 
 }}
 
