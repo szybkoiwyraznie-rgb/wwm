@@ -12,10 +12,9 @@ utworzono: 2026-11-21
 
 ## Opis
 
-*Łuk dobrze wyważony, łatwo go napiąć i celniej się z niego mierzy.* Opis jest krótki
-i mówi o trzech rzeczach naraz: o wyważeniu, o sile potrzebnej do naciągnięcia i o celności.
-Broń jest dobra nie dlatego, że jest wielka, ale dlatego, że nie stawia oporu własnemu
-właścicielowi.
+*Łuk dobrze wyważony, łatwo go napiąć i celniej się z niego mierzy.* Trzy rzeczy naraz:
+wyważenie, siła potrzebna do naciągnięcia, celność. Broń jest dobra nie dlatego, że jest
+wielka, ale dlatego, że nie stawia oporu własnemu właścicielowi.
 
 }}
 
@@ -38,7 +37,7 @@ miarą człowieka, nie jego siły.
 
 ## Dlaczego prosty
 
-Łuk z opisu jest *prosty* i *drewniany*, a mimo to dobrze wyważony. W świecie, w którym
+Łuk jest *prosty* i *drewniany*, a mimo to dobrze wyważony. W świecie, w którym
 broń bywa ozdobą rangi, prostota jest wyborem: łuk, którego nie trzeba chwalić, mówi
 o strzelcu to, czego nie powie drogi miecz.
 
@@ -48,7 +47,7 @@ o strzelcu to, czego nie powie drogi miecz.
 
 ## Siła, której nie widać
 
-Opis chwali łuk za to, że *łatwo go napiąć*. W opowieściach o wędrowcach siła bywa
+Łuk jest chwalony za to, że *łatwo go napiąć*. W opowieściach o wędrowcach siła bywa
 popisem, a tu jest odwrotnie: broń jest dobra wtedy, gdy oszczędza rękę. Kto ją wybrał,
 ten myśli o drodze, nie o jednej walce.
 

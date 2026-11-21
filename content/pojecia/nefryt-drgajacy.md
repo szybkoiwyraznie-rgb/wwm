@@ -16,7 +16,7 @@ kamień robi: drga. Nie jest ozdobą, a surowcem — czymś, co dopiero czeka na
 który z kamienia zrobi głos.
 
 Przy okazji opowieść uchyla drzwi do kuźni: *surową rudę żelaza na wpół się topi, dodaje
-proszku z czystej rudy i miesza, aż powstanie żelazo kujne*. Nefryt i żelazo opisane są
+proszku z czystej rudy i miesza, aż powstanie żelazo kujne*. Nefryt i żelazo mówią więc
 jednym językiem pracy — bo w tym świecie kamień i metal obrabia się tak samo troskliwie.
 
 }}
@@ -26,8 +26,8 @@ jednym językiem pracy — bo w tym świecie kamień i metal obrabia się tak sa
 ## Kamień, który brzmi
 
 Nefryt w chińskiej kulturze jest ceniony nie tylko za barwę, ale za dźwięk: uderzony wydaje
-czysty, długi ton, a *drgający* to niemal dosłowny opis tej właściwości. Materiał, z którego
-*nakłada się dźwięki*, jest więc wybrany zgodnie z naturą kamienia, a nie przypadkiem.
+czysty, długi ton. *Drgający* mówi więc o naturze kamienia niemal dosłownie, a materiał,
+z którego *nakłada się dźwięki*, jest wybrany zgodnie z tą naturą, a nie przypadkiem.
 
 }}
 

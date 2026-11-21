@@ -27,9 +27,9 @@ podopiecznemu, a ten stracił go tej nocy, gdy człowiek w czerni pojawił się 
 
 ## Co z tego wynika
 
-Zhenguan to nazwa, nie opis: nikt w rozegranym materiale nie mówi, co wisiorek zawiera ani
-skąd pochodzi. Pewne jest tylko, że jest starszy niż bohaterowie — skoro Jiang Yan nosi go
-po ojcu, a ojca zabił — i że chcą go ludzie, którzy nie znają jego treści, tylko jego imię.
+Zhenguan to samo imię: nikt w rozegranych scenach nie mówi, co wisiorek zawiera ani skąd
+pochodzi. Pewne jest tylko, że jest starszy niż bohaterowie — skoro Jiang Yan nosi go po
+ojcu, a ojca zabił — i że chcą go ludzie, którzy nie znają jego treści, tylko jego imię.
 
 Wartość wisiorka jest w opowieści funkcją, nie przedmiotem: dopóki nikt go nie otworzy,
 dopóty każdy może sądzić, że jest wart zabójstwa.

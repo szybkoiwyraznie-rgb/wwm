@@ -17,7 +17,7 @@ Włócznia, którą Ruby znajduje w chacie i która wywołuje u niej okrzyk: *wo
 włócznia, prawdziwa włócznia!* Bohater odpowiada krótko — *ostrożnie*, *ciężka i ostra,
 nie baw się nią* — i to zdanie mówi, że nie jest to pierwszy raz, kiedy ją widzi.
 
-Według opisu przedmiotu Jiang Wulang kupił ją *niby od niechcenia*, przechodząc koło kuźni,
+Jiang Wulang kupił ją *niby od niechcenia*, przechodząc koło kuźni,
 i *po cichu ulepszył*: poprawił wagę i długość. Ćwiczenia z nią były *sekretnymi chwilami,
 jak ojca z dzieckiem*.
 

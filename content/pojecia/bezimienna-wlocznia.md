@@ -12,13 +12,16 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Wojskowa sztuka włóczni, przekazana bohaterowi razem z bronią. Jej opis w zapasie jest
-niemalże wierszem: *włócznia z zatopionego drewna, grot z gwiezdnego żelaza, rozgarnia góry
-jak miotełka*. To nie jest opis techniki, a obraz broni — i w tym obrazie jest cała jej
-historia.
+Sztuka wojenna włóczni, którą bohater dostał razem z bronią. Dawny dowódca, sławny na
+pograniczach, przekazał swemu przybranemu synowi *całą wojskową sztukę włóczni* — a ten
+*ukrył się w jianghu i przekazał ją dziecku, które przygarnął*. Sztuka jest więc w rodzinie
+od dwóch pokoleń i oba te pokolenia wybrały życie poza urzędem.
 
-Według tego samego opisu dawny dowódca, sławny na pograniczach, przekazał ją swemu
-przybranemu synowi, a ten *ukrył się w jianghu i przekazał ją dziecku, które przygarnął*.
-Sztuka jest więc w rodzinie od dwóch pokoleń i oba te pokolenia wybrały życie poza urzędem.
+Do włóczni przylgnęło przy tym zdanie, które jest raczej obrazem niż przepisem: *włócznia
+z zatopionego drewna, grot z gwiezdnego żelaza, rozgarnia góry jak miotełka*. Opisuje broń,
+nie ruch — i w tym obrazie jest cała jej historia.
+
+W materiale nie ma ani jednego cięcia, ani jednego ustawienia stopy. Sztuka włóczni jest
+tu przekazywana jak nazwisko: wiadomo, kto ją dostał i od kogo, a nie, na czym polega.
 
 }}

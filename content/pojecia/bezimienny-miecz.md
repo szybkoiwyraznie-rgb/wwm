@@ -12,8 +12,8 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Sztuka miecza, której Jiang Wulang nauczył bohatera. Jej opis zaczyna się od charakterystyki
-nauczyciela, nie od ruchu: *nazywał siebie prostakiem z gór i lasów, a znał sprawy jianghu
+Sztuka miecza, której Jiang Wulang nauczył bohatera. Zamiast opisu ruchu jest przy niej
+charakterystyka nauczyciela: *nazywał siebie prostakiem z gór i lasów, a znał sprawy jianghu
 jak własną kieszeń*. Sztuka jest więc tym, co zostaje po człowieku, który nie chciał mówić
 o sobie — i dlatego nie ma nazwy własnej, tylko nazwę od tego, czego brakuje.
 

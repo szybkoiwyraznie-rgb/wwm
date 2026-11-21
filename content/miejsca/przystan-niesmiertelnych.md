@@ -16,8 +16,7 @@ Miejsce, w którym osiadł Jiang Wulang i o którym bohater mówi w chacie *u pr
 *nawet ją wyciągnęli*, *kupiłem ją u przystani*. W liście Wei nazywa je wprost: *odkąd
 osiadłeś w Przystani Nieśmiertelnych, na żadne przesłane pismo nie odpowiadasz*.
 
-Przystań jest więc tym miejscem, w którym wuj schował się przed światem — a opis włóczni
-dodaje do tego kawałek codzienności: *u przystani niebios* stoi kuźnia, koło której
-przechodził.
+Przystań jest więc tym miejscem, w którym wuj schował się przed światem — a kuźnia stojąca
+*u przystani niebios* dodaje do tego kawałek codzienności, obok której przechodził.
 
 }}

@@ -16,9 +16,9 @@ przestaje być przedmiotem: *odnajdujesz go wśród starych rzeczy i nagle wspom
 jak przypływ*. Opis nie mówi, kto go nosił — mówi tylko, że był przechowywany *z wielką
 troską* i że czas zrobił swoje.
 
-Najmocniejsze zdanie w tym opisie jest porównaniem, nie faktem: dłoń czuje *dawne ciepło,
-jak zimowe słońce topiące cienki lód*. To obraz ciepła, które nie grzeje — wystarcza, żeby
-lód puścił na chwilę i żeby woda znów zamarzła.
+Najmocniejsze zdanie w całej tej historii o chwoscie jest porównaniem, nie faktem: dłoń
+czuje *dawne ciepło, jak zimowe słońce topiące cienki lód*. To obraz ciepła, które nie
+grzeje — wystarcza, żeby lód puścił na chwilę i żeby woda znów zamarzła.
 
 }}
 
@@ -39,6 +39,6 @@ myślał, że *nie przetrwają próby lat* — i to jest cała jego wartość.
 Opis mówi *przechowywany z wielką troską*, a nie *twój*. Rzecz, którą ktoś przechował dla
 kogoś innego, miała już właściciela wcześniej niż znalazcę — i jeśli chwost jest pamiątką
 po młodości bohatera, to trzymał go ten, kto tę młodość pamięta: wuj, u którego bohater
-mieszka. Pewności nie ma, bo opis nigdzie nie mówi, czyją ręką był noszony.
+mieszka. Pewności nie ma, bo nigdzie nie powiedziano, czyją ręką był noszony.
 
 }}

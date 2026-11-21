@@ -192,7 +192,7 @@ zrobił to wuj.
 
 Włócznia jest jedyną rzeczą, którą bohater traktuje jak swoją: *ostrożnie*, *ciężka i ostra,
 nie baw się nią*. Ruby chce ją dostać choć na chwilę, a odmowa jest niemal ojcowska —
-i dopiero opis przedmiotu mówi, dlaczego: tę broń wuj kupił i *po cichu dla ciebie ulepszył*.
+bo tę broń wuj kupił i *po cichu dla ciebie ulepszył*.
 
 Chwost miecza jest przy niej drobiazgiem i zarazem kontrapunktem: *wyblakły*, z wzorem
 *Rok po roku pokoju*, który *zatarł się do niepoznania*. Broń jest gotowa do użycia,

@@ -45,6 +45,20 @@ const META = new RegExp([
  * „Właściciel” sam w sobie mówi o świecie — o człowieku, do którego coś należy.
  * Meta zaczyna się dopiero wtedy, gdy właściciel jest właścicielem kroniki, a nie rzeczy.
  */
+/**
+ * Zdania, które pokazują czytelnikowi tekst, którego ten nie widzi: „jej opis w zapasie”,
+ * „według opisu przedmiotu”, „w tym opisie”. Opowieść mówi o świecie — jeśli coś jest
+ * w „zapisie” albo „materiale”, to albo cytat, albo zdanie o pracy nad kroniką.
+ * „Opis” jako tytuł boksu jest wyjątkiem: to etykieta wymuszona funkcją (ADR 0014).
+ */
+const UKRYTE_ZRODLO = new RegExp([
+  '\\bw (?:tym |samym )?opisie\\b', '\\bwedług (?:tego )?opisu\\b', '\\bz opisu\\b',
+  '\\bjej opis\\b', '\\bjego opis\\b', '\\bten opis\\b', '\\bta? opis\\b',
+  '\\bopis (?:przedmiotu|techniki|broni|strzały|łuku|włóczni|hełmu)\\b',
+  '\\bw zapasie\\b', '\\bz zapasu\\b', '\\bw ekwipunku\\b', '\\bw inwentarzu\\b',
+  '\\bkompendium\\b',
+].join('|'), 'giu');
+
 const WLASCICIEL_PROJEKTU = new RegExp(
   '\\bwłaściciel[a-ząćęłńóśźż]*\\s+(?:tej\\s+)?(?:baz|kronik|repozytori|projekt|stron|witryn)',
   'giu');
@@ -76,8 +90,8 @@ test('widoczne strony nie mówią o bazie, procesie ani interfejsie', () => {
     const html = [strona.html ?? '', naglowki, ...(strona.boksy ?? []).map((b) => b.html),
       ...(strona.sekcje ?? []).map((s) => s.html)].join(' ');
     const tekst = tekstWidoczny(html);
-    const trafienia = [...new Set([...tekst.matchAll(META), ...tekst.matchAll(WLASCICIEL_PROJEKTU)]
-      .map((m) => m[0]))];
+    const trafienia = [...new Set([...tekst.matchAll(META), ...tekst.matchAll(WLASCICIEL_PROJEKTU),
+      ...tekst.matchAll(UKRYTE_ZRODLO)].map((m) => m[0]))];
     if (trafienia.length > 0) problemy.push(`${slug}: ${trafienia.join(', ')}`);
   }
   assert.deepEqual(problemy, []);
@@ -97,6 +111,20 @@ test('właściciel rzeczy jest ze świata, właściciel kroniki już nie', () =>
     'właściciel tej strony'];
   for (const zdanie of oProjekcie) {
     assert.ok([...zdanie.matchAll(WLASCICIEL_PROJEKTU)].length > 0, `„${zdanie}” to meta`);
+  }
+});
+
+test('proza nie pokazuje tekstu, którego czytelnik nie widzi', () => {
+  // „Jej opis w zapasie jest niemalże wierszem” — czytelnik nie ma ani zapasu,
+  // ani opisu: ma rzecz i zdanie o niej. Tytuł boksu „Opis” zostaje dozwolony.
+  const zakazane = ['jej opis jest krótki', 'według opisu przedmiotu', 'w tym opisie',
+    'z opisu wynika', 'hełm z zapasu', 'leży w zapasie bohatera', 'w Kompendium stoi'];
+  for (const zdanie of zakazane) {
+    assert.ok([...zdanie.matchAll(UKRYTE_ZRODLO)].length > 0, `„${zdanie}” powinno być zatrzymane`);
+  }
+  const dozwolone = ['## Opis', 'Opis jest krótki jak zdanie o broni', 'opisuje broń, nie ruch'];
+  for (const zdanie of dozwolone) {
+    assert.deepEqual([...zdanie.matchAll(UKRYTE_ZRODLO)].map((m) => m[0]), [], `„${zdanie}” ma przejść`);
   }
 });
 

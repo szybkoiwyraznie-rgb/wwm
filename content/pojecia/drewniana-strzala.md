@@ -13,8 +13,8 @@ utworzono: 2026-11-21
 ## Opis
 
 *Strzały strugane z drewna. Jeśli łucznik ma dość siły, potrafią zadać zaskakujące rany.*
-Opis zwraca uwagę na dwie rzeczy: strzała jest zrobiona, nie kupiona, a jej skutek zależy
-od tego, kto ją naciąga.
+Widać w tym dwie rzeczy: strzała jest zrobiona, nie kupiona, a jej skutek zależy od tego,
+kto ją naciąga.
 
 }}
 
@@ -32,12 +32,12 @@ człowiek będzie musiał kiedyś pójść.
 
 }}
 
-{{model pewnosc=40 pytanie="Dlaczego opis strzały mówi o sile łucznika, a nie o jej wykonaniu?"
+{{model pewnosc=40 pytanie="Dlaczego strzała mówi o sile łucznika, a nie o swoim wykonaniu?"
 
 ## Strzała bez właściciela
 
 Strzała z drewna jest rzeczą, którą każdy może zrobić i każdy może stracić. Jej wartość
-nie leży w niej samej — leży w ramieniu, które ją naciąga. To dlatego opis kończy się
-na człowieku, a nie na grocie.
+nie leży w niej samej — leży w ramieniu, które ją naciąga. Dlatego wszystko, co o niej
+wiadomo, kończy się na człowieku, a nie na grocie.
 
 }}

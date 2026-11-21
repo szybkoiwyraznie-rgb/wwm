@@ -39,9 +39,8 @@ o nim z szacunkiem, którego nikt nie okazuje wrogowi.
 
 Zapis daje mu dwa imiona i nie mówi, że są jednej osoby — ale mówi to zachowaniem. Chen Zixi
 zwraca się do niego *bohaterze Jiang*, a potem woła go po imieniu: *Jiang Yan, Jiang Yan!*
-— i to ten sam człowiek, z którym pił w gospodzie. W chacie to *wuj Jiang*, a opis włóczni
-nazywa go *Jiang Wulangiem* i tym samym oddechem mówi, że uczył bohatera w tajemnicy przed
-ciotką Han.
+— i to ten sam człowiek, z którym pił w gospodzie. W chacie to *wuj Jiang*, a przy włóczni
+stoi *Jiang Wulang* — i to samo zdanie mówi, że uczył bohatera w tajemnicy przed ciotką Han.
 
 Zestawienie imion działa w tę samą stronę. *Yan* (偃) znaczy *kłaść na plecach, powalić,
 spoczywać* — broń, którą się odkłada, i trawa, która się kładzie. *Wulang* (五郎) to po prostu

@@ -12,10 +12,9 @@ utworzono: 2026-11-21
 
 ## Opis
 
-*Kratowe drzwi, które można otwierać i zamykać i które przepuszczają światło* — tak opisuje
-je rzecz z Kompendium, dodając, że rozwinęły się *za Tang z połączenia drzwi deskowych i okien
-o prostych szczeblach*. Mają drewnianą ramę, w górnej części kratownicę w rozmaite wzory,
-a w dolnej deskę chroniącą przed wodą.
+*Kratowe drzwi, które można otwierać i zamykać i które przepuszczają światło* — rozwinęły
+się *za Tang z połączenia drzwi deskowych i okien o prostych szczeblach*. Mają drewnianą
+ramę, w górnej części kratownicę w rozmaite wzory, a w dolnej deskę chroniącą przed wodą.
 
 }}
 
