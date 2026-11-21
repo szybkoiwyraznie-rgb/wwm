@@ -234,8 +234,9 @@ Zasady:
 
 - **Hipoteza to zawsze wiedza modelu.** `{{model pewnosc=NN}}` — i nic innego. Interpretacja
   nie może udawać cytatu ani kwerendy; build odrzuca `{{kwerenda rodzaj=interpretacja}}`.
-- **Wiedza modelu wymaga `pewnosc=`** (0–100). Bez szacunku byłaby twierdzeniem
-  nieodróżnialnym od faktu. Atrybut przysługuje wyłącznie temu pochodzeniu.
+- **Przypuszczenie wymaga `pewnosc=`** (0–100). Warstwa bez szacunku byłaby twierdzeniem
+  nieodróżnialnym od faktu — dlatego `rodzaj=interpretacja` i `pytanie=` bez `pewnosc=`
+  to błąd. Atrybut przysługuje wyłącznie pochodzeniu `model` (ADR 0005, 0018).
 - **Kwerenda wymaga adresu źródła** — pola `zrodla:` albo sekcji `## Źródła` z linkiem
   http(s). Twierdzenie bez dowodu nie może być niebieskie.
 - **Kilka warstw w jednym boksie to norma**, nie wyjątek: cytat z opowieści, wniosek,

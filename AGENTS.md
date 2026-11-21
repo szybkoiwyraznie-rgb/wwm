@@ -176,7 +176,7 @@ a czytelnik wie, skąd pochodzi informacja.**
 
 ```bash
 npm test          # testy integralności (node --test)
-npm run build     # dist/index.html — jeden samowystarczalny plik
+npm run build     # dist/index.html (powłoka) + dist/data/ (ciała stron)
 npm run serve     # podgląd na http://0.0.0.0:3000
 npm run zapis     # kontrola: czy sceny są dosłownym fragmentem archiwum
 ```

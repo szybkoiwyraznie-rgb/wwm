@@ -19,7 +19,8 @@ ale podstawia daty z mtime i gubi „utworzono” w stopce — build wypisuje wt
 
 ```bash
 npm test             # wszystkie testy (node --test), pliki test/*.test.js
-npm run build        # dist/index.html — jeden samowystarczalny plik
+npm run build        # dist/index.html (powłoka) + dist/data/ (ciała stron)
+npm run build:single # całość w jednym pliku — archiwum offline i tryb testów
 npm run serve        # podgląd na 0.0.0.0:3000, czeka na build, jeśli go nie ma
 npm run zapis        # porównanie scen z archiwum zapisu + pokrycie archiwum
 node tools/build.mjs --out /tmp/podglad.html   # build w inne miejsce (testy)
@@ -68,7 +69,8 @@ rozegraną fabułę.
   że ktoś złamał zasadę zero-zależności.
 - **Datownie z gita w UTC vs lokalne.** Build wymusza `TZ=Europe/Warsaw`; daty w stopce
   są lokalne, nie w UTC.
-- **`file://` nie ma `fetch`.** Danych nie dociągamy z plików — wszystko jest wstrzyknięte
-  w artefakt, dlatego działa też bez serwera.
+- **`file://` nie ma `fetch`.** Domyślny artefakt to powłoka i drzewo danych, więc ciała
+  stron dociąga `fetch` — dlatego kronika wymaga serwera HTTP. Bez serwera działa tylko
+  `npm run build:single`, gdzie cała treść jest wstrzyknięta w plik.
 - **Znaki CJK w slugach.** Slug jest ASCII; tytuły chińskie trzymaj w `tytul_ja`, a nie
   w identyfikatorze.

@@ -46,16 +46,28 @@ czasu — inaczej tracisz kontrolę nad procesem, a podgląd znika.
 
 ## Artefakt
 
-`dist/index.html` to **jeden plik**: HTML + CSS + wszystkie moduły JS + dane `WWM_DATA`.
-Dzięki temu:
+Domyślny build daje **powłokę i drzewo danych** (ADR 0017):
 
-- otwiera się z `file://` (bez `fetch`, bez serwera),
-- działa na GitHub Pages bez konfiguracji ścieżek bazowych,
-- nie ma cache-bustingu ani wersjonowania podzasobów — problem zniknął wraz z podzasobami.
+- `dist/index.html` — HTML + CSS + wszystkie moduły JS + spakowany indeks; bez ciał stron,
+- `dist/data/<slug>.json` — treść strony, dociągana `fetch` przy wejściu w nią,
+- `dist/data/teksty.json` — indeks wyszukiwarki, dociągany przy pierwszym zapytaniu,
+- `dist/data/co-nowego.json` — dziennik, dociągany na starcie.
 
-Cena: rozmiar rośnie liniowo z liczbą wpisów. Przy obecnej skali (setki stron) to setki kB —
-akceptowalne. Gdyby miało przekroczyć kilka MB, decyzja o podziale zapada w ADR-ze, nie
-w pośpiechu sesji.
+Dzięki temu czytelnik nie pobiera całej kroniki, żeby przeczytać jedną scenę, a powłoka
+nie rośnie z liczbą scen. Konsekwencje:
+
+- kronika **wymaga serwera HTTP** — tak samo publikuje Pages; z `file://` dociągnięcie
+  ciała strony nie zadziała i widok powie o tym wprost,
+- nie ma cache-bustingu ani wersjonowania podzasobów; `dist/` jest produktem buildu
+  i wolno go w każdej chwili nadpisać,
+- kopiowanie artefaktu oznacza **oba** elementy: `index.html` i `data/`.
+
+`npm run build:single` daje `dist/jeden-plik.html` — całość wstrzyknięta w jeden dokument.
+To archiwum offline, działa z `file://` i służy jako tryb testów jednoplikowych.
+
+Cena modelu powłoki: rośnie indeks, nie treść. Progi podziału (indeks po spakowaniu
+> 5 MB, `teksty.json` > 50 MB) są zapisane w ADR 0017; decyzja o podziale zapada w ADR-ze,
+nie w pośpiechu sesji.
 
 ## GitHub Pages
 
