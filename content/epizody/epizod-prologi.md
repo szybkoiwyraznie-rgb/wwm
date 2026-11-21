@@ -31,10 +31,10 @@ chce zobaczyć jianghu, i do wuja, który na to nie odpowiada.
 
 ## Jak te sceny stoją w opowieści
 
-Prologi są w zapisie trzy i dzieli je wyraźna cezura czasu, ale łączy je jedna rzecz:
-wszystkie mówią o Jiang Wulangu z zewnątrz, w chwilach, w których on nic nie wyjaśnia.
-Pierwsza widzi go jako zdrajcę, druga jako ściganego, trzecia jako przybranego ojca.
-Dopiero po nich wchodzimy do chaty, gdzie jest już tylko nieobecny.
+Sceny są dwie i dzieli je wyraźna cezura czasu, ale łączy je jedna rzecz: obie mówią
+o Jiang Wulangu z zewnątrz, w chwilach, w których on nic nie wyjaśnia. Pierwsza widzi go
+jako zdrajcę i ściganego, druga jako przybranego ojca. Dopiero po nich wchodzimy do chaty,
+gdzie jest już tylko nieobecny.
 
 To uzasadnia jeden epizod rodzaju `wspomnienie`: scena ostatnia jest wyraźnie dawniejsza
 od dwóch pierwszych (bohater jest w niej dzieckiem), ale bez niej dwie pierwsze wisiałyby

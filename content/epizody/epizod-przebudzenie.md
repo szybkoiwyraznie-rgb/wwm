@@ -18,8 +18,8 @@ utworzono: 2026-11-21
 
 ## Streszczenie
 
-Bohater budzi się po spotkaniu, którego nie pamięta, i odsyła Ruby do Kaplicy Generała,
-żeby samemu przeszukać chatę wuja. Znajduje znak smoczego wzoru, starą włócznię, wyblakły
+Zamaskowany człowiek w czerni zabiera bohaterowi nefryt i zostawia go nieprzytomnego;
+Ruby cuci go policzkiem, a on odsyła ją do Kaplicy Generała, żeby samemu przeszukać chatę wuja. Znajduje znak smoczego wzoru, starą włócznię, wyblakły
 chwost miecza i ukrytą szufladkę z listem Wei, w którym wuj jest wezwany do walki. Ruby wraca
 z groźbą skargi do ciotki Han, a bohater zostaje z zapowiedzią, że nazajutrz na Uczcie
 Pierwszego Dzbana ogłoszone zostanie coś ważnego.

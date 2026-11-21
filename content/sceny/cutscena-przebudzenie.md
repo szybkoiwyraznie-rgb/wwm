@@ -1,18 +1,18 @@
 ---
 typ: scena
 slug: cutscena-przebudzenie
-tytul: "Policzek i człowiek w czerni"
+tytul: "Gdybym tylko zobaczył jianghu"
 epizod: epizod-przebudzenie
 numer_sceny: "2-1"
 kolejnosc: 3
-streszczenie: "Ruby budzi bohatera policzkiem i wypytuje go o człowieka w czerni, o którym on mówi, że mu się przywidział. Umowa o wyprawie do Kaplicy Generała zostaje przypomniana, a bohater zostaje sam przy chacie."
+streszczenie: "Ruby cuci bohatera policzkiem i wypytuje go o człowieka w czerni, o którym on mówi, że mu się przywidział. Umowa o wyprawie do Kaplicy Generała zostaje przypomniana, a bohater zostaje sam przy chacie."
 zapis: 2026-11-21-001.md
 postacie: [youxia, ruby-zhou, czlowiek-w-czerni]
 miejsca: [bambusowa-chata, kaplica-generala]
 watki: [watek-nefryt-zhenguan]
 sekcje_analizy:
-  - "Policzek → Rozmowa przy chacie"
-  - "Umowa i książka z opowieściami → Rozmowa przy chacie"
+  - "Cuconie policzkiem → Cuconie policzkiem"
+  - "Umowa i książka z opowieściami → Umowa i książka z opowieściami"
 tagi: [przebudzenie, ruby]
 utworzono: 2026-11-21
 ---
@@ -21,7 +21,7 @@ utworzono: 2026-11-21
 
 ## Treść sceny
 
-### Rozmowa przy chacie
+### Cuconie policzkiem
 
 :::zapis
 **Ruby:** Wodzu! Wodzu!
@@ -45,7 +45,11 @@ utworzono: 2026-11-21
 **Ruby:** Ej, a co to było z tym człowiekiem w czerni? Gdzie on jest?
 **Youxia:** Zresztą, nic takiego.
 **Youxia:** Coś mi się przywidziało.
+:::
 
+### Umowa i książka z opowieściami
+
+:::zapis
 **Ruby:** Hę?
 **Ruby:** A umowa, że razem ruszamy w jianghu?
 **Ruby:** Chyba czegoś przede mną nie ukrywasz?
@@ -69,15 +73,19 @@ utworzono: 2026-11-21
 
 ## Analiza
 
-### Policzek
+### Cuconie policzkiem
 
-Scena zaczyna się od przemocy, którą trzeba nazwać: Ruby *zbiła cię tak, że policzek aż
-pali* — a chwilę potem zaprzecza, żeby w ogóle uderzyła. Ten drobny fałsz jest wzorem
-całej rozmowy: oboje mówią jedno, a robią drugie, i oboje o tym wiedzą.
+Walka jest już za bohaterem, gdy scena się zaczyna. Zapis nie pokazuje ani jednego ciosu:
+wchodzi w moment, w którym bohater leży nieprzytomny, a Ruby cuci go policzkiem —
+*zbiła cię tak, że policzek aż pali*. Chwilę potem Ruby zaprzecza, żeby w ogóle uderzyła. To nie jest kłamstwo, a obyczaj:
+cuci się człowieka policzkiem i zaraz się tego wypiera, bo uderzenie bliźniego jest
+niegrzeczne nawet wtedy, gdy ratuje życie. Bohater pyta więc *ty mnie uderzyłaś?* nie po to,
+żeby ją przyłapać, a żeby usłyszeć, że nie.
 
 Bohater kłamie z innego powodu niż Ruby. Mówi *coś mi się przywidziało*, choć przed chwilą
-sam zaczął mówić, kim był człowiek w czerni — i urwał w pół zdania — a potem wymienił, co tamten
-zrobił: że zniknął, że *zabrał tylko wisiorek*, że jemu nic nie zrobił. Zaprzeczenie jest więc
+sam zaczął mówić o człowieku w czerni — i urwał w pół zdania — a potem wymienił, co tamten
+zrobił: że zniknął, że *zabrał tylko wisiorek*, że jemu nic nie zrobił. To wspomnienie walki,
+nie sprawozdanie z niej: bohater pamięta skutek, a nie przebieg. Zaprzeczenie jest więc
 nie dla Ruby, a dla siebie: to on sam nie chce dokończyć tej myśli, bo nie wie, kim tamten był.
 Ruby to słyszy, bo w następnym zdaniu pyta, *czy coś przed nią nie ukrywa*.
 

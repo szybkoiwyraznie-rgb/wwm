@@ -18,8 +18,9 @@ Bohater rozdziału, nazywany przez Ruby *wodzem*. Mieszka w Bambusowej Chacie, k
 chatą wuja Jianga, i mówi o sobie jako o wychowanku: to jemu wuj zostawił nefrytowy wisiorek
 i to jego wuj uczył włóczni, *w tajemnicy przed ciotką Han, jak ojciec dziecko*.
 
-W scenie przebudzenia okazuje się, że nie pamięta, kim był człowiek w czerni, choć wie,
-że ten *zabrał tylko wisiorek, a mnie nic nie zrobił*. Zamiast powiedzieć o tym Ruby,
+W scenie przebudzenia wiadomo tylko, że napadnięto na niego w nocy przed chatą i że obudził
+się pod policzkiem Ruby. O napastniku mówi, że ten *zniknął*, *zabrał tylko wisiorek,
+a mnie nic nie zrobił* — i nie mówi, kim był. Zamiast powiedzieć o tym Ruby,
 zbywa ją: *coś mi się przywidziało*. Kłamie więc odruchowo i to kłamstwo ciągnie go potem
 przez całe przeszukanie chaty.
 

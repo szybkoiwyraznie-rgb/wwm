@@ -14,9 +14,11 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Postać, której w rozegranych scenach nie ma: bohater budzi się po spotkaniu z nim,
-a Ruby *nikogo nie widziała*. Wiadomo tylko, co zostało: zabrany wisiorek, policzek, który
-pali, i wyryty znak smoczego wzoru zostawiony przy chacie.
+Postać, której w rozegranych scenach nie widać: staje naprzeciw bohatera raz, w nocy przed
+chatą, i bije go do utraty przytomności — ale walka rozgrywa się poza zapisem, który zaczyna
+się dopiero wtedy, gdy Ruby cuci bohatera policzkiem. Ruby *nikogo nie widziała*. Wiadomo
+tylko, co zostało: zabrany wisiorek, policzek, który pali, i wyryty znak smoczego wzoru
+zostawiony przy chacie.
 
 Bohater nazywa go *człowiekiem w czerni* i sam nie jest pewien, czy go widział. Ruby pyta,
 czy to *jakiś wielki mistrz z jianghu* — i to pytanie jest jedynym śladem, że taki człowiek

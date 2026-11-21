@@ -1,7 +1,7 @@
 ---
 typ: scena
 slug: cutscena-jaskolka
-tytul: "Gdybym tylko zobaczył jianghu"
+tytul: "Kiedy wreszcie pozwolisz mi zobaczyć jianghu"
 epizod: epizod-prologi
 numer_sceny: "1-2"
 kolejnosc: 2

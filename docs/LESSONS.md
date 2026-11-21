@@ -181,3 +181,21 @@ Cała baza — szkielet, dostawa i poprawki — powstała w ciągu jednego popo�
 **Obejście:** zanim nazwę coś „starszym”, „wcześniejszym” albo „od dawna”, sprawdzam datę
 w `git log`. W opisie pracy mówię, gdzie błąd był („w pierwszej dostawie”, „przed poprawką
 bramy”), a nie jak długo żył.
+
+## 18. Wydarzenie, którego nie ma w zapisie, nie jest sceną
+
+**Objaw:** próbowałem zrobić osobną scenę z nocnej walki z człowiekiem w czerni — z tytułem,
+numerem i analizą. Brama odrzuciła ją trzy razy: scena bez bloku `:::zapis`, scena bez
+elementów, scena bez wymaganej sekcji. Dopiero wtedy zajrzałem do dostawy i okazało się, że
+walki nie ma tam ani jednego słowa: `Cutscena 30161` zaczyna się od okrzyku Ruby nad
+nieprzytomnym bohaterem, a o napastniku wiadomo tylko z jego własnego, urwanego zdania.
+
+**Przyczyna:** opis właściciela był bogatszy niż archiwum. Zamiast sprawdzić, co zapis
+naprawdę pokazuje, zbudowałem scenę z tego, co powinno się stać. Tytuł „Gdybym tylko zobaczył
+jianghu” też był mój: dopisałem go jako nagłówek sceny z dzieckiem, choć w archiwum ten
+dialog stoi pod `## Prolog 4` i nie ma w nim ani Ruby, ani Youxii.
+
+**Obejście:** zanim zrobię scenę z wydarzenia, sprawdzam, czy ma ono w archiwum własny
+fragment. Jeśli nie ma — nie tworzę sceny, tylko mówię w analizie i w opisie postaci, że
+wydarzenie rozgrywa się poza zapisem. Tytuł sceny biorę z jej własnej pierwszej kwestii
+albo z tego, co robi, a nie z tego, co chciałbym, żeby robiła.

@@ -19,7 +19,7 @@ słychać tylko jedno słowo: *Nefryt Zhenguan*. Chen Zixi ocenia rzecz po swoje
 tajemnica tego jadeitowego wisiorka musi być przednia* — czyli że warto za niego umierać.
 
 W chacie wuja Jianga wisiorek jest już tylko wspomnieniem: *wuj Jiang* zostawił go
-podopiecznemu, a ten stracił go tej nocy, gdy człowiek w czerni pojawił się nad jego snem.
+podopiecznemu, a ten stracił go tej nocy, gdy zaatakował go człowiek w czerni.
 
 }}
 
