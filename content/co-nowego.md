@@ -1,5 +1,14 @@
 # Co nowego
 
+## 2026-11-21 18:55
+
+- Rzeczy, które niosą własną opowieść: wyblakły chwost miecza i jego *zimowe słońce topiące
+  cienki lód*, zapis „Bogini Rzeki Luo”, stara włócznia wuja, moneta.
+- Leki i jedzenie w drodze: proszek tamujący krew z apteczką Yao Yaoyao, zioła z cytatem
+  z Ogrodu pouczeń, warzywa z grzybami, Echo Jade i jego głos kamienia.
+- Konteksty: mit Bogini Rzeki Luo z poematu Cao Zhi, drzwi kratowe i światło w domu
+  z traktatu o budownictwie.
+
 ## 2026-11-21 17:40
 
 - Otwarcie powieści: rozdział pierwszy, *Nieśmiertelni nie przypłyną* — dwa epizody i cztery sceny.
