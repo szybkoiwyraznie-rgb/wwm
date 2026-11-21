@@ -150,7 +150,7 @@ function blokDzialow() {
     ['kraina', 'Krainy', 'krainy'],
     ['miejsce', 'Miejsca', 'miejsca'],
     ['kontekst', 'Konteksty kulturowe', 'konteksty'],
-    ['pojecie', 'Hasła świata', 'pojecia'],
+    ['pojecie', 'Hasła i przedmioty', 'pojecia'],
   ];
   const kafelki = działy.map(([typ, etykieta, trasa]) => {
     const strony = Object.values(dane.strony).filter((s) => s.typ === typ);

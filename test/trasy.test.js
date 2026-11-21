@@ -87,3 +87,25 @@ test('lista pokazuje wszystkie pozycje danego typu', async () => {
   }
   assert.deepEqual(problemy, []);
 });
+
+test('lista haseł pozwala zawęzić się do rodzaju i pokazuje każdy rodzaj', async () => {
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const { renderListe } = await import('../src/wwm/render-listy.js');
+  const rodzaje = [...new Set(Object.values(dane.strony)
+    .filter((s) => s.typ === 'pojecie' && s.rodzaj).map((s) => s.rodzaj))];
+  assert.ok(rodzaje.length >= 2, 'hasła mają więcej niż jeden rodzaj — inaczej nie ma czego zawężać');
+  const pelna = renderListe('pojecie', {});
+  for (const rodzaj of rodzaje) {
+    // Rodzaj musi być do wyboru: inaczej część haseł jest nieosiągalna z listy.
+    assert.match(pelna, new RegExp(`<option value="${rodzaj}"`), `w filtrze brakuje rodzaju „${rodzaj}”`);
+    const wezsza = renderListe('pojecie', { rodzaj });
+    const tytuly = Object.values(dane.strony)
+      .filter((s) => s.typ === 'pojecie' && s.rodzaj === rodzaj).map((s) => s.tytul);
+    for (const tytul of tytuly) assert.ok(wezsza.includes(tytul), `po zawężeniu brak „${tytul}”`);
+    for (const inny of Object.values(dane.strony)
+      .filter((s) => s.typ === 'pojecie' && s.rodzaj && s.rodzaj !== rodzaj)) {
+      assert.ok(!wezsza.includes(inny.tytul), `po zawężeniu do „${rodzaj}” został „${inny.tytul}”`);
+    }
+  }
+});

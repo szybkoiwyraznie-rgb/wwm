@@ -154,6 +154,10 @@ dosłownym fragmentem archiwum (ADR 0008).
 | `rodzaj` | `organizacja` / `frakcja` / `miejscowosc` / `kultura` / `technika` / `przedmiot` / `wydarzenie` / `inne` |
 | `postacie`, `krainy`, `sekty`, `miejsca`, `konteksty` | listy slugów |
 
+Rodzaj nie jest etykietą magazynową: lista haseł pozwala się nim zawęzić, a karta na liście
+podaje go słowem („przedmiot”, „sztuka walki”). Rzecz z własną opowieścią jest więc
+osiągalna z listy tak samo jak postać.
+
 ## 4. Pola-relacje (graf)
 
 Każde z tych pól jest sprawdzane: cel musi istnieć i mieć właściwy typ.
