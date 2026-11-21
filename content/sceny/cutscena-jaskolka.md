@@ -63,7 +63,7 @@ Scena jest dialogiem bez etykiet mówcy. To nie usterka zapisu, a sedno: dwie os
 a wiadomo tylko, kto mówi część kwestii. Ruby zwraca się do Youxii *wuju Jiang*,
 a on odpowiada jej krótko — i to wystarcza, żeby wiedzieć, że prosi go dziecko. *Wodzem*
 nazywa go w scenie, w której go cuci; tutaj mówi do niego jak do rodziny. Jej *wuj Jiang*
-to Youxia: starszy mężczyzna, którego dziewczynka tytułuje po ojcowsku. To nie Jiang Wulang,
+to Youxia: dorosły mężczyzna, do którego dziewczynka mówi jak do rodziny. To nie Jiang Wulang,
 wuj, który zniknął trzy lata temu — tamten jest w tej scenie tylko nieobecnym imieniem.
 
 Ruby recytuje świat jak lekcję: *Ośmiu Wspaniałych z Hedong*, *Dawne Przymierze Yanbei*,
