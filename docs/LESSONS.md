@@ -193,7 +193,8 @@ nieprzytomnym bohaterem, a o napastniku wiadomo tylko z jego własnego, urwanego
 **Przyczyna:** opis właściciela był bogatszy niż archiwum. Zamiast sprawdzić, co zapis
 naprawdę pokazuje, zbudowałem scenę z tego, co powinno się stać. Tytuł „Gdybym tylko zobaczył
 jianghu” też był mój: dopisałem go jako nagłówek sceny z dzieckiem, choć w archiwum ten
-dialog stoi pod `## Prolog 4` i nie ma w nim ani Ruby, ani Youxii.
+dialog stoi pod `## Prolog 4`. Właściciel odrzucił go także z drugiego powodu — jest
+męskoosobowy, a mówi w nim dziewczynka; scena nazywa się teraz „Zobaczyć jianghu”.
 
 **Obejście:** zanim zrobię scenę z wydarzenia, sprawdzam, czy ma ono w archiwum własny
 fragment. Jeśli nie ma — nie tworzę sceny, tylko mówię w analizie i w opisie postaci, że
