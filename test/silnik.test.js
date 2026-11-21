@@ -25,14 +25,14 @@ test('slugify prowadzi polskie znaki do ASCII i nie zostawia myślników na brze
 
 test('parseWikilinks czyta slug, etykietę i pozycję', () => {
   assert.deepEqual(
-    parseWikilinks('a [[xiake]] b [[watek-pochodzenia|wątek]] c').map(({ slug, etykieta }) => ({ slug, etykieta })),
-    [{ slug: 'xiake', etykieta: null }, { slug: 'watek-pochodzenia', etykieta: 'wątek' }],
+    parseWikilinks('a [[xiake]] b [[watek-rodzinny|wątek]] c').map(({ slug, etykieta }) => ({ slug, etykieta })),
+    [{ slug: 'xiake', etykieta: null }, { slug: 'watek-rodzinny', etykieta: 'wątek' }],
   );
 });
 
 test('href strony i listy wynikają z typu', () => {
   assert.equal(hrefDlaSlug('xiake', 'kontekst'), '#/kontekst/xiake');
-  assert.equal(hrefDlaSlug('zaslepka-sc01', 'scena'), '#/scena/zaslepka-sc01');
+  assert.equal(hrefDlaSlug('chata-wuja-jianga', 'scena'), '#/scena/chata-wuja-jianga');
   assert.equal(hrefListy('kontekst'), '#/konteksty');
   assert.equal(hrefListy('nieznany-typ'), '#/');
 });
@@ -218,4 +218,13 @@ test('kwestia dialogowa liczy się jako element sceny w obu pisowniach mówcy', 
 test('narracja bez mówcy zostaje osobnym elementem, a mówca go nie pożera', () => {
   const zapis = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Youxia:** Może został ślad?\n\nInterakcja: Znak smoczego wzoru\n:::\n\n}}';
   assert.deepEqual(policzElementySceny(zapis), { kwestie: 1, narracja: 1, razem: 2 });
+});
+
+test('kwestia bez etykiety mówcy nie jest narracją, gdy jest pytaniem albo okrzykiem', () => {
+  // Prolog gry nie podpisuje każdej linii: „Kiedy wreszcie pozwolisz mi zobaczyć jianghu?”
+  // to kwestia, a nie opis. Bez tego dwuosobowy dialog liczyłby się jako jeden element.
+  const bezEtykiet = '{{dostawa\n\n## Treść sceny\n\n:::zapis\nKiedy wreszcie pozwolisz mi zobaczyć jianghu?\nChcesz wejść w jianghu?\nZgadza się.\n:::\n\n}}';
+  const r = policzElementySceny(bezEtykiet);
+  assert.equal(r.kwestie, 2, 'dwa pytania to dwie kwestie');
+  assert.equal(r.narracja, 1, 'zdanie bez znaku kończącego zostaje narracją');
 });

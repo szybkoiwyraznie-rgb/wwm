@@ -177,8 +177,11 @@ test('powłoka trzyma indeks, a ciała stron leżą w dist/data/', () => {
     assert.ok(fs.existsSync(path.join(katalog, `${slug}.json`)), `brak pliku danych dla ${slug}`);
   }
   // Ciało wczytane z pliku ma dokładnie te pola, których oczekują renderery.
-  const scena = JSON.parse(fs.readFileSync(path.join(katalog, 'zaslepka-sc01.json'), 'utf8'));
-  assert.ok(scena.sekcje || scena.html, 'ciało sceny ma sekcje albo html');
+  // Bierzemy pierwszą stronę z indeksu, nie konkretny slug: baza nie może
+  // zależeć od materiału przykładowego, który dawno zniknął.
+  const dowolny = slugi.find((s) => indeks.strony[s]?.typ === 'scena') ?? slugi[0];
+  const cialo = JSON.parse(fs.readFileSync(path.join(katalog, `${dowolny}.json`), 'utf8'));
+  assert.ok(cialo.sekcje || cialo.html, 'ciało strony ma sekcje albo html');
   assert.ok(fs.existsSync(path.join(katalog, 'teksty.json')));
   assert.ok(fs.existsSync(path.join(katalog, 'co-nowego.json')));
 });

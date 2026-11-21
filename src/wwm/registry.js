@@ -223,11 +223,12 @@ export const normalizujTekst = (t) => String(t ?? '').replace(/\s+/g, ' ').trim(
 
 /**
  * Kwestia dialogowa zapisu: `**Ktoś:** kwestia` — z dwukropkiem w środku pogrubienia.
- * Pisownia `**Ktoś**: kwestia` też jest kwestią; wiersz bez mówcy zostaje narracją.
- * Kwestia jest niezależna od tego, jak renderer łamie akapit: liczy się to, że w zapisie
- * stoi mówca, a nie to, że trafił do osobnego `<p>`.
+ * Pisownia `**Ktoś**: kwestia` też jest kwestią. Zapis nie zawsze jednak podaje mówcę —
+ * w dialogu dwuosobowym padają same zdania — więc kwestią jest też wiersz bez etykiety,
+ * który kończy się znakiem zapytania, wykrzyknienia albo wielokropkiem (ADR 0019).
+ * Pozostałe wiersze to narracja i liczą się jako osobny element.
  */
-const KWESTIA_RE = /^\*\*[^*]+\*\*\s*:|^\*\*[^*]+:\*\*/;
+const KWESTIA_RE = /^\*\*[^*]+\*\*\s*:|^\*\*[^*]+:\*\*|^[^\s].*[?!…]$/;
 
 /**
  * Elementy sceny: kwestie (`**Postać:** …`) i narracja (akapity poza kwestiami).
