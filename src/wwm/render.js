@@ -50,6 +50,12 @@ export function nazwaTypuWMnogiej(n, typ) {
   return formy ? `${n} ${odmiana(n, formy)}` : String(n);
 }
 
+/**
+ * Działy w nagłówku. Hasła i przedmioty muszą tu być: bez pozycji w menu jedyny
+ * sposób dotarcia do rzeczy z opowieści prowadził przez wyszukiwarkę, więc dla
+ * czytelnika te strony nie istniały. Miejsca nie mają pozycji, bo prowadzą do
+ * nich krainy i powiązania, a menu nie jest spisem wszystkiego.
+ */
 const MENU = [
   { trasa: 'chronologia', etykieta: 'Chronologia' },
   { trasa: 'rozdzialy', etykieta: 'Rozdziały' },
@@ -57,6 +63,8 @@ const MENU = [
   { trasa: 'postacie', etykieta: 'Postacie' },
   { trasa: 'krainy', etykieta: 'Krainy' },
   { trasa: 'sekty', etykieta: 'Sekty' },
+  { trasa: 'miejsca', etykieta: 'Miejsca' },
+  { trasa: 'pojecia', etykieta: 'Hasła' },
   { trasa: 'konteksty', etykieta: 'Konteksty' },
 ];
 

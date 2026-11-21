@@ -10,7 +10,7 @@
 import { escapeHtml, badgePewnosci } from './markdown.js';
 import { hrefDlaSlug } from './links.js';
 import {
-  dajDane, dajPostep, listaRozdzialow, epizodyRozdzialu, scenyEpizodu,
+  dajDane, listaRozdzialow, epizodyRozdzialu, scenyEpizodu,
   listaScenChronologicznie, listaStronZHipotezami, rozkladPewnosciHipotez,
 } from './data.js';
 import { odmiana } from './render.js';
@@ -34,35 +34,6 @@ function wierszSceny(s) {
     </div>
     <span class="wiersz-meta">${epizod ? `<a href="${hrefDlaSlug(epizod.slug, 'epizod')}">${escapeHtml(epizod.tytul)}</a>` : ''}</span>
   </li>`;
-}
-
-/** Rozdział i epizod, w których stanęła opowieść — zamiast licznika „postępu”. */
-function blokMiejsca() {
-  const postep = dajPostep();
-
-  if (!postep.ostatnia) {
-    return `<section class="granica granica-pusta">
-  <h2>Opowieść czeka na pierwsze zdanie</h2>
-  <p>Tu stanie rozdział, w którym zaczyna się historia — i scena, na której na razie
-  się kończy. Dalej opowieść nie jest jeszcze opowiedziana.</p>
-</section>`;
-  }
-
-  const s = postep.ostatnia;
-  const rozdzial = postep.rozdzial;
-  const epizod = s.epizod ? dajDane().strony[s.epizod] : null;
-
-  // Tytuły bywają tożsame (epizod nazwany jak jego scena) — wtedy pokazujemy go raz.
-  const sciezka = [...new Set([rozdzial?.tytul, epizod?.tytul, s.tytul].filter(Boolean))]
-    .map(escapeHtml).join(' <span aria-hidden="true">›</span> ');
-
-  return `<section class="granica">
-  <p class="granica-etykieta">Opowieść dotarła dotąd</p>
-  <h2 class="granica-tytul"><a href="${hrefDlaSlug(s.slug, 'scena')}">${escapeHtml(s.tytul)}</a></h2>
-  <p class="granica-sciezka">${sciezka}</p>
-  <p class="granica-opis">Dalej historia nie jest jeszcze opowiedziana. Kolejne sceny
-  dochodzą wtedy, gdy zostaną przeżyte — nigdy wcześniej.</p>
-</section>`;
 }
 
 /**
@@ -142,33 +113,9 @@ function blokInterpretacji() {
 </section>`;
 }
 
-function blokDzialow() {
-  const dane = dajDane();
-  const działy = [
-    ['postac', 'Postacie', 'postacie'],
-    ['sekta', 'Sekty', 'sekty'],
-    ['kraina', 'Krainy', 'krainy'],
-    ['miejsce', 'Miejsca', 'miejsca'],
-    ['kontekst', 'Konteksty kulturowe', 'konteksty'],
-    ['pojecie', 'Hasła i przedmioty', 'pojecia'],
-  ];
-  const kafelki = działy.map(([typ, etykieta, trasa]) => {
-    const strony = Object.values(dane.strony).filter((s) => s.typ === typ);
-    if (strony.length === 0) return '';
-    return kafelek(strony.length, etykieta, `#/${trasa}`);
-  }).filter(Boolean).join('');
-
-  if (!kafelki) return '';
-  return `<section class="sekcja">
-  <h2>Świat opowieści</h2>
-  <div class="kafli">${kafelki}</div>
-</section>`;
-}
-
 export function renderGlowna() {
   const dane = dajDane();
   const st = dane.statystyki ?? {};
-  const postep = dajPostep();
 
   const hero = `<section class="hero">
   <p class="hero-nadtytul">Jianghu · Chiny epoki Pięciu Dynastii</p>
@@ -177,18 +124,21 @@ export function renderGlowna() {
   a sekty strzegą własnych prawd. Opowiedziana od pierwszego zdania do miejsca, w którym
   dotarła — z całym tłem, z którego czerpie: dawnymi księgami, poematami i obyczajem jianghu.</p>
   <div class="hero-liczby">
-    ${kafelek(postep.scen, odmiana(postep.scen, ['scena', 'sceny', 'scen']), '#/chronologia')}
+    ${kafelek(st.scena ?? 0, odmiana(st.scena ?? 0, ['scena', 'sceny', 'scen']), '#/chronologia')}
     ${kafelek(st.rozdzial ?? 0, odmiana(st.rozdzial ?? 0, ['rozdział', 'rozdziały', 'rozdziałów']), '#/rozdzialy')}
+    ${kafelek(st.watek ?? 0, odmiana(st.watek ?? 0, ['wątek', 'wątki', 'wątków']), '#/watki')}
     ${kafelek(st.postac ?? 0, odmiana(st.postac ?? 0, ['postać', 'postacie', 'postaci']), '#/postacie')}
+    ${kafelek(st.kraina ?? 0, odmiana(st.kraina ?? 0, ['kraina', 'krainy', 'krain']), '#/krainy')}
+    ${kafelek(st.sekta ?? 0, odmiana(st.sekta ?? 0, ['sekta', 'sekty', 'sekt']), '#/sekty')}
+    ${kafelek(st.miejsce ?? 0, odmiana(st.miejsce ?? 0, ['miejsce', 'miejsca', 'miejsc']), '#/miejsca')}
+    ${kafelek(st.pojecie ?? 0, odmiana(st.pojecie ?? 0, ['hasło', 'hasła', 'haseł']), '#/pojecia')}
     ${kafelek(st.kontekst ?? 0, odmiana(st.kontekst ?? 0, ['kontekst', 'konteksty', 'kontekstów']), '#/konteksty')}
   </div>
 </section>`;
 
   return `${hero}
-${blokMiejsca()}
 ${blokCoNowego()}
 ${blokRozdzialow()}
 ${blokOstatnichScen()}
-${blokInterpretacji()}
-${blokDzialow()}`;
+${blokInterpretacji()}`;
 }

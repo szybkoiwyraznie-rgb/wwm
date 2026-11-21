@@ -21,6 +21,10 @@ w bazie nie ma.
 ## Konsekwencje
 
 - Dziennik jest krótki i rzeczowy; nie jest changelogiem kodu.
-- Stopka i strona główna pokazują datę ostatniej zmiany i ostatnią rozegraną scenę.
+- Stopka pokazuje datę ostatniej zmiany. Osobny boks „Opowieść dotarła dotąd” zniknął
+  ze strony głównej (decyzja właściciela, 2026-11-21): powtarzał to, co czytelnik ma
+  o krok dalej w „Ostatnio opowiedzianych”, a nie mówił nic nowego. Zamiast niego
+  pierwszy ekran pokazuje kafle wszystkich działów — z hasłami i miejscami, do których
+  wcześniej nie prowadziło ani menu, ani żaden odsyłacz.
 - Publikacja witryny jest publiczna i indeksowana — „O bazie” jest miejscem, w którym
   mówimy o tym wprost.
