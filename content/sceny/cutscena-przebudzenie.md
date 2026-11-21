@@ -76,9 +76,10 @@ pali* — a chwilę potem zaprzecza, żeby w ogóle uderzyła. Ten drobny fałsz
 całej rozmowy: oboje mówią jedno, a robią drugie, i oboje o tym wiedzą.
 
 Bohater kłamie z innego powodu niż Ruby. Mówi *coś mi się przywidziało*, choć przed chwilą
-sam wymienił trzy fakty: że człowiek w czerni zniknął, że *zabrał tylko wisiorek* i że jemu
-nic nie zrobił. Zaprzeczenie jest więc nie dla Ruby, a dla siebie — i Ruby to słyszy, bo
-w następnym zdaniu pyta, czy coś przed nią nie ukrywa.
+sam zaczął mówić, kim był człowiek w czerni — i urwał w pół zdania — a potem wymienił, co tamten
+zrobił: że zniknął, że *zabrał tylko wisiorek*, że jemu nic nie zrobił. Zaprzeczenie jest więc
+nie dla Ruby, a dla siebie: to on sam nie chce dokończyć tej myśli, bo nie wie, kim tamten był.
+Ruby to słyszy, bo w następnym zdaniu pyta, *czy coś przed nią nie ukrywa*.
 
 Warto zauważyć, że Ruby nie widziała nikogo. Jej pytanie, *to jakiś wielki mistrz jianghu?*,
 jest dziecinne i przez to ważne: cała ta scena pokazuje, że bohater spotkał kogoś, kogo
