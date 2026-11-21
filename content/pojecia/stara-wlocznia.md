@@ -23,6 +23,22 @@ jak ojca z dzieckiem*.
 
 }}
 
+{{opracowanie
+
+## Ostrze z obu stron pisma
+
+Opis przy włóczni jest jednym z niewielu miejsc, w których ten świat cytuje własną
+poezję: *włócznia z zatopionego drewna, grot z gwiezdnego żelaza, rozgarnia góry jak
+miotełka*. To zdanie o broni, która jest tak lekka, że góry rozgarnia jak śmieć z podłogi,
+i zaraz potem opowieść mówi o dowódcy sławnym na pograniczach, który przekazał synowi
+*całą wojskową sztukę włóczni*.
+
+Włócznia jest więc podwójnie odziedziczona: raz jako rzecz, raz jako umiejętność. Kto
+ją dostaje, dostaje też czyjeś życie — i to jest powód, dla którego leży na widoku,
+a nie w skrzyni.
+
+}}
+
 {{model
 
 ## Włócznia jako testament

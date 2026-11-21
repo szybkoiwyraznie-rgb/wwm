@@ -1,5 +1,14 @@
 # Co nowego
 
+## 2026-11-21 19:20
+
+- Broń z własnym obyczajem: prosty drewniany łuk i drewniana strzała — łucznictwo jako próba
+  charakteru i sześć strzał na cztery strony świata z Księgi obrzędów — oraz pierścień jue,
+  który znaczy rozstanie.
+- Drgający Nefryt jako materiał na dźwięk, obok opisu pracy w kuźni.
+- Stara włócznia wuja: dochodzi cytat o grocie z gwiezdnego żelaza i sztuka przekazana
+  z ojca na syna.
+
 ## 2026-11-21 18:55
 
 - Rzeczy, które niosą własną opowieść: wyblakły chwost miecza i jego *zimowe słońce topiące
