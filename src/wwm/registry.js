@@ -15,6 +15,7 @@
 
 import { SLUG_RE, hrefDlaSlug, slugify } from './links.js';
 import { BLOK_OTWARCIA_RE, parsujAtrybutyBloku, POCHODZENIA, RODZAJE_TRESCI, czyPewnosc } from './markdown.js';
+import { czyPoprawnaData, czyPoprawnaDataCzas } from './czas.js';
 
 /**
  * Typy stron. Katalog `content/<dział>` musi zgadzać się z typem (ADR 0003).
@@ -72,27 +73,6 @@ export const RODZAJE_KONTEKSTU = [
 export const RODZAJE_WATKU = [
   'glowny', 'poboczny', 'motyw', 'tajemnica', 'romans', 'polityczny', 'mistyczny', 'inne',
 ];
-
-const DATA_RE = /^\d{4}-\d{2}-\d{2}$/;
-const DATA_CZAS_RE = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
-
-/** Poprawność kalendarzowa daty RRRR-MM-DD (także lata przestępne). */
-export function czyPoprawnaData(s) {
-  if (typeof s !== 'string' || !DATA_RE.test(s)) return false;
-  const [rok, miesiac, dzien] = s.split('-').map(Number);
-  if (miesiac < 1 || miesiac > 12 || dzien < 1) return false;
-  const dniWMiesiacu = new Date(Date.UTC(rok, miesiac, 0)).getUTCDate();
-  return dzien <= dniWMiesiacu;
-}
-
-/** Poprawność RRRR-MM-DD GG:MM wraz z zakresem zegara. */
-export function czyPoprawnaDataCzas(s) {
-  if (typeof s !== 'string' || !DATA_CZAS_RE.test(s)) return false;
-  const [data, czas] = s.split(' ');
-  if (!czyPoprawnaData(data)) return false;
-  const [godz, min] = czas.split(':').map(Number);
-  return godz >= 0 && godz <= 23 && min >= 0 && min <= 59;
-}
 
 /**
  * Pola dozwolone per typ. Nieznane pole = błąd, bo literówka w nazwie pola

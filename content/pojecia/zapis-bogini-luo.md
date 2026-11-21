@@ -35,6 +35,7 @@ Opis ciała jest w tym poemacie miarą niemożliwego: *oddalona jaśnieje jak s�
 w porannej mgle, z bliska płonie jak lotos wychodzący z zielonej fali*. I ten sam poeta
 traci ją na końcu — *żałując, że drogi człowieka i ducha się rozchodzą*.
 
+{{zrodlo tytul="洛神賦 · Cao Zhi (曹植), 222 r." adres="https://zh.wikisource.org/wiki/%E6%B4%9B%E7%A5%9E%E8%B3%A6" data="2026-11-21"}}
 }}
 
 {{model pewnosc=55 pytanie="Dlaczego zapis zmieniający twarz prowadzi właśnie nad rzekę Luo?"

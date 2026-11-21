@@ -31,6 +31,7 @@ Mit ma dwa ostrza. Z jednej strony bogini uchodzi za wzór piękna; z drugiej je
 topielicy, a rzeka, w której mieszka, nie ma brodu. Piękno i śmierć są w nim tym samym
 miejscem na mapie.
 
+{{zrodlo tytul="洛神賦 · Cao Zhi (曹植), 222 r." adres="https://zh.wikisource.org/wiki/%E6%B4%9B%E7%A5%9E%E8%B3%A6" data="2026-11-21"}}
 }}
 
 {{model pewnosc=55 pytanie="Dlaczego zapis zmieniający twarz prowadzi właśnie nad rzekę Luo?"

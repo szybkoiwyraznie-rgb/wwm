@@ -253,3 +253,31 @@ test('cytatu nie otwiera separator i nie ma w nim nagłówka z ekranu', () => {
   assert.doesNotMatch(zapis, /<h[1-6]/, 'nagłówek zapisu nie jest sekcją strony');
   assert.doesNotMatch(zapis, /^\s*<hr>/, 'cytat nie zaczyna się od kreski');
 });
+
+test('kolor „źródła sprawdzone” cytuje źródło: tytuł, adres i datę odczytu', () => {
+  const zeZrodlem = '{{kwerenda\n\n## Twierdzenie\n\nTekst.\n'
+    + '{{zrodlo tytul="荀子 · 大略篇" adres="https://zh.wikisource.org/wiki/X" data="2026-11-21"}}\n}}';
+  const dobrze = renderMarkdown(zeZrodlem, {});
+  assert.deepEqual(dobrze.problemy, []);
+  assert.match(dobrze.html, /<ul class="zrodla">/);
+  assert.match(dobrze.html, /<a href="https:\/\/zh\.wikisource\.org\/wiki\/X"[^>]*>荀子 · 大略篇<\/a>/);
+  assert.match(dobrze.html, /odczyt 2026-11-21/);
+
+  // Każdy brak zatrzymuje build — źródło bez daty to nie źródło.
+  const braki = {
+    'bez źródła': '{{kwerenda\n\n## T\n\nTekst.\n}}',
+    'bez tytułu': '{{kwerenda\n\n## T\n\nTekst.\n{{zrodlo adres="https://a.pl" data="2026-11-21"}}\n}}',
+    'bez daty': '{{kwerenda\n\n## T\n\nTekst.\n{{zrodlo tytul="A" adres="https://a.pl"}}\n}}',
+    'zła data': '{{kwerenda\n\n## T\n\nTekst.\n{{zrodlo tytul="A" adres="https://a.pl" data="2026-02-30"}}\n}}',
+    'nie adres': '{{kwerenda\n\n## T\n\nTekst.\n{{zrodlo tytul="A" adres="a.pl" data="2026-11-21"}}\n}}',
+  };
+  for (const [nazwa, md] of Object.entries(braki)) {
+    const r = renderMarkdown(md, {});
+    assert.ok(r.problemy.length > 0, `„${nazwa}” ma zatrzymać build`);
+  }
+
+  // Źródło należy do kwerendy: w innym kolorze udawałoby twierdzenie sprawdzone.
+  const wOpracowaniu = renderMarkdown('{{opracowanie\n\n## T\n\nTekst.\n'
+    + '{{zrodlo tytul="A" adres="https://a.pl" data="2026-11-21"}}\n}}', {});
+  assert.ok(wOpracowaniu.problemy.some((p) => /tylko do bloku \{\{kwerenda\}\}/.test(p)));
+});

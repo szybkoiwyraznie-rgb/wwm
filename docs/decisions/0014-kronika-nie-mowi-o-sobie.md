@@ -42,6 +42,20 @@ mówią, skąd wiadomo, że coś jest prawdą (ADR 0004, 0010). Ale opis *mechan
   „tekst jest dobry”. Nowy meta może przyjść w słowach spoza listy; wtedy listę rozszerzamy
   razem z poprawką.
 
+## Zasada źródła w niebieskim boksie (decyzja właściciela, 2026-11-21)
+
+Kolor „źródła sprawdzone” musi cytować to, co sprawdzono — **tytuł, adres i datę odczytu**.
+Nie wystarczy adres w polu `zrodla:`: nie trafia on do widoku, więc czytelnik widzi twierdzenie
+bez dowodu.
+
+- Dyrektywa stoi w treści bloku: `{{zrodlo tytul="…" adres="https://…" data="RRRR-MM-DD"}}`.
+  Renderer zamienia ją na listę źródeł pod twierdzeniem, z datą przy tytule.
+- Brak któregokolwiek z trzech elementów, adres nie-http albo niepoprawna data zatrzymują
+  build. Blok `{{kwerenda}}` bez ani jednego źródła też.
+- Dyrektywa należy wyłącznie do bloku kwerendy. W kolorze „z opowieści” albo „wiedza modelu”
+  źródło byłoby kamuflażem.
+- Lista `zrodla:` zostaje jako deklaracja w metadanych, ale nie zastępuje cytatu.
+
 ## Konsekwencje
 
 - **Poziomy i źródła zostają.** Odsyłacz do źródła to twierdzenie o świecie („tak mówi

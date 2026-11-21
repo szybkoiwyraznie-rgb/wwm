@@ -32,6 +32,8 @@ traktatu. *Yingzao fashi* 營造法式 Li Jie z 1103 roku opisuje takie drzwi w 
 o drobnej stolarce, pod nazwą *gezi men* 格子門 („drzwi kratowe”), z podziałem na górne
 prześwity i dolną deskę.
 
+{{zrodlo tytul="會昌九老 · Muzeum Pałacowe w Pekinie (opis tematu)" adres="https://www.dpm.org.cn/collection/jade/232613.html" data="2026-11-21"}}
+{{zrodlo tytul="營造法式 · Li Jie (李誡), 1103, rozdz. 6: drobna stolarka" adres="https://zh.wikisource.org/wiki/%E7%87%9F%E9%80%A0%E6%B3%95%E5%BC%8F/%E7%AC%AC%E5%85%AD%E5%8D%B7" data="2026-11-21"}}
 }}
 
 {{model

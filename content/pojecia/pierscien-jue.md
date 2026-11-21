@@ -31,6 +31,8 @@ pełny, wracasz; jeśli darują ci jue, odchodzisz* (賜之環則反，賜之玦
 jest więc w tej kulturze znakiem rozstania i decyzji, której nie da się cofnąć — a nie
 ozdobą.
 
+{{zrodlo tytul="荀子 · 大略篇 (Xunzi, rozdział Da lüe)" adres="https://zh.wikisource.org/wiki/%E8%8D%80%E5%AD%90/%E5%A4%A7%E7%95%A5%E7%AF%87" data="2026-11-21"}}
+{{zrodlo tytul="孟子 · 萬章下 (Mencjusz, Wan Zhang II)" adres="https://zh.wikisource.org/wiki/%E5%AD%9F%E5%AD%90/%E8%90%AC%E7%AB%A0%E4%B8%8B" data="2026-11-21"}}
 }}
 
 {{model pewnosc=50 pytanie="Dlaczego przedmiot, o którym wiadomo tylko, że jest »nic szczególnego«, nosi właśnie tę nazwę?"

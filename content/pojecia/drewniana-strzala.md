@@ -30,6 +30,7 @@ Zanim wolno było mu jeść zwykły pokarm, musiał najpierw wycelować w świat
 Strzała jest w tym obrazie narzędziem obietnicy, nie walki: wyznacza kierunki, w których
 człowiek będzie musiał kiedyś pójść.
 
+{{zrodlo tytul="禮記 · 射義 (Księga obrzędów, rozdział o łucznictwie)" adres="https://zh.wikisource.org/wiki/%E7%A6%AE%E8%A8%98/%E5%B0%84%E7%BE%A9" data="2026-11-21"}}
 }}
 
 {{model pewnosc=40 pytanie="Dlaczego strzała mówi o sile łucznika, a nie o swoim wykonaniu?"

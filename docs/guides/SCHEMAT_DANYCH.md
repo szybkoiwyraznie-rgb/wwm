@@ -241,8 +241,10 @@ Zasady:
 - **Przypuszczenie wymaga `pewnosc=`** (0–100). Warstwa bez szacunku byłaby twierdzeniem
   nieodróżnialnym od faktu — dlatego `rodzaj=interpretacja` i `pytanie=` bez `pewnosc=`
   to błąd. Atrybut przysługuje wyłącznie pochodzeniu `model` (ADR 0005, 0018).
-- **Kwerenda wymaga adresu źródła** — pola `zrodla:` albo sekcji `## Źródła` z linkiem
-  http(s). Twierdzenie bez dowodu nie może być niebieskie.
+- **Kwerenda musi zacytować źródło w treści** — dyrektywą `{{zrodlo tytul="…" adres="https://…"
+  data="RRRR-MM-DD"}}`. Wszystkie trzy elementy są obowiązkowe: tytuł, adres i data odczytu.
+  Renderer pokazuje je pod twierdzeniem jako listę; brak jednego z nich zatrzymuje build.
+  Pole `zrodla:` w metadanych jest deklaracją, nie zastępuje cytatu.
 - **Kilka warstw w jednym boksie to norma**, nie wyjątek: cytat z opowieści, wniosek,
   tło historyczne i hipoteza o dalszym ciągu mogą stać pod jednym tytułem.
 - **Pochodzenie trzyma się przez cały blok** — do jawnego `}}`, także gdy w środku stoi

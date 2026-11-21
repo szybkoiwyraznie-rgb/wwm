@@ -31,6 +31,7 @@ Ten sam rozdział mówi, że dawni królowie wybierali urzędników przez łuczn
 *postawa ciała i rytm ruchu* pokazują więcej niż słowa. Łuk jest więc w tej kulturze
 miarą człowieka, nie jego siły.
 
+{{zrodlo tytul="禮記 · 射義 (Księga obrzędów, rozdział o łucznictwie)" adres="https://zh.wikisource.org/wiki/%E7%A6%AE%E8%A8%98/%E5%B0%84%E7%BE%A9" data="2026-11-21"}}
 }}
 
 {{opracowanie

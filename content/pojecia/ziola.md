@@ -32,6 +32,7 @@ dzikiego: ludzie *uprawiają ziemię, żeby wyżywić żywych i pochować umarł
 i kamień, mieszają zioła, by zwalczać choroby*, i dopiero z tego wyrasta wspólnota.
 Zioło jest więc w tej księdze dowodem, że ktoś się osiedlił.
 
+{{zrodlo tytul="說苑 · 建本 (Ogród pouczeń, rozdz. 3)" adres="https://zh.wikisource.org/wiki/%E8%AA%AA%E8%8B%91/%E5%8D%B703" data="2026-11-21"}}
 }}
 
 {{opracowanie

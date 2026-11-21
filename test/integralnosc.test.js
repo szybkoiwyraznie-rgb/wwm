@@ -509,3 +509,25 @@ test('powiązania to same nazwy — bez dopisków o kierunku', async () => {
   }
   assert.deepEqual([...new Set(problemy)], []);
 });
+
+test('każda strona ze źródłami w widoku podaje tytuł, adres i datę odczytu', async () => {
+  // Zasada właściciela: niebieski boks ma cytować źródło. Sprawdzamy zbudowany
+  // widok, a nie pliki — pole `zrodla:` w frontmatterze bywa niewidoczne dla czytelnika.
+  const dane = await zbudujDane({ root: ROOT });
+  const problemy = [];
+  for (const [slug, strona] of Object.entries(dane.strony)) {
+    const html = [...(strona.sekcje ?? []).map((s) => s.html ?? ''), ...(strona.boksy ?? []).map((b) => b.html)]
+      .join(' ');
+    const kwerendy = (html.match(/data-poziom="kwerenda"/g) ?? []).length;
+    if (kwerendy === 0) continue;
+    const zrodla = [...html.matchAll(/<li><a href="(https?:\/\/[^"]+)"[^>]*>([^<]+)<\/a><span class="zrodlo-data">odczyt (\d{4}-\d{2}-\d{2})<\/span><\/li>/g)];
+    if (zrodla.length === 0) problemy.push(`${slug}: kwerenda bez cytowanego źródła`);
+    if (kwerendy > zrodla.length) problemy.push(`${slug}: ${kwerendy} kwerend, ${zrodla.length} źródeł`);
+    for (const [, adres, tytul, data] of zrodla) {
+      if (!adres.startsWith('http')) problemy.push(`${slug}: źródło bez adresu`);
+      if (!tytul.trim()) problemy.push(`${slug}: źródło bez tytułu`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) problemy.push(`${slug}: źródło bez daty odczytu`);
+    }
+  }
+  assert.deepEqual(problemy, []);
+});
