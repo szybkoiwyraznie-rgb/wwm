@@ -14,7 +14,7 @@ import {
   dajDane, dajStrone, listaStron, listaPosortowana, listaWedlugAktualizacji,
   listaRozdzialow, epizodyRozdzialu, scenyEpizodu, listaScenChronologicznie, rozdzialSceny,
 } from './data.js';
-import { naglowekStrony, stanPusty, okruszki, odmiana, nazwaTypu, nazwaTypuWMnogiej } from './render.js';
+import { naglowekStrony, stanPusty, okruszki, odmiana, nazwaTypu, nazwaTypuWMnogiej, nazwaRodzaju } from './render.js';
 
 const TYTULY = {
   scena: ['Sceny', 'Wszystkie opowiedziane sceny, w kolejności zdarzeń.'],
@@ -25,7 +25,7 @@ const TYTULY = {
   kraina: ['Krainy', 'Prowincje, miasta i okolice, w których toczy się historia.'],
   miejsce: ['Miejsca', 'Konkretne miejsca w krainach: świątynie, gospody, przełęcze.'],
   kontekst: ['Konteksty kulturowe', 'Nawiązania do literatury, filmu, mitów i obyczaju wuxia.'],
-  pojecie: ['Hasła', 'Pojęcia świata: przedmioty, obyczaje, wydarzenia, wierzenia.'],
+  pojecie: ['Hasła i przedmioty', 'Rzeczy, sztuki walki, obyczaje i wydarzenia, które składają się na świat opowieści.'],
 };
 
 function wartosciRozdzialow() {
@@ -121,6 +121,7 @@ function kartaEncji(s) {
   return `<li class="karta-encji">
     <a class="karta-tytul" href="${hrefDlaSlug(s.slug, s.typ)}">${escapeHtml(s.tytul)}</a>
     ${s.tytul_ja ? `<span class="meta">${escapeHtml(s.tytul_ja)}</span>` : ''}
+    ${s.typ === 'pojecie' && s.rodzaj ? `<span class="karta-rodzaj">${escapeHtml(nazwaRodzaju(s.rodzaj))}</span>` : ''}
     ${opis ? `<p class="karta-opis">${escapeHtml(opis)}</p>` : ''}
     ${hip.length ? `<p class="karta-meta">${hip.map((h) => badgePewnosci(h.pewnosc)).join(' ')}</p>` : ''}
   </li>`;
@@ -152,6 +153,20 @@ function listaEncji(typ, query = {}) {
   }
 
   if (typ === 'kontekst' && query.rodzaj) strony = strony.filter((s) => s.rodzaj === query.rodzaj);
+
+  // Hasła obejmują rzeczy bardzo różne — hełm, sztukę włóczni i wydarzenie. Bez podziału
+  // na rodzaje lista miesza je w jeden ciąg i przedmiotu nie da się w niej znaleźć.
+  if (typ === 'pojecie') {
+    const wystepujace = new Set(strony.map((s) => s.rodzaj).filter(Boolean));
+    if (query.rodzaj) strony = strony.filter((s) => s.rodzaj === query.rodzaj);
+    filtryOpcje.push({
+      pole: 'rodzaj',
+      etykieta: 'Rodzaj',
+      wartosci: [...wystepujace]
+        .map((r) => ({ wartosc: r, etykieta: nazwaRodzaju(r) }))
+        .sort((a, b) => a.etykieta.localeCompare(b.etykieta, 'pl')),
+    });
+  }
 
   const [tytul, opis] = TYTULY[typ];
   const naglowek = naglowekStrony({

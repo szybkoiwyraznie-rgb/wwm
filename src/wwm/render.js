@@ -199,6 +199,15 @@ const NAZWY_RODZAJU = {
   rozegrane: 'rozegrane',
   szkola: 'szkoła walki',
   klasztor: 'klasztor',
+  przedmiot: 'przedmiot',
+  technika: 'sztuka walki',
+  wydarzenie: 'wydarzenie',
+  kultura: 'obyczaj',
+  obyczaj: 'obyczaj',
+  organizacja: 'organizacja',
+  frakcja: 'stronnictwo',
+  miejscowosc: 'miejscowość',
+  inne: 'inne',
   protagonista: 'główny bohater',
 };
 

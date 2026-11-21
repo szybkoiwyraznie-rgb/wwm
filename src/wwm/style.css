@@ -221,6 +221,7 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 .karta-encji { padding: 14px 0; border-bottom: 1px solid var(--ramka); }
 .karta-encji:last-child { border-bottom: 0; }
 .karta-tytul { font-family: var(--serif); font-size: 1.08rem; font-weight: 600; }
+.karta-rodzaj { margin-left: .5em; font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--tusz-3); }
 .karta-opis { margin: .25em 0 0; color: var(--tusz-2); font-size: .93rem; max-width: none; }
 .karta-meta { margin: .35em 0 0; }
 
