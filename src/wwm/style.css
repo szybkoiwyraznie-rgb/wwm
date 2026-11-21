@@ -339,9 +339,10 @@ a.kafelek:hover { text-decoration: none; border-color: var(--ramka-2); transform
 }
 
 .zapis-tekst { font-family: var(--serif); font-size: 1.02rem; }
-.zapis-tekst p { margin: .65em 0; }
+.zapis-tekst p { margin: .65em 0; line-height: 1.55; }
 .zapis-tekst strong { color: var(--akcent-2); font-weight: 600; }
 .zapis-tekst blockquote { margin: .9em 0; padding-left: 14px; border-left: 2px solid var(--ramka-2); color: var(--tusz-2); font-style: italic; }
+.zapis-tekst hr.zapis-przerwa { border: 0; height: 1px; background: var(--ramka); margin: 1.1em 0; width: 42%; }
 .zapis-tekst h3, .zapis-tekst h4 { font-family: var(--serif); text-transform: none; letter-spacing: 0; font-size: 1.02rem; color: var(--tusz); margin: 1.3em 0 .4em; }
 
 .skok-do-tresci { color: var(--tusz-2); }

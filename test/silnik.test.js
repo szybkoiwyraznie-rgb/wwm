@@ -183,7 +183,9 @@ test('blok zapisu zachowuje złamania wiersza i nie renderuje nagłówków jako 
     wymagajPoziomu: true,
   });
   assert.match(r.html, /class="zapis-tekst"/);
-  assert.match(r.html, /raz<br>|raz\ndwa/);
+  // `\n` w źródle HTML to spacja — bez `<br>` dialog zlewa się w jeden ciąg.
+  assert.match(r.html, /raz<br>dwa/);
+  assert.doesNotMatch(r.html, /raz\ndwa/);
 });
 
 test('progi pewności mają trzy poziomy i czytelne etykiety', () => {
@@ -227,4 +229,27 @@ test('kwestia bez etykiety mówcy nie jest narracją, gdy jest pytaniem albo okr
   const r = policzElementySceny(bezEtykiet);
   assert.equal(r.kwestie, 2, 'dwa pytania to dwie kwestie');
   assert.equal(r.narracja, 1, 'zdanie bez znaku kończącego zostaje narracją');
+});
+
+test('każdy wiersz cytatu stoi w osobnym wierszu widoku', () => {
+  // Usterka z pierwszej dostawy: dialog `**A:** jedno` / `**B:** drugie` renderował się
+  // jako jeden akapit, bo końce wierszy zostawały w HTML jako `\n`, czyli spacja.
+  const md = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Chen Zixi:** Pan Sali\n**Jiang Wulang:** Zdrajca\n\nTo ty.\nZgadza się.\n:::\n\n}}';
+  const html = renderMarkdown(md, { wymagajPoziomu: true }).html;
+  const zapis = html.split('class="zapis-tekst"')[1];
+  // Pusta linia w zapisie to nowy akapit, a nie złamanie wiersza: cztery wiersze
+  // w dwóch akapitach dają dwa `<br>`, po jednym na parę.
+  assert.equal((zapis.match(/<br>/g) ?? []).length, 2, 'dwa akapity po dwa wiersze');
+  assert.doesNotMatch(zapis, /Zdrajca\nTo ty/);
+});
+
+test('cytatu nie otwiera separator i nie ma w nim nagłówka z ekranu', () => {
+  // Archiwum dzieli fragmenty nagłówkami (`## Scena 4700037`). W cytacie zostaje z nich
+  // separator między fragmentami — bez nagłówka sekcji i bez pustej kreski na wejściu.
+  const md = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n## Scena 1\n**A:** raz\n\n## Scena 2\n**B:** dwa\n:::\n\n}}';
+  const zapis = renderMarkdown(md, { wymagajPoziomu: true }).html.split('class="zapis-tekst"')[1];
+  assert.equal((zapis.match(/<hr>/g) ?? []).length, 1, 'jeden separator między dwoma fragmentami');
+  assert.doesNotMatch(zapis, /Scena 1|Scena 2/, 'identyfikatory z ekranu nie trafiają do widoku');
+  assert.doesNotMatch(zapis, /<h[1-6]/, 'nagłówek zapisu nie jest sekcją strony');
+  assert.doesNotMatch(zapis, /^\s*<hr>/, 'cytat nie zaczyna się od kreski');
 });

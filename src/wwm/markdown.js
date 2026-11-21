@@ -264,7 +264,17 @@ export function renderMarkdown(md, {
       i += 1;
       while (i < linie.length && !/^:::/.test(linie[i].trim())) { buf.push(linie[i]); i += 1; }
       i += 1; // zamknięcie
-      const wewn = renderMarkdown(buf.join('\n'), {
+      // Nagłówek archiwum (`## Scena 4700001`) rozdziela fragmenty nagrania, ale nie jest
+      // sekcją strony ani zdaniem do czytania: w cytacie staje się separatorem, nie `<h2>`.
+      // Inaczej numeracja z ekranu wraca do widoku i wygląda jak tytuł rozdziału (ADR 0019).
+      const wiersze = buf.map((l) => (/^#{1,6}\s+/.test(l) ? '---' : l));
+      // Separator na początku i na końcu cytatu tylko psułby ramkę — zostaje między fragmentami.
+      while (wiersze.length && wiersze[0].trim() === '') wiersze.shift();
+      while (wiersze.length && wiersze[wiersze.length - 1].trim() === '') wiersze.pop();
+      if (wiersze[0]?.trim() === '---') wiersze.shift();
+      if (wiersze[wiersze.length - 1]?.trim() === '---') wiersze.pop();
+      const surowy = wiersze.join('\n');
+      const wewn = renderMarkdown(surowy, {
         resolveLink, wymagajPoziomu, wPoziomie, wZagniezdzeniu: true, atrybutyNaglowka,
         zachowajLamania: true,
       });
@@ -354,8 +364,10 @@ export function renderMarkdown(md, {
       buf.push(linie[i]);
       i += 1;
     }
+    // Cytat sceny zachowuje końce wierszy tak, jak stoją w zapisie: `<br>`, nie samo `\n`.
+    // Samo `\n` w źródle HTML to spacja, więc dialog zlewał się w jeden ciąg.
     const tresc = zachowajLamania
-      ? buf.map((l) => inline(l)).join('\n')
+      ? buf.map((l) => inline(l)).join('<br>')
       : inline(buf.join(' '));
     dodaj(`<p>${tresc}</p>`);
   }
