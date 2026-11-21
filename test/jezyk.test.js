@@ -27,7 +27,9 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
  */
 const META = new RegExp([
   // baza i proces
-  '\\bbaz[aeyi]\\b', '\\bbazie\\b', '\\bdostaw[a-ząćęłńóśźż]*\\b', '\\bwłaściciel[a-ząćęłńóśźż]*\\b',
+  // „właściciel” tu nie należy: to zwykłe słowo o świecie (właściciel miecza, gospodarstwa).
+  // Meta jest dopiero „właściciel bazy/kroniki/projektu” — to łapie WŁASCICIEL_PROJEKTU niżej.
+  '\\bbaz[aeyi]\\b', '\\bbazie\\b', '\\bdostaw[a-ząćęłńóśźż]*\\b',
   '\\barchiwum\\b', '\\bmateriał[a-ząćęłńóśźż]*\\b', '\\bmodel[a-ząćęłńóśźż]*\\b', '\\bagent[a-ząćęłńóśźż]*\\b',
   '\\bprompt\\b', '\\bADR\\b', '\\bcommit\\b', '\\brepozytori[um]\\b', '\\bbuild\\b', '\\brender[a-ząćęłńóśźż]*\\b',
   // redakcja
@@ -38,6 +40,14 @@ const META = new RegExp([
   '\\bw grze\\b', '\\bw tej grze\\b', '\\bmechanik[a-ząćęłńóśźż]*\\b', '\\bprofil[a-ząćęłńóśźż]*\\b',
   '\\brekord[a-ząćęłńóśźż]*\\b', '\\bnumera?cj[a-ząćęłńóśźż]*\\b', '\\bnumer sceny\\b',
 ].join('|'), 'giu');
+
+/**
+ * „Właściciel” sam w sobie mówi o świecie — o człowieku, do którego coś należy.
+ * Meta zaczyna się dopiero wtedy, gdy właściciel jest właścicielem kroniki, a nie rzeczy.
+ */
+const WLASCICIEL_PROJEKTU = new RegExp(
+  '\\bwłaściciel[a-ząćęłńóśźż]*\\s+(?:tej\\s+)?(?:baz|kronik|repozytori|projekt|stron|witryn)',
+  'giu');
 
 /** Zdejmuje kod silnika i znaczniki — zostaje to, co czyta człowiek. */
 function tekstWidoczny(html) {
@@ -59,13 +69,35 @@ test.before(async () => { dane = await zbudujDane({ root: ROOT }); });
 test('widoczne strony nie mówią o bazie, procesie ani interfejsie', () => {
   const problemy = [];
   for (const [slug, strona] of Object.entries(dane.strony)) {
-    const html = [strona.html ?? '', ...(strona.boksy ?? []).map((b) => b.html),
+    // Tytuł boksu jest widoczny tak samo jak jego treść — „Strzała bez właściciela”
+    // przeszła kiedyś obok bramy, bo sprawdzała tylko html, nie nagłówki.
+    const naglowki = [...(strona.boksy ?? []), ...(strona.sekcje ?? [])]
+      .map((b) => b.tytul ?? '').join(' ');
+    const html = [strona.html ?? '', naglowki, ...(strona.boksy ?? []).map((b) => b.html),
       ...(strona.sekcje ?? []).map((s) => s.html)].join(' ');
     const tekst = tekstWidoczny(html);
-    const trafienia = [...new Set([...tekst.matchAll(META)].map((m) => m[0]))];
+    const trafienia = [...new Set([...tekst.matchAll(META), ...tekst.matchAll(WLASCICIEL_PROJEKTU)]
+      .map((m) => m[0]))];
     if (trafienia.length > 0) problemy.push(`${slug}: ${trafienia.join(', ')}`);
   }
   assert.deepEqual(problemy, []);
+});
+
+test('właściciel rzeczy jest ze świata, właściciel kroniki już nie', () => {
+  // Lista zakazanych słów ma ciąć meta, nie zwykłe słownictwo. „Właściciel miecza”
+  // to zdanie o świecie; dopiero „właściciel kroniki” mówi o projekcie.
+  const zeSwiata = ['właściciel miecza', 'właściciel gospodarstwa', 'właściciel domu',
+    'właściciela konia', 'właściciel tej chaty'];
+  for (const zdanie of zeSwiata) {
+    assert.deepEqual([...zdanie.matchAll(META)].map((m) => m[0]), [], `„${zdanie}” jest ze świata`);
+    assert.deepEqual([...zdanie.matchAll(WLASCICIEL_PROJEKTU)].map((m) => m[0]), [],
+      `„${zdanie}” nie mówi o projekcie`);
+  }
+  const oProjekcie = ['właściciel bazy', 'właściciela kroniki', 'właściciel projektu',
+    'właściciel tej strony'];
+  for (const zdanie of oProjekcie) {
+    assert.ok([...zdanie.matchAll(WLASCICIEL_PROJEKTU)].length > 0, `„${zdanie}” to meta`);
+  }
 });
 
 test('streszczenia i opisy na listach są językiem opowieści', () => {

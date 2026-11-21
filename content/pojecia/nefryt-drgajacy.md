@@ -35,7 +35,7 @@ czysty, długi ton, a *drgający* to niemal dosłowny opis tej właściwości. M
 
 ## Głos jako ozdoba
 
-Jeśli dźwięk nakłada się na rzecz, to rzecz zaczyna mówić o tym, kto ją nosi, zanim ten się
+Jeśli dźwięk nakłada się na rzecz, to rzecz zaczyna mówić o właścicielu, zanim ten się
 odezwie. W świecie, w którym po stroju poznaje się szkołę, drobny dźwięk przy ruchu jest
 jeszcze jedną formą przedstawienia się — cichszą i trudniejszą do podrobienia niż herb.
 

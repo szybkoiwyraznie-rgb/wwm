@@ -14,7 +14,8 @@ utworzono: 2026-11-21
 
 *Łuk dobrze wyważony, łatwo go napiąć i celniej się z niego mierzy.* Opis jest krótki
 i mówi o trzech rzeczach naraz: o wyważeniu, o sile potrzebnej do naciągnięcia i o celności.
-Broń jest dobra nie dlatego, że jest wielka, ale dlatego, że nie stawia oporu temu, kto ją trzyma.
+Broń jest dobra nie dlatego, że jest wielka, ale dlatego, że nie stawia oporu własnemu
+właścicielowi.
 
 }}
 

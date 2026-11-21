@@ -20,10 +20,14 @@ mówią, skąd wiadomo, że coś jest prawdą (ADR 0004, 0010). Ale opis *mechan
 - **Widoczna treść mówi wyłącznie o świecie i wydarzeniach.** Opisuje osoby, miejsca, sekty,
   obyczaje, wydarzenia i ich tło kulturowe. Nie opisuje kroniki, jej układu, nawigacji,
   sposobu oznaczania ani pracy nad nią.
-- **Zakazane słownictwo** w widocznym tekście: *baza*, *bazy*, *bazie*, *dostawa*, *właściciel*,
+- **Zakazane słownictwo** w widocznym tekście: *baza*, *bazy*, *bazie*, *dostawa*,
   *archiwum* (w znaczeniu projektu), *materiał*, *wpis*, *strona* i *podstrona*, *sekcja*,
   *tag*, *interfejs*, *mechanika*, *profil*, *rekord*, *numeracja*, *w scenie N*, a także
   nazwy procesu technicznego (ADR, commit, build).
+- **Zwykłe słowa nie są meta.** *Właściciel miecza*, *właściciel gospodarstwa*, *właściciel
+  domu* to zdania o świecie i wolno ich używać. Zakaz dotyczy tylko **właściciela projektu**:
+  kroniki, bazy, strony, repozytorium (poprawka właściciela, 2026-11-21). Brama sprawdza
+  tę frazę osobno i nie ciągnie całej odmiany słowa.
 - **Wyjątki są nazwane, nie domyślne:**
   - dosłowny cytat sceny (`:::zapis`) — archiwum jest nietykalne, bohater może mówić o dostawie;
   - tytuły nawigacji wymuszone funkcją („Tagi”, „Szukaj”) — techniczna etykieta, nie zdanie;
@@ -51,3 +55,8 @@ mówią, skąd wiadomo, że coś jest prawdą (ADR 0004, 0010). Ale opis *mechan
 - **Ryzyko:** brama może ciąć uczciwe zdania ze słowem „strona” („po drugiej stronie rzeki”).
   Dlatego lista jest wąska i odmianowa; jeśli słowo okaże się potrzebne w świecie, dodajemy
   wyjątek w teście z uzasadnieniem w komentarzu, a nie osłabiamy całej reguły.
+- **Słowo ze świata wygrywa z bramą.** „Właściciel” został wycofany z listy, bo jest
+  zwykłym słowem o rzeczach i ludziach; brama ma ciąć mówienie o projekcie, nie język
+  opowieści. Ten sam probierz stosuje się do każdego kolejnego słowa z listy.
+- **Tytuły boksów są widoczne.** Brama sprawdza także nagłówki sekcji — wcześniej patrzyła
+  tylko na treść, więc meta w tytule przechodziła niezauważona.

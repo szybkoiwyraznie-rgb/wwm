@@ -37,7 +37,7 @@ myślał, że *nie przetrwają próby lat* — i to jest cała jego wartość.
 ## Czyj to chwost
 
 Opis mówi *przechowywany z wielką troską*, a nie *twój*. Rzecz, którą ktoś przechował dla
-kogoś innego, miała już czyjąś rękę, zanim trafiła do znalazcy — i jeśli chwost jest pamiątką
+kogoś innego, miała już właściciela wcześniej niż znalazcę — i jeśli chwost jest pamiątką
 po młodości bohatera, to trzymał go ten, kto tę młodość pamięta: wuj, u którego bohater
 mieszka. Pewności nie ma, bo opis nigdzie nie mówi, czyją ręką był noszony.
 
