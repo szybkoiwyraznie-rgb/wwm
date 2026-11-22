@@ -19,7 +19,7 @@ utworzono: 2026-11-21
 
 Miejsce, w którym zaczyna się cała opowieść: stół, dzban wina i dwóch ludzi, z których
 jeden przyszedł zabić. Chen Zixi nazywa Jianga *panem Sali Powrotu Wiosny*, a potem
-siada i kosztuje trunku — *smakuje?* pyta, *cienkie* odpowiada tamten.
+kosztuje trunku — *smakuje?* pyta, *cienkie* odpowiada tamten.
 
 Sala prawdopodobnie nie leży w Jiangnan. Chen zestawia jej wino z *Hojną Wiosną z Jiangnanu* i proponuje
 wspólną podróż *tam* — więc mówi o południu jak o celu, nie o miejscu, w którym siedzi.
