@@ -154,6 +154,10 @@ dosłownym fragmentem archiwum (ADR 0008).
 | `rodzaj` | `organizacja` / `frakcja` / `miejscowosc` / `kultura` / `technika` / `przedmiot` / `wydarzenie` / `inne` |
 | `postacie`, `krainy`, `sekty`, `miejsca`, `konteksty` | listy slugów |
 
+Rodzaj nie jest etykietą magazynową: lista haseł pozwala się nim zawęzić, a karta na liście
+podaje go słowem („przedmiot”, „sztuka walki”). Rzecz z własną opowieścią jest więc
+osiągalna z listy tak samo jak postać.
+
 ## 4. Pola-relacje (graf)
 
 Każde z tych pól jest sprawdzane: cel musi istnieć i mieć właściwy typ.
@@ -234,10 +238,13 @@ Zasady:
 
 - **Hipoteza to zawsze wiedza modelu.** `{{model pewnosc=NN}}` — i nic innego. Interpretacja
   nie może udawać cytatu ani kwerendy; build odrzuca `{{kwerenda rodzaj=interpretacja}}`.
-- **Wiedza modelu wymaga `pewnosc=`** (0–100). Bez szacunku byłaby twierdzeniem
-  nieodróżnialnym od faktu. Atrybut przysługuje wyłącznie temu pochodzeniu.
-- **Kwerenda wymaga adresu źródła** — pola `zrodla:` albo sekcji `## Źródła` z linkiem
-  http(s). Twierdzenie bez dowodu nie może być niebieskie.
+- **Przypuszczenie wymaga `pewnosc=`** (0–100). Warstwa bez szacunku byłaby twierdzeniem
+  nieodróżnialnym od faktu — dlatego `rodzaj=interpretacja` i `pytanie=` bez `pewnosc=`
+  to błąd. Atrybut przysługuje wyłącznie pochodzeniu `model` (ADR 0005, 0018).
+- **Kwerenda musi zacytować źródło w treści** — dyrektywą `{{zrodlo tytul="…" adres="https://…"
+  data="RRRR-MM-DD"}}`. Wszystkie trzy elementy są obowiązkowe: tytuł, adres i data odczytu.
+  Renderer pokazuje je pod twierdzeniem jako listę; brak jednego z nich zatrzymuje build.
+  Pole `zrodla:` w metadanych jest deklaracją, nie zastępuje cytatu.
 - **Kilka warstw w jednym boksie to norma**, nie wyjątek: cytat z opowieści, wniosek,
   tło historyczne i hipoteza o dalszym ciągu mogą stać pod jednym tytułem.
 - **Pochodzenie trzyma się przez cały blok** — do jawnego `}}`, także gdy w środku stoi

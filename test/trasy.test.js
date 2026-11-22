@@ -87,3 +87,64 @@ test('lista pokazuje wszystkie pozycje danego typu', async () => {
   }
   assert.deepEqual(problemy, []);
 });
+
+test('lista haseł pozwala zawęzić się do rodzaju i pokazuje każdy rodzaj', async () => {
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const { renderListe } = await import('../src/wwm/render-listy.js');
+  const rodzaje = [...new Set(Object.values(dane.strony)
+    .filter((s) => s.typ === 'pojecie' && s.rodzaj).map((s) => s.rodzaj))];
+  assert.ok(rodzaje.length >= 2, 'hasła mają więcej niż jeden rodzaj — inaczej nie ma czego zawężać');
+  const pelna = renderListe('pojecie', {});
+  for (const rodzaj of rodzaje) {
+    // Rodzaj musi być do wyboru: inaczej część haseł jest nieosiągalna z listy.
+    assert.match(pelna, new RegExp(`<option value="${rodzaj}"`), `w filtrze brakuje rodzaju „${rodzaj}”`);
+    const wezsza = renderListe('pojecie', { rodzaj });
+    const tytuly = Object.values(dane.strony)
+      .filter((s) => s.typ === 'pojecie' && s.rodzaj === rodzaj).map((s) => s.tytul);
+    for (const tytul of tytuly) assert.ok(wezsza.includes(tytul), `po zawężeniu brak „${tytul}”`);
+    for (const inny of Object.values(dane.strony)
+      .filter((s) => s.typ === 'pojecie' && s.rodzaj && s.rodzaj !== rodzaj)) {
+      assert.ok(!wezsza.includes(inny.tytul), `po zawężeniu do „${rodzaj}” został „${inny.tytul}”`);
+    }
+  }
+});
+
+test('każdy dział z treścią ma pozycję w menu i kafel na pierwszym ekranie', async () => {
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const { rama } = await import('../src/wwm/render.js');
+  const { renderGlowna } = await import('../src/wwm/render-home.js');
+  const menu = rama('glowna', 'test', '');
+  const glowna = renderGlowna();
+  // Strażnik samego testu: gdyby drzewo nie doszło do modułów, oba napisy byłyby
+  // puste i pętla niżej przeszłaby na pusto, udając zielono.
+  assert.match(menu, /href="#\/postacie"/, 'menu nie doszło do modułu — test byłby pusty');
+  assert.match(glowna, /class="kafelek-liczba"/, 'pierwszy ekran nie doszedł do modułu');
+
+  // Dział, do którego nie prowadzi ani menu, ani kafel, istnieje tylko dla wyszukiwarki.
+  // Hasła i przedmioty były w tej sytuacji: strona była, drogi do niej nie było.
+  const braki = [];
+  // Epizody i sceny nie potrzebują własnej pozycji: czytelnik dochodzi do nich przez
+  // rozdziały i chronologię, które stoją w menu wyżej.
+  const BEZ_POZYCJI = new Set(['epizody', 'sceny']);
+  // `LISTY` mapuje trasę na typ — odwrócenie dałoby zero stron i cicho zielony test.
+  for (const [trasa, typ] of Object.entries(LISTY)) {
+    if (BEZ_POZYCJI.has(trasa)) continue;
+    const stron = Object.values(dane.strony).filter((s) => s.typ === typ).length;
+    if (stron === 0) continue;
+    if (!menu.includes(`href="#/${trasa}"`)) braki.push(`menu bez „${trasa}”`);
+    if (!glowna.includes(`href="#/${trasa}"`)) braki.push(`pierwszy ekran bez kafla „${trasa}”`);
+  }
+  assert.deepEqual(braki, []);
+});
+
+test('pierwszy ekran nie powtarza tego samego działu dwa razy', async () => {
+  const dane = await zbudujDane({ root: ROOT });
+  globalThis.WWM_DATA = dane;
+  const { renderGlowna } = await import('../src/wwm/render-home.js');
+  const glowna = renderGlowna();
+  const kafle = [...glowna.matchAll(/class="kafelek-etykieta">([^<]*)</g)].map((m) => m[1]);
+  assert.deepEqual(kafle.filter((k, i) => kafle.indexOf(k) !== i), [], 'powtórzony kafel działu');
+  assert.ok(!/Opowieść dotarła dotąd/.test(glowna), 'boks „dotarła dotąd” miał zniknąć');
+});

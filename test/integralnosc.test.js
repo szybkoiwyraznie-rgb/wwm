@@ -95,7 +95,12 @@ test('przeredagowana scena nie przechodzi bramy dosłowności', () => {
   const zapisy = wczytajZapisy({ root: ROOT });
   const scena = wczytajStrony({ root: ROOT }).find((s) => s.typ === 'scena');
   const tekst = zapisy.get(`rozgrywka/zapisy/${path.basename(scena.zapis)}`);
-  const podmieniona = { ...scena, body: scena.body.replace('Deszcz bębni', 'Deszcz pada') };
+  // Zmieniamy pierwszy wiersz pierwszego cytatu — dowolny, bo scena nie zależy od treści.
+  // Wcześniej test podmieniał słowo z konkretnej zaślepki i po jej usunięciu przestał
+  // cokolwiek sprawdzać.
+  const pierwszy = scena.body.match(/^:::zapis\n(.+)$/m)?.[1];
+  assert.ok(pierwszy, 'scena ma niepusty cytat');
+  const podmieniona = { ...scena, body: scena.body.replace(pierwszy, `${pierwszy} (przeredagowane)`) };
   const problemy = sprawdzWiernoscSceny(podmieniona, tekst);
   assert.ok(problemy.some((p) => /nie jest dosłownym fragmentem/.test(p)));
 });
@@ -177,8 +182,11 @@ test('powłoka trzyma indeks, a ciała stron leżą w dist/data/', () => {
     assert.ok(fs.existsSync(path.join(katalog, `${slug}.json`)), `brak pliku danych dla ${slug}`);
   }
   // Ciało wczytane z pliku ma dokładnie te pola, których oczekują renderery.
-  const scena = JSON.parse(fs.readFileSync(path.join(katalog, 'zaslepka-sc01.json'), 'utf8'));
-  assert.ok(scena.sekcje || scena.html, 'ciało sceny ma sekcje albo html');
+  // Bierzemy pierwszą stronę z indeksu, nie konkretny slug: baza nie może
+  // zależeć od materiału przykładowego, który dawno zniknął.
+  const dowolny = slugi.find((s) => indeks.strony[s]?.typ === 'scena') ?? slugi[0];
+  const cialo = JSON.parse(fs.readFileSync(path.join(katalog, `${dowolny}.json`), 'utf8'));
+  assert.ok(cialo.sekcje || cialo.html, 'ciało strony ma sekcje albo html');
   assert.ok(fs.existsSync(path.join(katalog, 'teksty.json')));
   assert.ok(fs.existsSync(path.join(katalog, 'co-nowego.json')));
 });
@@ -500,4 +508,26 @@ test('powiązania to same nazwy — bez dopisków o kierunku', async () => {
     }
   }
   assert.deepEqual([...new Set(problemy)], []);
+});
+
+test('każda strona ze źródłami w widoku podaje tytuł, adres i datę odczytu', async () => {
+  // Zasada właściciela: niebieski boks ma cytować źródło. Sprawdzamy zbudowany
+  // widok, a nie pliki — pole `zrodla:` w frontmatterze bywa niewidoczne dla czytelnika.
+  const dane = await zbudujDane({ root: ROOT });
+  const problemy = [];
+  for (const [slug, strona] of Object.entries(dane.strony)) {
+    const html = [...(strona.sekcje ?? []).map((s) => s.html ?? ''), ...(strona.boksy ?? []).map((b) => b.html)]
+      .join(' ');
+    const kwerendy = (html.match(/data-poziom="kwerenda"/g) ?? []).length;
+    if (kwerendy === 0) continue;
+    const zrodla = [...html.matchAll(/<li><a href="(https?:\/\/[^"]+)"[^>]*>([^<]+)<\/a><span class="zrodlo-data">odczyt (\d{4}-\d{2}-\d{2})<\/span><\/li>/g)];
+    if (zrodla.length === 0) problemy.push(`${slug}: kwerenda bez cytowanego źródła`);
+    if (kwerendy > zrodla.length) problemy.push(`${slug}: ${kwerendy} kwerend, ${zrodla.length} źródeł`);
+    for (const [, adres, tytul, data] of zrodla) {
+      if (!adres.startsWith('http')) problemy.push(`${slug}: źródło bez adresu`);
+      if (!tytul.trim()) problemy.push(`${slug}: źródło bez tytułu`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) problemy.push(`${slug}: źródło bez daty odczytu`);
+    }
+  }
+  assert.deepEqual(problemy, []);
 });

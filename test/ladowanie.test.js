@@ -56,8 +56,9 @@ test('powłoka startuje z indeksu i nie niesie ciał stron', async () => {
   const dane = await ladowanie.zaladujDane();
 
   assert.ok(Object.keys(dane.strony).length > 0, 'indeks ma strony');
-  const scena = dane.strony['zaslepka-sc01'];
-  assert.ok(scena, 'scena jest w indeksie');
+  const slugSceny = Object.entries(dane.strony).find(([, s]) => s.typ === 'scena')?.[0];
+  assert.ok(slugSceny, 'w indeksie jest co najmniej jedna scena');
+  const scena = dane.strony[slugSceny];
   assert.equal(scena.sekcje, undefined, 'ciało sceny nie jedzie w powłoce');
   assert.ok(scena.tytul, 'metadane są dostępne bez dociągania');
   assert.ok(Array.isArray(dane.coNowego) && dane.coNowego.length > 0, 'dziennik dociągnięty na starcie');
@@ -68,16 +69,17 @@ test('dociągnięta scena renderuje pełną treść', async () => {
   wczytajPowłokę();
   podstawFetch();
   const ladowanie = await import('../src/wwm/ladowanie.js');
-  await ladowanie.zaladujDane();
-  const przed = globalThis.WWM_DATA.strony['zaslepka-sc01'];
+  const dane = await ladowanie.zaladujDane();
+  const slug = Object.entries(dane.strony).find(([, s]) => s.typ === 'scena')[0];
+  const przed = globalThis.WWM_DATA.strony[slug];
   assert.equal(przed.sekcje, undefined);
 
-  await ladowanie.dociagnijStrone('zaslepka-sc01');
-  const po = globalThis.WWM_DATA.strony['zaslepka-sc01'];
+  await ladowanie.dociagnijStrone(slug);
+  const po = globalThis.WWM_DATA.strony[slug];
   assert.ok(Array.isArray(po.sekcje) && po.sekcje.length > 0, 'sekcje po dociągnięciu');
 
   const { renderScena } = await import('../src/wwm/render-scena.js');
-  const html = renderScena('zaslepka-sc01');
+  const html = renderScena(slug);
   assert.match(html, /Treść sceny/);
   assert.match(html, /z opowieści/);
   assert.doesNotMatch(html, /undefined/);

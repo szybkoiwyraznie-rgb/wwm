@@ -142,3 +142,93 @@ jako `{{hipoteza}}` z niską pewnością, nie jako fakt.
 
 **Obejście:** podgląd startuje w kroku 0 sesji i działa do końca. Serwer czyta artefakt przy
 każdym żądaniu, więc wystarczy `npm run build` — restart nie jest potrzebny.
+
+## 15. `\n` w źródle HTML to spacja — cytat sceny zlewał się w jeden akapit
+
+**Objaw:** dialog `**Chen Zixi:** Pan Sali` / `**Jiang Wulang:** Zdrajca` renderował się jako
+jeden ciąg w jednym akapicie, choć w archiwum każda kwestia stoi w osobnym wierszu.
+
+**Przyczyna:** `renderMarkdown` zachowywał końce wierszy jako `\n` w źródle HTML. Przeglądarka
+traktuje `\n` jak spację, więc „zachowanie łamań” było pozorne. Test bramy akceptował oba
+warianty (`/raz<br>|raz\ndwa/`), więc był zielony przy zepsutym widoku — ta sama klasa błędu
+co w ADR 0018: brama sprawdzała dane, a nie to, co widzi czytelnik.
+
+**Obejście:** wiersze cytatu łączy `<br>`, a pusta linia zostaje nowym akapitem. Test wymaga
+`<br>` i zabrania samego `\n`.
+
+## 16. Nagłówek archiwum w cytacie to separator, nie sekcja
+
+**Objaw:** po naprawie łamań wierszy w środku cytatu sceny pojawiły się `<h2>Scena 4700001</h2>`
+— techniczne identyfikatory z ekranu wróciły do widoku i czytały się jak tytuły rozdziałów.
+
+**Przyczyna:** archiwum dzieli fragmenty nagłówkami `##`. Renderer cytatu puszczał je do
+zwykłego markdownu, więc stawały się nagłówkami strony.
+
+**Obejście:** w cytacie `##` zamienia się na separator `---` między fragmentami, a separator
+na początku i na końcu jest usuwany (kreska na wejściu tylko psuje ramkę). Numery z ekranu
+nie trafiają do widoku — zgodnie z ADR 0019.
+
+## 17. Wszystko, co powstało w tej sesji, ma kilka godzin — nie „tygodnie”
+
+**Objaw:** w podsumowaniu dla właściciela zdania z pierwszej dostawy nazwałem „starszymi
+stronami, które przechodziły od tygodni”. Właściciel zaprotestował: to pierwsza dostawa
+i pierwsze strony w bazie.
+
+**Przyczyna:** `git log` pokazuje `6ee5d9a` o 16:29 i poprawkę o 19:52 tego samego dnia.
+Cała baza — szkielet, dostawa i poprawki — powstała w ciągu jednego popołudnia. Słowo
+„starsze” było prawdziwe tylko względem dwóch commitów, a fałszywe wobec historii projektu.
+
+**Obejście:** zanim nazwę coś „starszym”, „wcześniejszym” albo „od dawna”, sprawdzam datę
+w `git log`. W opisie pracy mówię, gdzie błąd był („w pierwszej dostawie”, „przed poprawką
+bramy”), a nie jak długo żył.
+
+## 18. Wydarzenie, którego nie ma w zapisie, nie jest sceną
+
+**Objaw:** próbowałem zrobić osobną scenę z nocnej walki z człowiekiem w czerni — z tytułem,
+numerem i analizą. Brama odrzuciła ją trzy razy: scena bez bloku `:::zapis`, scena bez
+elementów, scena bez wymaganej sekcji. Dopiero wtedy zajrzałem do dostawy i okazało się, że
+walki nie ma tam ani jednego słowa: `Cutscena 30161` zaczyna się od okrzyku Ruby nad
+nieprzytomnym bohaterem, a o napastniku wiadomo tylko z jego własnego, urwanego zdania.
+
+**Przyczyna:** opis właściciela był bogatszy niż archiwum. Zamiast sprawdzić, co zapis
+naprawdę pokazuje, zbudowałem scenę z tego, co powinno się stać. Tytuł „Gdybym tylko zobaczył
+jianghu” też był mój: dopisałem go jako nagłówek sceny z dzieckiem, choć w archiwum ten
+dialog stoi pod `## Prolog 4`. Właściciel odrzucił go także z drugiego powodu — jest
+męskoosobowy, a mówi w nim dziewczynka; scena nazywa się teraz „Zobaczyć jianghu”.
+
+**Obejście:** zanim zrobię scenę z wydarzenia, sprawdzam, czy ma ono w archiwum własny
+fragment. Jeśli nie ma — nie tworzę sceny, tylko mówię w analizie i w opisie postaci, że
+wydarzenie rozgrywa się poza zapisem. Tytuł sceny biorę z jej własnej pierwszej kwestii
+albo z tego, co robi, a nie z tego, co chciałbym, żeby robiła.
+
+## 19. Tłumaczenie z chińskiego może mylić rodzaj — i wiek mówiącego
+
+**Objaw:** Prolog 4 czytałem jako wspomnienie z dzieciństwa Youxii i przypisałem jego kwestie
+Jiang Wulangowi. Właściciel poprawił: to scena współczesna, Ruby jest dziesięcio-, dwunastoletnią
+dziewczynką, Youxia ma około trzydziestu lat, a *wuj Jiang*, do którego Ruby mówi, to Youxia —
+nie Jiang Wulang, który zniknął trzy lata temu.
+
+**Przyczyna:** zapis nie daje etykiet mówcy, a polski rodzaj gramatyczny podpowiadał mężczyznę
+tam, gdzie w chińskim rodzaju nie ma. Do tego doszło moje założenie, że każdy prolog musi być
+dawniejszy od reszty — więc scena trafiła do epizodu wspomnień, choć stoi już w czasie
+teraźniejszym opowieści.
+
+**Obejście:** przy dialogu bez etykiet nie wnioskuję płci, wieku ani mówcy z form polskiego
+czasownika. Sprawdzam, kto jest w scenie według właściciela, i dopiero wtedy przypisuję
+kwestie. Prolog numerowany w zapisie nie musi być retrospekcją — o tym, czy scena jest
+wspomnieniem, decyduje miejsce w fabule, nie nazwa nagłówka.
+
+## 20. Nowa dostawa to nowe archiwum, nie dopisek do starego
+
+**Objaw:** druga dostawa przyszła jako osobny plik, w którym numery scen zaczynają się od
+`4700007`, czyli od miejsca, w którym kończyła się pierwsza. Kusiło, żeby dopisać ją na koniec
+`2026-11-21-001.md`.
+
+**Przyczyna:** archiwum jest dowodem, a dowód ma datę. Dopisanie nowego materiału do starego
+pliku zmieniłoby przeszłość: nie dałoby się już powiedzieć, co było w pierwszej dostawie,
+a co doszło dzień później. Pole `zapis` w scenie wskazuje konkretny plik i to ono jest
+granicą.
+
+**Obejście:** każda dostawa dostaje własny plik `rozgrywka/zapisy/<data>-<nr>.md`, a sceny
+z niej cytują właśnie ten plik. `npm run zapis` porównuje każdą scenę tylko z jej archiwum,
+więc pomyłka wychodzi od razu, a nie po tygodniu.

@@ -12,6 +12,7 @@ import { parseFrontmatter } from '../src/wwm/frontmatter.js';
 import {
   renderMarkdown, POCHODZENIA, RODZAJE_TRESCI, POZIOMY_WYCOFANE, badgePewnosci, poziomPewnosci, czyPewnosc,
 } from '../src/wwm/markdown.js';
+import { policzElementySceny } from '../src/wwm/registry.js';
 
 test('slugify prowadzi polskie znaki do ASCII i nie zostawia myślników na brzegach', () => {
   assert.equal(slugify('Zwój z imieniem'), 'zwoj-z-imieniem');
@@ -24,14 +25,14 @@ test('slugify prowadzi polskie znaki do ASCII i nie zostawia myślników na brze
 
 test('parseWikilinks czyta slug, etykietę i pozycję', () => {
   assert.deepEqual(
-    parseWikilinks('a [[xiake]] b [[watek-pochodzenia|wątek]] c').map(({ slug, etykieta }) => ({ slug, etykieta })),
-    [{ slug: 'xiake', etykieta: null }, { slug: 'watek-pochodzenia', etykieta: 'wątek' }],
+    parseWikilinks('a [[xiake]] b [[watek-rodzinny|wątek]] c').map(({ slug, etykieta }) => ({ slug, etykieta })),
+    [{ slug: 'xiake', etykieta: null }, { slug: 'watek-rodzinny', etykieta: 'wątek' }],
   );
 });
 
 test('href strony i listy wynikają z typu', () => {
   assert.equal(hrefDlaSlug('xiake', 'kontekst'), '#/kontekst/xiake');
-  assert.equal(hrefDlaSlug('zaslepka-sc01', 'scena'), '#/scena/zaslepka-sc01');
+  assert.equal(hrefDlaSlug('chata-wuja-jianga', 'scena'), '#/scena/chata-wuja-jianga');
   assert.equal(hrefListy('kontekst'), '#/konteksty');
   assert.equal(hrefListy('nieznany-typ'), '#/');
 });
@@ -182,7 +183,9 @@ test('blok zapisu zachowuje złamania wiersza i nie renderuje nagłówków jako 
     wymagajPoziomu: true,
   });
   assert.match(r.html, /class="zapis-tekst"/);
-  assert.match(r.html, /raz<br>|raz\ndwa/);
+  // `\n` w źródle HTML to spacja — bez `<br>` dialog zlewa się w jeden ciąg.
+  assert.match(r.html, /raz<br>dwa/);
+  assert.doesNotMatch(r.html, /raz\ndwa/);
 });
 
 test('progi pewności mają trzy poziomy i czytelne etykiety', () => {
@@ -200,4 +203,81 @@ test('renderer escapuje HTML z treści', () => {
   const r = renderMarkdown('{{opracowanie\n\n<script>alert(1)</script>\n}}', { wymagajPoziomu: true });
   assert.ok(!r.html.includes('<script>'));
   assert.match(r.html, /&lt;script&gt;/);
+});
+
+test('kwestia dialogowa liczy się jako element sceny w obu pisowniach mówcy', () => {
+  // Archiwum zapisuje mówcę jako `**Chen Zixi:** kwestia` — dwukropek w środku
+  // pogrubienia. Licznik, który rozpoznawał tylko `**Chen Zixi**: kwestia`,
+  // widział w dialogu samą narrację i wywalał poprawną scenę jako „za krótką”.
+  const dwukropekWSrodku = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Chen Zixi:** Pan Sali\n**Jiang Wulang:** Zdrajca\n:::\n\n}}';
+  const dwukropekPoPogrubieniu = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Ruby**: Wodzu!\n**Youxia**: Stój!\n:::\n\n}}';
+  const sameWiersze = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Rabak:** przelatuje\n**Rabak:** i wnika\n:::\n\n}}';
+  assert.deepEqual(policzElementySceny(dwukropekWSrodku), { kwestie: 2, narracja: 0, razem: 2 });
+  assert.deepEqual(policzElementySceny(dwukropekPoPogrubieniu), { kwestie: 2, narracja: 0, razem: 2 });
+  assert.equal(policzElementySceny(sameWiersze).kwestie, 2);
+});
+
+test('narracja bez mówcy zostaje osobnym elementem, a mówca go nie pożera', () => {
+  const zapis = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Youxia:** Może został ślad?\n\nInterakcja: Znak smoczego wzoru\n:::\n\n}}';
+  assert.deepEqual(policzElementySceny(zapis), { kwestie: 1, narracja: 1, razem: 2 });
+});
+
+test('kwestia bez etykiety mówcy nie jest narracją, gdy jest pytaniem albo okrzykiem', () => {
+  // Prolog gry nie podpisuje każdej linii: „Kiedy wreszcie pozwolisz mi zobaczyć jianghu?”
+  // to kwestia, a nie opis. Bez tego dwuosobowy dialog liczyłby się jako jeden element.
+  const bezEtykiet = '{{dostawa\n\n## Treść sceny\n\n:::zapis\nKiedy wreszcie pozwolisz mi zobaczyć jianghu?\nChcesz wejść w jianghu?\nZgadza się.\n:::\n\n}}';
+  const r = policzElementySceny(bezEtykiet);
+  assert.equal(r.kwestie, 2, 'dwa pytania to dwie kwestie');
+  assert.equal(r.narracja, 1, 'zdanie bez znaku kończącego zostaje narracją');
+});
+
+test('każdy wiersz cytatu stoi w osobnym wierszu widoku', () => {
+  // Usterka z pierwszej dostawy: dialog `**A:** jedno` / `**B:** drugie` renderował się
+  // jako jeden akapit, bo końce wierszy zostawały w HTML jako `\n`, czyli spacja.
+  const md = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n**Chen Zixi:** Pan Sali\n**Jiang Wulang:** Zdrajca\n\nTo ty.\nZgadza się.\n:::\n\n}}';
+  const html = renderMarkdown(md, { wymagajPoziomu: true }).html;
+  const zapis = html.split('class="zapis-tekst"')[1];
+  // Pusta linia w zapisie to nowy akapit, a nie złamanie wiersza: cztery wiersze
+  // w dwóch akapitach dają dwa `<br>`, po jednym na parę.
+  assert.equal((zapis.match(/<br>/g) ?? []).length, 2, 'dwa akapity po dwa wiersze');
+  assert.doesNotMatch(zapis, /Zdrajca\nTo ty/);
+});
+
+test('cytatu nie otwiera separator i nie ma w nim nagłówka z ekranu', () => {
+  // Archiwum dzieli fragmenty nagłówkami (`## Scena 4700037`). W cytacie zostaje z nich
+  // separator między fragmentami — bez nagłówka sekcji i bez pustej kreski na wejściu.
+  const md = '{{dostawa\n\n## Treść sceny\n\n:::zapis\n## Scena 1\n**A:** raz\n\n## Scena 2\n**B:** dwa\n:::\n\n}}';
+  const zapis = renderMarkdown(md, { wymagajPoziomu: true }).html.split('class="zapis-tekst"')[1];
+  assert.equal((zapis.match(/<hr>/g) ?? []).length, 1, 'jeden separator między dwoma fragmentami');
+  assert.doesNotMatch(zapis, /Scena 1|Scena 2/, 'identyfikatory z ekranu nie trafiają do widoku');
+  assert.doesNotMatch(zapis, /<h[1-6]/, 'nagłówek zapisu nie jest sekcją strony');
+  assert.doesNotMatch(zapis, /^\s*<hr>/, 'cytat nie zaczyna się od kreski');
+});
+
+test('kolor „źródła sprawdzone” cytuje źródło: tytuł, adres i datę odczytu', () => {
+  const zeZrodlem = '{{kwerenda\n\n## Twierdzenie\n\nTekst.\n'
+    + '{{zrodlo tytul="荀子 · 大略篇" adres="https://zh.wikisource.org/wiki/X" data="2026-11-21"}}\n}}';
+  const dobrze = renderMarkdown(zeZrodlem, {});
+  assert.deepEqual(dobrze.problemy, []);
+  assert.match(dobrze.html, /<ul class="zrodla">/);
+  assert.match(dobrze.html, /<a href="https:\/\/zh\.wikisource\.org\/wiki\/X"[^>]*>荀子 · 大略篇<\/a>/);
+  assert.match(dobrze.html, /odczyt 2026-11-21/);
+
+  // Każdy brak zatrzymuje build — źródło bez daty to nie źródło.
+  const braki = {
+    'bez źródła': '{{kwerenda\n\n## T\n\nTekst.\n}}',
+    'bez tytułu': '{{kwerenda\n\n## T\n\nTekst.\n{{zrodlo adres="https://a.pl" data="2026-11-21"}}\n}}',
+    'bez daty': '{{kwerenda\n\n## T\n\nTekst.\n{{zrodlo tytul="A" adres="https://a.pl"}}\n}}',
+    'zła data': '{{kwerenda\n\n## T\n\nTekst.\n{{zrodlo tytul="A" adres="https://a.pl" data="2026-02-30"}}\n}}',
+    'nie adres': '{{kwerenda\n\n## T\n\nTekst.\n{{zrodlo tytul="A" adres="a.pl" data="2026-11-21"}}\n}}',
+  };
+  for (const [nazwa, md] of Object.entries(braki)) {
+    const r = renderMarkdown(md, {});
+    assert.ok(r.problemy.length > 0, `„${nazwa}” ma zatrzymać build`);
+  }
+
+  // Źródło należy do kwerendy: w innym kolorze udawałoby twierdzenie sprawdzone.
+  const wOpracowaniu = renderMarkdown('{{opracowanie\n\n## T\n\nTekst.\n'
+    + '{{zrodlo tytul="A" adres="https://a.pl" data="2026-11-21"}}\n}}', {});
+  assert.ok(wOpracowaniu.problemy.some((p) => /tylko do bloku \{\{kwerenda\}\}/.test(p)));
 });

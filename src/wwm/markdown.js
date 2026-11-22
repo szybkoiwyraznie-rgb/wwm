@@ -21,6 +21,7 @@
  */
 
 import { SLUG_RE, WIKILINK_RE } from './links.js';
+import { czyPoprawnaData } from './czas.js';
 
 /**
  * Poziomy wiarygodności w bloku `{{...}}` (ADR 0004).
@@ -57,6 +58,20 @@ export const POCHODZENIE_INTERPRETACJI = 'model';
 /** Atrybuty bloku: `pewnosc` (wiedza modelu), `rodzaj` (warstwa w boksie),
  *  `pytanie` (czego dotyczy interpretacja — do list i kolumn bocznych). */
 export const ATRYBUTY_BLOKU = ['pewnosc', 'rodzaj', 'pytanie'];
+
+/**
+ * Dyrektywa źródła wewnątrz bloku kwerendy: `{{zrodlo tytul="…" adres="https://…"
+ * data="RRRR-MM-DD"}}`. ADR 0014 mówi, że kolor „źródła sprawdzone” ma dowód —
+ * a dowodem jest to, CO przeczytano, GDZIE i KIEDY. Sam adres w polu frontmattera
+ * nie mówi czytelnikowi nic, bo nie trafia do widoku.
+ *
+ * Musi stać w linii bloku kwerendy: parser czyta `{{…}}` pojedynczo, a nie zagnieżdża
+ * bloków, więc dyrektywa nie może otwierać nowej linii na poziomie `{{`.
+ */
+export const ZRODLO_RE = /\{\{zrodlo((?:\s+[A-Za-z][\w-]*=(?:"[^"]*"|[^\s}]+))*)\s*\}\}/g;
+
+/** Atrybuty, bez których źródło nie jest źródłem (decyzja właściciela, 2026-11-21). */
+export const ATRYBUTY_ZRODLA = ['tytul', 'adres', 'data'];
 
 /** Nazwy wycofane — build podpowiada, na co wymienić, zamiast mówić „nieznany poziom”. */
 export const POZIOMY_WYCOFANE = {
@@ -237,7 +252,38 @@ export function renderMarkdown(md, {
         problemy.push('interpretacja wymaga atrybutu pewnosc=0–100 (ADR 0005)');
       }
 
-      const trescBloku = buf.join('\n');
+      let trescBloku = buf.join('\n');
+
+      // Źródła: wyciągamy dyrektywy PRZED renderem, bo renderer escapuje treść,
+      // a plakietka koloru „źródła sprawdzone” musi mieć dowód obok twierdzenia.
+      const zrodla = [];
+      if (pochodzenie === 'kwerenda') {
+        trescBloku = trescBloku.replace(ZRODLO_RE, (całość, atrybutyTekst) => {
+          const at = parsujAtrybutyBloku(atrybutyTekst);
+          const brak = ATRYBUTY_ZRODLA.filter((k) => !String(at.get(k) ?? '').trim());
+          if (brak.length) {
+            problemy.push(`źródło bez ${brak.join(', ')} — źródło cytuje tytuł, adres i datę odczytu`);
+            return '';
+          }
+          if (!/^https?:\/\//.test(at.get('adres'))) {
+            problemy.push(`adres źródła „${at.get('adres')}” nie jest adresem http(s)`);
+            return '';
+          }
+          if (!czyPoprawnaData(at.get('data'))) {
+            problemy.push(`data odczytu „${at.get('data')}” nie jest poprawną datą RRRR-MM-DD`);
+            return '';
+          }
+          zrodla.push({ tytul: at.get('tytul'), adres: at.get('adres'), data: at.get('data') });
+          return '';
+        });
+      } else if (ZRODLO_RE.test(trescBloku)) {
+        // Kolor inny niż kwerenda nie może cytować źródła — inaczej „z opowieści”
+        // udawałoby twierdzenie sprawdzone.
+        problemy.push('dyrektywa {{zrodlo …}} należy tylko do bloku {{kwerenda}}');
+        trescBloku = trescBloku.replace(ZRODLO_RE, '');
+      }
+      ZRODLO_RE.lastIndex = 0;
+
       const wewn = renderMarkdown(trescBloku, {
         resolveLink, wymagajPoziomu, wPoziomie: pochodzenie, wZagniezdzeniu: true,
         atrybutyNaglowka, zachowajLamania,
@@ -254,7 +300,15 @@ export function renderMarkdown(md, {
         kotwicaInterpretacji && rodzaj === 'interpretacja'
           ? `id="${escapeHtml(kotwicaInterpretacji)}"` : '',
       ].filter(Boolean).join(' ');
-      out.push(`<div ${atrybutyDom}>\n${wEtykiecie(wewn.html, pochodzenie, rodzaj, pewnoscRaw)}\n</div>`);
+      let htmlBloku = wewn.html;
+      if (pochodzenie === 'kwerenda') {
+        if (zrodla.length === 0) {
+          problemy.push('blok {{kwerenda}} bez źródła — dodaj {{zrodlo tytul=… adres=… data=…}}');
+        } else {
+          htmlBloku += `\n${zrodlaHtml(zrodla)}`;
+        }
+      }
+      out.push(`<div ${atrybutyDom}>\n${wEtykiecie(htmlBloku, pochodzenie, rodzaj, pewnoscRaw)}\n</div>`);
       continue;
     }
 
@@ -264,7 +318,17 @@ export function renderMarkdown(md, {
       i += 1;
       while (i < linie.length && !/^:::/.test(linie[i].trim())) { buf.push(linie[i]); i += 1; }
       i += 1; // zamknięcie
-      const wewn = renderMarkdown(buf.join('\n'), {
+      // Nagłówek archiwum (`## Scena 4700001`) rozdziela fragmenty nagrania, ale nie jest
+      // sekcją strony ani zdaniem do czytania: w cytacie staje się separatorem, nie `<h2>`.
+      // Inaczej numeracja z ekranu wraca do widoku i wygląda jak tytuł rozdziału (ADR 0019).
+      const wiersze = buf.map((l) => (/^#{1,6}\s+/.test(l) ? '---' : l));
+      // Separator na początku i na końcu cytatu tylko psułby ramkę — zostaje między fragmentami.
+      while (wiersze.length && wiersze[0].trim() === '') wiersze.shift();
+      while (wiersze.length && wiersze[wiersze.length - 1].trim() === '') wiersze.pop();
+      if (wiersze[0]?.trim() === '---') wiersze.shift();
+      if (wiersze[wiersze.length - 1]?.trim() === '---') wiersze.pop();
+      const surowy = wiersze.join('\n');
+      const wewn = renderMarkdown(surowy, {
         resolveLink, wymagajPoziomu, wPoziomie, wZagniezdzeniu: true, atrybutyNaglowka,
         zachowajLamania: true,
       });
@@ -354,8 +418,10 @@ export function renderMarkdown(md, {
       buf.push(linie[i]);
       i += 1;
     }
+    // Cytat sceny zachowuje końce wierszy tak, jak stoją w zapisie: `<br>`, nie samo `\n`.
+    // Samo `\n` w źródle HTML to spacja, więc dialog zlewał się w jeden ciąg.
     const tresc = zachowajLamania
-      ? buf.map((l) => inline(l)).join('\n')
+      ? buf.map((l) => inline(l)).join('<br>')
       : inline(buf.join(' '));
     dodaj(`<p>${tresc}</p>`);
   }
@@ -412,6 +478,15 @@ const ETYKIETY_POCHODZENIA = {
   kwerenda: 'źródła sprawdzone',
   model: 'wiedza modelu',
 };
+
+/**
+ * Lista źródeł pod twierdzeniem. Tytuł jest odsyłaczem, a data odczytu stoi przy nim —
+ * czytelnik ma widzieć nie tylko, że coś sprawdzono, ale kiedy.
+ */
+function zrodlaHtml(zrodla) {
+  const pozycje = zrodla.map((z) => `<li><a href="${escapeHtml(z.adres)}" target="_blank" rel="noopener">${escapeHtml(z.tytul)}</a><span class="zrodlo-data">odczyt ${escapeHtml(z.data)}</span></li>`).join('');
+  return `<ul class="zrodla">${pozycje}</ul>`;
+}
 
 function wEtykiecie(html, pochodzenie, rodzaj, pewnosc) {
   // Tytuł boksu jest jeden. Plakietka mówi wyłącznie, skąd wiemy — rodzaj treści

@@ -36,6 +36,8 @@ częścią wartości tego repozytorium.
 | [0016](0016-jeden-boks-wiele-warstw.md) | Jeden boks, wiele warstw: kolor należy do źródła | przyjęta |
 | [0017](0017-powloka-i-drzewo-danych.md) | Powłoka i drzewo danych: kronika, która rośnie | przyjęta |
 | [0018](0018-jeden-tytul-i-dzialajace-odsylacze.md) | Jeden tytuł boksu i odsyłacze, które mają cel | przyjęta |
+| [0019](0019-scena-jedno-wydarzenie.md) | Scena to jedno wydarzenie, nie jeden wpis z ekranu | przyjęta |
+| [0020](0020-kompendium-i-zadania-to-lore.md) | Kompendium, zadania i przedmioty z dostawy są materiałem opowieści | przyjęta |
 
 ## Kiedy powstaje nowy ADR
 
