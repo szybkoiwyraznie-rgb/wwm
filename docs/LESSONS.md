@@ -217,3 +217,18 @@ teraźniejszym opowieści.
 czasownika. Sprawdzam, kto jest w scenie według właściciela, i dopiero wtedy przypisuję
 kwestie. Prolog numerowany w zapisie nie musi być retrospekcją — o tym, czy scena jest
 wspomnieniem, decyduje miejsce w fabule, nie nazwa nagłówka.
+
+## 20. Nowa dostawa to nowe archiwum, nie dopisek do starego
+
+**Objaw:** druga dostawa przyszła jako osobny plik, w którym numery scen zaczynają się od
+`4700007`, czyli od miejsca, w którym kończyła się pierwsza. Kusiło, żeby dopisać ją na koniec
+`2026-11-21-001.md`.
+
+**Przyczyna:** archiwum jest dowodem, a dowód ma datę. Dopisanie nowego materiału do starego
+pliku zmieniłoby przeszłość: nie dałoby się już powiedzieć, co było w pierwszej dostawie,
+a co doszło dzień później. Pole `zapis` w scenie wskazuje konkretny plik i to ono jest
+granicą.
+
+**Obejście:** każda dostawa dostaje własny plik `rozgrywka/zapisy/<data>-<nr>.md`, a sceny
+z niej cytują właśnie ten plik. `npm run zapis` porównuje każdą scenę tylko z jej archiwum,
+więc pomyłka wychodzi od razu, a nie po tygodniu.

@@ -1,5 +1,15 @@
 # Co nowego
 
+## 2026-11-22 18:10
+
+- Droga do Kaplicy Generała: Ruby wypomina obietnicę, mostek wali się pod nią, a przy ścieżce
+  zostaje dziwny kwiat. Pierwsze wystąpienie: Feng Jisheng i Przystań Słowa.
+- Łucznik z Przystani Słowa: strzała nad urwiskiem, Zastygła Toń przekazana Youxii, zawody
+  w strzelaniu do ptaków i ostrzeżenie przed Trupim Ostrzem. Brodacz Guang wjeżdża ze swoją
+  karawaną, a Ruby biegnie po książkę.
+- Nowe hasła: Zastygła Toń, Dzban na wino z księgą o przygotowaniu naczynia, Kotek Liliowiec
+  i Zielne Bezdroża.
+
 ## 2026-11-21 19:20
 
 - Broń z własnym obyczajem: prosty drewniany łuk i drewniana strzała — łucznictwo jako próba

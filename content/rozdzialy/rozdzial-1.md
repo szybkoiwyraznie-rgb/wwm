@@ -4,11 +4,11 @@ slug: rozdzial-1
 tytul: "Nieśmiertelni nie przypłyną"
 tytul_ja: "仙人渡不来"
 numer: 1
-epizody: [epizod-prologi, epizod-przebudzenie]
+epizody: [epizod-prologi, epizod-przebudzenie, epizod-droga-do-kaplicy, epizod-lucznik-z-przystani-slowa]
 watki: [watek-dawe-dzieje, watek-nefryt-zhenguan]
 krainy: [jiangnan, ziemie-tang]
-sekty: [zloty-pawilon]
-postacie: [youxia, ruby-zhou, jiang-wulang, chen-zixi, czlowiek-w-czerni, ciotka-han]
+sekty: [zloty-pawilon, przystan-slowa]
+postacie: [youxia, ruby-zhou, jiang-wulang, chen-zixi, czlowiek-w-czerni, ciotka-han, feng-jisheng, brodacz-guang]
 status: w-toku
 tagi: [rozdzial-pierwszy]
 utworzono: 2026-11-21
@@ -23,6 +23,9 @@ Zhenguan i od śmierci Króla Bez Oblicza, który w tej samej scenie umiera dwa 
 opowieść przenosi się do dnia, w którym bohater budzi się po spotkaniu, którego nie pamięta,
 i przeszukuje chatę wuja. List, włócznia i wyblakły chwost mówią mu, że wuj miał życie,
 o którym nigdy nie opowiadał — a ciotka Han nazajutrz ogłosi coś, czego nikt się nie spodziewa.
+Potem jest droga do Kaplicy Generała po książkę z opowieściami i spotkanie z łucznikiem
+z Przystani Słowa, który o mało nie trafia bohatera strzałą, a potem uczy go swojej sztuki
+i ostrzega przed Trupim Ostrzem.
 
 }}
 

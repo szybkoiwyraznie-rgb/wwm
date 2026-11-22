@@ -4,7 +4,7 @@ slug: watek-dawe-dzieje
 tytul: "Dawne dzieje Jiang Wulanga"
 rodzaj_watku: glowny
 stan: "otwarty — wuj zniknął na trzy lata, a jego dawni wrogowie wracają"
-sceny: [scena-prolog-zdrajca, chata-wuja-jianga]
+sceny: [scena-prolog-zdrajca, chata-wuja-jianga, powrot-przez-kaplice, mostek-sie-zawalil, motyle-i-dziwny-kwiat, strzala-nad-urwiskiem, proba-zastyglej-toni, pozegnanie-na-skraju-urwiska]
 postacie: [jiang-wulang, chen-zixi, youxia, ruby-zhou]
 utworzono: 2026-11-21
 ---

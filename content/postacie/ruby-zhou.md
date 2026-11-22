@@ -27,4 +27,11 @@ Stoi między bohaterem a ciotką Han: grozi skargą, wie o Uczcie Pierwszego Dzb
 że ciotka Han *ogłosi coś ważnego*. W rozegranych scenach jest więc łączniczką między
 chatą a światem dorosłych.
 
+W drodze do Kaplicy Generała widać ją w całości. Gniewa się, dopóki nie dostanie obietnicy,
+i przestaje się gniewać w jednym zdaniu — *Ruby najbardziej na świecie kocha wodza!* Skacze
+po mostku, który wali się pod nią, zatrzymuje się przy motylach, a na urwisku dopinguje
+bohatera tak głośno, że wygrywa zawody: *gdyby nie doping bohaterki Zhou, moglibyśmy
+przegrać*. Jej słowo *bohaterka* jest w tych scenach kostiumem, który zakłada przy każdym
+spotkaniu z obcym.
+
 }}

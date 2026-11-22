@@ -24,6 +24,11 @@ a mnie nic nie zrobił* — i nie mówi, kim był. Zamiast powiedzieć o tym Rub
 zbywa ją: *coś mi się przywidziało*. Kłamie więc odruchowo i to kłamstwo ciągnie go potem
 przez całe przeszukanie chaty.
 
+W drodze do Kaplicy Generała kłamie drugi raz, i to on jest tu gospodarzem: zgadza się
+odprowadzić Ruby, choć chodzi mu o to, żeby została w Kaplicy, gdy on będzie szukał śladu
+(*no to leć!*). Przystań Słowa daje mu wtedy dwie rzeczy: sztukę łucznictwa *Zastygła Toń*
+i pierwsze imię, które łączy go z nocnym napadem — *Trupie Ostrze*.
+
 }}
 
 {{model pewnosc=60 pytanie="Dlaczego bohater ukrywa przed Ruby spotkanie z człowiekiem w czerni?"

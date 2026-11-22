@@ -18,7 +18,8 @@ posąg*, do którego porównany jest stary hełm — *bliźniaczo podobny do zbr
 bezgłowego kamiennego posągu w Kaplicy Generała*.
 
 Kaplica jest więc miejscem pamięci po kimś, kto stracił głowę w walce, i targiem zarazem:
-to tam handluje Brodacz Guang i tam przywozi *nową książkę z opowieściami*. W rozegranych
-scenach bohater jeszcze do niej nie dociera.
+to tam handluje Brodacz Guang i tam przywozi *nową książkę z opowieściami*. Bohater odprowadza tam Ruby — *w drodze powrotnej i tak mijamy Kaplicę Generała* — ale
+zapis nie pokazuje go w środku: ostatnie, co widać, to Ruby pędząca po książkę i Youxia
+zostający na drodze.
 
 }}
