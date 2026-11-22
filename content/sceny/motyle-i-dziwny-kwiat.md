@@ -5,7 +5,7 @@ tytul: "Motyle i dziwny kwiat"
 epizod: epizod-droga-do-kaplicy
 numer_sceny: "3-3"
 kolejnosc: 7
-streszczenie: "W drodze Ruby niecierpliwi się, że robi się ciemno, i pyta, czemu motyle krążą wokół jej twarzy. Bohater zostawia przy ścieżce dziwny kwiat, a Ruby dziwi się, że go nie zabiera."
+streszczenie: "W drodze Ruby woła, żeby Youxia nie szedł bez niej do Kaplicy, a potem pyta, czemu motyle krążą wokół jej twarzy. Bohater zostawia przy ścieżce dziwny kwiat, a Ruby dziwi się, że go nie zabiera."
 zapis: 2026-11-22-001.md
 postacie: [youxia, ruby-zhou]
 miejsca: []
@@ -48,9 +48,9 @@ utworzono: 2026-11-22
 
 ### Kwiat, którego nikt nie zrywa
 
-Te cztery sceny są najkrótszym, co w całym rozdziale jest: po jednym zdaniu, po jednym
-geście. I właśnie dlatego widać w nich różnicę tempa. Ruby liczy czas — *jak tak dalej pójdzie,
-zrobi się ciemno* — a potem przestaje się spieszyć, gdy tylko zobaczy motyle.
+Te krótkie wymiany są najkrótszym, co w całym rozdziale jest: po jednym zdaniu, po jednym
+geście. I właśnie dlatego widać w nich różnicę tempa: Ruby najpierw się niecierpliwi,
+a potem przestaje się spieszyć, gdy tylko zobaczy motyle.
 
 Motyle są tu dwa razy: krążą wokół jej twarzy, a ona chce je *przegonić daleko, daleko*.
 To to samo dziecko, które w scenie obietnicy urwało rozmowę na widok owada.
