@@ -6,6 +6,15 @@ rodzaj: przedmiot
 postacie: [jiang-wulang, youxia, ruby-zhou]
 miejsca: [bambusowa-chata]
 tagi: [wlocznia, chata]
+interpretacje:
+  - data: "2026-11-22 23:40"
+    zmiana: "Hipoteza o włóczni jako przygotowaniu do wyjścia ma teraz poziom pewności; zdanie *jedyną rzeczą* zastąpione *rzeczą*, bo opis nie wylicza wszystkiego, co leży w chacie."
+    fragment: "Włócznia jako testament"
+    poprzednio: |
+      Włócznia jest jedyną rzeczą w chacie, którą wuj zostawił otwarcie — leży i czeka, nie jest
+      schowana jak list. To rozróżnienie jest w opowieści znaczące: sekretem jest korespondencja,
+      a nie broń. Ktoś, kto uczy dziecko włóczni w tajemnicy przed gospodynią, a potem zostawia
+      broń na widoku, przygotowuje je do wyjścia, którego sam nie może zrobić.
 utworzono: 2026-11-21
 ---
 
@@ -39,11 +48,11 @@ a nie w skrzyni.
 
 }}
 
-{{model
+{{model pewnosc=45 pytanie="Czy broń zostawiona na widoku jest przygotowaniem do wyjścia?"
 
 ## Włócznia jako testament
 
-Włócznia jest jedyną rzeczą w chacie, którą wuj zostawił otwarcie — leży i czeka, nie jest
+Włócznia jest rzeczą w chacie, którą wuj zostawił otwarcie — leży i czeka, nie jest
 schowana jak list. To rozróżnienie jest w opowieści znaczące: sekretem jest korespondencja,
 a nie broń. Ktoś, kto uczy dziecko włóczni w tajemnicy przed gospodynią, a potem zostawia
 broń na widoku, przygotowuje je do wyjścia, którego sam nie może zrobić.

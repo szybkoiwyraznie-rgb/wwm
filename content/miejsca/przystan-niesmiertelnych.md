@@ -5,6 +5,18 @@ tytul: "Przystań Nieśmiertelnych"
 rodzaj: przystań
 postacie: [jiang-wulang]
 tagi: [przystan, list]
+interpretacje:
+  - data: "2026-11-22 23:32"
+    zmiana: "Wuj zniknął trzy lata temu, ale zapis nie mówi, że zniknął z przystani; przystań jest jednym ze śladów jego przeszłości, nie pierwszym."
+    fragment: "Opis"
+    poprzednio: |
+      Miejsce, w którym osiadł Jiang Wulang. List Wei nazywa je wprost: *odkąd osiadłeś
+      w Przystani Nieśmiertelnych, na żadne przesłane pismo nie odpowiadasz i spraw świata nie
+      dopuszczasz do siebie*. Wei czyta z tego, że przyjaciel *chce się odciąć od dawnych spraw*.
+
+      Dla bohatera to na razie tylko nazwa z listu. W chacie nikt o przystani nie mówi, a wuj
+      zniknął stamtąd trzy lata temu — przystań jest więc punktem na mapie, którego jeszcze nie
+      widziano, i pierwszym śladem, że wuj miał życie przed chatą.
 utworzono: 2026-11-21
 ---
 
@@ -14,11 +26,11 @@ utworzono: 2026-11-21
 
 Miejsce, w którym osiadł Jiang Wulang. List Wei nazywa je wprost: *odkąd osiadłeś
 w Przystani Nieśmiertelnych, na żadne przesłane pismo nie odpowiadasz i spraw świata nie
-dopuszczasz do siebie*. Wei czyta z tego, że przyjaciel *chce się odciąć od dawnych spraw*.
+dopuszczasz do siebie*. I dodaje: *to znak, że chcesz się odciąć od dawnych spraw*.
 
 Dla bohatera to na razie tylko nazwa z listu. W chacie nikt o przystani nie mówi, a wuj
-zniknął stamtąd trzy lata temu — przystań jest więc punktem na mapie, którego jeszcze nie
-widziano, i pierwszym śladem, że wuj miał życie przed chatą.
+zniknął trzy lata temu — przystań jest więc punktem na mapie, którego jeszcze nie widziano,
+i jednym ze śladów, że wuj miał życie przed chatą.
 
 }}
 

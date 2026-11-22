@@ -5,6 +5,18 @@ tytul: "Kotek Liliowiec"
 rodzaj: inne
 miejsca: [zielne-bezdroza]
 tagi: [kot, bambus, zwierzeta]
+interpretacje:
+  - data: "2026-11-22 23:37"
+    zmiana: "Imię *liliowiec* jest nazwą kwiatu, nie domu — zdanie przeniesione do opracowania; usunięto twierdzenie, że kot *nie chce wiedzieć* o pałacu."
+    fragment: "Opis"
+    poprzednio: |
+      Dziki kot z bambusowego gaju, który odzywa się nad urwiskiem jednym okrzykiem: *miał! miał!*
+      Jego imię nie jest imieniem domu: *liliowiec* to nazwa kwiatu, nie kota.
+
+      Jest dziki od czterech pokoleń: *jego ojciec, dziadek, a nawet pradziadek byli dzikusami*.
+      Nie wie, *w jakim zbytku żyją koty cesarskie w pałacu w Bianliangu*, i nie chce wiedzieć —
+      chce *być najwolnym dzikim kotem w bambusowym gaju, jak ci wielcy wojownicy, którzy kiedyś
+      często przemykali między bambusami*.
 utworzono: 2026-11-22
 ---
 
@@ -13,12 +25,20 @@ utworzono: 2026-11-22
 ## Opis
 
 Dziki kot z bambusowego gaju, który odzywa się nad urwiskiem jednym okrzykiem: *miał! miał!*
-Jego imię nie jest imieniem domu: *liliowiec* to nazwa kwiatu, nie kota.
 
 Jest dziki od czterech pokoleń: *jego ojciec, dziadek, a nawet pradziadek byli dzikusami*.
-Nie wie, *w jakim zbytku żyją koty cesarskie w pałacu w Bianliangu*, i nie chce wiedzieć —
-chce *być najwolnym dzikim kotem w bambusowym gaju, jak ci wielcy wojownicy, którzy kiedyś
-często przemykali między bambusami*.
+Nie wie, *w jakim zbytku żyją koty cesarskie w pałacu w Bianliangu* — chce *być najwolnym
+dzikim kotem w bambusowym gaju, jak ci wielcy wojownicy, którzy kiedyś często przemykali
+między bambusami*.
+
+}}
+
+{{opracowanie
+
+## Imię z kwiatu
+
+*Liliowiec* to nazwa kwiatu, nie kota. Imię mówi więc o świecie roślinnym, a nie o domu:
+kot nosi imię tego, co go otacza, nie tego, do kogo należy.
 
 }}
 
