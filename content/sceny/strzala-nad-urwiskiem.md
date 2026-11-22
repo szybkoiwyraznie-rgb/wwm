@@ -14,6 +14,11 @@ watki: [watek-dawe-dzieje]
 sekcje_analizy:
   - "Dwa ptaki jedną strzałą → Dwa ptaki jedną strzałą"
 tagi: [lucznictwo, urwisko, spotkanie]
+interpretacje:
+  - data: "2026-11-23 00:00"
+    zmiana: "Cytaty z rękopisu są dosłowne: *zwłaszcza rozdział trzeci* i *owoce wielu lat moich badań*, nie formy przepisane."
+    fragment: "Analiza"
+    poprzednio: "Rękopis nie jest przy tym księgą tajemnic w rozumieniu Ruby. Feng mówi o *rozdziale trzecim*\ni o tym, *jak siła naciągu przy cięciwie na drugim stawie palca wpływa na donośność strzału*\n— to notatki z prób, nie zaklęcie. Ruby, która spodziewała się skarbu, dostaje *owoc wielu\nlat badań* i nie wie, co z nim zrobić: *aż mi się w głowie kręci*."
 utworzono: 2026-11-22
 ---
 
@@ -88,10 +93,10 @@ Przeprosiny są jednak zbyt hojne, żeby je przyjąć bez pytania. *Tyle lat pra
 nam to oddajesz?* — mówi Youxia, i ma rację: rękopis jest dla tego człowieka całym dorobkiem,
 a oddaje go obcym, którzy stanęli w linii strzału.
 
-Rękopis nie jest przy tym księgą tajemnic w rozumieniu Ruby. Feng mówi o *rozdziale trzecim*
+Rękopis nie jest przy tym księgą tajemnic w rozumieniu Ruby. Feng mówi: *zwłaszcza rozdział trzeci*
 i o tym, *jak siła naciągu przy cięciwie na drugim stawie palca wpływa na donośność strzału*
-— to notatki z prób, nie zaklęcie. Ruby, która spodziewała się skarbu, dostaje *owoc wielu
-lat badań* i nie wie, co z nim zrobić: *aż mi się w głowie kręci*. Bohater rozumie wartość
+— to notatki z prób, nie zaklęcie. Ruby, która spodziewała się skarbu, dostaje *owoce wielu
+lat moich badań* i nie wie, co z nim zrobić: *aż mi się w głowie kręci*. Bohater rozumie wartość
 lepiej niż ona i dlatego pyta, czy takie przeprosiny nie są zbyt hojne.
 
 W odpowiedzi Feng zdradza zasadę swojej szkoły: *chuchać na własne rupiecie jak na skarb
