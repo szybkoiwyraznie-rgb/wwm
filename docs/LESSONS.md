@@ -232,3 +232,32 @@ granicą.
 **Obejście:** każda dostawa dostaje własny plik `rozgrywka/zapisy/<data>-<nr>.md`, a sceny
 z niej cytują właśnie ten plik. `npm run zapis` porównuje każdą scenę tylko z jej archiwum,
 więc pomyłka wychodzi od razu, a nie po tygodniu.
+
+## 21. Cudzysłów nie sprawdza cytatu — prozy nie pilnuje `npm run zapis`
+
+**Objaw:** w analizie sceny i na stronach encji stały zdania w kursywie, które wyglądały jak
+cytat z zapisu, choć w archiwum ich nie było — *zbiła cię tak, że policzek aż pali*,
+*kupiłem ją u przystani*, *dokładnie przeszukać okolice*. Jedno z nich niosło cały akapit
+wniosku o obyczaju cuconia policzkiem.
+
+**Przyczyna:** `npm run zapis` porównuje wyłącznie bloki `:::zapis`. Proza encji i analiz nie
+przechodzi przez żadne porównanie z archiwum, a renderer traktuje kursywę jak zwykłe
+podkreślenie — nie ma pojęcia, że autor miał na myśli cytat. Zielone bramy nic o tym nie mówią.
+
+**Obejście:** przed użyciem kursywy jako cytatu sprawdzam zdanie w `rozgrywka/zapisy/`
+(`grep`). Jeśli to parafraza — piszę ją bez cudzysłowu. Jeśli wniosek — idzie do `{{model}}`.
+Cytat nieistniejący w archiwum jest błędem merytorycznym, nie stylistycznym.
+
+## 22. Pole i proza muszą mówić to samo
+
+**Objaw:** strona Sali Powrotu Wiosny miała `kraina: jiangnan`, a w prozie stało, że sala
+*nie leży w Jiangnan*, bo Chen proponuje podróż *tam*. W dodatku boks `{{model}}` tłumaczył
+czytelnikowi, dlaczego przypisano „pole `kraina`” — czyli mówił o schemacie zamiast o świecie.
+
+**Przyczyna:** pole zostało wypełnione przy tworzeniu strony, a potem tekst zaczął przeczyć
+temu wypełnieniu. Build sprawdza, czy cel pola istnieje, ale nie czy zgadza się z prozą.
+
+**Obejście:** przed commitem czytam frontmatter razem z pierwszym akapitem. Gdy opowieść nie
+mówi, gdzie coś leży, pole zostaje puste — pusta lista i brak pola znaczą „jeszcze nie wiem”.
+Zmiana takiego przypisania to zmiana twierdzenia, więc idzie z wpisem `interpretacje:`
+(ADR 0006), a nie po cichu.
