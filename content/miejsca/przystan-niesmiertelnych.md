@@ -12,11 +12,27 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Miejsce, w którym osiadł Jiang Wulang i o którym bohater mówi w chacie *u przystani* —
-*nawet ją wyciągnęli*, *kupiłem ją u przystani*. W liście Wei nazywa je wprost: *odkąd
-osiadłeś w Przystani Nieśmiertelnych, na żadne przesłane pismo nie odpowiadasz*.
+Miejsce, w którym osiadł Jiang Wulang. List Wei nazywa je wprost: *odkąd osiadłeś
+w Przystani Nieśmiertelnych, na żadne przesłane pismo nie odpowiadasz i spraw świata nie
+dopuszczasz do siebie*. Wei czyta z tego, że przyjaciel *chce się odciąć od dawnych spraw*.
 
-Przystań jest więc tym miejscem, w którym wuj schował się przed światem — a kuźnia stojąca
-*u przystani niebios* dodaje do tego kawałek codzienności, obok której przechodził.
+Dla bohatera to na razie tylko nazwa z listu. W chacie nikt o przystani nie mówi, a wuj
+zniknął stamtąd trzy lata temu — przystań jest więc punktem na mapie, którego jeszcze nie
+widziano, i pierwszym śladem, że wuj miał życie przed chatą.
 
+}}
+
+{{model pewnosc=35 pytanie="Czy Przystań Nieśmiertelnych to ta sama przystań, przy której stoi kuźnia?"
+
+## Przystań i kuźnia
+
+List mówi o przystani, w której osiadł wuj. Opis starej włóczni mówi z kolei, że Jiang
+kupił ją *przechodząc koło kuźni* *u Przystani Niebios*. Być może to jedno miejsce pod dwiema
+nazwami: przystań, przy której stoi kuźnia, i przystań, w której ktoś się osiedla, mają ten
+sam kształt. Pewności nie ma, bo opowieść nie zestawia obu nazw w jednym zdaniu.
+
+## Miejsce w drodze
+
+Przystań jest miejscem, przez które się przepływa, a nie domem. Kto tam zostaje, wybiera
+punkt w drodze zamiast osiedla — i to pasuje do człowieka, który nie odpowiada na listy.
 }}

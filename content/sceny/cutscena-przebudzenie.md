@@ -75,12 +75,12 @@ utworzono: 2026-11-21
 
 ### Cuconie policzkiem
 
-Walka jest już za bohaterem, gdy scena się zaczyna. Zapis nie pokazuje ani jednego ciosu:
-wchodzi w moment, w którym bohater leży nieprzytomny, a Ruby cuci go policzkiem —
-*zbiła cię tak, że policzek aż pali*. Chwilę potem Ruby zaprzecza, żeby w ogóle uderzyła. To nie jest kłamstwo, a obyczaj:
-cuci się człowieka policzkiem i zaraz się tego wypiera, bo uderzenie bliźniego jest
-niegrzeczne nawet wtedy, gdy ratuje życie. Bohater pyta więc *ty mnie uderzyłaś?* nie po to,
-żeby ją przyłapać, a żeby usłyszeć, że nie.
+Walka jest już za bohaterem, gdy scena się zaczyna. Opowieść nie pokazuje ani jednego ciosu:
+wchodzi w moment, w którym bohater leży nieprzytomny, a Ruby krzyczy nad nim *wodzu, obudź
+się!*. Bohater pyta *Ruby Zhou, ty mnie uderzyłaś?*, a ona zaprzecza: *kto by cię tam bił!*.
+Zaprzeczenie jest prawdziwe tylko połowicznie — Ruby rzeczywiście wołała i wołała, ale pytanie
+bohatera nie bierze się z niczego. W scenie nie ma więc kłamcy: jest dwoje ludzi, którzy
+opowiadają to samo zdarzenie z dwóch stron.
 
 Bohater kłamie z innego powodu niż Ruby. Mówi *coś mi się przywidziało*, choć przed chwilą
 sam zaczął mówić o człowieku w czerni — i urwał w pół zdania — a potem wymienił, co tamten
