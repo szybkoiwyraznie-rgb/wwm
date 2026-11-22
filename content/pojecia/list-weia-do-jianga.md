@@ -14,11 +14,10 @@ utworzono: 2026-11-21
 ## Opis
 
 List znaleziony w ukrytej szufladce w chacie wuja Jianga, adresowany do niego i podpisany
-nazwiskiem Wei. Bohater czyta go na głos, zaskoczony samym adresatem: *list do wuja Jianga?
+nazwiskiem Wei. Bohater czyta go, zaskoczony samym adresatem: *list do wuja Jianga?
 „Kreśli Wei”. ktoś o nazwisku Wei.*
 
-List jest przepisany słowo w słowo i nic go nie zastąpi — jest w nim wszystko, co wiadomo
-o przeszłości wuja: przystań, w której osiadł, uczeń uwięziony na ziemiach Tang, klęska
+Listu nic nie zastąpi — jest w nim wszystko, co wiadomo o przeszłości wuja: przystań, w której osiadł, uczeń uwięziony na ziemiach Tang, klęska
 Śniących Kukieł, poemat *Opłakując Kong Kana* i wezwanie do walki. Bohater chowa list,
 bo *może coś powie o tym, gdzie się podział wuj*.
 

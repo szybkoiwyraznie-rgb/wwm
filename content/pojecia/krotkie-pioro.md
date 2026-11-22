@@ -17,8 +17,15 @@ Materiał na strzały: *pióra zwykłych ptaków, lekkie i sprężyste*. Zwykły
 których wokół pełno — i to jest w tej notatce cała jej treść: strzała nie potrzebuje ptaka
 szlachetnego, potrzebuje pióra, które się nie złamie w locie.
 
-Nad urwiskiem te dwa światy stykają się dosłownie. Feng strzela do białych ptaków, żeby
-ćwiczyć oko, a pióra tych ptaków są tym, z czego robi się strzały.
+}}
+
+{{model pewnosc=35 pytanie="Czy pióra białych ptaków z urwiska trafiają do strzał Fenga?"
+
+## Ptak i strzała
+
+Nad urwiskiem te dwa światy stykają się dosłownie: Feng strzela do białych ptaków, żeby
+ćwiczyć oko, a pióra zwykłych ptaków są tym, z czego robi się strzały. Opowieść nie mówi
+jednak, czy zbiera pióra po swoich strzałach — to tylko możliwość, nie zwyczaj.
 
 }}
 
