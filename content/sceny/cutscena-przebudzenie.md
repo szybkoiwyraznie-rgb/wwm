@@ -14,6 +14,14 @@ sekcje_analizy:
   - "Cuconie policzkiem → Cuconie policzkiem"
   - "Umowa i książka z opowieściami → Umowa i książka z opowieściami"
 tagi: [przebudzenie, ruby]
+interpretacje:
+  - data: "2026-11-22 23:46"
+    zmiana: "Scena nie pokazuje walki, więc analiza mówi o *zdarzeniu*, nie o *walce*; bohater pamięta skutek, nie przebieg."
+    fragment: "Analiza"
+    poprzednio: |
+      Walka jest już za bohaterem, gdy scena się zaczyna. Opowieść nie pokazuje ani jednego ciosu:
+      wchodzi w moment, w którym bohater leży nieprzytomny, a Ruby krzyczy nad nim *wodzu, obudź
+      się!*. Bohater pyta *Ruby Zhou, ty mnie uderzyłaś?*, a ona zaprzecza: *kto by cię tam bił!*.
 utworzono: 2026-11-21
 ---
 
@@ -75,17 +83,17 @@ utworzono: 2026-11-21
 
 ### Cuconie policzkiem
 
-Walka jest już za bohaterem, gdy scena się zaczyna. Opowieść nie pokazuje ani jednego ciosu:
-wchodzi w moment, w którym bohater leży nieprzytomny, a Ruby krzyczy nad nim *wodzu, obudź
-się!*. Bohater pyta *Ruby Zhou, ty mnie uderzyłaś?*, a ona zaprzecza: *kto by cię tam bił!*.
+Zdarzenie jest już za bohaterem, gdy scena się zaczyna. Opowieść nie pokazuje ani jednego
+ciosu: wchodzi w moment, w którym bohater leży nieprzytomny, a Ruby krzyczy nad nim *wodzu,
+obudź się!*. Bohater pyta *Ruby Zhou, ty mnie uderzyłaś?*, a ona zaprzecza: *kto by cię tam bił!*.
 Zaprzeczenie jest prawdziwe tylko połowicznie — Ruby rzeczywiście wołała i wołała, ale pytanie
 bohatera nie bierze się z niczego. W scenie nie ma więc kłamcy: jest dwoje ludzi, którzy
 opowiadają to samo zdarzenie z dwóch stron.
 
 Bohater kłamie z innego powodu niż Ruby. Mówi *coś mi się przywidziało*, choć przed chwilą
 sam zaczął mówić o człowieku w czerni — i urwał w pół zdania — a potem wymienił, co tamten
-zrobił: że zniknął, że *zabrał tylko wisiorek*, że jemu nic nie zrobił. To wspomnienie walki,
-nie sprawozdanie z niej: bohater pamięta skutek, a nie przebieg. Zaprzeczenie jest więc
+zrobił: że zniknął, że *zabrał tylko wisiorek*, że jemu nic nie zrobił. To wspomnienie
+zdarzenia, nie sprawozdanie z niego: bohater pamięta skutek, a nie przebieg. Zaprzeczenie jest więc
 nie dla Ruby, a dla siebie: to on sam nie chce dokończyć tej myśli, bo nie wie, kim tamten był.
 Ruby to słyszy, bo w następnym zdaniu pyta, *czy coś przed nią nie ukrywa*.
 
