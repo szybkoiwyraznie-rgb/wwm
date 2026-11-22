@@ -9,10 +9,9 @@ pierwsze_wystapienie: cutscena-przebudzenie
 tagi: [chata, uczta, miecz]
 interpretacje:
   - data: "2026-11-22 23:24"
-    zmiana: "Usunięto wymyślony wiek Ruby; rozdzielono dwie kwestie o pobudce, które były cytowane jako jedno zdanie."
+    zmiana: "Rozdzielono dwie kwestie o pobudce, które były cytowane jako jedno zdanie."
     fragment: "Opis"
     poprzednio: |
-      Dziewczynka, na oko dziesięcio-, dwunastoletnia. To ona budzi bohatera policzkiem — a potem
       zaprzecza, że go uderzyła: *kto by cię tam bił! wołałam i wołałam*. Mówi szybko, obraża się na pokaz i odwołuje obrazę w następnym
       zdaniu, a każde jej zdanie jest jednocześnie informacją i żartem.
   - data: "2026-11-22 23:24"
@@ -35,7 +34,7 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Dziewczynka. To ona budzi bohatera policzkiem — a potem zaprzecza, że go uderzyła:
+Dziewczynka, na oko dziesięcio-, dwunastoletnia. To ona budzi bohatera policzkiem — a potem zaprzecza, że go uderzyła:
 *kto by cię tam bił!* — *wołałam i wołałam, tak głośno, a ty nic!* Mówi szybko, obraża
 się na pokaz i odwołuje obrazę w następnym zdaniu, a każde jej zdanie jest jednocześnie
 informacją i żartem.

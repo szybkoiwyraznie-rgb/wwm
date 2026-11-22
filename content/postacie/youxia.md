@@ -14,7 +14,7 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Bohater rozdziału, nazywany przez Ruby *wodzem*. Mieszka w Bambusowej Chacie, którą nazywa
+Bohater rozdziału, mężczyzna około trzydziestki, nazywany przez Ruby *wodzem*. Mieszka w Bambusowej Chacie, którą nazywa
 chatą wuja Jianga, i mówi o sobie jako o wychowanku: to jemu wuj zostawił nefrytowy wisiorek
 i to jego wuj uczył włóczni, *w tajemnicy przed ciotką Han, jak ojciec dziecko*.
 
