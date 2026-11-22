@@ -9,12 +9,12 @@ pierwsze_wystapienie: scena-prolog-zdrajca
 tagi: [prologi, jianghu]
 interpretacje:
   - data: "2026-11-22 23:20"
-    zmiana: "Tytuł *pan Sali Powrotu Wiosny* należy do Jianga, nie do Chena: Chen zwraca się nim do gospodarza, a *zdrajca* to odpowiedź Jianga. Chen nie przedstawia się tytułem, nie wygłasza wyroku i nie siada — zapis nie pokazuje, kto zajmuje miejsce."
+    zmiana: "Tytuł *pan Sali Powrotu Wiosny* należy do Jianga, nie do Chena: Chen zwraca się nim do gospodarza, a *zdrajca* to odpowiedź Jianga. Chen nie przedstawia się tytułem, nie wygłasza wyroku, nie ocenia wina (*cienkie* jest odpowiedzią Jianga) i nie siada — zapis nie pokazuje, kto zajmuje miejsce."
     fragment: "Opis"
     poprzednio: |
       Człowiek, który przychodzi zabić i zostaje zaproszony na wino. W Sali Powrotu Wiosny
       przedstawia się tytułem, nie imieniem — *pan Sali Powrotu Wiosny* — i wygłasza wyrok:
-      *zdrajca*. Potem jednak kosztuje trunku i ocenia go jak smakosz: *cienkie*.
+      *zdrajca*. Potem jednak siada, kosztuje trunku i ocenia go jak smakosz: *cienkie*.
 
       Jego sposób bycia jest w tym samym zdaniu, w którym jest jego groźba: proponuje wujowi
       wspólną podróż do Jiangnanu, *gdzie Hojna Wiosna jest słodka i gładka*, chwilę po tym, jak
@@ -37,7 +37,8 @@ utworzono: 2026-11-21
 
 Człowiek, który przychodzi zabić i zostaje zaproszony na wino. W Sali Powrotu Wiosny
 zwraca się do Jianga tytułem, nie imieniem — *pan Sali Powrotu Wiosny* — i słyszy w odpowiedzi
-*zdrajca*. Potem jednak kosztuje trunku i ocenia go jak smakosz: *cienkie*.
+*zdrajca*. Potem jednak kosztuje trunku i pyta o smak — *no i jak? Smakuje?* — a odpowiedź brzmi
+*cienkie*.
 
 Jego sposób bycia jest w tym samym zdaniu, w którym jest jego groźba: proponuje Jiangowi
 wspólną podróż do Jiangnanu — *za to Hojna Wiosna z Jiangnanu jest słodka i gładka* — chwilę
@@ -51,8 +52,8 @@ z nim i żartuje z tego, że *cały świat przeciw nam — to dopiero uciecha*.
 ## Kto to jest
 
 Chen jest tym, kto w prologu mówi najwięcej i najmniej o sobie. Nie podaje nazwiska:
-słyszymy tylko tytuł, którym obdarza Jianga — *pan Sali Powrotu Wiosny* — i wyrok, który
-Jiang przyjmuje bez zaprzeczenia. Złoty Pawilon wchodzi do pościgu razem z ludźmi, którzy
+słyszymy tylko tytuł, którym obdarza Jianga — *pan Sali Powrotu Wiosny* — i słowo
+*zdrajca*, które Jiang przyjmuje bez zaprzeczenia. Złoty Pawilon wchodzi do pościgu razem z ludźmi, którzy
 chcą odebrać Nefryt Zhenguan, ale Chen nie wygląda na sługę: to on decyduje, kiedy stanąć
 w czyjej obronie.
 
