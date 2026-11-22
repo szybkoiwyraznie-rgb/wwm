@@ -159,10 +159,16 @@ odlatuje *w dłoń mężczyzny na posągu Buddy*. To jedyne miejsce w rozegranyc
 widać, kto trzyma nici: nie król, nie Chen, a figura z kamienia. Warto przy tym zauważyć, że
 mówi się *mężczyzny*, a nie *Buddy* — posąg jest miejscem, w którym stoi człowiek.
 
-Wino i pieczęć rozpoznać można po obyczaju: dzban na stole znaczy w opowieściach rycerskich,
-że strony rozmawiają, a nie walczą, a pieczęć z nefrytu należała w cesarskich Chinach do
-insygniów urzędu — nosi się ją, żeby móc potwierdzić czyjeś słowo. To tłumaczy, dlaczego
-nikt nie próbuje wisiorka obejrzeć, tylko go *odebrać*.
+}}
+
+{{model
+
+## Wino i jadeit
+
+Dzban na stole znaczy w opowieściach rycerskich, że strony rozmawiają, a nie walczą.
+Jadeit w cesarskich Chinach bywał pieczęcią urzędu — rzeczą, która potwierdza czyjeś słowo
+— więc imię *Nefryt Zhenguan* brzmi jak nazwa przedmiotu, którego się nie ogląda, tylko
+strzeże. To tłumaczy, dlaczego nikt nie próbuje wisiorka obejrzeć, a chce go *odebrać*.
 
 }}
 

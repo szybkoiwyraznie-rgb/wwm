@@ -53,9 +53,10 @@ Mostek jest w tej scenie dokładnie tym, czym ma być: przeszkodą, która nie m
 wspólnego z fabułą, a mówi wszystko o tym, kto po nim idzie. Ruby skacze, bo *zaraz będzie
 nowa książka z opowieściami*, a deski puszczają.
 
-Youxia nie karci jej ani razu. Mówi *idź spokojnie, nie skacz*, i to zdanie pada wcześniej,
-zanim most się zawalił — czyli wiedział. Potem pomaga jej przejść, a ona odpowiada
-zdaniem, które jest całym jej charakterem: *o, to tak też można? ja też potrafię!*
+Youxia nie karci jej ani razu. Mówi *idź spokojnie, nie skacz*, ale dopiero wtedy, gdy most
+już się pod nią zawalił — to nie ostrzeżenie, a westchnienie człowieka, który zna to dziecko.
+Potem pomaga jej przejść, a ona odpowiada zdaniem, które jest całym jej charakterem:
+*o, to tak też można? ja też potrafię!*
 
 Druga wymiana przenosi ciężar na jutro: *jutro na Uczcie Pierwszego Dzbana pokażę to na sam
 koniec!* Ruby obiecuje więc występ publiczny, o którym nikt jej nie prosił, i to ona sama
