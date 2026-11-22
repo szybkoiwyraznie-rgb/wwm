@@ -47,6 +47,11 @@ który epizod i scena to są. Wynik pracy:
    który pojawia się w scenie **wprost**. Nowe encje powstają tylko z dostawy, nie z domysłu po treści innej
    encji. Encja istniejąca **nie jest duplikowana**: dopisujesz jej nowe wystąpienie w polu
    `sceny`/`postacie` i uzupełniasz treść, jeśli zapis wniósł coś nowego.
+4b. **Trzy sekcje poza dialogami są tym samym materiałem** (ADR 0020): `KOMPENDIUM`,
+   `ZADANIA` i `PRZEDMIOTY` z dostawy. Każdy wątek, nawiązanie kulturowe i zdanie o świecie
+   z tych sekcji dostaje miejsce w kronice — jako treść istniejącej strony albo nowa strona.
+   Pomija się wyłącznie czystą mechanikę bez lore: procenty, liczby obrażeń, pojemność
+   apteczki, numery z ekranu.
 5. **Relacje** — pola frontmattera (`postacie`, `miejsca`, `watki`, `konteksty`) plus
    wikilinki w treści. Bez nich wpis jest wyspą i nie pojawi się w „Powiązaniach”.
 6. **Analiza i kontekst** — co pochodzi z kultury chińskiej lub konwencji wuxia, a co jest

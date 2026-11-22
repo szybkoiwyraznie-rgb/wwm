@@ -9,6 +9,9 @@
   karawaną, a Ruby biegnie po książkę.
 - Nowe hasła: Zastygła Toń, Dzban na wino z księgą o przygotowaniu naczynia, Kotek Liliowiec
   i Zielne Bezdroża.
+- Ze świata poza dialogami: Biały Ptak Strzela do Yi i Zarażenie Miazmatami z traktatu
+  o chorobach, Trupie Ostrze jako imię z plotki, Krótkie pióro, Surowa ruda, Kłoda, Dzikie
+  owoce i Ochłapy mięsa jako rzeczy z drogi, nazwa pierwszego zadania rozdziału.
 
 ## 2026-11-21 19:20
 

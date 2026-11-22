@@ -16,6 +16,11 @@ utworzono: 2026-11-21
 wyważenie, siła potrzebna do naciągnięcia, celność. Broń jest dobra nie dlatego, że jest
 wielka, ale dlatego, że nie stawia oporu własnemu właścicielowi.
 
+Nad urwiskiem bohaterowie widzą drugi łuk, o którym zapis mówi mniej: *doprawione rogi łuku
+niewiele wydłużają naciąg*. To zdanie łucznika, nie kupca — mówi o granicy, której nie da się
+przeskoczyć samą robotą, i tłumaczy, czemu Feng woli uczyć się od nowa, niż kupić lepszy
+sprzęt.
+
 }}
 
 {{kwerenda

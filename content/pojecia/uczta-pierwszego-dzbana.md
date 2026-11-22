@@ -17,6 +17,10 @@ zabawę: *co roku wszyscy się weselili i upijali do nieprzytomności*. W tym ro
 *robi z tego jakąś tajemnicę* i *ogłosi coś ważnego*, a Ruby grozi, że nie pozwoli mu
 przyjść — czyli że zaproszenie nie jest rzeczą oczywistą.
 
+Do tego dochodzi zapowiedź z drogi: *jutro na Uczcie Pierwszego Dzbana pokażę to na sam
+koniec! Wskoczę na sam szczyt, żeby wszyscy widzieli!* — mówi Ruby, czyli Uczta ma też
+miejsce na popis dziecka, nie tylko na ogłoszenie gospodyni.
+
 W opowiedzianym dniu Uczta jest jeszcze *jutro*. Cały rozdział ciąży ku niej i żadne
 z pytań, które bohater sobie zadaje — o wuja, o wisiorek, o człowieka w czerni — nie zostaje
 zamknięte przed jej nadejściem.

@@ -9,6 +9,7 @@ ten sam — nie ma dwóch prawd o tym, jak baza rośnie.
 | Co | Gdzie |
 |---|---|
 | Surowy zapis sesji gry | `rozgrywka/zapisy/<RRRR-MM-DD>-<nr>.md` |
+| Kompendium, zadania, przedmioty | te same pliki, sekcje `KOMPENDIUM` / `ZADANIA` / `PRZEDMIOTY` |
 | Informacja, który epizod i scena to są | w przekazanym zapisie lub w notatce nad sceną |
 | Granica rozegranej fabuły | `rozgrywka/postep.json` |
 
@@ -81,6 +82,13 @@ w scenie:
   `pierwsze_wystapienie` (postać), `kraina` (miejsce), `siedziba` (sekta),
 - **nie istnieje i nie jest potrzebna** → nie zakładaj strony. Pusta strona niczego nie
   tłumaczy.
+
+Zanim zamkniesz krok 5, przejdź trzy sekcje poza dialogami (ADR 0020). `KOMPENDIUM`,
+`ZADANIA` i `PRZEDMIOTY` to nie ekwipunek, a materiał o świecie: miejsce, obyczaj, zwierzę,
+choroba, rzemiosło, nazwa zadania, zdanie o rzeczy. Każdy taki wątek albo nawiązanie dostaje
+miejsce w kronice — treść istniejącej strony albo nowa strona. Pomijasz tylko mechanikę bez
+lore: procenty, liczby obrażeń, pojemność apteczki, numer z ekranu. Zdanie „zwyczajny miecz”
+nie potrzebuje strony; zdanie o mieczu, który przybrany ojciec nazywał swoim, potrzebuje.
 
 Kraina i sekta pojawiają się tylko wtedy, gdy opowieść je nazywa. Nie zgadujemy przynależności
 postaci z wiedzy o grze — dopóki scena tego nie mówi, pole zostaje puste.
