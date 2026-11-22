@@ -5,12 +5,24 @@ tytul: "Jiang Wulang"
 tytul_ja: "江五郎"
 pseudonim: "Jiang Yan"
 rola: mentor
-przydzial: "przybrany ojciec; dawny dowódca znany na pograniczach"
-kraina: jiangnan
-krainy: [jiangnan, ziemie-tang]
+przydzial: "przybrany ojciec; przybrany syn dowódcy znanego na pograniczach"
 watki: [watek-dawe-dzieje, watek-nefryt-zhenguan]
 pierwsze_wystapienie: scena-prolog-zdrajca
 tagi: [rodzina, wlocznia, prologi]
+interpretacje:
+  - data: "2026-11-22 23:15"
+    zmiana: "Jiang Wulang nie jest dowódcą z pogranicza: przekaz włóczni mówi o dowódcy, który był jego przybranym ojcem, a Jiang był owym przybranym synem, który ukrył się w jianghu. Usunięto też przypisanie go do Jiangnanu i ziem Tang, którego nie potwierdza żadna scena."
+    fragment: "Opis"
+    poprzednio: "przydzial: \"przybrany ojciec; dawny dowódca znany na pograniczach\" / kraina: jiangnan / krainy: [jiangnan, ziemie-tang]"
+  - data: "2026-11-22 23:25"
+    zmiana: "W scenie to Chen zwraca się tytułem do Jianga, a *zdrajca* jest odpowiedzią Jianga; usunięto twierdzenie, że to Chen mówi mu w twarz *zdrajca*."
+    fragment: "Opis"
+    poprzednio: |
+      Człowiek, za którym idzie cały rozdział, choć w jego własnym czasie jest nieobecny. Prolog
+      pokazuje go w Sali Powrotu Wiosny: Chen Zixi wchodzi na ucztę i mówi mu w twarz *zdrajca*,
+      a on nie zaprzecza. *To ty.* — *Zgadza się.* — *Przyszedłem cię zabić.* Jiang odpowiada
+      zdaniem, które jest całym jego charakterem: *choćby i na końcu drogi / i łyk, co gardło
+      zwilży*.
 utworzono: 2026-11-21
 ---
 
@@ -19,17 +31,17 @@ utworzono: 2026-11-21
 ## Opis
 
 Człowiek, za którym idzie cały rozdział, choć w jego własnym czasie jest nieobecny. Prolog
-pokazuje go w Sali Powrotu Wiosny: Chen Zixi wchodzi na ucztę i mówi mu w twarz *zdrajca*,
-a on nie zaprzecza. *To ty.* — *Zgadza się.* — *Przyszedłem cię zabić.* Jiang odpowiada
-zdaniem, które jest całym jego charakterem: *choćby i na końcu drogi / i łyk, co gardło
-zwilży*.
+pokazuje go w Sali Powrotu Wiosny: Chen Zixi wchodzi na ucztę i zwraca się do niego tytułem
+*pan Sali Powrotu Wiosny*, a Jiang odpowiada jednym słowem — *zdrajca* — i nie zaprzecza,
+gdy pada *przyszedłem cię zabić*. Potem mówi zdanie, które jest całym jego charakterem:
+*choćby i na końcu drogi / i łyk, co gardło zwilży*.
 
 Nazywają go dwoma imionami. Chen Zixi mówi do niego *Jiang Yan*, i tym imieniem woła go
 człowiek jianghu, oskarżając o zabicie ojca i zagarnięcie jadeitu. W chacie, którą teraz
 przeszukuje Youxia, jest *wujem Jiangiem*: przybranym ojcem, który uczył chłopca włóczni
-w tajemnicy przed ciotką Han i po cichu ulepszył kupioną w kuźni włócznię. Kronika nie
-rozstrzyga, czy to dwa imiona jednego człowieka, czy dwa jego życia — ale w obu mówi się
-o nim z szacunkiem, którego nikt nie okazuje wrogowi.
+w tajemnicy przed ciotką Han i po cichu ulepszył kupioną w kuźni włócznię. Nie wiadomo,
+czy to dwa imiona jednego człowieka, czy dwa jego życia — ale w obu mówi się o nim
+z szacunkiem, którego nikt nie okazuje wrogowi.
 
 }}
 
@@ -37,7 +49,7 @@ o nim z szacunkiem, którego nikt nie okazuje wrogowi.
 
 ## Dwa imiona
 
-Zapis daje mu dwa imiona i nie mówi, że są jednej osoby — ale mówi to zachowaniem. Chen Zixi
+Ma dwa imiona, a żadne z nich nie mówi, że należą do jednej osoby — ale mówi to zachowaniem. Chen Zixi
 zwraca się do niego *bohaterze Jiang*, a potem woła go po imieniu: *Jiang Yan, Jiang Yan!*
 — i to ten sam człowiek, z którym pił w gospodzie. W chacie to *wuj Jiang*, a przy włóczni
 stoi *Jiang Wulang* — i to samo zdanie mówi, że uczył chłopca w tajemnicy przed ciotką Han.
