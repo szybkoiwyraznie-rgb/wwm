@@ -13,13 +13,12 @@ utworzono: 2026-11-22
 
 ## Opis
 
-Naczynie, od którego Uczta Pierwszego Dzbana bierze swoją nazwę. *Na południu używano głównie
-porcelanowych dzbanów, na północnym zachodzie przeważnie glinianych* — a Qinghe leży na
-południu, więc pierwszy dzban roku jest tu porcelanowy.
+Naczynie, od którego Uczta Pierwszego Dzbana bierze swoją nazwę. *Naczynie do przechowywania
+wina. Na południu używano głównie porcelanowych dzbanów, na północnym zachodzie przeważnie
+glinianych.*
 
-Rzecz jest w opowieści o tyle ważna, że w chacie wuja Jianga stoi ich więcej niż jeden i żaden
-nie jest pełny. *Widać wuj Jiang i w tym roku nie napije się nowego wina* — mówi bohater,
-a to zdanie o dzbanie jest zdaniem o nieobecnym.
+Bohater patrzy na naczynia w chacie wuja i mówi: *widać wuj Jiang i w tym roku nie napije się
+nowego wina*. Zdanie o dzbanie jest więc zdaniem o nieobecnym.
 
 }}
 
@@ -37,4 +36,13 @@ Cała ta procedura jest o tym samym, o czym mówi Uczta: wino wymaga przygotowan
 na rok, więc kto zaniedba naczynie, ten traci nie jeden wieczór, a cały sezon.
 
 {{zrodlo tytul="北山酒經 · Księga wina z Północnej Góry (Zhu Gong, Song)" adres="https://zh.wikisource.org/wiki/%E5%8C%97%E5%B1%B1%E9%85%92%E7%B6%93" data="2026-11-22"}}
+}}
+
+{{model pewnosc=40 pytanie="Z czego pito by na Uczcie Pierwszego Dzbana w Qinghe?"
+
+## Porcelana czy glina
+
+Qinghe leży na południu — Trupie Ostrze *zjechał na południe do Qinghe* — więc dzban
+postawiony na tutejszym stole powinien być porcelanowy, nie gliniany. To tylko wniosek
+z geografii: opowieść nie mówi, z czego pije się na Uczcie.
 }}

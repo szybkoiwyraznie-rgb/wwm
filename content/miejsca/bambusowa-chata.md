@@ -12,9 +12,9 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Dom bohatera, nazywany w zapisie *chatą wuja Jianga* i *Bambusową Chatą*. Stoi osobno,
-wśród zarośli, skoro żeby obejrzeć ślady przed chatą, trzeba *dokładnie przeszukać okolice*.
-W środku jest kurz, drewniane deski, *tablica przodków* i ukryta szufladka z listem.
+Dom bohatera, zwany *chatą wuja Jianga* i *Bambusową Chatą*. Stoi wśród bambusów, z dala
+od innych domów. W środku jest kurz, drewniane deski, *tablica przodków* i ukryta szufladka
+z listem.
 
 Chata jest pełna rzeczy, których nikt nie wyrzucił: włóczni kupionej w kuźni i po cichu
 ulepszonej, wyblakłego chwostu miecza z zatartym wzorem *Rok po roku pokoju*, listu

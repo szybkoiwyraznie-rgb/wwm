@@ -12,9 +12,8 @@ utworzono: 2026-11-22
 
 ## Opis
 
-Dziki kot z bambusowego gaju, który pojawia się w scenie nad urwiskiem jednym okrzykiem:
-*miał! miał!* Jego imię nie jest imieniem domu — *liliowiec* to nazwa kwiatu, a kot nosi ją
-za barwę.
+Dziki kot z bambusowego gaju, który odzywa się nad urwiskiem jednym okrzykiem: *miał! miał!*
+Jego imię nie jest imieniem domu: *liliowiec* to nazwa kwiatu, nie kota.
 
 Jest dziki od czterech pokoleń: *jego ojciec, dziadek, a nawet pradziadek byli dzikusami*.
 Nie wie, *w jakim zbytku żyją koty cesarskie w pałacu w Bianliangu*, i nie chce wiedzieć —
@@ -28,6 +27,6 @@ często przemykali między bambusami*.
 ## Kot, który pamięta wojowników
 
 Kot myśli o wojownikach, którzy przemykali między bambusami, i zauważa, że dawno ich tu nie
-widział. To zdanie jest w tej opowieści jedynym głosem, który pamięta Jiang Wulanga
-z czasów, gdy bywał w gaju — i mówi je zwierzę, więc nikt go nie pyta o daty.
+widział. Być może jednym z nich był Jiang Wulang — nikt inny w rozdziale nie pamięta go
+z czasów, gdy bywał w gaju. Mówi to zwierzę, więc nikt go nie pyta o daty.
 }}

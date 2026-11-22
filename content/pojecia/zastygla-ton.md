@@ -20,8 +20,15 @@ Feng przekazuje ją Youxii jako dar za nieudany strzał i mówi, że robi to pie
 W praktyce uczy jej tak: *w „Zastygłej Toni” kluczem jest wyczucie czasu. Śledź lot ptaka
 i puść cięciwę we właściwym momencie*. Cała nauka jest więc nauką czekania.
 
+}}
+
+{{model pewnosc=40 pytanie="Co znaczy nazwa »Zastygła Toń«?"
+
+## Toń, która nieruchomieje
+
 Nazwa jest obrazem tego, czego uczy: toń, która zastyga, przestaje być wodą w ruchu i staje
-się wodą, w której widać dno.
+się wodą, w której widać dno. Łucznik ma zrobić z oddechem i wzrokiem to, co mróz robi
+z wodą — zatrzymać ruch na tyle, żeby przejrzeć go na wylot.
 
 }}
 

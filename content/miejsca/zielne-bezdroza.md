@@ -14,12 +14,12 @@ utworzono: 2026-11-22
 ## Opis
 
 Okolica na północny zachód od Bambusowej Chaty, przez którą idzie się do Kaplicy Generała.
-Jest tu urwisko, po którego drugiej stronie stoi łucznik, i jest wąwóz na tyle szeroki,
-że strzała przelatuje nad nim, nim ktokolwiek zdąży się obejrzeć.
+Jest tu urwisko, a po jego drugiej stronie stoi łucznik — na tyle daleko, że twarzy nie
+widać, i na tyle blisko, że strzała doleci.
 
 Miejsce jest znane z ptaków. *Nad urwiskiem wzbijają się stada ptaków*, a Ruby patrzy na nie
 z zachwytem, jak na wszystko, co lata. To tutaj bohaterowie pierwszy raz widzą, że ktoś
-w Qinghe poluje — i że nie na zwierzęta.
+w Qinghe strzela — i że strzały nie trafiają tylko w ptaki.
 
 }}
 
@@ -27,8 +27,8 @@ w Qinghe poluje — i że nie na zwierzęta.
 
 ## Wąwóz jako miara
 
-Odległość między dwoma brzegami urwiska jest w tej scenie jednostką: na tyle daleko, że nie
-widać twarzy, i na tyle blisko, że strzała doleci. Feng przeprasza z drugiego brzegu, czyli
-mówi do ludzi, których nie widzi — i to wystarcza, żeby scena miała dwóch bohaterów
-po dwóch stronach.
+Odległość między dwoma brzegami urwiska jest miarą tej chwili: na tyle daleko, że nie widać
+twarzy, i na tyle blisko, że strzała doleci. Feng przeprasza z drugiego brzegu, czyli mówi
+do ludzi, których nie widzi — i to wystarcza, żeby po dwóch stronach stanęło dwóch
+bohaterów.
 }}
