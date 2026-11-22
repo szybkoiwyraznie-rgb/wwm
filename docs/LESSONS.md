@@ -261,3 +261,33 @@ temu wypełnieniu. Build sprawdza, czy cel pola istnieje, ale nie czy zgadza si�
 mówi, gdzie coś leży, pole zostaje puste — pusta lista i brak pola znaczą „jeszcze nie wiem”.
 Zmiana takiego przypisania to zmiana twierdzenia, więc idzie z wpisem `interpretacje:`
 (ADR 0006), a nie po cichu.
+
+## 23. Etykieta mówcy obowiązuje do końca sceny
+
+**Objaw:** w Prologu 1 podpisane są tylko pierwsze dwie kwestie — Chen Zixi i Jiang Wulang —
+a reszta dialogu nie ma etykiet. Analiza przepisała jednak całą wymianę jak zwykłą scenę
+i przypisała Chenowi *zdrajcę* oraz ocenę *cienkie*, choć *zdrajca* stoi przy Jiangu,
+a *cienkie* jest odpowiedzią na pytanie o smak.
+
+**Przyczyna:** archiwum cutscen jest transkrypcją, w której podpisy pojawiają się nieregularnie.
+Kolejne linie czyta się wtedy jak dialog „naprzemienny”, a interpretacja dopowiada mówców tam,
+gdzie zapis ich nie podaje.
+
+**Obejście:** podpisana kwestia jest dowodem i nie wolno przenosić jej na inną postać. Przy
+liniach bez podpisu cytuję zdanie bez przypisania („pada zdanie…”) albo zostawiam je
+w `{{model}}` jako hipotezę. Scena z dwoma podpisami i dziesięcioma liniami bez podpisów nie
+jest sceną dwóch mówców.
+
+## 24. Cytat nie poprawia literówki
+
+**Objaw:** cytat z *Zastygłej Toni* miał w archiwum *we właścimym momencie*, a na stronie
+stał *we właściwym momencie*. Podobnie dwie osobne kwestie Ruby były sklejone w jedno zdanie
+z jednym wykrzyknikiem.
+
+**Przyczyna:** proza encji nie przechodzi przez `npm run zapis`, a ręczne przepisywanie cytatu
+„przy okazji” poprawia to, co autor uznał za oczywisty błąd. Czytelnik dostaje wtedy zdanie,
+którego w źródle nie ma — dokładnie ten sam błąd, co wymyślony cytat, tylko mniejszy.
+
+**Obejście:** cytuję tylko fragment przed literówką i dalej streszczam bez cudzysłowu; jeśli
+literówka jest częścią sensu, zostawiam ją i oznaczam. Dwie kwestie to dwa cytaty, nawet gdy
+stoją w jednej linii dialogowej.
