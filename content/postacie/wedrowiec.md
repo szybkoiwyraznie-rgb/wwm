@@ -10,7 +10,7 @@ krainy: []
 miejsca: []
 watki: [niedzwiedzie-zadanie]
 tagi: [wedrowiec, mapa, ksiega, droga]
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{dostawa

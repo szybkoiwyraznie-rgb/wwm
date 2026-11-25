@@ -9,7 +9,7 @@ postacie: [youxia, wedrowiec]
 rozdzialy: [rozdzial-1]
 epizody: [epizod-wedrowiec]
 konteksty: []
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{dostawa

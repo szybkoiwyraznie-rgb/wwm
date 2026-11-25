@@ -1,6 +1,6 @@
 # Co nowego
 
-## 2026-11-22 20:30
+## 2026-11-25 16:40
 
 - Teatr cieni nad Północnym Przymierzem: akt o Ośmiu Wspaniałych, oskarżenie o zdradę
   i druga faza przedstawienia, w której wrogowie drżą przed wojskiem.

@@ -6,7 +6,7 @@ epizod: epizod-teatr-cieni
 numer_sceny: "5-1"
 kolejnosc: 11
 streszczenie: "Nad brzegiem Północnego Przymierza teatr cieni odgrywa akt o Ośmiu Wspaniałych; głos zza kurtyny oskarża słuchacza o zdradę i wzywa go do walki. Druga faza przedstawienia zapowiada bitwę i strach wrogów."
-zapis: 2026-11-22-002.md
+zapis: 2026-11-25-001.md
 postacie: []
 krainy: []
 miejsca: []
@@ -16,7 +16,7 @@ konteksty: [osmiu-wspanialych-z-hedong]
 sekcje_analizy:
   - "Kurtyna i głos → Kurtyna i głos"
 tagi: [teatr, kurtyna, osmiu-wspanialych]
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{dostawa

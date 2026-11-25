@@ -4,7 +4,7 @@ slug: sciegno-wolowe
 tytul: "Ścięgno wołowe"
 rodzaj: przedmiot
 tagi: [luk, rzemioslo, material, lowiectwo]
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{dostawa

@@ -4,7 +4,7 @@ slug: czarne-zelazo
 tytul: "Czarne żelazo"
 rodzaj: przedmiot
 tagi: [zelazo, meteoryt, bron, jianghu]
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{dostawa

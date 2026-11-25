@@ -4,7 +4,7 @@ slug: tlusty-kawal-miesa
 tytul: "Tłusty kawał mięsa"
 rodzaj: przedmiot
 tagi: [jedzenie, mieso, droga, kuchnia]
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{dostawa

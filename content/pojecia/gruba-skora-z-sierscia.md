@@ -4,7 +4,7 @@ slug: gruba-skora-z-sierscia
 tytul: "Gruba skóra z sierścią"
 rodzaj: przedmiot
 tagi: [skora, futro, rzemioslo, las]
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{dostawa

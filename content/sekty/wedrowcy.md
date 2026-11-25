@@ -8,7 +8,7 @@ watki: [niedzwiedzie-zadanie]
 konteksty: []
 epizody: [epizod-wedrowiec]
 tagi: [wedrowcy, mapa, miara, droga]
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{dostawa

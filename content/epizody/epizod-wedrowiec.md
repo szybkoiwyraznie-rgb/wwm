@@ -13,7 +13,7 @@ watki: []
 sekty: [wedrowcy]
 konteksty: [kronika-swiata-sztuk-walki]
 tagi: [wedrowiec, droga, ksiega]
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{opracowanie

@@ -13,7 +13,7 @@ sekty: [teatr-cieni]
 watki: []
 konteksty: [osmiu-wspanialych-z-hedong]
 tagi: [teatr, wspomnienie, walka]
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{opracowanie

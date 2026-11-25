@@ -6,7 +6,7 @@ epizod: epizod-wedrowiec
 numer_sceny: "6-1"
 kolejnosc: 12
 streszczenie: "Przy drodze Youxia spotyka Wędrowca, który po trzech dniach czekania oddaje mu „Kronikę” i prosi o przegonienie niedźwiedzia. W zamian zdradza mu pozdrowienie Wędrowców i odchodzi."
-zapis: 2026-11-22-002.md
+zapis: 2026-11-25-001.md
 postacie: [youxia, wedrowiec]
 krainy: []
 miejsca: []
@@ -16,7 +16,7 @@ konteksty: [kronika-swiata-sztuk-walki]
 sekcje_analizy:
   - "Trzy dni przy drodze → Trzy dni przy drodze"
 tagi: [wedrowiec, droga, ksiega, niedzwiedz]
-utworzono: 2026-11-22
+utworzono: 2026-11-25
 ---
 
 {{dostawa
