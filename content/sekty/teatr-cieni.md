@@ -52,3 +52,13 @@ a nie tylko skończyć przedstawienie.
 
 }}
 
+{{model pewnosc=25 pytanie="Czy Północne Przymierze z cutsceny to to samo, co Dawne Przymierze Yanbei z wyliczanki Ruby?"
+
+## Brzeg Północnego Przymierza
+
+Cutscena mówi o brzegu Północnego Przymierza. Brzmi to jak [[dane-przymierze-yanbei]]
+z wyliczanki Ruby — ale tamto przymierze jest *dawne*, a to jest brzegiem, na którym stoi
+teatr. Być może to ta sama nazwa po latach; być może tylko podobne słowa. Pewności nie ma,
+więc scena nie łączy ich na stałe.
+
+}}
