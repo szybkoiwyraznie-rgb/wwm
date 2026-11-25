@@ -9,8 +9,8 @@ status: rozegrane
 sceny: [wedrowiec-przy-drodze]
 postacie: [youxia, wedrowiec]
 miejsca: []
-watki: []
 sekty: [wedrowcy]
+watki: [niedzwiedzie-zadanie]
 konteksty: [kronika-swiata-sztuk-walki]
 tagi: [wedrowiec, droga, ksiega]
 utworzono: 2026-11-25
