@@ -4,6 +4,13 @@ slug: ochlapy-miesa
 tytul: "Ochłapy mięsa"
 rodzaj: przedmiot
 tagi: [jedzenie, droga, gotowanie]
+interpretacje:
+  - data: "2026-11-25 16:40"
+    zmiana: "Opis zaczyna się od pierwszego wariantu z dostawy (soczyste ochłapy), a drugi wariant wyjaśnia, czyje to mięso."
+    fragment: "Opis"
+    poprzednio: |
+      *Mięso drobnych zwierząt — małży, żab i podobnych — to składnik ukochany przez smakoszy.
+      Pamiętaj: przed zjedzeniem trzeba je dobrze ugotować.*
 utworzono: 2026-11-22
 ---
 

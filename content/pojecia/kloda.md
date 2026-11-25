@@ -4,6 +4,14 @@ slug: kloda
 tytul: "Kłoda"
 rodzaj: przedmiot
 tagi: [drewno, rzemioslo, budowa]
+interpretacje:
+  - data: "2026-11-25 16:40"
+    zmiana: "Opis zaczyna się od pierwszego wariantu z dostawy (pień cięty na odcinki), a drugi wariant zostaje jako uzupełnienie o słojach."
+    fragment: "Opis"
+    poprzednio: |
+      *Odcinek pnia pospolitego drzewa po obróbce, słoje gęste.* Materiał jak ruda: gotowy do
+      użycia, ale jeszcze nie użyty. Gęste słoje znaczą drewno twarde i stare — takie idzie na
+      trzon włóczni albo na belkę, nie na podpałkę.
 utworzono: 2026-11-22
 ---
 

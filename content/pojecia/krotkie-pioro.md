@@ -6,6 +6,14 @@ rodzaj: przedmiot
 postacie: [feng-jisheng]
 miejsca: [zielne-bezdroza]
 tagi: [strzala, ptaki, rzemioslo]
+interpretacje:
+  - data: "2026-11-25 16:40"
+    zmiana: "Opis łączy oba warianty z dostawy: pióra są lekkie i wytrzymałe oraz lekkie i sprężyste; nie zmieniono wniosku o białych ptakach."
+    fragment: "Opis"
+    poprzednio: |
+      Materiał na strzały: *pióra zwykłych ptaków, lekkie i sprężyste*. Zwykłych, czyli takich,
+      których wokół pełno — i to jest w tej notatce cała jej treść: strzała nie potrzebuje ptaka
+      szlachetnego, potrzebuje pióra, które się nie złamie w locie.
 utworzono: 2026-11-22
 ---
 
