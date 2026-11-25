@@ -62,7 +62,7 @@ cierpi jak jego rola.
 ## Akt, który nie chce się skończyć
 
 Głos nie przedstawia się imieniem; mówi *moi bracia*, jakby stał na czele Ośmiu Wspaniałych.
-Opis teatru cieni mówi o braciach Sheng Wen i Sheng Wu, którzy od dziecka grali w teatrze
+Opis teatru cieni mówi o braciach Sheng Wen i Sheng Wu, którzy od dziecka utrzymywali się z teatru cieni
 i w czasie najazdu Kitanów połączyli się z bohaterami z różnych stron w Ośmiu Wspaniałych
 z Qinghe. Jeśli to oni, to nie grają
 już własnego życia — grają rolę, która ich trzyma. Wtedy *zdrajco! giń!* nie jest kwestią
