@@ -51,10 +51,11 @@ export function nazwaTypuWMnogiej(n, typ) {
 }
 
 /**
- * Działy w nagłówku. Hasła i przedmioty muszą tu być: bez pozycji w menu jedyny
+ * Działy w nagłówku. Miejsca i hasła muszą tu być: bez pozycji w menu jedyny
  * sposób dotarcia do rzeczy z opowieści prowadził przez wyszukiwarkę, więc dla
- * czytelnika te strony nie istniały. Miejsca nie mają pozycji, bo prowadzą do
- * nich krainy i powiązania, a menu nie jest spisem wszystkiego.
+ * czytelnika te strony nie istniały. Menu prowadzi do każdego działu, który ma
+ * treść — inaczej kafel na pierwszym ekranie obiecuje stronę, do której nie ma
+ * innej drogi niż przypadkowy odsyłacz.
  */
 const MENU = [
   { trasa: 'chronologia', etykieta: 'Chronologia' },

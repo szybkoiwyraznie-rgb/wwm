@@ -14,6 +14,32 @@ sekcje_analizy:
   - "Cuconie policzkiem → Cuconie policzkiem"
   - "Umowa i książka z opowieściami → Umowa i książka z opowieściami"
 tagi: [przebudzenie, ruby]
+interpretacje:
+  - data: "2026-11-22 23:46"
+    zmiana: "Scena nie pokazuje walki, więc analiza mówi o *zdarzeniu*, nie o *walce*; bohater pamięta skutek, nie przebieg."
+    fragment: "Analiza"
+    poprzednio: |
+      Walka jest już za bohaterem, gdy scena się zaczyna. Opowieść nie pokazuje ani jednego ciosu:
+      wchodzi w moment, w którym bohater leży nieprzytomny, a Ruby krzyczy nad nim *wodzu, obudź
+      się!*. Bohater pyta *Ruby Zhou, ty mnie uderzyłaś?*, a ona zaprzecza: *kto by cię tam bił!*.
+  - data: "2026-11-23 00:02"
+    zmiana: "Parafraza w kursywie zastąpiona dosłowną kwestią Ruby: *chyba czegoś przede mną nie ukrywasz?*."
+    fragment: "Analiza"
+    poprzednio: "Ruby to słyszy, bo w następnym zdaniu pyta, *czy coś przed nią nie ukrywa*."
+  - data: "2026-11-23 00:02"
+    zmiana: "Parafraza w kursywie zastąpiona dosłowną kwestią Ruby: *to jakiś wielki mistrz z jianghu?*."
+    fragment: "Analiza"
+    poprzednio: |
+      Warto zauważyć, że Ruby nie widziała nikogo. Jej pytanie, *to jakiś wielki mistrz jianghu?*,
+      jest dziecinne i przez to ważne: cała ta scena pokazuje, że bohater spotkał kogoś, kogo
+      świat dorosłych zna z nazwy, a on sam nie potrafi powiedzieć o nim nic więcej.
+  - data: "2026-11-23 00:02"
+    zmiana: "Parafraza w kursywie zastąpiona dosłowną kwestią Ruby: *a umowa, że razem ruszamy w jianghu?*."
+    fragment: "Analiza"
+    poprzednio: |
+      Druga część jest pozornie błaha i przygotowuje cały dzień. Ruby mówi o *umowie, że razem
+      ruszamy w jianghu* — czyli tej samej, którą bohater jej przerwał, zasypiając — a potem daje
+      się przekonać do wyjścia jednym zdaniem o kupcu.
 utworzono: 2026-11-21
 ---
 
@@ -75,28 +101,28 @@ utworzono: 2026-11-21
 
 ### Cuconie policzkiem
 
-Walka jest już za bohaterem, gdy scena się zaczyna. Zapis nie pokazuje ani jednego ciosu:
-wchodzi w moment, w którym bohater leży nieprzytomny, a Ruby cuci go policzkiem —
-*zbiła cię tak, że policzek aż pali*. Chwilę potem Ruby zaprzecza, żeby w ogóle uderzyła. To nie jest kłamstwo, a obyczaj:
-cuci się człowieka policzkiem i zaraz się tego wypiera, bo uderzenie bliźniego jest
-niegrzeczne nawet wtedy, gdy ratuje życie. Bohater pyta więc *ty mnie uderzyłaś?* nie po to,
-żeby ją przyłapać, a żeby usłyszeć, że nie.
+Zdarzenie jest już za bohaterem, gdy scena się zaczyna. Opowieść nie pokazuje ani jednego
+ciosu: wchodzi w moment, w którym bohater leży nieprzytomny, a Ruby krzyczy nad nim *wodzu,
+obudź się!*. Bohater pyta *Ruby Zhou, ty mnie uderzyłaś?*, a ona zaprzecza: *kto by cię tam bił!*.
+Zaprzeczenie jest prawdziwe tylko połowicznie — Ruby rzeczywiście wołała i wołała, ale pytanie
+bohatera nie bierze się z niczego. W scenie nie ma więc kłamcy: jest dwoje ludzi, którzy
+opowiadają to samo zdarzenie z dwóch stron.
 
 Bohater kłamie z innego powodu niż Ruby. Mówi *coś mi się przywidziało*, choć przed chwilą
 sam zaczął mówić o człowieku w czerni — i urwał w pół zdania — a potem wymienił, co tamten
-zrobił: że zniknął, że *zabrał tylko wisiorek*, że jemu nic nie zrobił. To wspomnienie walki,
-nie sprawozdanie z niej: bohater pamięta skutek, a nie przebieg. Zaprzeczenie jest więc
+zrobił: że zniknął, że *zabrał tylko wisiorek*, że jemu nic nie zrobił. To wspomnienie
+zdarzenia, nie sprawozdanie z niego: bohater pamięta skutek, a nie przebieg. Zaprzeczenie jest więc
 nie dla Ruby, a dla siebie: to on sam nie chce dokończyć tej myśli, bo nie wie, kim tamten był.
-Ruby to słyszy, bo w następnym zdaniu pyta, *czy coś przed nią nie ukrywa*.
+Ruby to słyszy, bo w następnym zdaniu pyta: *chyba czegoś przede mną nie ukrywasz?*
 
-Warto zauważyć, że Ruby nie widziała nikogo. Jej pytanie, *to jakiś wielki mistrz jianghu?*,
+Warto zauważyć, że Ruby nie widziała nikogo. Jej pytanie, *to jakiś wielki mistrz z jianghu?*,
 jest dziecinne i przez to ważne: cała ta scena pokazuje, że bohater spotkał kogoś, kogo
 świat dorosłych zna z nazwy, a on sam nie potrafi powiedzieć o nim nic więcej.
 
 ### Umowa i książka z opowieściami
 
-Druga część jest pozornie błaha i przygotowuje cały dzień. Ruby mówi o *umowie, że razem
-ruszamy w jianghu* — czyli tej samej, którą bohater jej przerwał, zasypiając — a potem daje
+Druga część jest pozornie błaha i przygotowuje cały dzień. Ruby przypomina: *a umowa, że razem ruszamy w jianghu?* — czyli tę samą, którą bohater
+jej przerwał, zasypiając — a potem daje
 się przekonać do wyjścia jednym zdaniem o kupcu.
 
 Bohater pozbywa się jej celowo. *No to leć!*, *muszę jeszcze zajrzeć do chaty* — dwa zdania,

@@ -33,9 +33,9 @@ do połowy lata panuje zgnilizna zielonych traw, a od końca lata do początku z
 żółtych ości*.
 
 Podany autorytet to *Traktat o przyczynach i objawach wszelkich chorób* (諸病源候論) Chao
-Yuanfanga z czasów Sui, zwój dziesiąty, *Objawy zaraz i epidemii*. To najstarsze chińskie
-dzieło o chorobach, a jego rozdział o miazmatach był przez wieki podstawą tego, jak południe
-widziano z północy: nie jako raj, a jako miejsce, w którym samo powietrze leczy i truje.
+Yuanfanga z czasów Sui, zwój dziesiąty, *Objawy zaraz i epidemii*, punkt trzeci: *Objawy
+zgnilizny bagiennej*. Południe widziano w nim nie jako raj, a jako miejsce, w którym samo
+powietrze leczy i truje.
 
 {{zrodlo tytul="諸病源候論 · Traktat o przyczynach i objawach wszelkich chorób (Chao Yuanfang, Sui), zwój X" adres="https://zh.wikisource.org/wiki/%E8%AB%B8%E7%97%85%E6%BA%90%E5%80%99%E8%AB%96" data="2026-11-22"}}
 }}

@@ -7,6 +7,27 @@ przydzial: "towarzysz Jiang Yana w prologu"
 watki: [watek-dawe-dzieje, watek-nefryt-zhenguan]
 pierwsze_wystapienie: scena-prolog-zdrajca
 tagi: [prologi, jianghu]
+interpretacje:
+  - data: "2026-11-22 23:20"
+    zmiana: "Tytuł *pan Sali Powrotu Wiosny* należy do Jianga, nie do Chena: Chen zwraca się nim do gospodarza, a *zdrajca* to odpowiedź Jianga. Chen nie przedstawia się tytułem, nie wygłasza wyroku, nie ocenia wina (*cienkie* jest odpowiedzią Jianga) i nie siada — zapis nie pokazuje, kto zajmuje miejsce."
+    fragment: "Opis"
+    poprzednio: |
+      Człowiek, który przychodzi zabić i zostaje zaproszony na wino. W Sali Powrotu Wiosny
+      przedstawia się tytułem, nie imieniem — *pan Sali Powrotu Wiosny* — i wygłasza wyrok:
+      *zdrajca*. Potem jednak siada, kosztuje trunku i ocenia go jak smakosz: *cienkie*.
+
+      Jego sposób bycia jest w tym samym zdaniu, w którym jest jego groźba: proponuje wujowi
+      wspólną podróż do Jiangnanu, *gdzie Hojna Wiosna jest słodka i gładka*, chwilę po tym, jak
+      zapowiedział mu śmierć. Kiedy Jiang Yan ucieka przed ludźmi jianghu, Chen idzie z nim —
+      i żartuje z tego, że *cały świat przeciw nam to dopiero uciecha*.
+  - data: "2026-11-22 23:20"
+    zmiana: "Chen nie podaje swojego nazwiska ani tytułu; tytuł, o którym mowa, należy do Jianga."
+    fragment: "Kto to jest"
+    poprzednio: |
+      Chen jest tym, kto w prologu mówi najwięcej i najmniej o sobie. Przedstawia się tytułem —
+      *pan Sali Powrotu Wiosny* — a nie nazwiskiem, i to jedyne miejsce, w którym sam się jakoś
+      nazywa. Złoty Pawilon wchodzi do pościgu razem z ludźmi, którzy chcą odebrać Nefryt Zhenguan,
+      ale Chen nie wygląda na sługę: to on decyduje, kiedy stanąć w czyjej obronie.
 utworzono: 2026-11-21
 ---
 
@@ -15,13 +36,14 @@ utworzono: 2026-11-21
 ## Opis
 
 Człowiek, który przychodzi zabić i zostaje zaproszony na wino. W Sali Powrotu Wiosny
-przedstawia się tytułem, nie imieniem — *pan Sali Powrotu Wiosny* — i wygłasza wyrok:
-*zdrajca*. Potem jednak siada, kosztuje trunku i ocenia go jak smakosz: *cienkie*.
+zwraca się do Jianga tytułem, nie imieniem — *pan Sali Powrotu Wiosny* — i słyszy w odpowiedzi
+*zdrajca*. Potem jednak kosztuje trunku i pyta o smak — *no i jak? Smakuje?* — a odpowiedź brzmi
+*cienkie*.
 
-Jego sposób bycia jest w tym samym zdaniu, w którym jest jego groźba: proponuje wujowi
-wspólną podróż do Jiangnanu, *gdzie Hojna Wiosna jest słodka i gładka*, chwilę po tym, jak
-zapowiedział mu śmierć. Kiedy Jiang Yan ucieka przed ludźmi jianghu, Chen idzie z nim —
-i żartuje z tego, że *cały świat przeciw nam to dopiero uciecha*.
+Jego sposób bycia jest w tym samym zdaniu, w którym jest jego groźba: proponuje Jiangowi
+wspólną podróż do Jiangnanu — *za to Hojna Wiosna z Jiangnanu jest słodka i gładka* — chwilę
+po tym, jak zapowiedział mu śmierć. Kiedy Jiang Yan ucieka przed ludźmi jianghu, Chen idzie
+z nim i żartuje z tego, że *cały świat przeciw nam — to dopiero uciecha*.
 
 }}
 
@@ -29,10 +51,11 @@ i żartuje z tego, że *cały świat przeciw nam to dopiero uciecha*.
 
 ## Kto to jest
 
-Chen jest tym, kto w prologu mówi najwięcej i najmniej o sobie. Przedstawia się tytułem —
-*pan Sali Powrotu Wiosny* — a nie nazwiskiem, i to jedyne miejsce, w którym sam się jakoś
-nazywa. Złoty Pawilon wchodzi do pościgu razem z ludźmi, którzy chcą odebrać Nefryt Zhenguan,
-ale Chen nie wygląda na sługę: to on decyduje, kiedy stanąć w czyjej obronie.
+Chen jest tym, kto w prologu mówi najwięcej i najmniej o sobie. Nie podaje nazwiska:
+słyszymy tylko tytuł, którym obdarza Jianga — *pan Sali Powrotu Wiosny* — i słowo
+*zdrajca*, które Jiang przyjmuje bez zaprzeczenia. Złoty Pawilon wchodzi do pościgu razem z ludźmi, którzy
+chcą odebrać Nefryt Zhenguan, ale Chen nie wygląda na sługę: to on decyduje, kiedy stanąć
+w czyjej obronie.
 
 Przyjmuje cios za Jiang Yana — i to jest jego jedyny czyn w całym prologu, który nie jest
 słowem. Po tym ciosie pada martwy Król Bez Oblicza, a Chen mówi dalej.

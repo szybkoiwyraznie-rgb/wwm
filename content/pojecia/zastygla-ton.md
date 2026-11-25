@@ -5,6 +5,14 @@ tytul: "Zastygła Toń"
 rodzaj: technika
 postacie: [feng-jisheng, youxia]
 tagi: [lucznictwo, technika, dar]
+interpretacje:
+  - data: "2026-11-22 23:36"
+    zmiana: "Feng daje rękopis w ramach przeprosin, a techniki uczy później; cytat nie poprawia już literówki *właścimym*, bo kończy się przed tym słowem. Wniosek o nauce czekania przeniesiony do modelu."
+    fragment: "Opis"
+    poprzednio: |
+      Feng przekazuje ją Youxii jako dar za nieudany strzał i mówi, że robi to pierwszy raz.
+      W praktyce uczy jej tak: *w „Zastygłej Toni” kluczem jest wyczucie czasu. Śledź lot ptaka
+      i puść cięciwę we właściwym momencie*. Cała nauka jest więc nauką czekania.
 utworzono: 2026-11-22
 ---
 
@@ -16,12 +24,20 @@ Sztuka łucznictwa, którą Feng Jisheng opisuje jednym zdaniem: *kto opanuje j�
 do końca, uciszy wiatr i wodę i dostrzeże każdą słabość zwierzyny*. Nie ma w nim ani jednego
 ruchu ręki — jest obietnica spokoju i wzroku.
 
-Feng przekazuje ją Youxii jako dar za nieudany strzał i mówi, że robi to pierwszy raz.
-W praktyce uczy jej tak: *w „Zastygłej Toni” kluczem jest wyczucie czasu. Śledź lot ptaka
-i puść cięciwę we właściwym momencie*. Cała nauka jest więc nauką czekania.
+Feng przekazuje ją Youxii po nieudanym strzale, w ramach przeprosin i wspólnej nauki, i mówi,
+że robi to pierwszy raz. W praktyce uczy jej tak: *w „Zastygłej Toni” kluczem jest wyczucie
+czasu* — i każe śledzić lot ptaka, czekając na właściwy moment.
+
+}}
+
+{{model pewnosc=40 pytanie="Co znaczy nazwa »Zastygła Toń«?"
+
+## Toń, która nieruchomieje
 
 Nazwa jest obrazem tego, czego uczy: toń, która zastyga, przestaje być wodą w ruchu i staje
-się wodą, w której widać dno.
+się wodą, w której widać dno. Łucznik ma zrobić z oddechem i wzrokiem to, co mróz robi
+z wodą — zatrzymać ruch na tyle, żeby przejrzeć go na wylot. Cała nauka jest więc nauką
+czekania.
 
 }}
 

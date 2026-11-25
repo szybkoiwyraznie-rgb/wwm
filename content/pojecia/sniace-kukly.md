@@ -16,7 +16,7 @@ Klęska, o której Wei pisze jak o rzeczy znanej i spodziewanej: *wiem, że klę
 Kukieł znów nadchodzi*. Słowo *znów* mówi, że stało się to już raz, dawno, i że Jiang Wulang
 miał w tym udział — inaczej Wei nie pisałby do niego, tylko do kogokolwiek innego.
 
-Poza tym zdaniem kronika nic o Śniących Kukłach nie wie: ani czym są, ani gdzie się pojawiły,
+Poza tym zdaniem nie wiadomo o Śniących Kukłach nic: ani czym są, ani gdzie się pojawiły,
 ani kogo dotknęła pierwsza klęska.
 
 }}

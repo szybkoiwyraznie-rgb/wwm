@@ -4,11 +4,11 @@ slug: rozdzial-1
 tytul: "Nieśmiertelni nie przypłyną"
 tytul_ja: "仙人渡不来"
 numer: 1
-epizody: [epizod-prologi, epizod-przebudzenie, epizod-droga-do-kaplicy, epizod-lucznik-z-przystani-slowa]
-watki: [watek-dawe-dzieje, watek-nefryt-zhenguan]
+epizody: [epizod-prologi, epizod-przebudzenie, epizod-droga-do-kaplicy, epizod-lucznik-z-przystani-slowa, epizod-teatr-cieni, epizod-wedrowiec]
+watki: [watek-dawe-dzieje, watek-nefryt-zhenguan, niedzwiedzie-zadanie]
 krainy: [jiangnan, ziemie-tang]
-sekty: [zloty-pawilon, przystan-slowa]
-postacie: [youxia, ruby-zhou, jiang-wulang, chen-zixi, czlowiek-w-czerni, ciotka-han, feng-jisheng, brodacz-guang]
+sekty: [zloty-pawilon, przystan-slowa, wedrowcy, teatr-cieni, trzy-wielkie-domy-zielonego-lasu]
+postacie: [youxia, ruby-zhou, jiang-wulang, chen-zixi, czlowiek-w-czerni, ciotka-han, feng-jisheng, brodacz-guang, wedrowiec]
 status: w-toku
 tagi: [rozdzial-pierwszy]
 utworzono: 2026-11-21
@@ -33,13 +33,8 @@ i ostrzega przed Trupim Ostrzem.
 
 ## Tytuł rozdziału
 
-Zapis gry podaje tytuł rozdziału pierwszy wprost, w bloku zadań: *Nieśmiertelni nie
-przypłyną*. Tytuł jest zdaniem o przystani — i zarazem pierwszym zdaniem zapowiedzi:
-ktoś, kto miał przypłynąć, nie przypłynie, a ludzie czekają na niego nad wodą.
-
-Z tego samego bloku zadań pochodzi nazwa pierwszego zadania rozdziału: *Znów przyleciała
-jaskółka*. Jaskółka wraca do gniazda, choć nikt na nią nie czeka — i to jest drugi obraz
-przystani w tej opowieści, obok nieśmiertelnych, którzy nie przypłyną.
+*Nieśmiertelni nie przypłyną* — tytuł jest zdaniem o przystani i zarazem pierwszym zdaniem
+zapowiedzi: ktoś, kto miał przypłynąć, nie przypłynie, a ludzie czekają na niego nad wodą.
 
 W rozegranych scenach tytuł jeszcze się nie domyka. Jest w nim jednak wszystko, co potrzebne,
 żeby go później rozpoznać: przystań, w której osiadł wuj, woda, po której nikt nie przypływa,

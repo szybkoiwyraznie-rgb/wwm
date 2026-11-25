@@ -5,10 +5,9 @@ tytul: "Zdrajca w Sali Powrotu Wiosny"
 epizod: epizod-prologi
 numer_sceny: "1-1"
 kolejnosc: 1
-streszczenie: "Chen Zixi przychodzi zabić Jiang Yana, a zostaje zaproszony na wino. Za Nefrytem Zhenguan rusza cały jianghu, Król Bez Oblicza wstaje po śmierci raz jeszcze, a Chen przyjmuje cios za bohatera."
+streszczenie: "Chen Zixi przychodzi zabić Jiang Wulanga, a zostaje zaproszony na wino. Za Nefrytem Zhenguan rusza cały jianghu, Król Bez Oblicza wstaje po śmierci raz jeszcze, a Chen przyjmuje cios za bohatera."
 zapis: 2026-11-21-001.md
 postacie: [chen-zixi, jiang-wulang, youxia]
-krainy: [jiangnan]
 miejsca: [sala-powrotu-wiosny]
 sekty: [zloty-pawilon]
 watki: [watek-nefryt-zhenguan, watek-dawe-dzieje]
@@ -19,6 +18,32 @@ sekcje_analizy:
   - "Rachunek za życie → Rachunek za życie"
   - "Martwy król otwiera oczy → Martwy król otwiera oczy"
 tagi: [prologi, wino, jadeit]
+interpretacje:
+  - data: "2026-11-22 23:52"
+    zmiana: "Streszczenie mówi o Jiang Wulangu — tak podpisana jest postać, do której Chen mówi w Sali; utożsamienie jej z Jiang Yanem pozostaje hipotezą, nie ustaleniem."
+    fragment: "Analiza"
+    poprzednio: "streszczenie: \"Chen Zixi przychodzi zabić Jiang Yana, a zostaje zaproszony na wino. Za Nefrytem Zhenguan rusza cały jianghu, Król Bez Oblicza wstaje po śmierci raz jeszcze, a Chen przyjmuje cios za bohatera.\""
+  - data: "2026-11-22 23:50"
+    zmiana: "Scena nie leży w Jiangnan: Chen proponuje dopiero wspólną podróż *tam*, więc pole `krainy` usunięte."
+    fragment: "Analiza"
+    poprzednio: "krainy: [jiangnan]"
+  - data: "2026-11-22 23:50"
+    zmiana: "*Zdrajca* jest kwestią Jianga, nie Chena; *cienkie* jest odpowiedzią na pytanie o smak, a zdania o strachu przed przeciwnikami nie przypisano Jiangowi bez podstawy w podpisach."
+    fragment: "Analiza"
+    poprzednio: |
+      Scena otwiera się od słów, których nikt nie łagodzi: *zdrajca*. Chen Zixi nie mówi, kogo
+      Jiang zdradził — imię zdrajcy jest w tym świecie wystarczające. Jiang nie zaprzecza ani
+      nie pyta, skąd wyrok; odpowiada *zgadza się*, czyli przyjmuje oskarżenie w całości.
+
+      Cały spór rozgrywa się przy stole i dotyczy wina. Chen kosztuje trunku i ocenia go
+      jednym słowem — *cienkie* — a potem sam proponuje podróż i lepsze wino. To nie jest
+      rozmowa zabójcy z ofiarą, a dwóch ludzi, którzy obyczaju picia używają jak języka:
+      kto pił z kim, ten odracza cios. Jiang odmawia, ale jego odmowa dotyczy wyjazdu, nie
+      walki — *niepotrzebnie*, mówi Chen, i w tym słowie jest cała różnica między nimi dwoma.
+
+      Ważyć trzeba jedno zdanie: *ja się boję tylko, że oni nie odważą się przyjść*. Jiang
+      boi się nie własnej śmierci, a tego, że przeciwnicy nie przyjdą. To zdanie człowieka,
+      który czeka, a nie ucieka.
 utworzono: 2026-11-21
 ---
 
@@ -106,20 +131,20 @@ Robak przelatuje i wnika w zwłoki: martwy Król Bez Oblicza znów otwiera oczy.
 
 ### Zdrajca przy jednym stole
 
-Scena otwiera się od słów, których nikt nie łagodzi: *zdrajca*. Chen Zixi nie mówi, kogo
-Jiang zdradził — imię zdrajcy jest w tym świecie wystarczające. Jiang nie zaprzecza ani
-nie pyta, skąd wyrok; odpowiada *zgadza się*, czyli przyjmuje oskarżenie w całości.
+Scena otwiera się od słów, których nikt nie łagodzi: *zdrajca*. Pada ono z ust Jianga,
+a nikt nie mówi, kogo Jiang zdradził — imię zdrajcy jest w tym świecie wystarczające.
+Jiang nie zaprzecza, gdy słyszy *to ty*; odpowiada *zgadza się*, czyli przyjmuje
+oskarżenie w całości.
 
-Cały spór rozgrywa się przy stole i dotyczy wina. Chen kosztuje trunku i ocenia go
-jednym słowem — *cienkie* — a potem sam proponuje podróż i lepsze wino. To nie jest
+Cały spór rozgrywa się przy stole i dotyczy wina. Chen pyta o smak, a odpowiedź brzmi
+jednym słowem — *cienkie*. Potem sam proponuje podróż i lepsze wino. To nie jest
 rozmowa zabójcy z ofiarą, a dwóch ludzi, którzy obyczaju picia używają jak języka:
 kto pił z kim, ten odracza cios. Jiang odmawia, ale jego odmowa dotyczy wyjazdu, nie
-walki — *niepotrzebnie*, mówi Chen, i w tym słowie jest cała różnica między nimi dwoma.
+walki — *niepotrzebnie* mówi Chen, i w tym słowie jest cała różnica między nimi dwoma.
 
-Ważyć trzeba jedno zdanie: *ja się boję tylko, że oni nie odważą się przyjść*. Jiang
-boi się nie własnej śmierci, a tego, że przeciwnicy nie przyjdą. To zdanie człowieka,
-który czeka, a nie ucieka.
-
+Ważyć trzeba jedno zdanie: *ja się boję tylko, że oni nie odważą się przyjść*. Mówi je
+człowiek, który nie boi się własnej śmierci, a tego, że przeciwnicy nie przyjdą — ktoś,
+kto czeka, a nie ucieka.
 ### Pościg za nefrytem
 
 Imię, które w Sali nie padło, pada na ulicy: *Nefryt Zhenguan*. Padają też dwa zarzuty
@@ -159,10 +184,16 @@ odlatuje *w dłoń mężczyzny na posągu Buddy*. To jedyne miejsce w rozegranyc
 widać, kto trzyma nici: nie król, nie Chen, a figura z kamienia. Warto przy tym zauważyć, że
 mówi się *mężczyzny*, a nie *Buddy* — posąg jest miejscem, w którym stoi człowiek.
 
-Wino i pieczęć rozpoznać można po obyczaju: dzban na stole znaczy w opowieściach rycerskich,
-że strony rozmawiają, a nie walczą, a pieczęć z nefrytu należała w cesarskich Chinach do
-insygniów urzędu — nosi się ją, żeby móc potwierdzić czyjeś słowo. To tłumaczy, dlaczego
-nikt nie próbuje wisiorka obejrzeć, tylko go *odebrać*.
+}}
+
+{{model
+
+## Wino i jadeit
+
+Dzban na stole znaczy w opowieściach rycerskich, że strony rozmawiają, a nie walczą.
+Jadeit w cesarskich Chinach bywał pieczęcią urzędu — rzeczą, która potwierdza czyjeś słowo
+— więc imię *Nefryt Zhenguan* brzmi jak nazwa przedmiotu, którego się nie ogląda, tylko
+strzeże. To tłumaczy, dlaczego nikt nie próbuje wisiorka obejrzeć, a chce go *odebrać*.
 
 }}
 

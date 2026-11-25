@@ -5,7 +5,7 @@ tytul: "Strzała nad urwiskiem"
 epizod: epizod-lucznik-z-przystani-slowa
 numer_sceny: "4-1"
 kolejnosc: 8
-streszczenie: "Nad urwiskiem Ruby i Youxia patrzą na ptaki, gdy strzała o mało nie trafia bohatera w twarz. Po drugiej stronie wąwozu stoi łucznik z Przystani Słowa, Feng Jisheng, i przeprasza za nieuwagę."
+streszczenie: "Nad urwiskiem Ruby i Youxia patrzą na ptaki, gdy strzała o mało nie trafia bohatera w twarz. Po drugiej stronie urwiska stoi łucznik z Przystani Słowa, Feng Jisheng, który przeprasza za nieuwagę i oddaje bohaterom rękopis o łucznictwie."
 zapis: 2026-11-22-001.md
 postacie: [youxia, ruby-zhou, feng-jisheng]
 miejsca: [zielne-bezdroza]
@@ -14,6 +14,11 @@ watki: [watek-dawe-dzieje]
 sekcje_analizy:
   - "Dwa ptaki jedną strzałą → Dwa ptaki jedną strzałą"
 tagi: [lucznictwo, urwisko, spotkanie]
+interpretacje:
+  - data: "2026-11-23 00:00"
+    zmiana: "Cytaty z rękopisu są dosłowne: *zwłaszcza rozdział trzeci* i *owoce wielu lat moich badań*, nie formy przepisane."
+    fragment: "Analiza"
+    poprzednio: "Rękopis nie jest przy tym księgą tajemnic w rozumieniu Ruby. Feng mówi o *rozdziale trzecim*\ni o tym, *jak siła naciągu przy cięciwie na drugim stawie palca wpływa na donośność strzału*\n— to notatki z prób, nie zaklęcie. Ruby, która spodziewała się skarbu, dostaje *owoc wielu\nlat badań* i nie wie, co z nim zrobić: *aż mi się w głowie kręci*."
 utworzono: 2026-11-22
 ---
 
@@ -54,6 +59,16 @@ Kotek-liliowiec: Miał! Miał!
 **Tajemniczy mężczyzna:** Ch-chwileczkę! Mój mistrz mawiał: szlachetny człowiek jest bez winy, bo każdy swój błąd naprawia.
 **Tajemniczy mężczyzna:** Mam rękopis z moimi spostrzeżeniami o łucznictwie. Od biedy można go nazwać “tajną księgą”, o której mówiła panienka. Pozwólcie, że oddam go wam obojgu w ramach przeprosin!
 
+## Scena 4700297
+**Youxia:** O łucznictwie… spostrzeżenia?
+**Tajemniczy mężczyzna:** Hm… Wstyd się przyznać, ale to owoc wielu lat moich badań.
+**Tajemniczy mężczyzna:** Zwłaszcza rozdział trzeci, mianowicie: jak siła naciągu przy cięciwie na drugim stawie palca wpływa na donośność strzału… O, o, i jeszcze tutaj, spójrz, spójrz…
+**Ruby:** Aż mi się w głowie kręci…
+**Ruby:** Chwila, wodzu, on powiedział… że to tajna księga, tak? Tajna księga! Wodzu! Bierz ją szybko!
+**Youxia:** Tyle lat pracy i tak po prostu nam to oddajesz? To zbyt hojne przeprosiny.
+**Tajemniczy mężczyzna:** Chuchać na własne rupiecie jak na skarb to dla ucznia Przystani Słowa najcięższe przewinienie.
+**Tajemniczy mężczyzna:** Przejrzyj najpierw. Jeśli coś będzie niejasne, wytłumaczę wszystko najlepiej, jak potrafię!
+
 :::
 
 }}
@@ -77,6 +92,17 @@ od razu i od razu go skreśla: *jaki bohater nie umie nawet porządnie strzelić
 Przeprosiny są jednak zbyt hojne, żeby je przyjąć bez pytania. *Tyle lat pracy i tak po prostu
 nam to oddajesz?* — mówi Youxia, i ma rację: rękopis jest dla tego człowieka całym dorobkiem,
 a oddaje go obcym, którzy stanęli w linii strzału.
+
+Rękopis nie jest przy tym księgą tajemnic w rozumieniu Ruby. Feng mówi: *zwłaszcza rozdział trzeci*
+i o tym, *jak siła naciągu przy cięciwie na drugim stawie palca wpływa na donośność strzału*
+— to notatki z prób, nie zaklęcie. Ruby, która spodziewała się skarbu, dostaje *owoce wielu
+lat moich badań* i nie wie, co z nim zrobić: *aż mi się w głowie kręci*. Bohater rozumie wartość
+lepiej niż ona i dlatego pyta, czy takie przeprosiny nie są zbyt hojne.
+
+W odpowiedzi Feng zdradza zasadę swojej szkoły: *chuchać na własne rupiecie jak na skarb
+to dla ucznia Przystani Słowa najcięższe przewinienie*. To zdanie odwraca scenę. Rękopis
+nie jest już darem, a dowodem, że uczeń umie oddać to, co cenne — i że Przystań Słowa uczy
+tego samego, czego uczy łuk: najpierw naprawić błąd, potem mierzyć.
 
 }}
 

@@ -12,16 +12,22 @@ utworzono: 2026-11-21
 ## Opis
 
 *Osobliwy nefryt, w którym brzmi głos nieba i ziemi.* W kamieniu ma więc być słyszalne coś,
-czego nie słychać w powietrzu — i to on pozwala wejść w Uroczysty Długi Dźwięk oraz wymieniać
-towary u kupców w Weiyang.
+czego nie słychać w powietrzu — i to on pozwala wziąć udział w obrzędzie zwanym Uroczystym
+Długim Dźwiękiem oraz wymieniać towary u kupców w Weiyang.
 
-Opis łączy dwie rzeczy, które zwykle stoją osobno: obrzęd i targ. Kamień, w którym brzmi
+}}
+
+{{opracowanie
+
+## Obrzęd i targ
+
+Echo Jade łączy dwie rzeczy, które zwykle stoją osobno: obrzęd i targ. Kamień, w którym brzmi
 niebo, jest równocześnie kluczem do handlu — czyli towar i świętość są w tym świecie jedną
 rzeczą.
 
 }}
 
-{{opracowanie
+{{model
 
 ## Nefryt, który mówi
 

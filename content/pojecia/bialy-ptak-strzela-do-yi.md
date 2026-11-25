@@ -13,14 +13,12 @@ utworzono: 2026-11-22
 
 ## Opis
 
-Nazwa, którą okolica nadała temu, co się dzieje nad urwiskiem: ktoś strąca białe ptaki, a strzały
-padają tak blisko ludzi, że jedna *o włos mija twoją głowę*. Zapis mówi przy tym, gdzie to jest
-— *Zielne Bezdroża, na północny zachód od Bambusowej Chaty* — i dodaje jedyne wyjaśnienie,
-jakie ma: *od Ruby wiesz, że w Qinghe zebrało się ostatnio sporo obcych*.
+Nad urwiskiem ktoś strąca białe ptaki, a strzały padają tak blisko ludzi, że jedna *o włos
+mija twoją głowę*. Miejsce jest podane wprost — *Zielne Bezdroża, na północny zachód od
+Bambusowej Chaty* — a jedyne wyjaśnienie, jakie ma opowieść, brzmi: *od Ruby wiesz, że
+w Qinghe zebrało się ostatnio sporo obcych*.
 
-Sprawcą okazuje się Feng Jisheng, który uczy się łuku i trafia w to, w co nie chciał. Nazwa
-zostaje jednak w świecie po jego odejściu: krzywda ma już swoje imię, choć winny się przyznał
-i przeprosił.
+Sprawcą okazuje się Feng Jisheng, który próbuje nowego łuku i trafia w to, w co nie chciał.
 
 }}
 
@@ -28,7 +26,9 @@ i przeprosił.
 
 ## Krzywda, która ma nazwę
 
-W jianghu zła sława działa jak nazwisko: wystarczy jedno zdarzenie, żeby miejsce dostało
-przydomek, a przydomek pamięć. *Biały ptak strzelony strzałą* jest więc obrazem nie tyle
-czynu, ile sposobu, w jaki opowieść go zapamiętuje.
+*Biały Ptak Strzela do Yi* to nazwa, pod którą krzywda zostaje w świecie — imię ma już samo
+zdarzenie, choć winny się przyznał i przeprosił. W jianghu zła sława działa jak nazwisko:
+wystarczy jedno zdarzenie, żeby miejsce dostało przydomek, a przydomek pamięć. *Biały ptak
+strzelony strzałą* jest więc obrazem nie tyle czynu, ile sposobu, w jaki opowieść go
+zapamiętuje.
 }}

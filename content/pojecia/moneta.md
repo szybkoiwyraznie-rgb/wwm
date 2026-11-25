@@ -11,9 +11,8 @@ utworzono: 2026-11-21
 
 ## Opis
 
-*Waluta w użyciu we wszystkich krainach. Pozwala handlować dobrami całego świata.* Opis jest
-krótki i nie ma w nim ani jednej sceny — moneta nie przeżywa niczego, przechodzi z ręki
-do ręki.
+*Waluta w użyciu we wszystkich krainach. Pozwala handlować dobrami całego świata.* Moneta
+nie przeżywa niczego — przechodzi z ręki do ręki i właśnie dlatego zna ją każdy.
 
 }}
 

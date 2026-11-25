@@ -5,7 +5,7 @@ tytul: "Motyle i dziwny kwiat"
 epizod: epizod-droga-do-kaplicy
 numer_sceny: "3-3"
 kolejnosc: 7
-streszczenie: "W drodze Ruby niecierpliwi się, że robi się ciemno, i pyta, czemu motyle krążą wokół jej twarzy. Bohater zostawia przy ścieżce dziwny kwiat, a Ruby dziwi się, że go nie zabiera."
+streszczenie: "W drodze Ruby woła, żeby Youxia nie szedł bez niej do Kaplicy, a potem pyta, czemu motyle krążą wokół jej twarzy. Bohater zostawia przy ścieżce dziwny kwiat, a Ruby dziwi się, że go nie zabiera."
 zapis: 2026-11-22-001.md
 postacie: [youxia, ruby-zhou]
 miejsca: []
@@ -13,6 +13,11 @@ watki: [watek-dawe-dzieje]
 sekcje_analizy:
   - "Kwiat, którego nikt nie zrywa → Kwiat, którego nikt nie zrywa"
 tagi: [droga, motyle, ruby]
+interpretacje:
+  - data: "2026-11-23 00:01"
+    zmiana: "Cytat Ruby jest dosłowny: *przegonić te motyle daleko, daleko*, nie *przegonić daleko, daleko*."
+    fragment: "Analiza"
+    poprzednio: "Motyle są tu dwa razy: krążą wokół jej twarzy, a ona chce je *przegonić daleko, daleko*."
 utworzono: 2026-11-22
 ---
 
@@ -48,11 +53,11 @@ utworzono: 2026-11-22
 
 ### Kwiat, którego nikt nie zrywa
 
-Te cztery sceny są najkrótszym, co w całym rozdziale jest: po jednym zdaniu, po jednym
-geście. I właśnie dlatego widać w nich różnicę tempa. Ruby liczy czas — *jak tak dalej pójdzie,
-zrobi się ciemno* — a potem przestaje się spieszyć, gdy tylko zobaczy motyle.
+Te krótkie wymiany są najkrótszym, co w całym rozdziale jest: po jednym zdaniu, po jednym
+geście. I właśnie dlatego widać w nich różnicę tempa: Ruby najpierw się niecierpliwi,
+a potem przestaje się spieszyć, gdy tylko zobaczy motyle.
 
-Motyle są tu dwa razy: krążą wokół jej twarzy, a ona chce je *przegonić daleko, daleko*.
+Motyle są tu dwa razy: krążą wokół jej twarzy, a ona chce je *przegonić te motyle daleko, daleko*.
 To to samo dziecko, które w scenie obietnicy urwało rozmowę na widok owada.
 
 Kwiat jest ważniejszy niż wygląda. Bohater go zostawia, a Ruby pyta *ee? wodzu, zostawiasz

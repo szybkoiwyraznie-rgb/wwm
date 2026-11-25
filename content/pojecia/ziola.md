@@ -13,9 +13,8 @@ utworzono: 2026-11-21
 ## Opis
 
 *Pospolite zioło lecznicze o wielu zastosowaniach.* Opis nie wymienia ani jednej nazwy
-rośliny — mówi tylko, że zioła są pospolite i że sposobów ich użycia jest wiele. To
-najskromniejszy przedmiot w całym zielniku i zarazem ten, przy którym opowieść sięga
-po cytat z księgi.
+rośliny — mówi tylko, że zioła są pospolite i że sposobów ich użycia jest wiele. Mimo to
+przy ziołach stoi zdanie z księgi: pospolitość jest tu zaletą, nie brakiem.
 
 }}
 
@@ -35,12 +34,12 @@ Zioło jest więc w tej księdze dowodem, że ktoś się osiedlił.
 {{zrodlo tytul="說苑 · 建本 (Ogród pouczeń, rozdz. 3)" adres="https://zh.wikisource.org/wiki/%E8%AA%AA%E8%8B%91/%E5%8D%B703" data="2026-11-21"}}
 }}
 
-{{opracowanie
+{{model
 
 ## Kamień i metal
 
-W tym samym zdaniu obok ziół stoją *metal i kamień* — igły i ostrza, narzędzia lekarza.
-W chińskiej medycynie zioło nie działa samo: leczy się razem, zielem i igłą, a dobry
-lekarz zna obie drogi. Kto w tej opowieści zbiera zioła, ten o tym wie.
+W tym samym zdaniu obok ziół stoją *metal i kamień* — igły i ostrza, drugie narzędzie
+lekarza obok ziela. W chińskiej medycynie zioło nie działa samo: leczy się razem, zielem
+i igłą, a dobry lekarz zna obie drogi.
 
 }}

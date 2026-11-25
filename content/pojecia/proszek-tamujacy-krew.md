@@ -12,12 +12,11 @@ utworzono: 2026-11-21
 ## Opis
 
 *Lek podstawowy.* Działa od razu — tamuje krew i stawia na nogi, dlatego nosi się go
-w podręcznej apteczce, a nie w sakwie z zapasami. Proszek jest tym, co zostaje w ręku, kiedy
-skończyły się słowa i czas.
+w podręcznej apteczce. Proszek jest tym, co zostaje w ręku, kiedy skończyły się słowa i czas.
 
-Apteczkę opracowała Yao Yaoyao, a ulepszyć ją można w Lecznicy Życia w Gospodzie Bez
-Zazdrości. To zdanie mówi więcej o świecie niż o lekarstwie: istnieje ktoś, kto zawodowo
-zajmuje się tym, żeby ranni wracali do domu, i miejsce, w którym się to robi.
+Za lekarstwem stoi czyjaś praca: apteczkę opracowała Yao Yaoyao, a ulepszyć ją można
+w Lecznicy Życia w Gospodzie Bez Zazdrości. Istnieje więc ktoś, kto zawodowo zajmuje się
+tym, żeby ranni wracali do domu, i miejsce, w którym się to robi.
 
 }}
 

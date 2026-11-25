@@ -3,9 +3,13 @@ typ: miejsce
 slug: sala-powrotu-wiosny
 tytul: "Sala Powrotu Wiosny"
 rodzaj: gospoda
-kraina: jiangnan
 postacie: [chen-zixi, jiang-wulang]
 tagi: [prologi, uczta]
+interpretacje:
+  - data: "2026-11-22 22:40"
+    zmiana: "Sala nie leży w Jiangnan: Chen Zixi proponuje wspólną podróż tam, więc mówi o południu jako celu, nie o miejscu, w którym siedzi. Odczytanie gospody stoi teraz jako przypuszczenie, nie ustalenie."
+    fragment: "Sala, w której się pije"
+    poprzednio: "Kraina Jiangnan została przypisana do tej gospody, bo jej nazwa brzmi jak zawołanie podróżnych z południa. Jeśli okaże się, że Sala stoi gdzie indziej, wystarczy zmienić pole `kraina` — nazwa miejsca pozostaje bowiem ta sama."
 utworzono: 2026-11-21
 ---
 
@@ -13,22 +17,23 @@ utworzono: 2026-11-21
 
 ## Opis
 
-Miejsce, w którym zaczyna się cała opowieść i z którego widzi się tylko jedną scenę: stół,
-dzban wina i dwóch ludzi, z których jeden przyszedł zabić. Nagłówek `Sala Powrotu Wiosny`
-jest w zapisie osobnym wierszem obok imienia *pana*, a nie pośród rzeczy wnętrza — dlatego wiadomo,
-że to gospoda, w której się pije, a nie dwór.
+Miejsce, w którym zaczyna się cała opowieść: stół, dzban wina i dwóch ludzi, z których
+jeden przyszedł zabić. Chen Zixi nazywa Jianga *panem Sali Powrotu Wiosny*, a potem
+kosztuje trunku — *smakuje?* pyta, *cienkie* odpowiada tamten.
 
-Jej położenie nie jest podane wprost. Chen Zixi zestawia jej wino z *Hojną Wiosną z Jiangnanu*
-i mówi o wspólnej podróży *tam* — więc stoi ona gdzie indziej niż na południu, i to raczej
-na północy, na drodze Jiang Yana. Pewności co do krainy nie ma i dlatego stoi tu tylko
-jako trop, nie jako ustalenie.
+Sala prawdopodobnie nie leży w Jiangnan. Chen zestawia jej wino z *Hojną Wiosną z Jiangnanu* i proponuje
+wspólną podróż *tam* — więc mówi o południu jak o celu, nie o miejscu, w którym siedzi.
+Gdzie stoi sala, opowieść nie mówi.
 
 }}
 
-{{model pewnosc=30
+{{model pewnosc=45 pytanie="Czy Sala Powrotu Wiosny jest gospodą, domem czy salą dworu?"
 
-Kraina Jiangnan została przypisana do tej gospody, bo jej nazwa brzmi jak zawołanie
-podróżnych z południa. Jeśli okaże się, że Sala stoi gdzie indziej, wystarczy zmienić
-pole `kraina` — nazwa miejsca pozostaje bowiem ta sama.
+## Sala, w której się pije
 
+Nazwa brzmi jak siedziba rodu albo gospoda, a scena pokazuje tylko stół i dzban. *Pan Sali
+Powrotu Wiosny* to tytuł, jakim obdarza Jianga człowiek, który przyszedł go zabić — mówi
+więc o miejscu, z którego Jiang jest znany, nie o jego domu. Gospoda jest najlepszym
+odczytaniem, ale nie jedynym: sala może być równie dobrze częścią dworu, w której podaje
+się wino.
 }}

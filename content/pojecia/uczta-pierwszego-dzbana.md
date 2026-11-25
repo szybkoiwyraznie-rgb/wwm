@@ -21,7 +21,7 @@ Do tego dochodzi zapowiedź z drogi: *jutro na Uczcie Pierwszego Dzbana pokażę
 koniec! Wskoczę na sam szczyt, żeby wszyscy widzieli!* — mówi Ruby, czyli Uczta ma też
 miejsce na popis dziecka, nie tylko na ogłoszenie gospodyni.
 
-W opowiedzianym dniu Uczta jest jeszcze *jutro*. Cały rozdział ciąży ku niej i żadne
+W tym dniu Uczta jest jeszcze *jutro*. Cały rozdział ciąży ku niej i żadne
 z pytań, które bohater sobie zadaje — o wuja, o wisiorek, o człowieka w czerni — nie zostaje
 zamknięte przed jej nadejściem.
 

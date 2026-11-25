@@ -1,5 +1,14 @@
 # Co nowego
 
+## 2026-11-25 16:40
+
+- Teatr cieni nad Północnym Przymierzem: akt o Ośmiu Wspaniałych, oskarżenie o zdradę
+  i druga faza przedstawienia, w której wrogowie drżą przed wojskiem.
+- Wędrowiec przy drodze: trzy dni czekania, „Kronika” oddana w zamian za przysługę,
+  pozdrowienie Wędrowców i niedźwiedź, którego trzeba przepędzić.
+- Z drogi i zielonego lasu: czarne żelazo, ścięgno wołowe, mała kraina Wędrowców, mapa
+  Qinghe z czarną stroną Gengzi oraz zapasy — grzyby, skóra i tłuste mięso.
+
 ## 2026-11-22 18:10
 
 - Droga do Kaplicy Generała: Ruby wypomina obietnicę, mostek wali się pod nią, a przy ścieżce
