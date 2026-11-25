@@ -1,5 +1,12 @@
 # Co nowego
 
+## 2026-11-22 20:30
+
+- Teatr cieni nad Północnym Przymierzem: akt o Ośmiu Wspaniałych, oskarżenie o zdradę
+  i druga faza przedstawienia, w której wrogowie drżą przed wojskiem.
+- Wędrowiec przy drodze: trzy dni czekania, „Kronika” oddana w zamian za przysługę,
+  pozdrowienie Wędrowców i niedźwiedź, którego trzeba przepędzić.
+
 ## 2026-11-22 18:10
 
 - Droga do Kaplicy Generała: Ruby wypomina obietnicę, mostek wali się pod nią, a przy ścieżce

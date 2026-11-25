@@ -4,7 +4,7 @@ slug: rozdzial-1
 tytul: "Nieśmiertelni nie przypłyną"
 tytul_ja: "仙人渡不来"
 numer: 1
-epizody: [epizod-prologi, epizod-przebudzenie, epizod-droga-do-kaplicy, epizod-lucznik-z-przystani-slowa]
+epizody: [epizod-prologi, epizod-przebudzenie, epizod-droga-do-kaplicy, epizod-lucznik-z-przystani-slowa, epizod-teatr-cieni, epizod-wedrowiec]
 watki: [watek-dawe-dzieje, watek-nefryt-zhenguan]
 krainy: [jiangnan, ziemie-tang]
 sekty: [zloty-pawilon, przystan-slowa]
