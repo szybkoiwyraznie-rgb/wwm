@@ -13,7 +13,8 @@ utworzono: 2026-11-22
 
 ## Opis
 
-Materiał na strzały: *pióra zwykłych ptaków, lekkie i sprężyste*. Zwykłych, czyli takich,
+Materiał na strzały: *pióra zwykłych ptaków, lekkie i wytrzymałe, służą do wyrobu strzał*.
+Drugi opis mówi, że są *lekkie i sprężyste*. Zwykłych, czyli takich,
 których wokół pełno — i to jest w tej notatce cała jej treść: strzała nie potrzebuje ptaka
 szlachetnego, potrzebuje pióra, które się nie złamie w locie.
 

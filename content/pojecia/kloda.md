@@ -11,7 +11,8 @@ utworzono: 2026-11-22
 
 ## Opis
 
-*Odcinek pnia pospolitego drzewa po obróbce, słoje gęste.* Materiał jak ruda: gotowy do
+*Pień ścięty na odcinki zadanej długości; zda się mieć wiele zastosowań.* Drugi opis dodaje:
+*odcinek pnia pospolitego drzewa po obróbce, słoje gęste.* Materiał jak ruda: gotowy do
 użycia, ale jeszcze nie użyty. Gęste słoje znaczą drewno twarde i stare — takie idzie na
 trzon włóczni albo na belkę, nie na podpałkę.
 

@@ -16,7 +16,7 @@ utworzono: 2026-11-22
 ## Opis
 
 *Najgroźniejsza potęga w jianghu* — tak mówią o Trzech Wielkich Domach Zielonego Lasu zbóje,
-którzy noszą ich sztandar. Domy mają sięgać po zbójów z Qinghe: według opisu przysłały im
+którzy noszą ich sztandar. Domy mają sięgać po zbójów z Qinghe: mówi się, że przysłały im
 transport łuków i strzał, choć niewielu z obdarowanych umie się nimi posługiwać.
 
 Sztandar nie czyni z każdego zbója żołnierza. *Rabuś z Zielonego Lasu* i *Szkodnik z Zielonego

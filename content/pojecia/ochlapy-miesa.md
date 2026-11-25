@@ -11,7 +11,8 @@ utworzono: 2026-11-22
 
 ## Opis
 
-*Mięso drobnych zwierząt — małży, żab i podobnych — to składnik ukochany przez smakoszy.
+*Soczyste ochłapy mięsa. Zastosowań wiele.* Drugi opis wyjaśnia, czyje to mięso:
+*mięso drobnych zwierząt — małży, żab i podobnych — to składnik ukochany przez smakoszy.
 Pamiętaj: przed zjedzeniem trzeba je dobrze ugotować.*
 
 Notatka mówi dwie rzeczy naraz: że w tym kraju je się wszystko, co ma mięso, i że jedzenie
