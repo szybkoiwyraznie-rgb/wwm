@@ -63,7 +63,8 @@ cierpi jak jego rola.
 
 Głos nie przedstawia się imieniem; mówi *moi bracia*, jakby stał na czele Ośmiu Wspaniałych.
 Opis teatru cieni mówi o braciach Sheng Wen i Sheng Wu, którzy od dziecka grali w teatrze
-i w czasie najazdu Kitanów połączyli się z bohaterami z Qinghe. Jeśli to oni, to nie grają
+i w czasie najazdu Kitanów połączyli się z bohaterami z różnych stron w Ośmiu Wspaniałych
+z Qinghe. Jeśli to oni, to nie grają
 już własnego życia — grają rolę, która ich trzyma. Wtedy *zdrajco! giń!* nie jest kwestią
 z przedstawienia, a oskarżeniem, którego akt nie pozwala odłożyć.
 

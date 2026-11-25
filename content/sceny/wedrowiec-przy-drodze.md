@@ -11,7 +11,7 @@ postacie: [youxia, wedrowiec]
 krainy: []
 miejsca: []
 sekty: [wedrowcy]
-watki: []
+watki: [niedzwiedzie-zadanie]
 konteksty: [kronika-swiata-sztuk-walki]
 sekcje_analizy:
   - "Trzy dni przy drodze → Trzy dni przy drodze"

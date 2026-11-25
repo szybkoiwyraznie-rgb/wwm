@@ -4,7 +4,7 @@ slug: youxia
 tytul: "Youxia"
 rola: protagonista
 przydzial: "wychowanek wuja Jianga; ten, czyim okiem widzimy rozdział"
-watki: [watek-dawe-dzieje, watek-nefryt-zhenguan]
+watki: [watek-dawe-dzieje, watek-nefryt-zhenguan, niedzwiedzie-zadanie]
 pierwsze_wystapienie: cutscena-przebudzenie
 tagi: [bohater, chata, uczta]
 utworzono: 2026-11-21

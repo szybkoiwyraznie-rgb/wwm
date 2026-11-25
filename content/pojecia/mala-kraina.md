@@ -24,8 +24,8 @@ niebo i ziemię, nie pomijając ani cala*.
 ## Znak, który mierzy
 
 Mała Kraina jest przedmiotem, który mówi, kim jest ten, kto go nosi. Czarno-biały nefryt
-powtarza parę nieba i ziemi: czerń to ziemia, biel to niebo, a razem tworzą miarę, która
-obejmuje cały świat. Kto ją nosi, ten nosi przy sobie zmniejszony obraz kosmosu — i zobowiązanie,
+powtarza parę nieba i ziemi — czystość i mętność — a razem tworzą miarę, która obejmuje
+cały świat. Kto ją nosi, ten nosi przy sobie zmniejszony obraz kosmosu — i zobowiązanie,
 żeby mierzyć go bez fałszu.
 
 Dlatego znak Wędrowców nie jest pieczęcią ani herbem. Jest narzędziem: miarą długości, którą

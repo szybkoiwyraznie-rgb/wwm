@@ -23,8 +23,8 @@ od umiejętności.
 
 ### Szkodnik z Zielonego Lasu
 
-Zbój, który *dostał łuk tylko dlatego, że raz rzucił na kogoś w tłumie okiem i uznano, że ma
-dobry wzrok*. Trzy Wielkie Domy przysłały zbójom transport łuków i strzał, ale *niewielu umie
+Zbój *biegły w strzelaniu z łuku*, który *dostał łuk tylko dlatego, że raz rzucił na kogoś
+w tłumie okiem i uznano, że ma dobry wzrok*. Trzy Wielkie Domy przysłały zbójom transport łuków i strzał, ale *niewielu umie
 się nimi posługiwać*.
 
 }}
@@ -33,9 +33,13 @@ się nimi posługiwać*.
 
 ## Zbój z herbem
 
-Obaj zbóje są opisani przez to, czego im brakuje: jeden nie tnie tak dobrze, jak rzuca piaskiem,
-drugi dostał łuk za spojrzenie, nie za strzelanie. Ich siła nie leży w nich samych, a w tym,
-co noszą — w sztandarze Trzech Wielkich Domów i w broni, której nie umieją użyć.
+Obaj zbóje są opisani przez rozdźwięk między sławą a pochodzeniem umiejętności: jeden może nie
+być tak biegły, jak mówi, drugi jest biegły w strzelaniu, ale łuk dostał za wzrok, nie za
+zasługi. Ich pozycja nie leży w nich samych, a w tym, co noszą — w sztandarze Trzech Wielkich
+Domów i w broni, którą dostali od kogoś innego.
+
+Kryjówki leżą w Zielnych Bezdrożach i na Górze Ukrytego Księżyca — tam, gdzie
+nie sięga droga, a sięga sztandar.
 
 To obraz zielonolaskiej potęgi od dołu: zamiast armii są ludzie, którym dano znak i narzędzie,
 a nie umiejętność.

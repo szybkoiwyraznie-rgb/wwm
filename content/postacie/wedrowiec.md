@@ -8,7 +8,7 @@ sekta: wedrowcy
 pierwsze_wystapienie: wedrowiec-przy-drodze
 krainy: []
 miejsca: []
-watki: []
+watki: [niedzwiedzie-zadanie]
 tagi: [wedrowiec, mapa, ksiega, droga]
 utworzono: 2026-11-22
 ---

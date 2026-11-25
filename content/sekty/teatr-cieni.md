@@ -17,7 +17,7 @@ utworzono: 2026-11-22
 Bracia Sheng Wen i Sheng Wu od dziecka utrzymywali się z teatru cieni. Jeden śpiewał, drugi
 walczył, a z czasem w teatrze cieni zgłębili sztukę walki o szerokim, potężnym rozmachu. Gdy
 najechali Kitanowie, połączyli się z bohaterami z różnych stron w Ośmiu Wspaniałych z Qinghe
-i pomogli Qinghe przetrwać klęskę.
+i pomogli Qinghe przetrwać tę klęskę.
 
 Dziś bracia odgrywają nad brzegiem Północnego Przymierza swoje przedstawienie cieni
 i wspominają, jak niegdyś z Ośmioma Wspaniałymi ramię w ramię walczyli z wrogiem. Opis dodaje

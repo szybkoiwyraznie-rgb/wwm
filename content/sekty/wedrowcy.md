@@ -4,7 +4,7 @@ slug: wedrowcy
 tytul: "Wędrowcy"
 rodzaj: bractwo
 postacie: [wedrowiec]
-watki: []
+watki: [niedzwiedzie-zadanie]
 konteksty: []
 epizody: [epizod-wedrowiec]
 tagi: [wedrowcy, mapa, miara, droga]
