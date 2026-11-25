@@ -9,6 +9,7 @@ status: rozegrane
 sceny: [mistrz-teatru-cieni]
 postacie: []
 miejsca: []
+sekty: [teatr-cieni]
 watki: []
 konteksty: [osmiu-wspanialych-z-hedong]
 tagi: [teatr, wspomnienie, walka]

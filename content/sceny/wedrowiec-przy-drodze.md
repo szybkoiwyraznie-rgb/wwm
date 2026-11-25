@@ -7,10 +7,10 @@ numer_sceny: "6-1"
 kolejnosc: 12
 streszczenie: "Przy drodze Youxia spotyka Wędrowca, który po trzech dniach czekania oddaje mu „Kronikę” i prosi o przegonienie niedźwiedzia. W zamian zdradza mu pozdrowienie Wędrowców i odchodzi."
 zapis: 2026-11-22-002.md
-postacie: [youxia]
+postacie: [youxia, wedrowiec]
 krainy: []
 miejsca: []
-sekty: []
+sekty: [wedrowcy]
 watki: []
 konteksty: [kronika-swiata-sztuk-walki]
 sekcje_analizy:

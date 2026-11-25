@@ -7,8 +7,8 @@ numer: 1
 epizody: [epizod-prologi, epizod-przebudzenie, epizod-droga-do-kaplicy, epizod-lucznik-z-przystani-slowa, epizod-teatr-cieni, epizod-wedrowiec]
 watki: [watek-dawe-dzieje, watek-nefryt-zhenguan]
 krainy: [jiangnan, ziemie-tang]
-sekty: [zloty-pawilon, przystan-slowa]
-postacie: [youxia, ruby-zhou, jiang-wulang, chen-zixi, czlowiek-w-czerni, ciotka-han, feng-jisheng, brodacz-guang]
+sekty: [zloty-pawilon, przystan-slowa, wedrowcy, teatr-cieni, trzy-wielkie-domy-zielonego-lasu]
+postacie: [youxia, ruby-zhou, jiang-wulang, chen-zixi, czlowiek-w-czerni, ciotka-han, feng-jisheng, brodacz-guang, wedrowiec]
 status: w-toku
 tagi: [rozdzial-pierwszy]
 utworzono: 2026-11-21

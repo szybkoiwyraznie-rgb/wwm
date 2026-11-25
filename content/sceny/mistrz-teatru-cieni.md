@@ -10,7 +10,7 @@ zapis: 2026-11-22-002.md
 postacie: []
 krainy: []
 miejsca: []
-sekty: []
+sekty: [teatr-cieni]
 watki: []
 konteksty: [osmiu-wspanialych-z-hedong]
 sekcje_analizy:

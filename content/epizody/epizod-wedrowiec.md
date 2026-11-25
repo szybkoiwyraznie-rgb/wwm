@@ -7,9 +7,10 @@ kolejnosc: 6
 rodzaj: spotkanie
 status: rozegrane
 sceny: [wedrowiec-przy-drodze]
-postacie: [youxia]
+postacie: [youxia, wedrowiec]
 miejsca: []
 watki: []
+sekty: [wedrowcy]
 konteksty: [kronika-swiata-sztuk-walki]
 tagi: [wedrowiec, droga, ksiega]
 utworzono: 2026-11-22
