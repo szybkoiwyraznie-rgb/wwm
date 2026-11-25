@@ -15,12 +15,12 @@ utworzono: 2026-11-25
 
 ## Opis
 
-*Znak, który pozwala dołączyć do Wędrowców.* Jest nim *czystość nieba i mętność ziemi
+*Znak, który pozwala dołączyć do Wędrowców.* Jest nim [[mala-kraina|Mała Kraina]]: *czystość nieba i mętność ziemi
 zamknięte w czarno-białej nefrytowej mierze długiej na stopę i osiem cali*; nosi ją u pasa
 każdy, kto wstąpi do oddziału Wędrowców. Miara jest znakiem rozpoznawczym i zarazem zdaniem:
 *zmierzyć niebo i ziemię, nie pomijając ani cala*.
 
-Wędrowcy sporządzają i wydają mapy. *Mapa Qinghe I* opisuje ukształtowanie terenu oraz ludzi
+Wędrowcy sporządzają i wydają mapy. *[[mapa-qinghe-i|Mapa Qinghe I]]* opisuje ukształtowanie terenu oraz ludzi
 i krajobrazy okolic Zielnych Bezdroży w Qinghe. Na pożegnanie jeden z nich mówi, że kto spotka
 jego braci po fachu i powtórzy *z miarą w dłoni po krańce świata, krańce świata o krok*,
 dostanie mapy całego świata.

@@ -18,14 +18,14 @@ utworzono: 2026-11-25
 ### Rabuś z Zielonego Lasu
 
 Zbój grasujący po okolicach Qinghe, *biegły we władaniu tasakiem*. Opis dodaje jednak, że
-*rzucanie piaskiem w oczy wychodzi mu sprawniej niż cięcia* — a więc jego sława większa jest
-od umiejętności.
+*rzucanie piaskiem w oczy wychodzi mu sprawniej niż cięcia* — a więc jego sława może być
+większa od umiejętności.
 
 ### Szkodnik z Zielonego Lasu
 
 Zbój *biegły w strzelaniu z łuku*, który *dostał łuk tylko dlatego, że raz rzucił na kogoś
-w tłumie okiem i uznano, że ma dobry wzrok*. Trzy Wielkie Domy przysłały zbójom transport łuków i strzał, ale *niewielu umie
-się nimi posługiwać*.
+w tłumie okiem i uznano, że ma dobry wzrok*. Podobno Trzy Wielkie Domy chcą położyć łapę na zbójach z Qinghe i przysłały im transport
+łuków i strzał, ale *niewielu umie się nimi posługiwać*.
 
 }}
 

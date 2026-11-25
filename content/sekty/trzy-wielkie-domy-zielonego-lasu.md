@@ -19,8 +19,7 @@ utworzono: 2026-11-25
 którzy noszą ich sztandar. Domy mają sięgać po zbójów z Qinghe: mówi się, że przysłały im
 transport łuków i strzał, choć niewielu z obdarowanych umie się nimi posługiwać.
 
-Sztandar nie czyni z każdego zbója żołnierza. *Rabuś z Zielonego Lasu* i *Szkodnik z Zielonego
-Lasu* obnoszą się herbem potęgi, ale w istocie są *chytre, zmienne kanalie, co kradną kury
+Sztandar nie czyni z każdego zbója żołnierza. [[zboje-zielonego-lasu|Rabuś i Szkodnik z Zielonego Lasu]] obnoszą się herbem potęgi, ale w istocie są *chytre, zmienne kanalie, co kradną kury
 i podkradają psy*.
 
 }}
